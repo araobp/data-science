@@ -16,8 +16,8 @@ The best accuracy I have ever achieved is 75%. Can I get a higher score than 75%
 
 ### [MINIST](MNIST)
 
-### [Titanic](Titanic)
-
 ### [IMDb](IMDb)
+
+### [Titanic](Titanic)
 
 ### [Audio](Audio)

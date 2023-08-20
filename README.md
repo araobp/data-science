@@ -12,6 +12,8 @@ Note: although my most favorite language is C, I use Python for studying data sc
 
 ### [CIFAR 10](CIFAR10)
 
+The best accuracy I have ever achieved is 75%. Can I get a higher score than 75%?
+
 ### [MINIST](MNIST)
 
 ### [Titanic](Titanic)

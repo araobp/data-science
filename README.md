@@ -16,6 +16,14 @@ In September 2018, I found this great paper on the net: https://haythamfayek.com
 
 I relearn it in this project.
 
+### [Arduino](Arduino)
+
+Arduino is a device for testing sensor modules. Let Jupyter Notebook to collect data from sensors.
+
+<img src='doc/me.jpg' width=200>
+
+This is me.
+
 ### [CIFAR 10](CIFAR10)
 
 The best accuracy I have ever achieved is 75%. Can I get a higher score than 75%?

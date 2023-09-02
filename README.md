@@ -10,6 +10,12 @@ This folder contains Python-version of the C programmes in the book.
 
 Note: although my most favorite language is C, I use Python for studying data science in this project.
 
+### [Speech Procesing](SpeechProcessing)
+
+In September 2018, I found this great paper on the net: https://haythamfayek.com/2016/04/21/speech-processing-for-machine-learning.html
+
+I relearn it in this project.
+
 ### [CIFAR 10](CIFAR10)
 
 The best accuracy I have ever achieved is 75%. Can I get a higher score than 75%?

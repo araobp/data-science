@@ -16,6 +16,10 @@ In September 2018, I found this great paper on the net: https://haythamfayek.com
 
 I relearn it in this project.
 
+### [STM32](STM32)
+
+This is a sub project to develop an edge AI device for the "Speech Processing" in the above, referring to my past project: https://github.com/araobp/acoustic-features
+
 ### [Arduino](Arduino)
 
 Arduino is a device for testing sensor modules. Let Jupyter Notebook to collect data from sensors.

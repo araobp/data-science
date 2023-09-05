@@ -1,4 +1,4 @@
-# data-science-study
+# Full Stack Data Scientist
 
 (Work in progress)
 

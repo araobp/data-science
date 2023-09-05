@@ -4,7 +4,7 @@
 
 I used to be a full stack data scientist in the past.
 
-This project is to relearn the every technology to become a full stack data scientist again.
+This project is to relearn the every technology to become a full stack data scientist again.　A lot of fun!
 
 - IoT circuit design : Physics, Electronics and CAD
 - IoT device prototyping : Circuit board and C/C++ programming

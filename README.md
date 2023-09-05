@@ -13,6 +13,7 @@ This project is to relearn the every technology to become a full stack data scie
 - AI application development : Python and Android(Kotlin)
 - AI deployment : IoT devices and web apps (Node.js/HTML5/CSS/JavaScript)
 - Data Analysis : Jupyter Notebook, numpy, pandas and matplotlib
+- AI visualization : Blender
 
 ### [Digital Audio Processing](DigitalAudioProcessing)
 

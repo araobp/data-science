@@ -35,6 +35,12 @@ I relearn it in this project.
 
 This is a sub project to develop an edge AI device for the "Speech Processing" in the above, referring to my past project: https://github.com/araobp/acoustic-features
 
+## [Step 2] Prototyping Acoustic Scene Detection
+
+...
+
+## Others
+
 ### [Arduino](Arduino)
 
 Arduino is a device for testing sensor modules. Let Jupyter Notebook to collect data from sensors.
@@ -54,7 +60,3 @@ The best accuracy I have ever achieved is 75%. Can I get a higher score than 75%
 ### [Titanic](Titanic)
 
 ### [Audio](Audio)
-
-## [Step 2] Prototyping Acoustic Scene Detection
-
-...

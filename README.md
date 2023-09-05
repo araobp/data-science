@@ -22,7 +22,7 @@ In September 2018, I found this great paper on the net: https://haythamfayek.com
 
 I relearn it in this project.
 
-### [STM32](STM32) STMicroelectronics NUCLEO-L476RG board
+### [STM32](STM32) (STMicroelectronics NUCLEO-L476RG board)
 
 This is a project to develop edge AI for Acoustic Scene Detection based on Cube.AI, referring to my past project: https://github.com/araobp/acoustic-features
 

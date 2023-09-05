@@ -1,0 +1,4 @@
+../Core/Src/amg8833.c:12:6:adaptor_init	16	static
+../Core/Src/amg8833.c:16:6:i2c_write	32	static
+../Core/Src/amg8833.c:24:6:set_moving_average	48	static
+../Core/Src/amg8833.c:42:6:read_registors	32	static

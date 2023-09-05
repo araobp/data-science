@@ -15,6 +15,8 @@ This project is to relearn the every technology to become a full stack data scie
 - Data Analysis : Jupyter Notebook, numpy, pandas and matplotlib
 - AI visualization : Blender
 
+## [Step 1] Training myself
+
 ### [Digital Audio Processing](DigitalAudioProcessing)
 
 The best text book that I have ever read in my life: [C言語ではじめる音のプログラミング―サウンドエフェクトの信号処理](https://www.ohmsha.co.jp/book/9784274206504/)
@@ -52,3 +54,7 @@ The best accuracy I have ever achieved is 75%. Can I get a higher score than 75%
 ### [Titanic](Titanic)
 
 ### [Audio](Audio)
+
+## [Step 2] Prototyping Acoustic Scene Detection
+
+...

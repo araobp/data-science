@@ -1,4 +1,4 @@
-Projects:
+# NUCLEO-L476RG board
 
 - [HelloWorld](HelloWorld)
 - [Clock](Clock)

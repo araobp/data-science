@@ -1,20 +1,20 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2023 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file           : main.c
+ * @brief          : Main program body
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2023 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
@@ -22,6 +22,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <string.h>
+#include <stdio.h>
 #include <stdbool.h>
 #include "lcd.h"
 /* USER CODE END Includes */
@@ -39,7 +40,6 @@
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
 
-
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -53,10 +53,12 @@ UART_HandleTypeDef huart2;
 uint8_t rxbuf[1];
 
 typedef struct {
-  char date[10];
-  char time[8];
-  char weekday[3];
+  char date[11];
+  char time[9];
+  char weekday[4];
 } current_datetime;
+
+bool alerted = false;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -87,7 +89,8 @@ void get_current_datetime(current_datetime *dt, bool add_seconds) {
     sprintf(dt->time, "%02d:%02d:%02d", sTime.Hours, sTime.Minutes,
         sTime.Seconds);
   } else {
-    sprintf(dt->time, "%02d:%02d", sTime.Hours, sTime.Minutes);
+    sprintf(dt->time, "%02d:%02d:%02d", sTime.Hours, sTime.Minutes,
+        sTime.Seconds);
   }
 
   switch (sDate.WeekDay) {
@@ -124,7 +127,7 @@ void get_current_datetime(current_datetime *dt, bool add_seconds) {
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	current_datetime cd;
+  current_datetime cd;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -157,17 +160,17 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
-	get_current_datetime(&cd, false);
-	lcd_clear();
-	lcd_string((uint8_t *)cd.date, sizeof(cd.date));
-	lcd_move_right();
-	lcd_string((uint8_t *)cd.weekday, sizeof(cd.weekday));
-	lcd_newline();
-	lcd_string((uint8_t *)cd.time, sizeof(cd.time));
-	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);  // LD2
-	HAL_Delay(30000); // 30 sec
+  while (1) {
+    if (alerted) {
+      get_current_datetime(&cd, false);
+      lcd_clear();
+      lcd_string((uint8_t*) cd.date, sizeof(cd.date));
+      lcd_move_right();
+      lcd_string((uint8_t*) cd.weekday, sizeof(cd.weekday));
+      lcd_newline();
+      lcd_string((uint8_t*) cd.time, sizeof(cd.time));
+      alerted = false;
+    }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -290,6 +293,10 @@ static void MX_RTC_Init(void)
 
   /* USER CODE END RTC_Init 0 */
 
+  RTC_TimeTypeDef sTime = {0};
+  RTC_DateTypeDef sDate = {0};
+  RTC_AlarmTypeDef sAlarm = {0};
+
   /* USER CODE BEGIN RTC_Init 1 */
 
   /* USER CODE END RTC_Init 1 */
@@ -305,6 +312,50 @@ static void MX_RTC_Init(void)
   hrtc.Init.OutPutPolarity = RTC_OUTPUT_POLARITY_HIGH;
   hrtc.Init.OutPutType = RTC_OUTPUT_TYPE_OPENDRAIN;
   if (HAL_RTC_Init(&hrtc) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /* USER CODE BEGIN Check_RTC_BKUP */
+
+  /* USER CODE END Check_RTC_BKUP */
+
+  /** Initialize RTC and set the Time and Date
+  */
+  sTime.Hours = 0x0;
+  sTime.Minutes = 0x0;
+  sTime.Seconds = 0x0;
+  sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+  sTime.StoreOperation = RTC_STOREOPERATION_RESET;
+  if (HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BCD) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sDate.WeekDay = RTC_WEEKDAY_SUNDAY;
+  sDate.Month = RTC_MONTH_JANUARY;
+  sDate.Date = 0x1;
+  sDate.Year = 0x23;
+
+  if (HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BCD) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Enable the Alarm A
+  */
+  sAlarm.AlarmTime.Hours = 0x0;
+  sAlarm.AlarmTime.Minutes = 0x0;
+  sAlarm.AlarmTime.Seconds = 0x1;
+  sAlarm.AlarmTime.SubSeconds = 0x0;
+  sAlarm.AlarmTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+  sAlarm.AlarmTime.StoreOperation = RTC_STOREOPERATION_RESET;
+  sAlarm.AlarmMask = RTC_ALARMMASK_DATEWEEKDAY|RTC_ALARMMASK_HOURS
+                              |RTC_ALARMMASK_MINUTES;
+  sAlarm.AlarmSubSecondMask = RTC_ALARMSUBSECONDMASK_ALL;
+  sAlarm.AlarmDateWeekDaySel = RTC_ALARMDATEWEEKDAYSEL_DATE;
+  sAlarm.AlarmDateWeekDay = 0x1;
+  sAlarm.Alarm = RTC_ALARM_A;
+  if (HAL_RTC_SetAlarm_IT(&hrtc, &sAlarm, RTC_FORMAT_BCD) != HAL_OK)
   {
     Error_Handler();
   }
@@ -402,41 +453,41 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
     get_current_datetime(&cd, true);
 
-    HAL_UART_Transmit(&huart2, (uint8_t *) cd.date, sizeof(cd.date), 100); // RTC date
-    HAL_UART_Transmit(&huart2, (uint8_t *) newline, 1, 100);  // new line
-    HAL_UART_Transmit(&huart2, (uint8_t *) cd.time, sizeof(cd.time), 100); // RTC time
-    HAL_UART_Transmit(&huart2, (uint8_t *) newline, 1, 100);  // new line
-    HAL_UART_Transmit(&huart2, (uint8_t *) cd.weekday, sizeof(cd.weekday), 100); // RTC weekday
-    HAL_UART_Transmit(&huart2, (uint8_t *) newline, 1, 100);  // new line
+    HAL_UART_Transmit(&huart2, (uint8_t*) cd.date, sizeof(cd.date), 100); // RTC date
+    HAL_UART_Transmit(&huart2, (uint8_t*) newline, 1, 100);  // new line
+    HAL_UART_Transmit(&huart2, (uint8_t*) cd.time, sizeof(cd.time), 100); // RTC time
+    HAL_UART_Transmit(&huart2, (uint8_t*) newline, 1, 100);  // new line
+    HAL_UART_Transmit(&huart2, (uint8_t*) cd.weekday, sizeof(cd.weekday), 100); // RTC weekday
+    HAL_UART_Transmit(&huart2, (uint8_t*) newline, 1, 100);  // new line
   }
 }
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
+
   static char cmd_buf[32];
   static uint8_t cnt = 0;
-  int year, month, date, hours, minutes, weekday;
+  int year, month, date, hours, minutes, seconds, weekday;
   RTC_TimeTypeDef sTime;
   RTC_DateTypeDef sDate;
 
-  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
   cmd_buf[cnt++] = rxbuf[0];
+  HAL_UART_Transmit_IT(&huart2, rxbuf, 1);  // Echo back
+
   if (rxbuf[0] == '\n') {
-    //HAL_UART_Transmit(&huart2, (uint8_t *)cmd_buf, cnt, 1000);
     cmd_buf[cnt] = '\0';
-    sscanf((char *) cmd_buf, "%d %d %d %d %d %d", &year, &month, &date, &hours,
-        &minutes, &weekday);
+    sscanf((char*) cmd_buf, "%d %d %d %d %d %d %d", &year, &month, &date,
+        &hours, &minutes, &seconds, &weekday);
     cnt = 0;
 
     /* Initialize RTC and set the Time and Date */
     sTime.Hours = hours;
     sTime.Minutes = minutes;
-    sTime.Seconds = 0;
+    sTime.Seconds = seconds;
     sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
     sTime.StoreOperation = RTC_STOREOPERATION_RESET;
     if (HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN) != HAL_OK) {
       Error_Handler();
     }
-
 
     sDate.WeekDay = weekday;
     sDate.Month = month;
@@ -453,6 +504,23 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
   HAL_UART_Receive_IT(&huart2, rxbuf, 1);
 }
 
+void HAL_RTC_AlarmAEventCallback(RTC_HandleTypeDef *hrtc) {
+
+  RTC_AlarmTypeDef sAlarm;
+  HAL_RTC_GetAlarm(hrtc, &sAlarm, RTC_ALARM_A, FORMAT_BIN);
+  if (sAlarm.AlarmTime.Seconds > 58) {
+    sAlarm.AlarmTime.Seconds = 0;
+  } else {
+    sAlarm.AlarmTime.Seconds = sAlarm.AlarmTime.Seconds + 1;
+  }
+  while (HAL_RTC_SetAlarm_IT(hrtc, &sAlarm, FORMAT_BIN) != HAL_OK) {
+  }
+
+  alerted = true;
+  // Blink LD2
+  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+}
+
 /* USER CODE END 4 */
 
 /**
@@ -464,8 +532,7 @@ void Error_Handler(void)
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
   __disable_irq();
-  while (1)
-  {
+  while (1) {
   }
   /* USER CODE END Error_Handler_Debug */
 }

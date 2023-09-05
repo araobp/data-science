@@ -1,3 +1,5 @@
+# Thermography
+
 This project is a copy of [my other project](https://github.com/araobp/stm32-mcu/tree/master/NUCLEO-F401RE/AI) with the latest CubeIDE.
 
 References:

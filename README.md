@@ -4,7 +4,7 @@
 
 I used to be a full stack data scientist in the past.
 
-This project is to relearn the every technology to become a full stack data scientist again. A lot of fun!
+This project is to relearn the each technology to become a full stack data scientist again. A lot of fun!
 
 ## [Step 1] Training myself
 
@@ -25,6 +25,14 @@ I relearn it in this project.
 ### [STM32](STM32)
 
 This folder contains my DIY works on STMicroelectronics NUCLEO-L476RG board with the latest version of CubeIDE/CubeMX and Python3.
+
+### [Rock Paper Scissors](RockPaperScissors)
+
+I developed Rock Paper Scissors on Nucleo L401RE board with Panasonic AMG8833 in 2018, just after the first relase of Cube.AI became available for developers: [The demo on YouTube](https://www.youtube.com/shorts/d6OYSllaVEs)
+
+I relearn it in this project by doing this: https://github.com/araobp/stm32-mcu/tree/master/NUCLEO-F401RE/Thermography
+
+STMicroelectronics also developed a toy similar to mine, but with VL53L5: https://stm32ai.st.com/use-case/shifumi-gesture-recognition/
 
 ## [Step 2] Prototyping Acoustic Scene Detection
 

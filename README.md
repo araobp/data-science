@@ -1,4 +1,4 @@
-![screen_shot](https://github.com/araobp/full-stack-data-scientist/assets/11053654/8311c37c-8bb5-4550-ab3b-cb392abc971f)# Full Stack Data Scientist
+# Full Stack Data Scientist
 
 (Work in progress)
 

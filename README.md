@@ -4,7 +4,7 @@
 
 I used to be a full stack data scientist in the past.
 
-This project is to relearn the every technology to become a full stack data scientist again. A lot of fun!
+This project is to relearn the each technology to become a full stack data scientist again. A lot of fun!
 
 ## [Step 1] Training myself
 

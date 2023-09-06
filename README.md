@@ -1,4 +1,4 @@
-# Full Stack Data Scientist
+![screen_shot](https://github.com/araobp/full-stack-data-scientist/assets/11053654/8311c37c-8bb5-4550-ab3b-cb392abc971f)# Full Stack Data Scientist
 
 (Work in progress)
 
@@ -25,6 +25,12 @@ I relearn it in this project.
 ### [STM32](STM32)
 
 This folder contains my DIY works on STMicroelectronics NUCLEO-L476RG board with the latest version of CubeIDE/CubeMX and Python3.
+
+### [Rock Paper Scissors](RockPaperScissors)
+
+I developed Rock Paper Scissors on Nucleo L401RE board with Panasonic AMG8833 in 2018, just after the first relase of Cube.AI became available for developers.
+
+I relearn it in this project by doing this: https://github.com/araobp/stm32-mcu/tree/master/NUCLEO-F401RE/Thermography
 
 ## [Step 2] Prototyping Acoustic Scene Detection
 

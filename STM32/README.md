@@ -6,9 +6,13 @@
 
 ## Rock Paper Scissors by Cube.AI
 
+- [Validation](RockPaperScissorsValidation)
+
 [Bug?] The latest version of CubeMX does not seem to generate "syscalls.c" in Src folder.
 
-- [Validation](RockPaperScissorsValidation)
+## CMSIS-DSP library
+
+https://github.com/ARM-software/CMSIS_5
 
 ## Cube.AI APIs ("app_x-cube-ai.h")
 
@@ -31,3 +35,7 @@ Run inference on AI network
 ```
 ai_i32 ai_mnetwork_run(ai_handle network, const ai_buffer* input, ai_buffer* output);
 ```
+
+## References
+
+- https://stackoverflow.com/questions/59395181/cmsis-dsp-in-stm32cubeide

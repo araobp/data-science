@@ -12,8 +12,10 @@ This project is just a thermography app with Panasonic AMG8833 (no AI):
 
 ### CMSIS-DSP library
 
-- [CMSIS-DSP API reference](https://www.keil.com/pack/doc/CMSIS/DSP/html/index.html)
-- https://community.st.com/t5/stm32-mcus/configuring-dsp-libraries-on-stm32cubeide
+[CMSIS-DSP API reference](https://www.keil.com/pack/doc/CMSIS/DSP/html/index.html)
+
+Configuring DSP libraries on STM32CubeIDE:
+https://community.st.com/t5/stm32-mcus/configuring-dsp-libraries-on-stm32cubeide/ta-p/49637
 
 ### Cube.AI
 

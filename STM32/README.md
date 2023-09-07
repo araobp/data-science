@@ -2,19 +2,22 @@
 
 - [HelloWorld](HelloWorld)
 - [Clock](Clock)
-- [Thermography](Thermography)
 
 ## Rock Paper Scissors by Cube.AI
 
-- [Validation](RockPaperScissorsValidation)
+This project is just a thermography app with Panasonic AMG8833 (no AI):
+- [Thermography](Thermography)
+
+### CMSIS-DSP library
+
+- [CMSIS-DSP API reference](https://www.keil.com/pack/doc/CMSIS/DSP/html/index.html)
+- [How to install CMSIS-DSP in CubeIDE](https://community.st.com/t5/stm32-mcus/configuring-dsp-libraries-on-stm32cubeide/ta-p/49637)
+
+### Cube.AI
 
 [Bug?] The latest version of CubeMX does not seem to generate "syscalls.c" in Src folder.
 
-## CMSIS-DSP library
-
-https://www.keil.com/pack/doc/CMSIS/DSP/html/index.html
-
-## Cube.AI APIs ("app_x-cube-ai.h")
+#### APIs ("app_x-cube-ai.h")
 
 Find AI network
 ```

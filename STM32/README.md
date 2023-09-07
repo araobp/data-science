@@ -12,7 +12,7 @@
 
 ## CMSIS-DSP library
 
-https://github.com/ARM-software/CMSIS_5/releases/tag/5.9.0
+https://www.keil.com/pack/doc/CMSIS/DSP/html/index.html
 
 ## Cube.AI APIs ("app_x-cube-ai.h")
 

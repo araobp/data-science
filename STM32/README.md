@@ -1,4 +1,6 @@
-# NUCLEO-L476RG board
+# NUCLEO-L476RG board (STMicroelectronics STM32L476RGT6 Microcontroller)
+
+## Basic apps
 
 - [HelloWorld](HelloWorld)
 - [Clock](Clock)

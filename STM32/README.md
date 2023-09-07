@@ -1,4 +1,4 @@
-# NUCLEO-L476RG board (STMicroelectronics STM32L476RGT6 Microcontroller)
+# NUCLEO-L476RG board (STM32L476RGT6 Microcontroller)
 
 ## Basic apps
 

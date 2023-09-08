@@ -21,11 +21,17 @@ UART output:
 [NETWORK INITIALIZATION] 1
 ```
 
-### printf Issues
+### printf issues
 
-I faced malloc-related build errors after I added "printf" to "main.c". The following setting solved the problem.
+I faced malloc-related build errors after I added "printf" (_write function) to "main.c". The following setting solved the problem.
 
 <img src="doc/printf_issue.png" width=450>
+
+### CubeMX source file overwriting issues
+
+Every time CubeMX generates code, all the source files excluding user-defined parts and user-defined files are overwritten.
+
+Use Github Desktop to discard changes on files on which you made some modifications, especially on those files under X-CUBE-AI/APP folder.
 
 ## References
 

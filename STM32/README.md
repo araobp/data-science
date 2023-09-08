@@ -23,9 +23,11 @@ UART output:
 
 ### printf Issues
 
-<img src="doc/printf_issues.png" width=300>
+I faced errors after I added "printf" to "main.c". The following setting solved the problem.
 
-https://community.st.com/t5/stm32-mcus-machine-learning-ai/enabling-x-cube-ai-in-stm32cubeide-project-causes-quot-undefined/td-p/174261
+<img src="doc/printf_issue.png" width=300>
+
+Reference: https://community.st.com/t5/stm32-mcus-machine-learning-ai/enabling-x-cube-ai-in-stm32cubeide-project-causes-quot-undefined/td-p/174261
 
 ## References
 

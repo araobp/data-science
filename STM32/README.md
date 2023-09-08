@@ -41,6 +41,10 @@ Every time CubeMX generates code, all the source files excluding user-defined pa
 
 Use Github Desktop to discard changes on files on which you made some modifications, especially on those files under X-CUBE-AI/APP folder.
 
+### Arudino shield for Panasonic AMG8833
+
+=> [Schematic](https://github.com/araobp/stm32-mcu/blob/master/NUCLEO-F401RE/Thermography/kicad/arduino_board.pdf)
+
 ## References
 
 ### CMSIS-DSP library

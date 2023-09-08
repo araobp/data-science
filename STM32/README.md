@@ -9,7 +9,7 @@
 
 Arduino shield uses PB8 and PB9 for I2C SCL and SDA.
 
-<img src="doc/I2C1_SDL.png" width=300>
+<img src="doc/I2C1_SCL.png" width=300>
 
 <img src="doc/I2C1_SDA.png" width=300>
 

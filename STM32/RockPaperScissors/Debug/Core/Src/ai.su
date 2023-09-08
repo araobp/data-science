@@ -1,0 +1,2 @@
+../Core/Src/ai.c:16:6:rps_init	16	static
+../Core/Src/ai.c:31:6:rps_process	0	static

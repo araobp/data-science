@@ -15,9 +15,9 @@ This project is just a thermography app with Panasonic AMG8833 (no AI):
 - Google search "Configuring DSP libraries on STM32CubeIDE"
 - [API reference](https://arm-software.github.io/CMSIS_5/General/html/index.html)
 
-### Cube.AI
+### CubeIDE project generation
 
-[Bug?] The latest version of CubeMX does not seem to generate "syscalls.c" in Src folder.
+I use [STM32Cube.AI Developer Cloud](https://stm32ai-cs.st.com/home) to generate a CubeIDE project including AI.
 
 #### APIs ("app_x-cube-ai.h")
 

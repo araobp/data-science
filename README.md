@@ -42,7 +42,7 @@ This is a project to develop edge AI for Acoustic Scene Classification based on 
 
 ### [Arduino](Arduino)
 
-Arduino is a device for testing sensor modules. Let Jupyter Notebook to collect data from sensors.
+Make Jupyter Notebook collect data from this Arduino version of the Thermograpy device with Panasonic AMG8833.
 
 <img src='doc/me.jpg' width=200>
 

@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "ai_device_adaptor.h"
 #include "app_x-cube-ai.h"
 #include "dct.h"
 #include "ai.h"

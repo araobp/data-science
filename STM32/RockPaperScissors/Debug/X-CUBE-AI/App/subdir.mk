@@ -5,27 +5,21 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../X-CUBE-AI/App/ai_device_adaptor.c \
 ../X-CUBE-AI/App/app_x-cube-ai.c \
-../X-CUBE-AI/App/lc_print.c \
 ../X-CUBE-AI/App/network.c \
 ../X-CUBE-AI/App/network_data.c \
 ../X-CUBE-AI/App/network_data_params.c \
 ../X-CUBE-AI/App/syscalls.c 
 
 OBJS += \
-./X-CUBE-AI/App/ai_device_adaptor.o \
 ./X-CUBE-AI/App/app_x-cube-ai.o \
-./X-CUBE-AI/App/lc_print.o \
 ./X-CUBE-AI/App/network.o \
 ./X-CUBE-AI/App/network_data.o \
 ./X-CUBE-AI/App/network_data_params.o \
 ./X-CUBE-AI/App/syscalls.o 
 
 C_DEPS += \
-./X-CUBE-AI/App/ai_device_adaptor.d \
 ./X-CUBE-AI/App/app_x-cube-ai.d \
-./X-CUBE-AI/App/lc_print.d \
 ./X-CUBE-AI/App/network.d \
 ./X-CUBE-AI/App/network_data.d \
 ./X-CUBE-AI/App/network_data_params.d \
@@ -39,7 +33,7 @@ X-CUBE-AI/App/%.o X-CUBE-AI/App/%.su X-CUBE-AI/App/%.cyclo: ../X-CUBE-AI/App/%.c
 clean: clean-X-2d-CUBE-2d-AI-2f-App
 
 clean-X-2d-CUBE-2d-AI-2f-App:
-	-$(RM) ./X-CUBE-AI/App/ai_device_adaptor.cyclo ./X-CUBE-AI/App/ai_device_adaptor.d ./X-CUBE-AI/App/ai_device_adaptor.o ./X-CUBE-AI/App/ai_device_adaptor.su ./X-CUBE-AI/App/app_x-cube-ai.cyclo ./X-CUBE-AI/App/app_x-cube-ai.d ./X-CUBE-AI/App/app_x-cube-ai.o ./X-CUBE-AI/App/app_x-cube-ai.su ./X-CUBE-AI/App/lc_print.cyclo ./X-CUBE-AI/App/lc_print.d ./X-CUBE-AI/App/lc_print.o ./X-CUBE-AI/App/lc_print.su ./X-CUBE-AI/App/network.cyclo ./X-CUBE-AI/App/network.d ./X-CUBE-AI/App/network.o ./X-CUBE-AI/App/network.su ./X-CUBE-AI/App/network_data.cyclo ./X-CUBE-AI/App/network_data.d ./X-CUBE-AI/App/network_data.o ./X-CUBE-AI/App/network_data.su ./X-CUBE-AI/App/network_data_params.cyclo ./X-CUBE-AI/App/network_data_params.d ./X-CUBE-AI/App/network_data_params.o ./X-CUBE-AI/App/network_data_params.su ./X-CUBE-AI/App/syscalls.cyclo ./X-CUBE-AI/App/syscalls.d ./X-CUBE-AI/App/syscalls.o ./X-CUBE-AI/App/syscalls.su
+	-$(RM) ./X-CUBE-AI/App/app_x-cube-ai.cyclo ./X-CUBE-AI/App/app_x-cube-ai.d ./X-CUBE-AI/App/app_x-cube-ai.o ./X-CUBE-AI/App/app_x-cube-ai.su ./X-CUBE-AI/App/network.cyclo ./X-CUBE-AI/App/network.d ./X-CUBE-AI/App/network.o ./X-CUBE-AI/App/network.su ./X-CUBE-AI/App/network_data.cyclo ./X-CUBE-AI/App/network_data.d ./X-CUBE-AI/App/network_data.o ./X-CUBE-AI/App/network_data.su ./X-CUBE-AI/App/network_data_params.cyclo ./X-CUBE-AI/App/network_data_params.d ./X-CUBE-AI/App/network_data_params.o ./X-CUBE-AI/App/network_data_params.su ./X-CUBE-AI/App/syscalls.cyclo ./X-CUBE-AI/App/syscalls.d ./X-CUBE-AI/App/syscalls.o ./X-CUBE-AI/App/syscalls.su
 
 .PHONY: clean-X-2d-CUBE-2d-AI-2f-App
 

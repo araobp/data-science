@@ -31,7 +31,7 @@ UART output:
 
 ### printf issues
 
-I faced malloc-related build errors after I added "printf" (_write function) to "main.c". The following setting solved the problem.
+I faced malloc-related build errors after I added "printf" (_write() function) to "main.c". The following setting solved the problem.
 
 <img src="doc/printf_issue.png" width=450>
 

@@ -1,7 +1,7 @@
 {
     "_allocate_inputs": 4,
     "_allocate_outputs": 4,
-    "cli_parameters": "validate --name network -m C:/Users/shiny/Documents/data-science-study/RockPaperScissors/rock_paper_scissors_dct_20230906224421.h5 --type keras --compression none --verbosity 1 --workspace C:\\Users\\shiny\\AppData\\Local\\Temp\\mxAI_workspace953380401455008118227677776334851 --output C:\\Users\\shiny\\.stm32cubemx\\network_output --allocate-inputs --allocate-outputs",
+    "cli_parameters": "generate --model rock_paper_scissors_dct_20230906224421.h5 --name network --workspace /tmp/rootDir-cb68ce6a-bae0-4e6f-879b-05f0ade96a97/NUCLEO-L476RG/.ai --output /tmp/rootDir-cb68ce6a-bae0-4e6f-879b-05f0ade96a97/NUCLEO-L476RG/.ai/output --allocate-inputs --allocate-outputs --compression none --optimization balanced",
     "cli_version": {
         "major": 1,
         "micro": 0,
@@ -13,10 +13,10 @@
         "factor": null,
         "layers": {}
     },
-    "date_time": "Wed Sep  6 23:25:34 2023",
+    "date_time": "Fri Sep  8 03:20:56 2023",
     "error": 0,
     "error_str": [],
-    "exec_cmd": "validate",
+    "exec_cmd": "generate",
     "exec_duration": 0.0,
     "hash": "e514c59cca83df9f209c476780c73db0",
     "inputs": [
@@ -159,7 +159,7 @@
         }
     ],
     "model_files": [
-        "C:\\Users\\shiny\\Documents\\data-science-study\\RockPaperScissors\\rock_paper_scissors_dct_20230906224421.h5"
+        "/tmp/rootDir-cb68ce6a-bae0-4e6f-879b-05f0ade96a97/NUCLEO-L476RG/rock_paper_scissors_dct_20230906224421.h5"
     ],
     "model_n_params": 995,
     "model_name": "rock_paper_scissors_dct_20230906224421",
@@ -208,20 +208,7 @@
         "micro": 0,
         "minor": 1
     },
-    "val_error": 8.409080010096659e-08,
-    "val_error_desc": "x-cross (l2r) #1",
-    "val_metrics": [
-        {
-            "acc": "100.00%",
-            "cos": 1.0,
-            "desc": "X-cross #1",
-            "l2r": 8.409080010096659e-08,
-            "mae": 2.247446317937829e-08,
-            "mean": -6.735111579558861e-09,
-            "nse": 0.9999999999999867,
-            "rmse": 4.008705190017281e-08,
-            "std": 4.01927664483992e-08,
-            "ts_name": "dense_1, ai_float, (1,3), m_id=[2]"
-        }
-    ]
+    "val_error": -1.0,
+    "val_error_desc": "None (None) #-1",
+    "val_metrics": []
 }

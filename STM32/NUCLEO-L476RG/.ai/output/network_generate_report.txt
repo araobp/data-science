@@ -1,18 +1,18 @@
 Neural Network Tools for STM32 family v1.7.0 (stm.ai v8.1.0-19520)
-Created date          : 2023-09-06 13:59:00
-Parameters            : generate --model rock_paper_scissors_dct_20230906224421.h5 --name network --workspace /tmp/rootDir-9a882407-d069-4707-a224-c712b2ecb8f2/NUCLEO-L476RG/.ai --output /tmp/rootDir-9a882407-d069-4707-a224-c712b2ecb8f2/NUCLEO-L476RG/.ai/output --allocate-inputs --allocate-outputs --compression none --optimization balanced
+Created date          : 2023-09-08 03:20:56
+Parameters            : generate --model rock_paper_scissors_dct_20230906224421.h5 --name network --workspace /tmp/rootDir-cb68ce6a-bae0-4e6f-879b-05f0ade96a97/NUCLEO-L476RG/.ai --output /tmp/rootDir-cb68ce6a-bae0-4e6f-879b-05f0ade96a97/NUCLEO-L476RG/.ai/output --allocate-inputs --allocate-outputs --compression none --optimization balanced
 
 Exec/report summary (generate)
 -----------------------------------------------------------------------------------------------------------------------------------
-model file         :   /tmp/rootDir-9a882407-d069-4707-a224-c712b2ecb8f2/NUCLEO-L476RG/rock_paper_scissors_dct_20230906224421.h5   
+model file         :   /tmp/rootDir-cb68ce6a-bae0-4e6f-879b-05f0ade96a97/NUCLEO-L476RG/rock_paper_scissors_dct_20230906224421.h5   
 type               :   keras                                                                                                       
 c_name             :   network                                                                                                     
 compression        :   none                                                                                                        
 options            :   allocate-inputs, allocate-outputs, multi-heaps                                                              
 optimization       :   balanced                                                                                                    
-target info        :   /tmp/rootDir-9a882407-d069-4707-a224-c712b2ecb8f2/NUCLEO-L476RG/.ai/mempools-board.json                     
-workspace dir      :   /tmp/rootDir-9a882407-d069-4707-a224-c712b2ecb8f2/NUCLEO-L476RG/.ai                                         
-output dir         :   /tmp/rootDir-9a882407-d069-4707-a224-c712b2ecb8f2/NUCLEO-L476RG/.ai/output                                  
+target info        :   /tmp/rootDir-cb68ce6a-bae0-4e6f-879b-05f0ade96a97/NUCLEO-L476RG/.ai/mempools-board.json                     
+workspace dir      :   /tmp/rootDir-cb68ce6a-bae0-4e6f-879b-05f0ade96a97/NUCLEO-L476RG/.ai                                         
+output dir         :   /tmp/rootDir-cb68ce6a-bae0-4e6f-879b-05f0ade96a97/NUCLEO-L476RG/.ai/output                                  
 model_fmt          :   float                                                                                                       
 model_name         :   rock_paper_scissors_dct_20230906224421                                                                      
 model_hash         :   e514c59cca83df9f209c476780c73db0                                                                            
@@ -33,7 +33,7 @@ ram (total)        :   236 B (236 B) = 236 + 0 + 0
  ------------- -------- ------------- -------------- --------- 
  name          id       usable size   used           buffer#   
  ------------- -------- ------------- -------------- --------- 
- POOL_0_RAM    0        90.31 KiB     236 B (0.3%)   5         
+ POOL_0_RAM    0        90.55 KiB     236 B (0.3%)   5         
  POOL_1_RAM2   unused   32.00 KiB     -              -         
  ------------- -------- ------------- -------------- --------- 
  Warning: ['POOL_1_RAM2'] memory pool is not used
@@ -132,10 +132,10 @@ macc=1,072 weights=3,980 act=236 ram_io=0
 
 Generated files (7)
 -------------------------------------------------------------------------------------------------- 
-/tmp/rootDir-9a882407-d069-4707-a224-c712b2ecb8f2/NUCLEO-L476RG/.ai/output/network_config.h        
-/tmp/rootDir-9a882407-d069-4707-a224-c712b2ecb8f2/NUCLEO-L476RG/.ai/output/network.h               
-/tmp/rootDir-9a882407-d069-4707-a224-c712b2ecb8f2/NUCLEO-L476RG/.ai/output/network.c               
-/tmp/rootDir-9a882407-d069-4707-a224-c712b2ecb8f2/NUCLEO-L476RG/.ai/output/network_data_params.h   
-/tmp/rootDir-9a882407-d069-4707-a224-c712b2ecb8f2/NUCLEO-L476RG/.ai/output/network_data_params.c   
-/tmp/rootDir-9a882407-d069-4707-a224-c712b2ecb8f2/NUCLEO-L476RG/.ai/output/network_data.h          
-/tmp/rootDir-9a882407-d069-4707-a224-c712b2ecb8f2/NUCLEO-L476RG/.ai/output/network_data.c          
+/tmp/rootDir-cb68ce6a-bae0-4e6f-879b-05f0ade96a97/NUCLEO-L476RG/.ai/output/network_config.h        
+/tmp/rootDir-cb68ce6a-bae0-4e6f-879b-05f0ade96a97/NUCLEO-L476RG/.ai/output/network.h               
+/tmp/rootDir-cb68ce6a-bae0-4e6f-879b-05f0ade96a97/NUCLEO-L476RG/.ai/output/network.c               
+/tmp/rootDir-cb68ce6a-bae0-4e6f-879b-05f0ade96a97/NUCLEO-L476RG/.ai/output/network_data_params.h   
+/tmp/rootDir-cb68ce6a-bae0-4e6f-879b-05f0ade96a97/NUCLEO-L476RG/.ai/output/network_data_params.c   
+/tmp/rootDir-cb68ce6a-bae0-4e6f-879b-05f0ade96a97/NUCLEO-L476RG/.ai/output/network_data.h          
+/tmp/rootDir-cb68ce6a-bae0-4e6f-879b-05f0ade96a97/NUCLEO-L476RG/.ai/output/network_data.c          

@@ -40,9 +40,9 @@ This is a project to develop edge AI for Acoustic Scene Classification based on 
 
 ## Others
 
-### [Arduino](Arduino)
+### [Arduino-version of the thermography](Arduino)
 
-Make Jupyter Notebook collect data from this Arduino version of the Thermograpy device with Panasonic AMG8833.
+Make Jupyter Notebook collect data from this Arduino version of the thermograpy device with Panasonic AMG8833.
 
 <img src='doc/me.jpg' width=200>
 

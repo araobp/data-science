@@ -5,21 +5,41 @@
 - [HelloWorld](HelloWorld)
 - [Clock](Clock)
 
-## Rock Paper Scissors by Cube.AI
+## Rock Paper Scissors with STM32Cube.AI
 
 This project is just a thermography app with Panasonic AMG8833 (no AI):
 - [Thermography](Thermography)
 
+This project is AI Rock Paper Scissors with Panasonic AMG8333 (still work in progress):
+- [RockPaperScissors](RockPaperScissors)
+
+UART output:
+```
+--- AI ROCK PAPER SCISSORS ---
+[NETWORK FIND] NN_NAME: network
+[NETWORK CREATION] err.type: 0x00, err.code: 0x00
+[NETWORK INITIALIZATION] 1
+```
+
+### printf Issues
+
+https://community.st.com/t5/stm32-mcus-machine-learning-ai/enabling-x-cube-ai-in-stm32cubeide-project-causes-quot-undefined/td-p/174261
+
+## References
+
 ### CMSIS-DSP library
 
-- Google search "Configuring DSP libraries on STM32CubeIDE"
-- [API reference](https://arm-software.github.io/CMSIS_5/General/html/index.html)
+Refer to the following site: Google search "Configuring DSP libraries on STM32CubeIDE"
 
-### CubeIDE project generation
+[API reference](https://arm-software.github.io/CMSIS_5/General/html/index.html)
 
-I use [STM32Cube.AI Developer Cloud](https://stm32ai-cs.st.com/home) to generate a CubeIDE project including AI.
+### STM32Cube.AI project generation
+
+I use [STM32Cube.AI Developer Cloud](https://stm32ai-cs.st.com/home) to generate a CubeIDE project including AI, since the software quality of X-CUBE-AI on CubeMX does not seem to be so good.
 
 #### APIs ("app_x-cube-ai.h")
+
+The following is the basic APIs of STM32Cube.AI:
 
 Find AI network
 ```

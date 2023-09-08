@@ -28,7 +28,7 @@ This folder contains my DIY works on STMicroelectronics NUCLEO-L476RG board with
 
 ### [Rock Paper Scissors](RockPaperScissors)
 
-I developed Rock Paper Scissors on Nucleo L401RE board with Panasonic AMG8833 in 2018, just after the first relase of Cube.AI became available for developers: [The demo on YouTube](https://www.youtube.com/shorts/d6OYSllaVEs)
+I developed Rock Paper Scissors on Nucleo L401RE board with Panasonic AMG8833 in January 2019, just after the first relase of Cube.AI became available for developers: [The demo on YouTube](https://www.youtube.com/shorts/d6OYSllaVEs)
 
 I relearn it in this project by doing this: https://github.com/araobp/stm32-mcu/tree/master/NUCLEO-F401RE/Thermography
 

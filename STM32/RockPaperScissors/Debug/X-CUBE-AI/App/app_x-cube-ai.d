@@ -32,7 +32,6 @@ X-CUBE-AI/App/app_x-cube-ai.o: ../X-CUBE-AI/App/app_x-cube-ai.c \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h \
  ../X-CUBE-AI/App/app_x-cube-ai.h ../X-CUBE-AI/constants_ai.h \
- ../X-CUBE-AI/App/aiSystemPerformance.h \
  ../Middlewares/ST/AI/Inc/ai_datatypes_defines.h
 ../X-CUBE-AI/App/app_x-cube-ai.h:
 ../Middlewares/ST/AI/Inc/ai_platform.h:
@@ -72,5 +71,4 @@ X-CUBE-AI/App/app_x-cube-ai.o: ../X-CUBE-AI/App/app_x-cube-ai.c \
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h:
 ../X-CUBE-AI/App/app_x-cube-ai.h:
 ../X-CUBE-AI/constants_ai.h:
-../X-CUBE-AI/App/aiSystemPerformance.h:
 ../Middlewares/ST/AI/Inc/ai_datatypes_defines.h:

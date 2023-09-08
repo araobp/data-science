@@ -1,4 +1,4 @@
-Neural Network Tools for STM32 family v1.7.0 (stm.ai v8.1.0-19520)
+eural Network Tools for STM32 family v1.7.0 (stm.ai v8.1.0-19520)
 Created date          : 2023-06-15 12:25:33
 Parameters            : generate --name network -m C:/_AI_Projects/AI_as_a_Service/AIaaS/backend/project_service/templates/deepnet_relu.tflite --type tflite --compression none --verbosity 1 --workspace C:\Users\hamitiya\AppData\Local\Temp\mxAI_workspace266089159035040013643405576001257921 --output C:\Users\hamitiya\.stm32cubemx\network_output --allocate-inputs --series stm32l4 --allocate-outputs
 

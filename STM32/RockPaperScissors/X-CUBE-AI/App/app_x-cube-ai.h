@@ -64,8 +64,6 @@ extern ai_i8* data_outs[];
 
 extern ai_handle data_activations0[];
 
-void ai_init(void);
-void ai_process(void);
 /* USER CODE BEGIN includes */
 /* USER CODE END includes */
 

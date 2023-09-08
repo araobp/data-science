@@ -1,2 +1,3 @@
-../Core/Src/ai.c:16:6:rps_init	1
-../Core/Src/ai.c:31:6:rps_process	1
+../Core/Src/ai.c:20:6:normalize	4
+../Core/Src/ai.c:43:6:rps_init	1
+../Core/Src/ai.c:60:6:rps_infer	1

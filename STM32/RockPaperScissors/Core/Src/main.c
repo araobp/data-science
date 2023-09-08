@@ -22,6 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <stdio.h>
 #include "ai.h"
 /* USER CODE END Includes */
 
@@ -102,8 +103,6 @@ int main(void)
   {
     /* USER CODE END WHILE */
 
-  //
-    rps_process();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -262,7 +261,15 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+/**
+ * @brief  Retargets the C library printf function to the USART.
+ * @param  None
+ * @retval None
+ */
+int _write(int file, char *ptr, int len) {
+  HAL_UART_Transmit(&huart2, (uint8_t *) ptr, (uint16_t) len, 0xFFFFFFFF);
+  return len;
+}
 /* USER CODE END 4 */
 
 /**

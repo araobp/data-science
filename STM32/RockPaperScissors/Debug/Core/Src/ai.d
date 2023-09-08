@@ -1,7 +1,6 @@
-Core/Src/ai.o: ../Core/Src/ai.c ../X-CUBE-AI/App/app_x-cube-ai.h \
- ../Middlewares/ST/AI/Inc/ai_platform.h ../X-CUBE-AI/App/network.h \
- ../X-CUBE-AI/App/network_config.h ../X-CUBE-AI/App/network_data.h \
- ../X-CUBE-AI/App/network_data_params.h ../X-CUBE-AI/Target/bsp_ai.h \
+Core/Src/ai.o: ../Core/Src/ai.c ../X-CUBE-AI/App/ai_device_adaptor.h \
+ ../Drivers/CMSIS/Include/cmsis_compiler.h \
+ ../Drivers/CMSIS/Include/cmsis_gcc.h ../X-CUBE-AI/Target/bsp_ai.h \
  ../Core/Inc/main.h ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h \
  ../Core/Inc/stm32l4xx_hal_conf.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h \
@@ -11,7 +10,6 @@ Core/Src/ai.o: ../Core/Src/ai.c ../X-CUBE-AI/App/app_x-cube-ai.h \
  ../Drivers/CMSIS/Include/core_cm4.h \
  ../Drivers/CMSIS/Include/cmsis_version.h \
  ../Drivers/CMSIS/Include/cmsis_compiler.h \
- ../Drivers/CMSIS/Include/cmsis_gcc.h \
  ../Drivers/CMSIS/Include/mpu_armv7.h \
  ../Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h \
@@ -30,16 +28,16 @@ Core/Src/ai.o: ../Core/Src/ai.c ../X-CUBE-AI/App/app_x-cube-ai.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr_ex.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h \
- ../X-CUBE-AI/constants_ai.h ../X-CUBE-AI/App/aiSystemPerformance.h \
- ../Middlewares/ST/AI/Inc/ai_datatypes_defines.h \
- ../X-CUBE-AI/App/ai_device_adaptor.h \
- ../Drivers/CMSIS/Include/cmsis_compiler.h ../X-CUBE-AI/App/lc_print.h
-../X-CUBE-AI/App/app_x-cube-ai.h:
-../Middlewares/ST/AI/Inc/ai_platform.h:
-../X-CUBE-AI/App/network.h:
-../X-CUBE-AI/App/network_config.h:
-../X-CUBE-AI/App/network_data.h:
-../X-CUBE-AI/App/network_data_params.h:
+ ../X-CUBE-AI/App/app_x-cube-ai.h ../Middlewares/ST/AI/Inc/ai_platform.h \
+ ../X-CUBE-AI/App/network.h ../X-CUBE-AI/App/network_config.h \
+ ../X-CUBE-AI/App/network_data.h ../X-CUBE-AI/App/network_data_params.h \
+ ../X-CUBE-AI/constants_ai.h ../X-CUBE-AI/App/lc_print.h \
+ ../Core/Inc/dct.h \
+ C:/Users/shiny/Documents/data-science-study/STM32/RockPaperScissors/Drivers/CMSIS/DSP/Include/arm_math.h \
+ ../Core/Inc/ai.h
+../X-CUBE-AI/App/ai_device_adaptor.h:
+../Drivers/CMSIS/Include/cmsis_compiler.h:
+../Drivers/CMSIS/Include/cmsis_gcc.h:
 ../X-CUBE-AI/Target/bsp_ai.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:
@@ -51,7 +49,6 @@ Core/Src/ai.o: ../Core/Src/ai.c ../X-CUBE-AI/App/app_x-cube-ai.h \
 ../Drivers/CMSIS/Include/core_cm4.h:
 ../Drivers/CMSIS/Include/cmsis_version.h:
 ../Drivers/CMSIS/Include/cmsis_compiler.h:
-../Drivers/CMSIS/Include/cmsis_gcc.h:
 ../Drivers/CMSIS/Include/mpu_armv7.h:
 ../Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h:
@@ -70,9 +67,14 @@ Core/Src/ai.o: ../Core/Src/ai.c ../X-CUBE-AI/App/app_x-cube-ai.h \
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr_ex.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h:
+../X-CUBE-AI/App/app_x-cube-ai.h:
+../Middlewares/ST/AI/Inc/ai_platform.h:
+../X-CUBE-AI/App/network.h:
+../X-CUBE-AI/App/network_config.h:
+../X-CUBE-AI/App/network_data.h:
+../X-CUBE-AI/App/network_data_params.h:
 ../X-CUBE-AI/constants_ai.h:
-../X-CUBE-AI/App/aiSystemPerformance.h:
-../Middlewares/ST/AI/Inc/ai_datatypes_defines.h:
-../X-CUBE-AI/App/ai_device_adaptor.h:
-../Drivers/CMSIS/Include/cmsis_compiler.h:
 ../X-CUBE-AI/App/lc_print.h:
+../Core/Inc/dct.h:
+C:/Users/shiny/Documents/data-science-study/STM32/RockPaperScissors/Drivers/CMSIS/DSP/Include/arm_math.h:
+../Core/Inc/ai.h:

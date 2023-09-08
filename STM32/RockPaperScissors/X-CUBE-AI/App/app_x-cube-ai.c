@@ -40,7 +40,6 @@
 
 #include "app_x-cube-ai.h"
 #include "bsp_ai.h"
-#include "aiSystemPerformance.h"
 #include "ai_datatypes_defines.h"
 
 /* USER CODE BEGIN includes */
@@ -56,23 +55,7 @@ AI_ALIGNED(32)
 AI_RAM
 static uint8_t POOL_0_RAM[AI_NETWORK_DATA_ACTIVATION_1_SIZE];
 ai_handle data_activations0[] = {POOL_0_RAM};
-/* Entry points --------------------------------------------------------------*/
 
-void ai_init(void)
-{
-    MX_UARTx_Init();
-    aiSystemPerformanceInit();
-    /* USER CODE BEGIN 5 */
-    /* USER CODE END 5 */
-}
-
-void ai_process(void)
-{
-    aiSystemPerformanceProcess();
-    HAL_Delay(1000); /* delay 1s */
-    /* USER CODE BEGIN 6 */
-    /* USER CODE END 6 */
-}
 /* Multiple network support --------------------------------------------------*/
 
 #include <string.h>

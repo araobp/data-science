@@ -10,6 +10,17 @@
 This project is just a thermography app with Panasonic AMG8833 (no AI):
 - [Thermography](Thermography)
 
+This project is AI Rock Paper Scissors with Panasonic AMG8333 (still work in progress):
+- [RockPaperScissors](RockPaperScissors)
+
+UART output:
+```
+--- AI ROCK PAPER SCISSORS ---
+[NETWORK FIND] NN_NAME: network
+[NETWORK CREATION] err.type: 0x00, err.code: 0x00
+[NETWORK INITIALIZATION] 1
+```
+
 ### CMSIS-DSP library
 
 - Google search "Configuring DSP libraries on STM32CubeIDE"

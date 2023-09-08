@@ -1,7 +1,7 @@
 {
     "_allocate_inputs": 4,
     "_allocate_outputs": 4,
-    "cli_parameters": "generate --model rock_paper_scissors_dct_20230906224421.h5 --name network --workspace /tmp/rootDir-a0a8bf6c-54fa-4388-96be-6c38a48359ee/NUCLEO-L476RG/.ai --output /tmp/rootDir-a0a8bf6c-54fa-4388-96be-6c38a48359ee/NUCLEO-L476RG/.ai/output --allocate-inputs --allocate-outputs --compression none --optimization balanced",
+    "cli_parameters": "generate --name network -m C:/Users/shiny/Documents/data-science-study/STM32/RockPaperScissors/rock_paper_scissors_dct_20230906224421.h5 --type keras --compression none --verbosity 1 --workspace C:\\Users\\shiny\\AppData\\Local\\Temp\\mxAI_workspace27507019176800018240447471107075733 --output C:\\Users\\shiny\\.stm32cubemx\\network_output --allocate-inputs --series stm32l4 --allocate-outputs",
     "cli_version": {
         "major": 1,
         "micro": 0,
@@ -13,7 +13,7 @@
         "factor": null,
         "layers": {}
     },
-    "date_time": "Fri Sep  8 04:24:00 2023",
+    "date_time": "Sat Sep  9 01:20:55 2023",
     "error": 0,
     "error_str": [],
     "exec_cmd": "generate",
@@ -159,7 +159,7 @@
         }
     ],
     "model_files": [
-        "/tmp/rootDir-a0a8bf6c-54fa-4388-96be-6c38a48359ee/NUCLEO-L476RG/rock_paper_scissors_dct_20230906224421.h5"
+        "C:\\Users\\shiny\\Documents\\data-science-study\\STM32\\RockPaperScissors\\rock_paper_scissors_dct_20230906224421.h5"
     ],
     "model_n_params": 995,
     "model_name": "rock_paper_scissors_dct_20230906224421",

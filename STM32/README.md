@@ -5,7 +5,7 @@
 - [HelloWorld](HelloWorld)
 - [Clock](Clock)
 
-## Rock Paper Scissors with X-CUBE-AI
+## Rock Paper Scissors with STM32Cube.AI
 
 This project is just a thermography app with Panasonic AMG8833 (no AI):
 - [Thermography](Thermography)

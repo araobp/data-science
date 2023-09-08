@@ -4,8 +4,7 @@
 
 I used to be a full stack data scientist in the past.
 
-This project is to relearn the each technology to become a full stack data scientist again. A lot of fun!
-And I am going to visit [EdgeTech+ 2023](https://www.jasa.or.jp/expo/english/) held in Yokohama every year.
+This project is to relearn the each technology to become a full stack data scientist again before I visit [EdgeTech+ 2023](https://www.jasa.or.jp/expo/english/) which is held in Yokohama every year.
 
 ## [Step 1] Training myself
 

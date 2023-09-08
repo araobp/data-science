@@ -21,6 +21,10 @@ UART output:
 [NETWORK INITIALIZATION] 1
 ```
 
+### printf Issues
+
+https://community.st.com/t5/stm32-mcus-machine-learning-ai/enabling-x-cube-ai-in-stm32cubeide-project-causes-quot-undefined/td-p/174261
+
 ## References
 
 ### CMSIS-DSP library

@@ -94,6 +94,7 @@ int main(void)
   MX_CRC_Init();
   //ai_init();
   /* USER CODE BEGIN 2 */
+  MX_USART2_UART_Init();
   rps_init();
   /* USER CODE END 2 */
 

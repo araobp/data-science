@@ -56,6 +56,7 @@ AI_RAM
 static uint8_t POOL_0_RAM[AI_NETWORK_DATA_ACTIVATION_1_SIZE];
 ai_handle data_activations0[] = {POOL_0_RAM};
 
+
 /* Multiple network support --------------------------------------------------*/
 
 #include <string.h>

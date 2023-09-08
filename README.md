@@ -22,17 +22,17 @@ In September 2018, I found this great paper on the net: https://haythamfayek.com
 
 I relearn it in this project.
 
-### [STM32](STM32)
-
-This folder contains my DIY works on STMicroelectronics NUCLEO-L476RG board with the latest version of CubeIDE/CubeMX and Python3.
-
 ### [Rock Paper Scissors](RockPaperScissors)
 
-I developed Rock Paper Scissors on Nucleo L401RE board with Panasonic AMG8833 in January 2019, just after the first relase of Cube.AI became available for developers: [The demo on YouTube](https://www.youtube.com/shorts/d6OYSllaVEs)
+I developed Rock Paper Scissors on Nucleo L401RE board with Panasonic AMG8833 in January 2019, just after the first relase of Cube.AI became available for developers: [The demo on YouTube](https://www.youtube.com/shorts/d6OYSllaVEs).
 
 I relearn it in this project by doing this: https://github.com/araobp/stm32-mcu/tree/master/NUCLEO-F401RE/Thermography
 
 STMicroelectronics also developed a toy similar to mine, but with VL53L5: https://stm32ai.st.com/use-case/shifumi-gesture-recognition/
+
+### [STM32](STM32)
+
+This folder is to implement "RockPaperScissors" edge AI on STMicroelectronics NUCLEO-L476RG board with the latest version of CubeIDE/CubeMX and STM32Cube.AI.
 
 ## [Step 2] Prototyping Acoustic Scene Detection
 

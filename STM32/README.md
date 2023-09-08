@@ -25,9 +25,7 @@ UART output:
 
 ### CMSIS-DSP library
 
-Refer to this site: Google search "Configuring DSP libraries on STM32CubeIDE"
-
-BTY, adding CMSIS-DSP into your CubeIDE project is quite easy. Just copy the include and lib files into some folder in your project, then right clich on the folder and chose "add/remove include path..".
+Refer to the following site: Google search "Configuring DSP libraries on STM32CubeIDE"
 
 [API reference](https://arm-software.github.io/CMSIS_5/General/html/index.html)
 

@@ -5,6 +5,14 @@
 - [HelloWorld](HelloWorld)
 - [Clock](Clock)
 
+### I2C pin assignment for Arduino shield
+
+Arduino shield uses PB8 and PB9 for I2C SCL and SDA.
+
+<img src="doc/I2C1_SDL.png" width=300>
+
+<img src="doc/I2C1_SDA.png" width=300>
+
 ## Rock Paper Scissors with STM32Cube.AI
 
 This project is just a thermography app with Panasonic AMG8833 (no AI):

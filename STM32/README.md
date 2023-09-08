@@ -43,6 +43,8 @@ Use Github Desktop to discard changes on files on which you made some modificati
 
 ### Arudino shield for Panasonic AMG8833
 
+I designed my original Arduino shield for AMG8833 in 2019. Refer to [this page](https://github.com/araobp/stm32-mcu/tree/master/NUCLEO-F401RE/Thermography).
+
 => [Schematic](https://github.com/araobp/stm32-mcu/blob/master/NUCLEO-F401RE/Thermography/kicad/arduino_board.pdf)
 
 ## References

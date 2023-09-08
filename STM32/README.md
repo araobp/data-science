@@ -5,7 +5,7 @@
 - [HelloWorld](HelloWorld)
 - [Clock](Clock)
 
-## Rock Paper Scissors by Cube.AI
+## Rock Paper Scissors with X-CUBE-AI
 
 This project is just a thermography app with Panasonic AMG8833 (no AI):
 - [Thermography](Thermography)
@@ -21,16 +21,23 @@ UART output:
 [NETWORK INITIALIZATION] 1
 ```
 
+## References
+
 ### CMSIS-DSP library
 
-- Google search "Configuring DSP libraries on STM32CubeIDE"
-- [API reference](https://arm-software.github.io/CMSIS_5/General/html/index.html)
+Refer to this site: Google search "Configuring DSP libraries on STM32CubeIDE"
 
-### CubeIDE project generation
+BTY, adding CMSIS-DSP into your CubeIDE project is quite easy. Just copy the include and lib files into some folder in your project, then right clich on the folder and chose "add/remove include path..".
 
-I use [STM32Cube.AI Developer Cloud](https://stm32ai-cs.st.com/home) to generate a CubeIDE project including AI.
+[API reference](https://arm-software.github.io/CMSIS_5/General/html/index.html)
+
+### STM32Cube.AI project generation
+
+I use [STM32Cube.AI Developer Cloud](https://stm32ai-cs.st.com/home) to generate a CubeIDE project including AI, since the software quality of X-CUBE-AI on CubeMX does not seem to be so good.
 
 #### APIs ("app_x-cube-ai.h")
+
+The following is the basic APIs of STM32Cube.AI:
 
 Find AI network
 ```

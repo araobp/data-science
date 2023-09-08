@@ -1,0 +1,14 @@
+config load "C:\_AI_Projects\AI_as_a_Service\AIaaS\backend\project_service\templates\SystemPerformance\boards\NUCLEO-L476RG\NUCLEO-L476RG.ioc"
+project toolchain STM32CubeIDE
+
+
+pack enable STMicroelectronics X-CUBE-AI 8.1.0 "Artificial Intelligence" Core
+pack enable STMicroelectronics X-CUBE-AI 8.1.0 Device Application SystemPerformance
+pack validate
+AI set modes
+AI add model "network" "tflite" "C:\_AI_Projects\AI_as_a_Service\AIaaS\backend\project_service\templates\deepnet_relu.tflite"
+AI forcecopytype
+AI setboard NUCLEO-L476RG
+AI save "network"
+project generate
+exit

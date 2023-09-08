@@ -1,0 +1,1 @@
+{"memory":{"mempools":[{"name":"POOL_0_RAM","prop":{"throughput":"HIGH","latency":"LOW"},"size":{"value":"92480","magnitude":"BYTES"},"offset":{"value":"0x20000000","magnitude":"BYTES"}},{"name":"POOL_1_RAM2","prop":{"throughput":"HIGH","latency":"MID"},"size":{"value":"32768","magnitude":"BYTES"},"offset":{"value":"0x10000000","magnitude":"BYTES"}}]}}

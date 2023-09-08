@@ -23,6 +23,8 @@ UART output:
 
 ### printf Issues
 
+<img src="doc/printf_issues.png" width=300>
+
 https://community.st.com/t5/stm32-mcus-machine-learning-ai/enabling-x-cube-ai-in-stm32cubeide-project-causes-quot-undefined/td-p/174261
 
 ## References

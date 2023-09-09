@@ -33,6 +33,8 @@ Its GUI is in this folder: [GUI(Python3)](Thermography/GUI)
 This project is AI Rock Paper Scissors with Panasonic AMG8333 (still work in progress):
 - [RockPaperScissors](RockPaperScissors)
 
+<img src="doc/RockPaperScissors_DCT_DNN.png" width=150>
+
 Startup message to UART Tx:
 ```
 --- AI ROCK PAPER SCISSORS ---

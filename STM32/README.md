@@ -55,6 +55,8 @@ I faced malloc-related build errors after I added "printf" (_write() function) t
 
 <img src="doc/printf_issue.png" width=450>
 
+The marked part must be elased.
+
 #### CubeMX source file overwriting issues
 
 Every time CubeMX generates code, all the source files excluding user-defined parts and user-defined files are overwritten.

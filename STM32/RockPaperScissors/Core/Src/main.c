@@ -23,6 +23,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
+#include "amg8833.h"
 #include "ai.h"
 /* USER CODE END Includes */
 
@@ -50,6 +51,16 @@ UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
 
+uint8_t buffer[AMG8833_PIXEL_DATA_LENGTH] = { 0.0f };
+
+// UART one-byte input buffer
+uint8_t cmd;
+
+volatile bool output_pixels = false;
+volatile bool output_thermistor = false;
+#ifndef GAME_MODE
+volatile bool run_inference = false;
+#endif
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -99,13 +110,32 @@ int main(void)
   //MX_X_CUBE_AI_Init();
   /* USER CODE BEGIN 2 */
   MX_USART2_UART_Init();
+
   rps_init();
+
+  adaptor_init(&hi2c1);
+  set_moving_average(true);
+
+  HAL_UART_Receive_IT(&huart2, (uint8_t *) &cmd, 1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    // For data acquisition
+    if (output_pixels) {
+      read_registors(AMG8833_T01L_ADDR, buffer,
+      AMG8833_PIXEL_DATA_LENGTH);
+      HAL_UART_Transmit(&huart2, buffer, AMG8833_PIXEL_DATA_LENGTH, 3000);
+      output_pixels = false;
+    }
+    if (output_thermistor) {
+      read_registors(AMG8833_TTHL_ADDR, buffer, 2);
+      HAL_UART_Transmit(&huart2, buffer, 2, 3000);
+      output_thermistor = false;
+    }
+
     /* USER CODE END WHILE */
 
   //MX_X_CUBE_AI_Process();
@@ -323,6 +353,31 @@ static void MX_GPIO_Init(void)
 int _write(int file, char *ptr, int len) {
   HAL_UART_Transmit(&huart2, (uint8_t *) ptr, (uint16_t) len, 0xFFFFFFFF);
   return len;
+}
+
+/*
+ * One-byte command reception from console or Thermography GUI
+ */
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
+
+  switch (cmd) {
+
+  case 'p':  // pixels
+    output_pixels = true;
+    break;
+  case 't':  // thermistor
+    output_thermistor = true;
+    break;
+#ifndef GAME_MODE
+  case 'i':  // run inference
+    run_inference = true;
+    break;
+#endif
+  default:
+    break;
+  }
+
+  HAL_UART_Receive_IT(&huart2, (uint8_t *) &cmd, 1);
 }
 /* USER CODE END 4 */
 

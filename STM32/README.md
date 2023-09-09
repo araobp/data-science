@@ -24,6 +24,10 @@ This project is just a thermography app with Panasonic AMG8833 (no AI):
 
 Its GUI is in this folder: [GUI(Python3)](Thermography/GUI)
 
+'''
+[NUCLEO L476RG]--- UART ---[Thermography GUI]
+'''
+
 ### Rock Paper Scissors (with AI)
 
 This project is AI Rock Paper Scissors with Panasonic AMG8333 (still work in progress):

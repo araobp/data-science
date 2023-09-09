@@ -49,7 +49,7 @@ I designed my original Arduino shield for AMG8833 in 2019. Refer to [this page](
 
 ### CubeMX-related problems I faced in this development
 
-#### printf issues
+***1. printf issues***
 
 I faced malloc-related build errors after I added "printf" (_write() function) to "main.c". The following setting solved the problem.
 
@@ -57,7 +57,7 @@ I faced malloc-related build errors after I added "printf" (_write() function) t
 
 The marked part must be elased.
 
-#### CubeMX source file overwriting issues
+***2. CubeMX source file overwriting issues***
 
 Every time CubeMX generates code, all the source files excluding user-defined parts and user-defined files are overwritten.
 

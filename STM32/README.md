@@ -41,23 +41,25 @@ Startup message to UART Tx:
 [NETWORK INITIALIZATION] 1
 ```
 
-### printf issues
-
-I faced malloc-related build errors after I added "printf" (_write() function) to "main.c". The following setting solved the problem.
-
-<img src="doc/printf_issue.png" width=450>
-
-### CubeMX source file overwriting issues
-
-Every time CubeMX generates code, all the source files excluding user-defined parts and user-defined files are overwritten.
-
-Use Github Desktop to discard changes on files on which you made some modifications, especially on those files under X-CUBE-AI/APP folder.
-
 ### Arudino shield for Panasonic AMG8833
 
 I designed my original Arduino shield for AMG8833 in 2019. Refer to [this page](https://github.com/araobp/stm32-mcu/tree/master/NUCLEO-F401RE/Thermography).
 
 => [Schematic](https://github.com/araobp/stm32-mcu/blob/master/NUCLEO-F401RE/Thermography/kicad/arduino_board.pdf)
+
+### CubeMX-related problems I faced in this development
+
+#### printf issues
+
+I faced malloc-related build errors after I added "printf" (_write() function) to "main.c". The following setting solved the problem.
+
+<img src="doc/printf_issue.png" width=450>
+
+#### CubeMX source file overwriting issues
+
+Every time CubeMX generates code, all the source files excluding user-defined parts and user-defined files are overwritten.
+
+Use Github Desktop to discard changes on files on which you made some modifications, especially on those files under X-CUBE-AI/APP folder.
 
 ## References
 

@@ -15,10 +15,16 @@ Arduino shield uses PB8 and PB9 for I2C SCL and SDA.
 
 ## Rock Paper Scissors with STM32Cube.AI
 
+### Thermography (without AI)
+
+<img src="doc/thermography_interporated.png" width=300>
+
 This project is just a thermography app with Panasonic AMG8833 (no AI):
 - [Thermography](Thermography)
 
-<img src="doc/thermography_interporated.png" width=400>
+Its GUI is in this folder: [thermography(python3)](GUI)
+
+### Rock Paper Scissors (with AI)
 
 This project is AI Rock Paper Scissors with Panasonic AMG8333 (still work in progress):
 - [RockPaperScissors](RockPaperScissors)

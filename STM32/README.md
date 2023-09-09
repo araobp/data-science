@@ -22,7 +22,7 @@ Arduino shield uses PB8 and PB9 for I2C SCL and SDA.
 This project is just a thermography app with Panasonic AMG8833 (no AI):
 - [Thermography](Thermography)
 
-Its GUI is in this folder: [thermography(python3)](GUI)
+Its GUI is in this folder: [GUI(Python3)](Thermography/GUI)
 
 ### Rock Paper Scissors (with AI)
 

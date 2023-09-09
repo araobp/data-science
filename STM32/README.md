@@ -25,7 +25,7 @@ This project is just a thermography app with Panasonic AMG8833 (no AI):
 Its GUI is in this folder: [GUI(Python3)](Thermography/GUI)
 
 ```
-[NUCLEO L476RG]--- UART ---[Thermography GUI]
+[NUCLEO L476RG] --- UART (VCP via ST-Link) --- COM port [Thermography GUI]
 ```
 
 ### Rock Paper Scissors (with AI)

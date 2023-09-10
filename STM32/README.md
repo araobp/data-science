@@ -28,7 +28,7 @@ I designed my original Arduino shield for AMG8833 in 2019. Refer to [this page](
 This project is just a thermography app with Panasonic AMG8833 (no AI):
 - [Thermography](Thermography)
 
-Its GUI is in this folder: [GUI(Python3)](python/ThermographyGUI)
+Its GUI is in this folder: [GUI(Python3)](../python/ThermographyGUI)
 
 ```
 [NUCLEO L476RG] --- UART (VCP via ST-Link) --- COM port [Thermography GUI]

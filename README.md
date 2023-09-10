@@ -32,6 +32,8 @@ This is a project to develop edge AI for Acoustic Scene Classification based on 
 
 ## Misc
 
+The works below are for training myself in the field of data science and Deep Learning.
+
 ### [Arduino-version of the thermography](misc/Arduino)
 
 Make Jupyter Notebook collect data from this Arduino version of the thermograpy device with Panasonic AMG8833.

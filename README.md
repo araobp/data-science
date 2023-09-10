@@ -10,13 +10,13 @@ The best text book that I have ever read in my life: [C言語ではじめる音�
 
 This folder contains Python-version of the C programmes in the book.
 
-### [Speech Procesing](SpeechProcessing)
+### [Speech Processing for AI](SpeechProcessing)
 
 In September 2018, I found this great paper on the net: https://haythamfayek.com/2016/04/21/speech-processing-for-machine-learning.html
 
 I relearn it in this project.
 
-### [Rock Paper Scissors](RockPaperScissors)
+### [AI Rock Paper Scissors](RockPaperScissors)
 
 I developed Rock Paper Scissors on Nucleo L401RE board with Panasonic AMG8833 in January 2019, just after the first relase of STM32Cube.AI (December 2018) became available for developers: [The demo on YouTube](https://www.youtube.com/shorts/d6OYSllaVEs). I remember my excitement on STM32Cube.AI -- AI can run on such a tiny device!
 

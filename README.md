@@ -1,12 +1,8 @@
-# Full Stack Data Scientist
+# Digital Signal Processing
 
 (Work in progress)
 
-I used to be a full stack data scientist in the past.
-
-This project is to relearn the each technology to become a full stack data scientist again before I visit [EdgeTech+ 2023](https://www.jasa.or.jp/expo/english/).
-
-## [Step 1] Training myself
+## Digital Signal Processing basics
 
 ### [Digital Audio Processing](DigitalAudioProcessing)
 
@@ -32,7 +28,7 @@ STMicroelectronics also developed a toy similar to mine, but with VL53L5: https:
 
 This folder is to implement the hardware part of "RockPaperScissors" on STMicroelectronics NUCLEO-L476RG board with the latest version of CubeIDE/CubeMX and STM32Cube.AI.
 
-## [Step 2] Prototyping Acoustic Scene Classification
+## Prototyping Acoustic Scene Classification
 
 This is a project to develop edge AI for Acoustic Scene Classification based on STM32Cube.AI, referring to my past project: https://github.com/araobp/acoustic-features which was the best thing I have ever developed in my carrier as an ICT engineer, although it was my hobby project (not a commercial product).
 

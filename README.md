@@ -31,11 +31,18 @@ I learn CMSIS-DSP in this project.
 - CMSIP-DSP: https://www.keil.com/pack/doc/CMSIS/DSP/html/index.html
 - Python-version of CMSIS-DSP: https://pypi.org/project/cmsisdsp/
 
+...
+
 ## Acoustic Scene Classification
 
 This is a project to develop edge AI for Acoustic Scene Classification based on STM32Cube.AI, referring to my past project: https://github.com/araobp/acoustic-features which was the best thing I have ever developed in my carrier as an ICT engineer, although it was my hobby project (not a commercial product).
 
 ...
+
+## Mic Array
+
+...
+
 
 ## Misc
 

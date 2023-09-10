@@ -68,30 +68,6 @@ Refer to the following site: Google search "Configuring DSP libraries on STM32Cu
 
 [API reference](https://arm-software.github.io/CMSIS_5/General/html/index.html)
 
-#### APIs ("app_x-cube-ai.h")
-
-The following is the basic APIs of STM32Cube.AI:
-
-Find AI network
-```
-const char* ai_mnetwork_find(const char *name, ai_int idx);
-```
-
-Create AI network
-```
-ai_error ai_mnetwork_create(const char *name, ai_handle* network, const ai_buffer* network_config);
-```
-
-Initialize AI network
-```
-ai_bool ai_mnetwork_init(ai_handle network);
-```
-
-Run inference on AI network
-```
-ai_i32 ai_mnetwork_run(ai_handle network, const ai_buffer* input, ai_buffer* output);
-```
-
 ## References
 
 - https://stackoverflow.com/questions/59395181/cmsis-dsp-in-stm32cubeide

@@ -53,16 +53,3 @@ The best accuracy I have ever achieved is 75%. Can I get a higher score than 75%
 ### [Titanic](misc/Titanic)
 
 ### [Audio](misc/Audio)
-
-## Full Stack Data Scientist -- my definition
-
-- IoT circuit design : Physics, Electronics and CAD
-- IoT device prototyping : Circuit board and C/C++ programming
-- Feature engineering : Fourier Transform and digital signal processing
-- AI and neural network : DNN, CNN, Tensorflow and Keras
-- AI application development : Python and Android(Kotlin)
-- AI deployment : IoT devices and web apps (Node.js/HTML5/CSS/JavaScript)
-- Data Analysis : Jupyter Notebook, numpy, pandas and matplotlib
-- AI visualization : Blender
-
-

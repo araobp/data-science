@@ -15,6 +15,12 @@ Arduino shield uses PB8 and PB9 for I2C SCL and SDA.
 
 ## Rock Paper Scissors with STM32Cube.AI
 
+### Arudino shield for Panasonic AMG8833
+
+I designed my original Arduino shield for AMG8833 in 2019. Refer to [this page](https://github.com/araobp/stm32-mcu/tree/master/NUCLEO-F401RE/Thermography). I use this board with Nucleo L476RG.
+
+=> [Schematic](https://github.com/araobp/stm32-mcu/blob/master/NUCLEO-F401RE/Thermography/kicad/arduino_board.pdf)
+
 ### Thermography (without AI)
 
 <img src="doc/thermography_interporated.png" width=300>
@@ -34,20 +40,6 @@ This project is AI Rock Paper Scissors with Panasonic AMG8333 (still work in pro
 - [RockPaperScissors](RockPaperScissors)
 
 <img src="doc/RockPaperScissors_DCT_DNN.png" width=150>
-
-Startup message to UART Tx:
-```
---- AI ROCK PAPER SCISSORS ---
-[NETWORK FIND] NN_NAME: network
-[NETWORK CREATION] err.type: 0x00, err.code: 0x00
-[NETWORK INITIALIZATION] 1
-```
-
-### Arudino shield for Panasonic AMG8833
-
-I designed my original Arduino shield for AMG8833 in 2019. Refer to [this page](https://github.com/araobp/stm32-mcu/tree/master/NUCLEO-F401RE/Thermography).
-
-=> [Schematic](https://github.com/araobp/stm32-mcu/blob/master/NUCLEO-F401RE/Thermography/kicad/arduino_board.pdf)
 
 ### CubeMX-related problems I faced in this development
 
@@ -75,30 +67,6 @@ https://wiki.stmicroelectronics.cn/stm32mcu/wiki/AI:How_to_perform_motion_sensin
 Refer to the following site: Google search "Configuring DSP libraries on STM32CubeIDE"
 
 [API reference](https://arm-software.github.io/CMSIS_5/General/html/index.html)
-
-#### APIs ("app_x-cube-ai.h")
-
-The following is the basic APIs of STM32Cube.AI:
-
-Find AI network
-```
-const char* ai_mnetwork_find(const char *name, ai_int idx);
-```
-
-Create AI network
-```
-ai_error ai_mnetwork_create(const char *name, ai_handle* network, const ai_buffer* network_config);
-```
-
-Initialize AI network
-```
-ai_bool ai_mnetwork_init(ai_handle network);
-```
-
-Run inference on AI network
-```
-ai_i32 ai_mnetwork_run(ai_handle network, const ai_buffer* input, ai_buffer* output);
-```
 
 ## References
 

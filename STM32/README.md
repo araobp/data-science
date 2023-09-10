@@ -15,6 +15,12 @@ Arduino shield uses PB8 and PB9 for I2C SCL and SDA.
 
 ## Rock Paper Scissors with STM32Cube.AI
 
+### Arudino shield for Panasonic AMG8833
+
+I designed my original Arduino shield for AMG8833 in 2019. Refer to [this page](https://github.com/araobp/stm32-mcu/tree/master/NUCLEO-F401RE/Thermography). I use this board with Nucleo L476RG.
+
+=> [Schematic](https://github.com/araobp/stm32-mcu/blob/master/NUCLEO-F401RE/Thermography/kicad/arduino_board.pdf)
+
 ### Thermography (without AI)
 
 <img src="doc/thermography_interporated.png" width=300>
@@ -34,20 +40,6 @@ This project is AI Rock Paper Scissors with Panasonic AMG8333 (still work in pro
 - [RockPaperScissors](RockPaperScissors)
 
 <img src="doc/RockPaperScissors_DCT_DNN.png" width=150>
-
-Startup message to UART Tx:
-```
---- AI ROCK PAPER SCISSORS ---
-[NETWORK FIND] NN_NAME: network
-[NETWORK CREATION] err.type: 0x00, err.code: 0x00
-[NETWORK INITIALIZATION] 1
-```
-
-### Arudino shield for Panasonic AMG8833
-
-I designed my original Arduino shield for AMG8833 in 2019. Refer to [this page](https://github.com/araobp/stm32-mcu/tree/master/NUCLEO-F401RE/Thermography).
-
-=> [Schematic](https://github.com/araobp/stm32-mcu/blob/master/NUCLEO-F401RE/Thermography/kicad/arduino_board.pdf)
 
 ### CubeMX-related problems I faced in this development
 

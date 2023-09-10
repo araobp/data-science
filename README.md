@@ -38,9 +38,9 @@ This is a project to develop edge AI for Acoustic Scene Classification based on 
 
 ...
 
-## Others
+## Misc
 
-### [Arduino-version of the thermography](Arduino)
+### [Arduino-version of the thermography](misc/Arduino)
 
 Make Jupyter Notebook collect data from this Arduino version of the thermograpy device with Panasonic AMG8833.
 
@@ -48,17 +48,17 @@ Make Jupyter Notebook collect data from this Arduino version of the thermograpy 
 
 This is me.
 
-### [CIFAR 10](CIFAR10)
+### [CIFAR 10](misc/CIFAR10)
 
 The best accuracy I have ever achieved is 75%. Can I get a higher score than 75%?
 
-### [MINIST](MNIST)
+### [MINIST](misc/MNIST)
 
-### [IMDb](IMDb)
+### [IMDb](misc/IMDb)
 
-### [Titanic](Titanic)
+### [Titanic](misc/Titanic)
 
-### [Audio](Audio)
+### [Audio](misc/Audio)
 
 ## Full Stack Data Scientist -- my definition
 

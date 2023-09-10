@@ -28,7 +28,7 @@ STMicroelectronics also developed a toy similar to mine, but with VL53L5: https:
 
 This folder is to implement the hardware part of "RockPaperScissors" on STMicroelectronics NUCLEO-L476RG board with the latest version of CubeIDE/CubeMX and STM32Cube.AI.
 
-## Prototyping Acoustic Scene Classification
+## Acoustic Scene Classification
 
 This is a project to develop edge AI for Acoustic Scene Classification based on STM32Cube.AI, referring to my past project: https://github.com/araobp/acoustic-features which was the best thing I have ever developed in my carrier as an ICT engineer, although it was my hobby project (not a commercial product).
 

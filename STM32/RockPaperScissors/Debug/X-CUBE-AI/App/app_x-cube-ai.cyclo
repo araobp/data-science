@@ -1,11 +1,4 @@
-../X-CUBE-AI/App/app_x-cube-ai.c:101:26:ai_mnetwork_handle	2
-../X-CUBE-AI/App/app_x-cube-ai.c:91:9:ai_mnetwork_is_valid.constprop	3
-../X-CUBE-AI/App/app_x-cube-ai.c:124:13:ai_mnetwork_find	2
-../X-CUBE-AI/App/app_x-cube-ai.c:141:10:ai_mnetwork_create	5
-../X-CUBE-AI/App/app_x-cube-ai.c:183:11:ai_mnetwork_destroy	4
-../X-CUBE-AI/App/app_x-cube-ai.c:198:9:ai_mnetwork_get_report	2
-../X-CUBE-AI/App/app_x-cube-ai.c:209:10:ai_mnetwork_get_error	2
-../X-CUBE-AI/App/app_x-cube-ai.c:224:9:ai_mnetwork_init	3
-../X-CUBE-AI/App/app_x-cube-ai.c:241:8:ai_mnetwork_run	2
-../X-CUBE-AI/App/app_x-cube-ai.c:253:8:ai_mnetwork_forward	2
-../X-CUBE-AI/App/app_x-cube-ai.c:264:6:ai_mnetwork_get_private_handle	4
+../X-CUBE-AI/App/app_x-cube-ai.c:169:5:acquire_and_process_data	1
+../X-CUBE-AI/App/app_x-cube-ai.c:181:5:post_process	1
+../X-CUBE-AI/App/app_x-cube-ai.c:196:6:MX_X_CUBE_AI_Init	1
+../X-CUBE-AI/App/app_x-cube-ai.c:202:6:MX_X_CUBE_AI_Process	1

@@ -30,4 +30,3 @@
 "./X-CUBE-AI/App/network.o"
 "./X-CUBE-AI/App/network_data.o"
 "./X-CUBE-AI/App/network_data_params.o"
-"./X-CUBE-AI/App/syscalls.o"

@@ -1,20 +1,20 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2023 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file           : main.c
+ * @brief          : Main program body
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2023 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
@@ -23,6 +23,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
+#include "network.h"
 #include "amg8833.h"
 #include "ai.h"
 /* USER CODE END Includes */
@@ -116,13 +117,12 @@ int main(void)
   adaptor_init(&hi2c1);
   set_moving_average(true);
 
-  HAL_UART_Receive_IT(&huart2, (uint8_t *) &cmd, 1);
+  HAL_UART_Receive_IT(&huart2, (uint8_t*) &cmd, 1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+  while (1) {
     // For data acquisition
     if (output_pixels) {
       read_registors(AMG8833_T01L_ADDR, buffer,
@@ -130,10 +130,33 @@ int main(void)
       HAL_UART_Transmit(&huart2, buffer, AMG8833_PIXEL_DATA_LENGTH, 3000);
       output_pixels = false;
     }
+
     if (output_thermistor) {
       read_registors(AMG8833_TTHL_ADDR, buffer, 2);
       HAL_UART_Transmit(&huart2, buffer, 2, 3000);
       output_thermistor = false;
+    }
+
+    if (run_inference) {
+      ai_float in_data[WIDTH * HEIGHT] = { 0.0f };
+      ai_float out_data[AI_NETWORK_OUT_1_SIZE] = { 0.0 };
+      uint8_t buffer[AMG8833_PIXEL_DATA_LENGTH] = { 0 };
+      char class_labels[AI_NETWORK_OUT_1_SIZE][12] = { "PAPER", "ROCK", "SCISSORS" };
+
+      read_registors(AMG8833_T01L_ADDR, buffer, AMG8833_PIXEL_DATA_LENGTH);
+
+      for (int i = 0; i < WIDTH * HEIGHT; i++) {
+        in_data[i] = (ai_float) (buffer[i * 2 + 1] * 256 + buffer[i * 2]) * 0.25;
+      }
+
+      rps_infer(in_data, out_data);
+
+      // Output to console
+      printf("\n--- Inference ---\n");
+      for (int i = 0; i < AI_NETWORK_OUT_1_SIZE; i++) {
+        printf(" %-12s%3d%%\n", class_labels[i], (int) (out_data[i] * 100));
+      }
+      run_inference = false;
     }
 
     /* USER CODE END WHILE */
@@ -351,7 +374,7 @@ static void MX_GPIO_Init(void)
  * @retval None
  */
 int _write(int file, char *ptr, int len) {
-  HAL_UART_Transmit(&huart2, (uint8_t *) ptr, (uint16_t) len, 0xFFFFFFFF);
+  HAL_UART_Transmit(&huart2, (uint8_t*) ptr, (uint16_t) len, 0xFFFFFFFF);
   return len;
 }
 
@@ -377,7 +400,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
     break;
   }
 
-  HAL_UART_Receive_IT(&huart2, (uint8_t *) &cmd, 1);
+  HAL_UART_Receive_IT(&huart2, (uint8_t*) &cmd, 1);
 }
 /* USER CODE END 4 */
 
@@ -390,8 +413,7 @@ void Error_Handler(void)
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
   __disable_irq();
-  while (1)
-  {
+  while (1) {
   }
   /* USER CODE END Error_Handler_Debug */
 }

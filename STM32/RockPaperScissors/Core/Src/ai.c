@@ -1,19 +1,24 @@
 #include <stdio.h>
 #include "app_x-cube-ai.h"
+#include "network.h"
+#include "network_data.h"
 #include "dct.h"
 #include "ai.h"
 
-ai_handle handle;
+static ai_handle network;
 const char *nn_name;
 
 // DCT Type-II instance
 dct2_instance_f32 S;
 
-ai_buffer ai_input;
-ai_buffer ai_output;
+static ai_buffer *ai_input;
+static ai_buffer *ai_output;
 ai_float *output_;
-ai_float normalized_data[AI_MNETWORK_IN_1_SIZE_BYTES];
+ai_float normalized_data[AI_NETWORK_IN_1_SIZE];
 ai_float feature[WIDTH * HEIGHT];
+
+ai_u8 activations[AI_NETWORK_DATA_ACTIVATIONS_SIZE];
+const char *activities[AI_NETWORK_OUT_1_SIZE] = { "paper", "rock", "scissors" };
 
 // Standard normalization
 void normalize(ai_float *in_data, ai_float *normalized_data, int len) {
@@ -41,16 +46,17 @@ void normalize(ai_float *in_data, ai_float *normalized_data, int len) {
 
 void rps_init(void) {
 
-  printf("--- AI ROCK PAPER SCISSORS ---\r\n");
-  nn_name = ai_mnetwork_find(NULL, 0);
-  printf("[NETWORK FIND] NN_NAME: %s\n", nn_name);
-
-  ai_error ai_err = ai_mnetwork_create(nn_name, &handle, NULL);
-  printf("[NETWORK CREATION] err.type: 0x%02X, err.code: 0x%02X\n",
-      ai_err.type, ai_err.code);
-
-  bool success = ai_mnetwork_init(handle);
-  printf("[NETWORK INITIALIZATION] %d\n", success);  // 0: Failure, 1; Success
+  const ai_handle act_addr[] = { activations };
+  printf("TEST\n");
+  /* Create an instance of the model */
+  ai_error err = ai_network_create_and_init(&network, act_addr, NULL);
+  if (err.type != AI_ERROR_NONE) {
+    printf("ai_network_create error - type=%d code=%d\r\n", err.type, err.code);
+  } else {
+    printf("ai_network_create success\n");
+  }
+  ai_input = ai_network_inputs_get(network, NULL);
+  ai_output = ai_network_outputs_get(network, NULL);
 
   dct2_2d_init_f32(&S, WIDTH, HEIGHT);
 }
@@ -65,17 +71,26 @@ void rps_infer(ai_float *input_data, ai_float *output_data) {
   zigzag_scan_f32(&S, (float32_t*) feature, (float32_t*) input_data);
 
   // Normalize the feature data (DC is discarded)
-  normalize(input_data + 1, normalized_data, AI_MNETWORK_IN_1_SIZE_BYTES);
+  normalize(input_data + 1, normalized_data, AI_NETWORK_IN_1_SIZE);
 
   // Input parameters for running inference
-  ai_input.data = AI_HANDLE_PTR(normalized_data);
-  ai_output.data = AI_HANDLE_PTR(output_data);
+  ai_input[0].data = AI_HANDLE_PTR(normalized_data);
+  //ai_input[0].size = AI_NETWORK_IN_1_SIZE;
+  //ai_input[0].format = AI_BUFFER_FORMAT_FLOAT;
+  ai_output[0].data = AI_HANDLE_PTR(output_data);
+  //ai_output[0].size = AI_NETWORK_OUT_1_SIZE;
+  //ai_output[0].format = AI_BUFFER_FORMAT_FLOAT;
 
-  // Run inference
-  ai_mnetwork_run(handle, &ai_input, &ai_output);
+  ai_i32 batch = ai_network_run(network, ai_input, ai_output);
+  if (batch != 1) {
+    ai_error err = ai_network_get_error(network);
+    printf("AI ai_network_run error - type=%d code=%d\r\n", err.type, err.code);
+  } else {
+    printf("AI ai_network_run success\n");
+  }
 
   // Copy inference result
   for (int i = 0; i < AI_NETWORK_OUT_1_SIZE; i++) {
-    output_data[i] = ((ai_float*) (ai_output.data))[i];
+    output_data[i] = ((ai_float*) (ai_output[0].data))[i];
   }
 }

@@ -31,7 +31,6 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h \
  ../X-CUBE-AI/App/app_x-cube-ai.h ../Middlewares/ST/AI/Inc/ai_platform.h \
  ../X-CUBE-AI/App/network.h ../X-CUBE-AI/App/network_config.h \
- ../X-CUBE-AI/App/network_data.h ../X-CUBE-AI/App/network_data_params.h \
  ../Core/Inc/amg8833.h ../Core/Inc/ai.h
 ../Core/Inc/main.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:
@@ -68,7 +67,5 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Middlewares/ST/AI/Inc/ai_platform.h:
 ../X-CUBE-AI/App/network.h:
 ../X-CUBE-AI/App/network_config.h:
-../X-CUBE-AI/App/network_data.h:
-../X-CUBE-AI/App/network_data_params.h:
 ../Core/Inc/amg8833.h:
 ../Core/Inc/ai.h:

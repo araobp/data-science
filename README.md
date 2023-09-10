@@ -12,9 +12,7 @@ This folder contains Python-version of the C programmes in the book.
 
 ### [Speech Processing for AI](SpeechProcessing)
 
-In September 2018, I found this great paper on the net: https://haythamfayek.com/2016/04/21/speech-processing-for-machine-learning.html
-
-I relearn it in this project.
+In September 2018, I found this great paper on the net: https://haythamfayek.com/2016/04/21/speech-processing-for-machine-learning.html. I relearn the paper in this project.
 
 ### [AI Rock Paper Scissors](RockPaperScissors)
 

@@ -43,7 +43,14 @@ This is a project to develop edge AI for Acoustic Scene Classification based on 
 
 ...
 
+## References
 
+### Delta-Sigma ADCs
+
+- [How delta-sigma ADCs work, Part 1](https://www.ti.com/lit/an/slyt423a/slyt423a.pdf?ts=1694396702991)
+- [How delta-sigma ADCs work, Part 2](https://www.ti.com/lit/an/slyt438/slyt438.pdf?ts=1694411423855)
+
+---
 ## Misc
 
 The below works are for training myself in the field of data science and Deep Learning.

@@ -45,9 +45,9 @@ This experiment proves that twenty of DCT Type-II coefficients with a small DNN 
 
 <img src="doc/RockPaperScissors_DCT_DNN_Experiment.jpg" width=200>
 
-<img src="doc/RockPaperScissors_DCT_DNN.png" width=200>
+<img src="doc/RockPaperScissors_DCT_DNN.png" width=250>
 
-<img src="doc/RockPaperScissors_DCT_DNN_memory_usage.png" width=400>
+<img src="doc/RockPaperScissors_DCT_DNN_memory_usage.png" width=300>
 
 ### CubeMX-related problems I faced in this development
 

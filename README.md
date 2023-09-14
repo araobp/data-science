@@ -18,13 +18,17 @@ I relearn it in this project by doing this: https://github.com/araobp/stm32-mcu/
 
 STMicroelectronics also developed a toy similar to mine, but with VL53L5: https://stm32ai.st.com/use-case/shifumi-gesture-recognition/
 
-#### [Training DNN with DCT Type-II coefficients as heatmap feature](RockPaperScissors)
+### Modeling and training a neural network 
 
-This DNN model's recognition performance is much better than that of my old project in 2019.
+[Training DNN with DCT Type-II coefficients as heatmap feature](RockPaperScissors)
 
-#### [Edge AI on STM32](STM32)
+The DNN model's recognition performance is much better than that of my old project in 2019.
 
-This folder is to implement the hardware part of "RockPaperScissors" on STMicroelectronics NUCLEO-L476RG board with the latest version of CubeIDE/CubeMX and STM32Cube.AI.
+### Edge AI implementation and experiment 
+
+[Edge AI on STM32](STM32)
+
+The folder is to implement the hardware part of "RockPaperScissors" on STMicroelectronics NUCLEO-L476RG board with the latest version of CubeIDE/CubeMX and STM32Cube.AI.
 
 ## CMSIS-DSP
 

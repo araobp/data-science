@@ -23,9 +23,11 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
+#include <stdlib.h>
 #include "network.h"
 #include "amg8833.h"
 #include "ai.h"
+#include "lcd.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -47,6 +49,7 @@
 CRC_HandleTypeDef hcrc;
 
 I2C_HandleTypeDef hi2c1;
+I2C_HandleTypeDef hi2c3;
 
 UART_HandleTypeDef huart2;
 
@@ -62,6 +65,8 @@ volatile bool output_thermistor = false;
 #ifndef GAME_MODE
 volatile bool run_inference = false;
 #endif
+
+static char class_labels[AI_NETWORK_OUT_1_SIZE][12] = { "PAPER", "ROCK", "SCISSORS" };
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -69,6 +74,7 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_CRC_Init(void);
 static void MX_I2C1_Init(void);
+static void MX_I2C3_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -108,14 +114,17 @@ int main(void)
   MX_GPIO_Init();
   MX_CRC_Init();
   MX_I2C1_Init();
+  MX_I2C3_Init();
   //MX_X_CUBE_AI_Init();
   /* USER CODE BEGIN 2 */
   MX_USART2_UART_Init();
 
   rps_init();
 
-  adaptor_init(&hi2c1);
-  set_moving_average(true);
+  amg8833_adaptor_init(&hi2c1);
+  amg8833_set_moving_average(true);
+
+  lcd_init(&hi2c3);
 
   HAL_UART_Receive_IT(&huart2, (uint8_t*) &cmd, 1);
   /* USER CODE END 2 */
@@ -125,25 +134,104 @@ int main(void)
   while (1) {
     // For data acquisition
     if (output_pixels) {
-      read_registors(AMG8833_T01L_ADDR, buffer,
+      amg8833_read_registors(AMG8833_T01L_ADDR, buffer,
       AMG8833_PIXEL_DATA_LENGTH);
       HAL_UART_Transmit(&huart2, buffer, AMG8833_PIXEL_DATA_LENGTH, 3000);
       output_pixels = false;
     }
 
     if (output_thermistor) {
-      read_registors(AMG8833_TTHL_ADDR, buffer, 2);
+      amg8833_read_registors(AMG8833_TTHL_ADDR, buffer, 2);
       HAL_UART_Transmit(&huart2, buffer, 2, 3000);
       output_thermistor = false;
     }
 
-    if (run_inference) {
-      ai_float in_data[WIDTH * HEIGHT] = { 0.0f };
-      ai_float out_data[AI_NETWORK_OUT_1_SIZE] = { 0.0 };
-      uint8_t buffer[AMG8833_PIXEL_DATA_LENGTH] = { 0 };
-      char class_labels[AI_NETWORK_OUT_1_SIZE][12] = { "PAPER", "ROCK", "SCISSORS" };
+    ai_float in_data[WIDTH * HEIGHT] = { 0.0f };
+    ai_float out_data[AI_NETWORK_OUT_1_SIZE] = { 0.0 };
+    uint8_t buffer[AMG8833_PIXEL_DATA_LENGTH] = { 0 };
 
-      read_registors(AMG8833_T01L_ADDR, buffer, AMG8833_PIXEL_DATA_LENGTH);
+#ifdef GAME_MODE
+
+    int me, you;
+    char start_msg[2][16] = { "/// ROCK - PAPER", "- SCISSORS  ///" };
+    int game[3][3] = { { 0, 1, -1 }, { -1, 0, 1 }, { 1, -1, 0 } };
+    char rock_paper_scissors[3][2][16] = { { "!!!!", "(  // ...PAPER" }, { ".ooo",
+        "(__O  ...ROCK" }, { " ii", ".o<  ...SCISSORS" } };
+
+    // Show start message
+      lcd_clear();
+      lcd_string(start_msg[0], sizeof(start_msg[0]));
+      lcd_newline();
+      lcd_string(start_msg[1], sizeof(start_msg[1]));
+      HAL_Delay(2000);
+
+      // Count three
+      lcd_clear();
+      lcd_string(".", 1);
+      HAL_Delay(800);
+      lcd_clear();
+      lcd_string("..", 2);
+      HAL_Delay(800);
+
+      // My hand
+      me = rand() % 3;
+      printf("\nme: %d\n", me);
+      printf("%s\n", rock_paper_scissors[me][0]);
+      printf("%s\n", rock_paper_scissors[me][1]);
+      lcd_clear();
+      lcd_string(rock_paper_scissors[me][0], sizeof(rock_paper_scissors[me][0]));
+      lcd_newline();
+      lcd_string(rock_paper_scissors[me][1], sizeof(rock_paper_scissors[me][1]));
+
+      HAL_Delay(500);
+      // Recognize your hand with AI
+      amg8833_read_registors(AMG8833_T01L_ADDR, buffer, AMG8833_PIXEL_DATA_LENGTH);
+      for (int i = 0; i < WIDTH * HEIGHT; i++) {
+        in_data[i] = (ai_float) (buffer[i * 2 + 1] * 256 + buffer[i * 2]) * 0.25;
+      }
+
+      rps_infer(in_data, out_data);
+
+      you = 0;
+      for (int i = 0; i < AI_NETWORK_OUT_1_SIZE; i++) {
+        if (out_data[you] <= out_data[i])
+          you = i;
+      }
+
+      HAL_Delay(1500);
+
+      lcd_clear();
+      printf("\nME: %s\n", class_labels[me]);
+      printf("YOU: %s\n", class_labels[you]);
+      lcd_string("ME: ", 4);
+      lcd_string(class_labels[me], sizeof(class_labels[me]));
+      lcd_newline();
+      lcd_string("YOU: ", 5);
+      lcd_string(class_labels[you], sizeof(class_labels[you]));
+
+      HAL_Delay(2000);
+
+      // Show game result
+      lcd_clear();
+      switch (game[me][you]) {
+      case 0:  // Draw
+        lcd_string("*** DRAW *******", 16);
+        break;
+      case 1:  // Win
+        lcd_string("*** I WIN! *****", 16);
+        break;
+      case -1: // Lose
+        lcd_string("*** YOU WIN! ***", 16);
+        break;
+      }
+      lcd_newline();
+      lcd_string("****************", 16);
+      HAL_Delay(3000);
+
+#else
+    if (run_inference) {
+
+      amg8833_read_registors(AMG8833_T01L_ADDR, buffer, AMG8833_PIXEL_DATA_LENGTH);
 
       for (int i = 0; i < WIDTH * HEIGHT; i++) {
         in_data[i] = (ai_float) (buffer[i * 2 + 1] * 256 + buffer[i * 2]) * 0.25;
@@ -158,6 +246,7 @@ int main(void)
       }
       run_inference = false;
     }
+#endif
 
     /* USER CODE END WHILE */
 
@@ -292,6 +381,54 @@ static void MX_I2C1_Init(void)
   /* USER CODE BEGIN I2C1_Init 2 */
 
   /* USER CODE END I2C1_Init 2 */
+
+}
+
+/**
+  * @brief I2C3 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_I2C3_Init(void)
+{
+
+  /* USER CODE BEGIN I2C3_Init 0 */
+
+  /* USER CODE END I2C3_Init 0 */
+
+  /* USER CODE BEGIN I2C3_Init 1 */
+
+  /* USER CODE END I2C3_Init 1 */
+  hi2c3.Instance = I2C3;
+  hi2c3.Init.Timing = 0x10909CEC;
+  hi2c3.Init.OwnAddress1 = 0;
+  hi2c3.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+  hi2c3.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+  hi2c3.Init.OwnAddress2 = 0;
+  hi2c3.Init.OwnAddress2Masks = I2C_OA2_NOMASK;
+  hi2c3.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+  hi2c3.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+  if (HAL_I2C_Init(&hi2c3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Configure Analogue filter
+  */
+  if (HAL_I2CEx_ConfigAnalogFilter(&hi2c3, I2C_ANALOGFILTER_ENABLE) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Configure Digital filter
+  */
+  if (HAL_I2CEx_ConfigDigitalFilter(&hi2c3, 0) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN I2C3_Init 2 */
+
+  /* USER CODE END I2C3_Init 2 */
 
 }
 

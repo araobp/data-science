@@ -1,7 +1,7 @@
 {
     "_allocate_inputs": 4,
     "_allocate_outputs": 4,
-    "cli_parameters": "generate --name network -m C:/Users/shiny/Documents/data-science-study/STM32/RockPaperScissors/rock_paper_scissors_dct_20230906224421.h5 --type keras --compression none --verbosity 1 --workspace C:\\Users\\shiny\\AppData\\Local\\Temp\\mxAI_workspace3665109360595006720550472796345918 --output C:\\Users\\shiny\\.stm32cubemx\\network_output --allocate-inputs --series stm32l4 --allocate-outputs",
+    "cli_parameters": "generate --name network -m C:/Users/shiny/Documents/data-science-study/RockPaperScissors/rock_paper_scissors_dct_20230914182555.h5 --type keras --compression none --verbosity 1 --workspace C:\\Users\\shiny\\AppData\\Local\\Temp\\mxAI_workspace77867035025810017049234532210346934 --output C:\\Users\\shiny\\.stm32cubemx\\network_output --allocate-inputs --series stm32l4 --allocate-outputs",
     "cli_version": {
         "major": 1,
         "micro": 0,
@@ -13,12 +13,12 @@
         "factor": null,
         "layers": {}
     },
-    "date_time": "Sun Sep 10 02:44:38 2023",
+    "date_time": "Thu Sep 14 21:13:46 2023",
     "error": 0,
     "error_str": [],
     "exec_cmd": "generate",
     "exec_duration": 0.0,
-    "hash": "e514c59cca83df9f209c476780c73db0",
+    "hash": "f888452bbd0d6545766415ff12d02a9f",
     "inputs": [
         "input_0"
     ],
@@ -33,16 +33,16 @@
                 "n_params": 0,
                 "psize": 0,
                 "rom_output": {
-                    "c_size": 108,
+                    "c_size": 80,
                     "fmt": {
                         "format": "float"
                     },
                     "shape": [
-                        27,
+                        20,
                         1
                     ]
                 },
-                "rom_size": 3584
+                "rom_size": 2184
             },
             "id": 0,
             "inputs": [],
@@ -53,16 +53,16 @@
         {
             "c_id": [],
             "extras": {
-                "n_macc": 896,
-                "n_params": 896,
-                "psize": 3584,
+                "n_macc": 546,
+                "n_params": 546,
+                "psize": 2184,
                 "rom_output": {
-                    "c_size": 128,
+                    "c_size": 104,
                     "fmt": {
                         "format": "float"
                     },
                     "shape": [
-                        32,
+                        26,
                         1
                     ]
                 },
@@ -79,16 +79,16 @@
         {
             "c_id": [],
             "extras": {
-                "n_macc": 32,
+                "n_macc": 26,
                 "n_params": 0,
                 "psize": 0,
                 "rom_output": {
-                    "c_size": 128,
+                    "c_size": 104,
                     "fmt": {
                         "format": "float"
                     },
                     "shape": [
-                        32,
+                        26,
                         1
                     ]
                 },
@@ -108,9 +108,64 @@
                 3
             ],
             "extras": {
-                "n_macc": 99,
-                "n_params": 99,
-                "psize": 396,
+                "n_macc": 702,
+                "n_params": 702,
+                "psize": 2808,
+                "rom_output": {
+                    "c_size": 104,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        26,
+                        1
+                    ]
+                },
+                "rom_size": 2808
+            },
+            "id": 2,
+            "inputs": [
+                "dense"
+            ],
+            "name": "dense_1_dense",
+            "original": "Dense",
+            "type": "Dense"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 26,
+                "n_params": 0,
+                "psize": 0,
+                "rom_output": {
+                    "c_size": 104,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        26,
+                        1
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 2,
+            "inputs": [
+                "dense_1_dense"
+            ],
+            "name": "dense_1",
+            "original": "Dense",
+            "type": "Nonlinearity"
+        },
+        {
+            "c_id": [
+                4,
+                5
+            ],
+            "extras": {
+                "n_macc": 81,
+                "n_params": 81,
+                "psize": 324,
                 "rom_output": {
                     "c_size": 12,
                     "fmt": {
@@ -121,13 +176,13 @@
                         1
                     ]
                 },
-                "rom_size": 396
+                "rom_size": 324
             },
-            "id": 2,
+            "id": 4,
             "inputs": [
-                "dense"
+                "dense_1"
             ],
-            "name": "dense_1_dense",
+            "name": "dense_2_dense",
             "original": "Dense",
             "type": "Dense"
         },
@@ -149,53 +204,53 @@
                 },
                 "rom_size": 0
             },
-            "id": 2,
+            "id": 4,
             "inputs": [
-                "dense_1_dense"
+                "dense_2_dense"
             ],
-            "name": "dense_1",
+            "name": "dense_2",
             "original": "Dense",
             "type": "Nonlinearity"
         }
     ],
     "model_files": [
-        "C:\\Users\\shiny\\Documents\\data-science-study\\STM32\\RockPaperScissors\\rock_paper_scissors_dct_20230906224421.h5"
+        "C:\\Users\\shiny\\Documents\\data-science-study\\RockPaperScissors\\rock_paper_scissors_dct_20230914182555.h5"
     ],
-    "model_n_params": 995,
-    "model_name": "rock_paper_scissors_dct_20230906224421",
-    "model_size": 3980,
+    "model_n_params": 1329,
+    "model_name": "rock_paper_scissors_dct_20230914182555",
+    "model_size": 5316,
     "model_type": "keras",
     "name": "network",
     "outputs": [
-        "dense_1"
+        "dense_2"
     ],
     "ram_io_size": [
-        108,
+        80,
         12
     ],
     "ram_size": [
-        236,
-        236
+        208,
+        208
     ],
     "report_version": 1.1,
     "rom_cfact": 1.0,
     "rom_heap_inspector": 2048,
     "rom_inputs": [
         {
-            "c_size": 108,
+            "c_size": 80,
             "c_type": "float",
             "name": "input_0"
         }
     ],
-    "rom_n_macc": 1072,
+    "rom_n_macc": 1426,
     "rom_outputs": [
         {
             "c_size": 12,
             "c_type": "float",
-            "name": "dense_1"
+            "name": "dense_2"
         }
     ],
-    "rom_size": 3980,
+    "rom_size": 5316,
     "strategy": "heap_overlay",
     "tools_api_version": {
         "major": 1,

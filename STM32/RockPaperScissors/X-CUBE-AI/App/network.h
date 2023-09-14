@@ -2,7 +2,7 @@
   ******************************************************************************
   * @file    network.h
   * @author  AST Embedded Analytics Research Platform
-  * @date    Sun Sep 10 02:44:38 2023
+  * @date    Thu Sep 14 21:13:46 2023
   * @brief   AI Tool Automatic Code Generator for Embedded NN computing
   ******************************************************************************
   * @attention
@@ -25,7 +25,7 @@
 
 /******************************************************************************/
 #define AI_NETWORK_MODEL_NAME          "network"
-#define AI_NETWORK_ORIGIN_MODEL_NAME   "rock_paper_scissors_dct_20230906224421"
+#define AI_NETWORK_ORIGIN_MODEL_NAME   "rock_paper_scissors_dct_20230914182555"
 
 /******************************************************************************/
 #define AI_NETWORK_ACTIVATIONS_ALIGNMENT   (4)
@@ -46,9 +46,9 @@ AI_DEPRECATED
   AI_NETWORK_IN_1_SIZE_BYTES, \
 }
 #define AI_NETWORK_IN_1_FORMAT      AI_BUFFER_FORMAT_FLOAT
-#define AI_NETWORK_IN_1_CHANNEL     (27)
-#define AI_NETWORK_IN_1_SIZE        (27)
-#define AI_NETWORK_IN_1_SIZE_BYTES  (108)
+#define AI_NETWORK_IN_1_CHANNEL     (20)
+#define AI_NETWORK_IN_1_SIZE        (20)
+#define AI_NETWORK_IN_1_SIZE_BYTES  (80)
 
 /******************************************************************************/
 #define AI_NETWORK_OUT_NUM       (1)
@@ -69,7 +69,7 @@ AI_DEPRECATED
 #define AI_NETWORK_OUT_1_SIZE_BYTES  (12)
 
 /******************************************************************************/
-#define AI_NETWORK_N_NODES (4)
+#define AI_NETWORK_N_NODES (6)
 
 
 AI_API_DECLARE_BEGIN

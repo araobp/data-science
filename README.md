@@ -10,13 +10,17 @@ The best text book that I have ever read in my life: [C言語ではじめる音�
 
 In September 2018, I found this great paper on the net: https://haythamfayek.com/2016/04/21/speech-processing-for-machine-learning.html. I relearn the paper in this project.
 
-## [AI Rock Paper Scissors](RockPaperScissors)
+## AI Rock Paper Scissors
 
 I developed Rock Paper Scissors on Nucleo L401RE board with Panasonic AMG8833 in January 2019, just after the first relase of STM32Cube.AI (December 2018) became available for developers: [The demo on YouTube](https://www.youtube.com/shorts/d6OYSllaVEs). I remember my excitement on STM32Cube.AI -- AI can run on such a tiny device!
 
 I relearn it in this project by doing this: https://github.com/araobp/stm32-mcu/tree/master/NUCLEO-F401RE/Thermography
 
 STMicroelectronics also developed a toy similar to mine, but with VL53L5: https://stm32ai.st.com/use-case/shifumi-gesture-recognition/
+
+#### [Training DNN with DCT Type-II coefficients as heatmap feature](RockPaperScissors)
+
+This DNN model's recognition performance is much better than that of my old project in 2019.
 
 #### [Edge AI on STM32](STM32)
 

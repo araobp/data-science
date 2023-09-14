@@ -20,13 +20,13 @@ STMicroelectronics also developed a toy similar to mine, but with VL53L5: https:
 
 ### Modeling and training a neural network 
 
-[Training DNN with DCT Type-II coefficients as heatmap feature](RockPaperScissors)
+=> [Training DNN with DCT Type-II coefficients as heatmap feature](RockPaperScissors)
 
 The DNN model's recognition performance is much better than that of my old project in 2019.
 
 ### Edge AI implementation and experiment 
 
-[Edge AI on STM32](STM32)
+=> [Edge AI on STM32](STM32)
 
 The folder is to implement the hardware part of "RockPaperScissors" on STMicroelectronics NUCLEO-L476RG board with the latest version of CubeIDE/CubeMX and STM32Cube.AI.
 

@@ -39,6 +39,10 @@ Its GUI is in this folder: [GUI(Python3)](Thermography/GUI)
 This project is AI Rock Paper Scissors with Panasonic AMG8333:
 - [RockPaperScissors](RockPaperScissors)
 
+Its recognition performance is good.
+
+This experiment proves that twenty of DCT Type-II coefficients with a small DNN is sufficient for recognizing rock/paper/scissors. 
+
 <img src="doc/RockPaperScissors_DCT_DNN_Experiment.jpg" width=200>
 
 <img src="doc/RockPaperScissors_DCT_DNN.png" width=200>

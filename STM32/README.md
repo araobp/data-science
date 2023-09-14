@@ -39,11 +39,11 @@ Its GUI is in this folder: [GUI(Python3)](Thermography/GUI)
 This project is AI Rock Paper Scissors with Panasonic AMG8333:
 - [RockPaperScissors](RockPaperScissors)
 
-<img src="doc/RockPaperScissors_DCT_DNN_Experiment.png" width=150>
+<img src="doc/RockPaperScissors_DCT_DNN_Experiment.jpg" width=200>
 
-<img src="doc/RockPaperScissors_DCT_DNN.png" width=150>
+<img src="doc/RockPaperScissors_DCT_DNN.png" width=200>
 
-<img src="doc/RockPaperScissors_DCT_DNN_memory_usage.png" width=150>
+<img src="doc/RockPaperScissors_DCT_DNN_memory_usage.png" width=400>
 
 ### CubeMX-related problems I faced in this development
 

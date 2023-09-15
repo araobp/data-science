@@ -2,6 +2,8 @@
 
 Board: NUCLEO-L476RG board (STM32L476RGT6 Microcontroller)
 
+Note: the projects in this page are dependent on [my original DCT Type-II implementation](https://github.com/araobp/stm32-mcu/tree/master/NUCLEO-F401RE/DCT) and CMSIS-DSP.
+
 ### Arudino shield for Panasonic AMG8833
 
 I designed my original Arduino shield for AMG8833 in 2019. Refer to [this page](https://github.com/araobp/stm32-mcu/tree/master/NUCLEO-F401RE/Thermography). I use this board with Nucleo L476RG.

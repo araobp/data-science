@@ -1,6 +1,6 @@
-# NUCLEO-L476RG board (STM32L476RGT6 Microcontroller)
+# Rock Paper Scissors with STM32Cube.AI
 
-## Rock Paper Scissors with STM32Cube.AI
+Board: NUCLEO-L476RG board (STM32L476RGT6 Microcontroller)
 
 ### Arudino shield for Panasonic AMG8833
 

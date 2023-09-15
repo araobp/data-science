@@ -6,7 +6,7 @@ I have started relearning digital signal processing by re-doing the works in my 
 
 => [Digital Audio Processing](DigitalAudioProcessing)
 
-The best text book that I have ever read in my life: [C言語ではじめる音のプログラミング―サウンドエフェクトの信号処理](https://www.ohmsha.co.jp/book/9784274206504/). This folder contains Python-version of the C programmes in the book.
+The best text book that I have ever read in my life: [C言語ではじめる音のプログラミング―サウンドエフェクトの信号処理](https://www.ohmsha.co.jp/book/9784274206504/). This folder contains my Python-version of the C programmes in the book.
 
 ## Speech Processing for AI
 

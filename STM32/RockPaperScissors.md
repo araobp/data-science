@@ -70,7 +70,7 @@ Arduino shield uses PB8 and PB9 for I2C SCL and SDA.
 
 ## References
 
-### CMSIS-DSP library
+### Enabling CMSIS-DSP on CubeIDE
 
 Refer to the following site: Google search "Configuring DSP libraries on STM32CubeIDE"
 

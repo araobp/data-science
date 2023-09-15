@@ -62,7 +62,7 @@ main-build: RockPaperScissors.elf secondary-outputs
 
 # Tool invocations
 RockPaperScissors.elf RockPaperScissors.map: $(OBJS) $(USER_OBJS) ../STM32L476RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "RockPaperScissors.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"../STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="RockPaperScissors.map" -Wl,--gc-sections -static -L../Middlewares/ST/AI/Lib -L"C:\Users\shiny\Documents\data-science-study\STM32\RockPaperScissors\Drivers\CMSIS\DSP\Lib" -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "RockPaperScissors.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"../STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="RockPaperScissors.map" -Wl,--gc-sections -static -L../Middlewares/ST/AI/Lib -L"C:\Users\shiny\Documents\data-science-study\STM32\RockPaperScissors\Drivers\CMSIS\DSP\Lib" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

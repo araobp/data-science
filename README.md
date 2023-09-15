@@ -12,7 +12,7 @@ In September 2018, I found this great paper on the net: https://haythamfayek.com
 
 ## AI Rock Paper Scissors
 
-I developed Rock Paper Scissors on Nucleo L401RE board with Panasonic AMG8833 in January 2019, just after the first relase of STM32Cube.AI (December 2018) became available for developers: [The demo on YouTube](https://www.youtube.com/shorts/d6OYSllaVEs). I remember my excitement on STM32Cube.AI -- AI can run on such a tiny device!
+I developed Rock Paper Scissors on Nucleo L401RE board with Panasonic AMG8833 in January 2019, just after the first relase of STM32Cube.AI (December 2018) became available for developers: [the demo in on YouTube](https://www.youtube.com/shorts/d6OYSllaVEs). I remember my excitement on STM32Cube.AI -- AI can run on such a tiny device!
 
 I relearn it in this project by doing this: https://github.com/araobp/stm32-mcu/tree/master/NUCLEO-F401RE/Thermography
 
@@ -22,7 +22,7 @@ STMicroelectronics also developed a toy similar to mine, but with VL53L5: https:
 
 => [Training DNN with DCT Type-II coefficients as heatmap feature](RockPaperScissors)
 
-The DNN model's recognition performance is much better than that of my old project in 2019.
+The DNN model's recognition performance is much better than [that](https://github.com/araobp/stm32-mcu/blob/master/NUCLEO-F401RE/Thermography/tensorflow/rock_paper_scissors_dct.ipynb) of my old project in 2019.
 
 ### Edge AI implementation and experiment 
 

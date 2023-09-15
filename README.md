@@ -1,8 +1,6 @@
 # Digital Signal Processing
 
-(Work in progress)
-
-## Digital Audio Processing
+## Digital Audio Processing (Work in progress)
 
 => [Digital Audio Processing](DigitalAudioProcessing)
 
@@ -34,16 +32,7 @@ The DNN model's recognition performance is much better than [that](https://githu
 
 The folder contains the hardware part of "RockPaperScissors" on STMicroelectronics NUCLEO-L476RG board with the latest version of CubeIDE/CubeMX and STM32Cube.AI.
 
-## CMSIS-DSP
-
-I learn CMSIS-DSP in this project.
-
-- CMSIP-DSP: https://www.keil.com/pack/doc/CMSIS/DSP/html/index.html
-- Python-version of CMSIS-DSP: https://pypi.org/project/cmsisdsp/
-
-...
-
-## Acoustic Scene Classification
+## Acoustic Scene Classification (Work in progress)
 
 This is a project to develop edge AI for Acoustic Scene Classification based on STM32Cube.AI, referring to my past project: https://github.com/araobp/acoustic-features which was the best thing I have ever developed in my carrier as an ICT engineer, although it was my hobby project (not a commercial product).
 
@@ -61,6 +50,12 @@ This is a project to develop edge AI for Acoustic Scene Classification based on 
 - [How delta-sigma ADCs work, Part 2](https://www.ti.com/lit/an/slyt438/slyt438.pdf?ts=1694411423855)
 - [Getting started with sigma-delta digital interface
 on applicable STM32 microcontrollers](https://www.st.com/resource/en/application_note/an4990-getting-started-with-sigmadelta-digital-interface-on-applicable-stm32-microcontrollers-stmicroelectronics.pdf)
+
+### CMSIS-DSP
+
+- CMSIP-DSP: https://www.keil.com/pack/doc/CMSIS/DSP/html/index.html
+- Python-version of CMSIS-DSP: https://pypi.org/project/cmsisdsp/
+
 ---
 ## Misc
 

@@ -1,4 +1,4 @@
-# Rock Paper Scissors with STM32Cube.AI
+# Rock Paper Scissors with CubeIDE and STM32Cube.AI
 
 Board: NUCLEO-L476RG board (STM32L476RGT6 Microcontroller)
 

@@ -28,7 +28,7 @@ The DNN model's recognition performance is much better than [that](https://githu
 
 ### Edge AI implementation and experiment 
 
-=> [Edge AI on STM32](STM32)
+=> [STM32](STM32)
 
 The folder contains the hardware part of "RockPaperScissors" on STMicroelectronics NUCLEO-L476RG board with the latest version of CubeIDE/CubeMX and STM32Cube.AI.
 

@@ -1,5 +1,7 @@
 # Digital Signal Processing
 
+I have started relearning digital signal processing by re-doing the works in my past projects.
+
 ## Digital Audio Processing (Work in progress)
 
 => [Digital Audio Processing](DigitalAudioProcessing)

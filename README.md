@@ -26,7 +26,7 @@ STMicroelectronics also developed a toy similar to mine, but with VL53L5: https:
 
 => [Training DNN with DCT Type-II coefficients as heatmap feature](RockPaperScissors)
 
-The DNN model's recognition performance is much better than [that](https://github.com/araobp/stm32-mcu/blob/master/NUCLEO-F401RE/Thermography/tensorflow/rock_paper_scissors_dct.ipynb) of my old project in 2019: overfitting occured in the old model. The performance has been improved by dropping DCT coefficients of higher frequencies drastically and adding dense layers.
+The DNN model's recognition performance is much better than [that](https://github.com/araobp/stm32-mcu/blob/master/NUCLEO-F401RE/Thermography/tensorflow/rock_paper_scissors_dct.ipynb) of my old project in 2019: overfitting occured in the old model. The performance has been improved by dropping DCT coefficients of higher frequencies drastically and adding dense layers more.
 
 ### Edge AI implementation and experiment 
 

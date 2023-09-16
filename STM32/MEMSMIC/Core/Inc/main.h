@@ -73,7 +73,8 @@ void Error_Handler(void);
 #define SWO_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
-
+#define NN 2048  // The number of samples
+#define FFT_AC_COUPLING_HZ 1000.0f
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

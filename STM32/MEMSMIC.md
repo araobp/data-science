@@ -18,6 +18,8 @@ In this project, I will test its frequency response in the following configurati
                     . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 ```
 
+I use [my original Arduino shield](https://github.com/araobp/acoustic-features/tree/master/kicad) with Nucleo L476RG board in this project.
+
 ## Reference
 
 - [Getting started with sigma-delta digital interface

@@ -34,9 +34,13 @@ The DNN model's recognition performance is much better than [that](https://githu
 
 The folder contains the hardware part of "RockPaperScissors" on STMicroelectronics NUCLEO-L476RG board with the latest version of CubeIDE/CubeMX and STM32Cube.AI.
 
-## Acoustic Scene Classification (Work in progress)
+## Acoustic Scene Classification
 
 This is a project to develop edge AI for Acoustic Scene Classification based on STM32Cube.AI, referring to my past project: https://github.com/araobp/acoustic-features which was the best thing I have ever developed in my carrier as an ICT engineer, although it was my hobby project (not a commercial product).
+
+=> [MEMSMIC](STM32/MEMSMIC.md) (Work in progress)
+
+=> [Osciloscope] (Planned)
 
 ...
 

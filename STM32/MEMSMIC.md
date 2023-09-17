@@ -43,6 +43,7 @@ Quote from [Getting started with sigma-delta digital interface
 on applicable STM32 microcontrollers](https://www.st.com/resource/en/application_note/an4990-getting-started-with-sigmadelta-digital-interface-on-applicable-stm32-microcontrollers-stmicroelectronics.pdf):
 
 Output data resolution
+
 A consequence of the Sinc filter operation (moving average) is to increase the resolution of
 the sampled signal (by a factor FOSR). Multiple averaging increases even more the
 resolution. The total resolution (in LSBs) of the output signal is then:

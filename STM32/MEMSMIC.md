@@ -20,6 +20,27 @@ In this project, I will test its frequency response in the following configurati
 
 I use [my original Arduino shield](https://github.com/araobp/acoustic-features/tree/master/kicad) with Nucleo L476RG board in this project.
 
+
+## Filter Regular Channel Conversion
+
+[Description of STM32L4/L4+ HAL and low-layer drivers](https://www.st.com/resource/en/user_manual/um1884-description-of-stm32l4l4-hal-and-lowlayer-drivers-stmicroelectronics.pdf)
+
+'''
+Filter regular channel conversion
+1. Select regular channel and enable/disable continuous mode using HAL_DFSDM_FilterConfigRegChannel().
+2. Start regular conversion using HAL_DFSDM_FilterRegularStart(), HAL_DFSDM_FilterRegularStart_IT(),
+HAL_DFSDM_FilterRegularStart_DMA() or HAL_DFSDM_FilterRegularMsbStart_DMA().
+3. In polling mode, use HAL_DFSDM_FilterPollForRegConversion() to detect the end of regular conversion.
+4. In interrupt mode, HAL_DFSDM_FilterRegConvCpltCallback() will be called at the end of regular conversion.
+5. Get value of regular conversion and corresponding channel using HAL_DFSDM_FilterGetRegularValue().
+6. In DMA mode, HAL_DFSDM_FilterRegConvHalfCpltCallback() and
+HAL_DFSDM_FilterRegConvCpltCallback() will be called respectively at the half transfer and at the transfer
+complete. Please note that HAL_DFSDM_FilterRegConvHalfCpltCallback() will be called only in DMA
+circular mode.
+7. Stop regular conversion using HAL_DFSDM_FilterRegularStop(), HAL_DFSDM_FilterRegularStop_IT() or
+HAL_DFSDM_FilterRegularStop_DMA().
+'''
+
 ## Reference
 
 - [Getting started with sigma-delta digital interface

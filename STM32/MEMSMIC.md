@@ -23,10 +23,8 @@ I use [my original Arduino shield](https://github.com/araobp/acoustic-features/t
 
 ## Filter Regular Channel Conversion
 
-[Description of STM32L4/L4+ HAL and low-layer drivers](https://www.st.com/resource/en/user_manual/um1884-description-of-stm32l4l4-hal-and-lowlayer-drivers-stmicroelectronics.pdf)
+Quote from [Description of STM32L4/L4+ HAL and low-layer drivers](https://www.st.com/resource/en/user_manual/um1884-description-of-stm32l4l4-hal-and-lowlayer-drivers-stmicroelectronics.pdf):
 
-```
-Filter regular channel conversion
 1. Select regular channel and enable/disable continuous mode using HAL_DFSDM_FilterConfigRegChannel().
 2. Start regular conversion using HAL_DFSDM_FilterRegularStart(), HAL_DFSDM_FilterRegularStart_IT(),
 HAL_DFSDM_FilterRegularStart_DMA() or HAL_DFSDM_FilterRegularMsbStart_DMA().
@@ -39,7 +37,6 @@ complete. Please note that HAL_DFSDM_FilterRegConvHalfCpltCallback() will be cal
 circular mode.
 7. Stop regular conversion using HAL_DFSDM_FilterRegularStop(), HAL_DFSDM_FilterRegularStop_IT() or
 HAL_DFSDM_FilterRegularStop_DMA().
-```
 
 ## Reference
 

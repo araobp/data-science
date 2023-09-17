@@ -38,9 +38,9 @@ The folder contains the hardware part of "RockPaperScissors" on STMicroelectroni
 
 This is a project to develop edge AI for Acoustic Scene Classification based on STM32Cube.AI, referring to my past project: https://github.com/araobp/acoustic-features which was the best thing I have ever developed in my carrier as an ICT engineer, although it was my hobby project (not a commercial product).
 
-=> [MEMSMIC](STM32/MEMSMIC.md) (Work in progress)
+=> [MEMSMIC](STM32/MEMSMIC.md)
 
-=> [Osciloscope] (Planned)
+=> [Osciloscope] (Work in progress)
 
 ...
 

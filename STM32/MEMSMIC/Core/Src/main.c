@@ -54,16 +54,17 @@ bool flag = true;
 int32_t buf[NN * 2] = { 0 };
 
 arm_rfft_fast_instance_f32 S;
-float fs;
+float32_t fs;
 int32_t fft_in_int32[NN] = { 0 };
-float fft_in[NN] = { 0.0f };
-float fft_out[NN] = { 0.0f };
-float fft_mag[NN / 2] = { 0.0f };
-float fft_db[NN / 2] = { 0.0f };
-float fft_freq[NN / 2] = { 0.0f };
-float fft_win[NN] = { 0.0f };
+float32_t fft_in[NN] = { 0.0f };
+float32_t fft_out[NN] = { 0.0f };
+float32_t fft_mag[NN / 2] = { 0.0f };
+float32_t fft_db[NN / 2] = { 0.0f };
+float32_t fft_freq[NN / 2] = { 0.0f };
+float32_t fft_win[NN] = { 0.0f };
 
 bool output_result = false;
+bool ac_coupling = true;
 
 // UART one-byte input buffer
 uint8_t cmd;
@@ -77,7 +78,8 @@ static void MX_DMA_Init(void);
 static void MX_USART2_UART_Init(void);
 static void MX_DFSDM1_Init(void);
 /* USER CODE BEGIN PFP */
-void SystemClock_Config(void);
+
+void apply_ac_coupling(float32_t *signal);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -136,7 +138,10 @@ int main(void)
 
   arm_rfft_fast_init_f32(&S, NN);
 
-  printf("\r\nType 'p' to output single-shot FFT\r\n");
+  printf("\r\nType 'p' to output single-shot FFT.\r\n");
+  printf("Type 'a' to enable AC coupling.\r\n");
+  printf("Type 'A' to disable AC coupling.\r\n");
+
   HAL_UART_Receive_IT(&huart2, (uint8_t*) &cmd, 1);
   /* USER CODE END 2 */
 
@@ -151,8 +156,14 @@ int main(void)
      printf("%d\r\n", FFT_inp_int32[i]);*/
 
     // Set input data
-    for (uint32_t i = 0; i < NN; i++)
-      fft_in[i] = (float) fft_in_int32[i];
+    for (uint32_t i = 0; i < NN; i++) {
+      fft_in[i] = (float32_t) fft_in_int32[i];
+    }
+
+    // AC Coupling
+    if (ac_coupling) {
+      apply_ac_coupling(fft_in);
+    }
 
     // Windowing
     arm_mult_f32(fft_in, fft_win, fft_in, NN);
@@ -164,22 +175,24 @@ int main(void)
     arm_cmplx_mag_f32(fft_out, fft_mag, NN / 2);
 
     // Normalization (Unitary transformation) of magnitude
-    arm_scale_f32(fft_mag, 1.0f / sqrtf((float) NN), fft_mag, NN / 2);
+    arm_scale_f32(fft_mag, 1.0f / sqrtf((float32_t) NN), fft_mag, NN / 2);
 
     // AC coupling
+    /*
     for (uint32_t i = 0; i < NN / 2; i++) {
       if (*(fft_freq + i) < FFT_AC_COUPLING_HZ)
         fft_mag[i] = 1.0f;
       else
         break;
     }
+    */
 
-    float inv_dB_base_mag = 1.0f / 1.0f;
+    float32_t inv_dB_base_mag = 1.0f / 1.0f;
     for (uint32_t i = 0; i < NN / 2; i++)
       fft_db[i] = 10.0f * log10f(fft_mag[i] * inv_dB_base_mag);
 
     // calc max mag
-    float mag_max, frq_max;
+    float32_t mag_max, frq_max;
     uint32_t maxIndex;
     arm_max_f32(fft_mag, NN / 2, &mag_max, &maxIndex);
     frq_max = *(fft_freq + maxIndex);
@@ -396,6 +409,17 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+// AC coupling (to remove DC)
+void apply_ac_coupling(float32_t *signal) {
+  float32_t mean;
+  static float32_t mean_hist[NUM_MEANS] = { 0.0f };
+  arm_copy_f32(mean_hist + 1, mean_hist, NUM_MEANS - 1);
+  arm_mean_f32(signal, NN, mean_hist + NUM_MEANS - 1);
+  arm_mean_f32(signal, NUM_MEANS, &mean);
+  arm_offset_f32(signal, -mean, signal, NN);
+}
+
 void HAL_DFSDM_FilterRegConvCpltCallback(
     DFSDM_Filter_HandleTypeDef *hdfsdm_filter) {
   if (flag) {
@@ -413,6 +437,12 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 
   case 'p':  // pixels
     output_result = true;
+    break;
+  case 'a':
+    ac_coupling = true;
+    break;
+  case 'A':
+    ac_coupling = false;
     break;
   default:
     break;

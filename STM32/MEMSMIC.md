@@ -20,7 +20,6 @@ In this project, I will test its frequency response in the following configurati
 
 I use [my original Arduino shield](https://github.com/araobp/acoustic-features/tree/master/kicad) with Nucleo L476RG board in this project.
 
-
 ## Filter Regular Channel Conversion
 
 Quote from [Description of STM32L4/L4+ HAL and low-layer drivers](https://www.st.com/resource/en/user_manual/um1884-description-of-stm32l4l4-hal-and-lowlayer-drivers-stmicroelectronics.pdf):
@@ -38,6 +37,39 @@ circular mode.
 7. Stop regular conversion using HAL_DFSDM_FilterRegularStop(), HAL_DFSDM_FilterRegularStop_IT() or
 HAL_DFSDM_FilterRegularStop_DMA().
 
+## DFSDM Output Data Resolution
+
+Quote from [Getting started with sigma-delta digital interface
+on applicable STM32 microcontrollers](https://www.st.com/resource/en/application_note/an4990-getting-started-with-sigmadelta-digital-interface-on-applicable-stm32-microcontrollers-stmicroelectronics.pdf):
+
+#### Output data resolution
+
+A consequence of the Sinc filter operation (moving average) is to increase the resolution of
+the sampled signal (by a factor FOSR). Multiple averaging increases even more the
+resolution. The total resolution (in LSBs) of the output signal is then:
+Resolution_out = Resolution_in * FOSR ^ FORD.
+- Resolution_in correspond to the input data resolution (2 in case of serial data input or
+wider in case of parallel data input, for example 4096 for 12-bit parallel input).
+- Caution must be taken to not increase Resolution_out over the 32
+
+#### Output data unit
+
+The output data unit performs a final correction that consists in shifting the bits to the right
+and applying an offset correction on the data coming from the integrator.
+DFSDM peripheral operation AN4990
+24/56 AN4990 Rev 1
+Shifting bits to the right is used to:
+- fit the 32-bit internal output into the final 24-bit register
+- limit even more the final resolution (to 16-bit for instance in case of audio data)
+
+The offset correction allows to calibrate the external sigma-delta modulator offset error. The
+user configures the offset register with a signed 24-bit correction, and this register is
+automatically added to the output result. The offset correction value is usually the result of a
+calibration routine embedded within the microcontroller software that performs the offset
+calibration calculation and stores the correction into the offset register.
+All operations in the DFSDM peripheral are in signed format (filtering, integration, offset
+correction, right bit shift).
+
 ## Code
 
 I reuse [this code](https://github.com/araobp/NUCLEO-L476RG_DFSDM_PDM-Mic) with some minor modifications.
@@ -46,12 +78,31 @@ I reuse [this code](https://github.com/araobp/NUCLEO-L476RG_DFSDM_PDM-Mic) with 
 
 ## Test result: fs = 19531(Hz)
 
-=> [Data visualization on Jupyter Notebook](./data/MEMSMIC.ipynb)
+DFSDM configuration:
+- System clock: 80MHz
+- Clock divider: 32
+- FOSR/decimation: 128
+- sinc filter: sinc3
+- right bit shift: 6 (2 * 128^3 = 2^22, so 6-bit-right-shift is required to output 16bit PCM)
+- Sampling frequency: 80_000_000/32/128 = 19.5kHz
+
+=> [Data visualization on Jupyter Notebook](./data/MEMSMIC_fs_20kHz.ipynb)
 
 <img src='doc/spectrogram_room.png' width=400>
+
+## Test result: fs = 39062(Hz)
+
+DFSDM configuration:
+- System clock: 80MHz
+- Clock divider: 32
+- FOSR/decimation: 64
+- sinc filter: sinc3
+- right bit shift: 3 (2 * 64^3 = 2^19, so 3-bit-right-shift is required to output 16bit PCM)
+- Sampling frequency: 80_000_000/32/64 = 39.1kHz
 
 ## Reference
 
 - [Getting started with sigma-delta digital interface
 on applicable STM32 microcontrollers](https://www.st.com/resource/en/application_note/an4990-getting-started-with-sigmadelta-digital-interface-on-applicable-stm32-microcontrollers-stmicroelectronics.pdf)
 - [Description of STM32L4/L4+ HAL and low-layer drivers](https://www.st.com/resource/en/user_manual/um1884-description-of-stm32l4l4-hal-and-lowlayer-drivers-stmicroelectronics.pdf)
+- [PCM data resolution on STM32L4](https://github.com/araobp/stm32-mcu/blob/master/tips/RESOLUTION.md)

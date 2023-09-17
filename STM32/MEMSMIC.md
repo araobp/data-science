@@ -88,8 +88,6 @@ DFSDM configuration:
 
 => [Data visualization on Jupyter Notebook](./data/MEMSMIC_fs_20kHz.ipynb)
 
-<img src='doc/spectrogram_room.png' width=400>
-
 ## Test result: fs = 39062(Hz)
 
 DFSDM configuration:

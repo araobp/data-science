@@ -64,6 +64,10 @@ float fft_freq[NN / 2] = { 0.0f };
 float fft_win[NN] = { 0.0f };
 
 bool output_result = false;
+
+// UART one-byte input buffer
+uint8_t cmd;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -78,7 +82,6 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
 /* USER CODE END 0 */
 
 /**
@@ -113,9 +116,8 @@ int main(void)
   MX_USART2_UART_Init();
   MX_DFSDM1_Init();
   /* USER CODE BEGIN 2 */
-  printf("\r\nPush USER button to output single-shot FFT\r\n");
   HAL_Delay(100);
-  if (HAL_DFSDM_FilterRegularStart_DMA(&hdfsdm1_filter0, buf, fs) != HAL_OK) {
+  if (HAL_DFSDM_FilterRegularStart_DMA(&hdfsdm1_filter0, buf, NN) != HAL_OK) {
     Error_Handler();
   }
 
@@ -133,6 +135,9 @@ int main(void)
     *(fft_freq + i) = (float) i * (float) fs / (float) NN;
 
   arm_rfft_fast_init_f32(&S, NN);
+
+  printf("\r\nType 'p' to output single-shot FFT\r\n");
+  HAL_UART_Receive_IT(&huart2, (uint8_t*) &cmd, 1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -186,8 +191,8 @@ int main(void)
       for (uint32_t i = 0; i < NN / 2; i++) {
         printf("%.1f\t%f\t%f\r\n", fft_freq[i], fft_mag[i], fft_db[i]);
       }
+
       output_result = false;
-      HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
     }
 
     // HAL_Delay(2000);
@@ -391,6 +396,31 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_DFSDM_FilterRegConvCpltCallback(
+    DFSDM_Filter_HandleTypeDef *hdfsdm_filter) {
+  if (flag) {
+    for (uint32_t i = 0; i < NN; i++) {
+      fft_in_int32[i] = buf[i];
+    }
+    flag = false;
+  }
+
+}
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
+
+  switch (cmd) {
+
+  case 'p':  // pixels
+    output_result = true;
+    break;
+  default:
+    break;
+  }
+
+  HAL_UART_Receive_IT(&huart2, (uint8_t*) &cmd, 1);
+}
+
 int _write(int file, char *pbuf, int len) {
   HAL_UART_Transmit(&huart2, (uint8_t*) pbuf, len, 1000);
   return len;
@@ -406,6 +436,7 @@ void Error_Handler(void)
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
   __disable_irq();
+
   while (1) {
   }
   /* USER CODE END Error_Handler_Debug */

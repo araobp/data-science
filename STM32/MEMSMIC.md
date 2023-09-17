@@ -64,8 +64,8 @@ DFSDM configuration:
 - System clock: 80MHz
 - Clock divider: 32
 - FOSR/decimation: 64
-- sinc filter: sinc3
-- right bit shift: 6 (2 * 64^3 = 2^19, so 3-bit-right-shift is required to output 16bit PCM)
+- sinc filter: sinc4
+- right bit shift: 6 (2 * 64^4 = 2^25, so 9-bit-right-shift is required to output 16bit PCM)
 - Sampling frequency: 80_000_000/32/64 = 39.1kHz
 
 ## Reference

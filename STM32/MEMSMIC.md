@@ -44,7 +44,7 @@ I reuse [this code](https://github.com/araobp/NUCLEO-L476RG_DFSDM_PDM-Mic) with 
 
 => [Code](./MEMSMIC)
 
-## Test result
+## Test result: fs = 19531(Hz)
 
 => [Data visualization on Jupyter Notebook](./data/MEMSMIC.ipynb)
 

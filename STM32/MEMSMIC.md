@@ -47,10 +47,10 @@ Output data resolution
 A consequence of the Sinc filter operation (moving average) is to increase the resolution of
 the sampled signal (by a factor FOSR). Multiple averaging increases even more the
 resolution. The total resolution (in LSBs) of the output signal is then:
-Resolutionout = Resolutionin * FOSRFORD.
-• Resolutionin correspond to the input data resolution (2 in case of serial data input or
+Resolution_out = Resolution_in * FOSR ^ FORD.
+- Resolution_in correspond to the input data resolution (2 in case of serial data input or
 wider in case of parallel data input, for example 4096 for 12-bit parallel input).
-• Caution must be taken to not increase Resolutionout over the 32
+- Caution must be taken to not increase Resolution_out over the 32
 
 ## Code
 

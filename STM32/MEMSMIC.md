@@ -58,6 +58,16 @@ DFSDM configuration:
 
 <img src='doc/spectrogram_room.png' width=400>
 
+## Test result: fs = 39062(Hz)
+
+DFSDM configuration:
+- System clock: 80MHz
+- Clock divider: 32
+- FOSR/decimation: 64
+- sinc filter: sinc3
+- right bit shift: 6 (2 * 64^3 = 2^19, so 3-bit-right-shift is required to output 16bit PCM)
+- Sampling frequency: 80_000_000/32/64 = 39.1kHz
+
 ## Reference
 
 - [Getting started with sigma-delta digital interface

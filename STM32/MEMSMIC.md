@@ -40,7 +40,7 @@ HAL_DFSDM_FilterRegularStop_DMA().
 
 ## Code
 
-I use [this code](https://github.com/araobp/NUCLEO-L476RG_DFSDM_PDM-Mic) with some minor modifications.
+I reuse [this code](https://github.com/araobp/NUCLEO-L476RG_DFSDM_PDM-Mic) with some minor modifications.
 
 => [Code](./MEMSMIC)
 

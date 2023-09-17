@@ -46,6 +46,8 @@ I reuse [this code](https://github.com/araobp/NUCLEO-L476RG_DFSDM_PDM-Mic) with 
 
 ## Test result
 
+=> [Data visualization on Jupyter Notebook](./MEMSMIC.ipynb)
+
 <img src='doc/spectrogram_room.png' width=400>
 
 ## Reference

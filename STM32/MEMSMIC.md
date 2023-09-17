@@ -83,7 +83,7 @@ DFSDM configuration:
 - Clock divider: 32
 - FOSR/decimation: 128
 - sinc filter: sinc3
-- right bit shift: 6 (2 * 128^3 = 2^22, so 6-bit-right-shift is required to output 16bit PCM)
+- resolution: 2 * 128^3 = 2^22 (22 bits)
 - Sampling frequency: 80_000_000/32/128 = 19.5kHz
 
 => [Data visualization on Jupyter Notebook](./data/MEMSMIC_fs_20kHz.ipynb)
@@ -95,7 +95,7 @@ DFSDM configuration:
 - Clock divider: 32
 - FOSR/decimation: 64
 - sinc filter: sinc3
-- right bit shift: 3 (2 * 64^3 = 2^19, so 3-bit-right-shift is required to output 16bit PCM)
+- resolution: 2 * 64^3 = 2^19 (19 bits)
 - Sampling frequency: 80_000_000/32/64 = 39.1kHz
 
 ## Reference

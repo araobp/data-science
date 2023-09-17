@@ -38,6 +38,10 @@ circular mode.
 7. Stop regular conversion using HAL_DFSDM_FilterRegularStop(), HAL_DFSDM_FilterRegularStop_IT() or
 HAL_DFSDM_FilterRegularStop_DMA().
 
+## Test result
+
+<img src='doc/spectrogram_room.png' width=400>
+
 ## Reference
 
 - [Getting started with sigma-delta digital interface

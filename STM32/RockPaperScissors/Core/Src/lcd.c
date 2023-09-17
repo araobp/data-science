@@ -69,7 +69,7 @@ void lcd_move_right(void) {
 void lcd_string(char *pbuf, uint8_t len) {
   uint8_t i;
   for(i=0; i<len; i++) {
-    write_data((uint8_t*)pbuf[i]);
+    write_data((uint8_t)pbuf[i]);
   }
 }
 

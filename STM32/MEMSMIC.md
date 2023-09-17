@@ -46,6 +46,14 @@ I reuse [this code](https://github.com/araobp/NUCLEO-L476RG_DFSDM_PDM-Mic) with 
 
 ## Test result: fs = 19531(Hz)
 
+DFSDM configuration:
+- System clock: 80MHz
+- Clock divider: 32
+- FOSR/decimation: 128
+- sinc filter: sinc3
+- right bit shift: 6 (2 * 128^3 = 2^22, so 6-bit-right-shift is required to output 16bit PCM)
+- Sampling frequency: 80_000_000/32/128 = 19.5kHz
+
 => [Data visualization on Jupyter Notebook](./data/MEMSMIC_fs_20kHz.ipynb)
 
 <img src='doc/spectrogram_room.png' width=400>

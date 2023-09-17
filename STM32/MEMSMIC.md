@@ -38,6 +38,12 @@ circular mode.
 7. Stop regular conversion using HAL_DFSDM_FilterRegularStop(), HAL_DFSDM_FilterRegularStop_IT() or
 HAL_DFSDM_FilterRegularStop_DMA().
 
+## Code
+
+I use [this code](https://github.com/araobp/NUCLEO-L476RG_DFSDM_PDM-Mic) with some minor modifications.
+
+=> [Code](./MEMSMIC)
+
 ## Test result
 
 <img src='doc/spectrogram_room.png' width=400>

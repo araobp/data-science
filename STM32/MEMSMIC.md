@@ -20,7 +20,6 @@ In this project, I will test its frequency response in the following configurati
 
 I use [my original Arduino shield](https://github.com/araobp/acoustic-features/tree/master/kicad) with Nucleo L476RG board in this project.
 
-
 ## Filter Regular Channel Conversion
 
 Quote from [Description of STM32L4/L4+ HAL and low-layer drivers](https://www.st.com/resource/en/user_manual/um1884-description-of-stm32l4l4-hal-and-lowlayer-drivers-stmicroelectronics.pdf):
@@ -37,6 +36,20 @@ complete. Please note that HAL_DFSDM_FilterRegConvHalfCpltCallback() will be cal
 circular mode.
 7. Stop regular conversion using HAL_DFSDM_FilterRegularStop(), HAL_DFSDM_FilterRegularStop_IT() or
 HAL_DFSDM_FilterRegularStop_DMA().
+
+## DFSDM Output Data Resolution
+
+Quote from [Getting started with sigma-delta digital interface
+on applicable STM32 microcontrollers](https://www.st.com/resource/en/application_note/an4990-getting-started-with-sigmadelta-digital-interface-on-applicable-stm32-microcontrollers-stmicroelectronics.pdf):
+
+Output data resolution
+A consequence of the Sinc filter operation (moving average) is to increase the resolution of
+the sampled signal (by a factor FOSR). Multiple averaging increases even more the
+resolution. The total resolution (in LSBs) of the output signal is then:
+Resolutionout = Resolutionin * FOSRFORD.
+• Resolutionin correspond to the input data resolution (2 in case of serial data input or
+wider in case of parallel data input, for example 4096 for 12-bit parallel input).
+• Caution must be taken to not increase Resolutionout over the 32
 
 ## Code
 

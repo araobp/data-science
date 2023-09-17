@@ -46,7 +46,7 @@ I reuse [this code](https://github.com/araobp/NUCLEO-L476RG_DFSDM_PDM-Mic) with 
 
 ## Test result: fs = 19531(Hz)
 
-=> [Data visualization on Jupyter Notebook](./data/MEMSMIC@20kHz.ipynb)
+=> [Data visualization on Jupyter Notebook](./data/MEMSMIC_fs_20kHz.ipynb)
 
 <img src='doc/spectrogram_room.png' width=400>
 

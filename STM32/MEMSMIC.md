@@ -42,7 +42,7 @@ HAL_DFSDM_FilterRegularStop_DMA().
 Quote from [Getting started with sigma-delta digital interface
 on applicable STM32 microcontrollers](https://www.st.com/resource/en/application_note/an4990-getting-started-with-sigmadelta-digital-interface-on-applicable-stm32-microcontrollers-stmicroelectronics.pdf):
 
-Output data resolution
+#### Output data resolution
 
 A consequence of the Sinc filter operation (moving average) is to increase the resolution of
 the sampled signal (by a factor FOSR). Multiple averaging increases even more the
@@ -51,6 +51,24 @@ Resolution_out = Resolution_in * FOSR ^ FORD.
 - Resolution_in correspond to the input data resolution (2 in case of serial data input or
 wider in case of parallel data input, for example 4096 for 12-bit parallel input).
 - Caution must be taken to not increase Resolution_out over the 32
+
+#### Output data unit
+
+The output data unit performs a final correction that consists in shifting the bits to the right
+and applying an offset correction on the data coming from the integrator.
+DFSDM peripheral operation AN4990
+24/56 AN4990 Rev 1
+Shifting bits to the right is used to:
+- fit the 32-bit internal output into the final 24-bit register
+- limit even more the final resolution (to 16-bit for instance in case of audio data)
+
+The offset correction allows to calibrate the external sigma-delta modulator offset error. The
+user configures the offset register with a signed 24-bit correction, and this register is
+automatically added to the output result. The offset correction value is usually the result of a
+calibration routine embedded within the microcontroller software that performs the offset
+calibration calculation and stores the correction into the offset register.
+All operations in the DFSDM peripheral are in signed format (filtering, integration, offset
+correction, right bit shift).
 
 ## Code
 

@@ -11,7 +11,7 @@ In this project, I will test its frequency response in the following configurati
                     .   +-------+                                FFT                .
      +----- Clock ------|       |          +-----+   +-----+   +------+   +------+  .
      |              .   | DFSDM |-- PCM -->| DMA |-->| RAM |-->| Core |-->|USART2|-- UART/USB --> PC
-     |              .   |       |          +-----+   +-----+   | DSP  |   +------+  .      [Jupyter Notebook]
+     |              .   |       |          +-----+   +-----+   | DSP  |   +------+  . 
      v              .   |       |                              +------+             .
 [MEMS mic]--- PDM ----->|       |                                                   .
                     .   +-------+                                                   .

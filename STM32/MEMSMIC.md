@@ -76,9 +76,9 @@ I reuse [this code](https://github.com/araobp/NUCLEO-L476RG_DFSDM_PDM-Mic) with 
 
 => [Code](./MEMSMIC)
 
-## Test result: fs = 19531(Hz)
+## Test results
 
-DFSDM configuration:
+DFSDM configuration 1:
 - System clock: 80MHz
 - Clock divider: 32
 - FOSR(decimation): 128
@@ -86,17 +86,23 @@ DFSDM configuration:
 - resolution: 2 * 128^3 = 2^22 (22 bits)
 - Sampling frequency: 80_000_000/32/128 = 19.5kHz
 
-=> [Data visualization on Jupyter Notebook](./data/MEMSMIC_fs_20kHz.ipynb)
-
-## Test result: fs = 39062(Hz)
-
-DFSDM configuration:
+DFSDM configuration 3:
 - System clock: 80MHz
 - Clock divider: 32
 - FOSR(decimation): 64
 - sinc filter: sinc3
 - resolution: 2 * 64^3 = 2^19 (19 bits)
 - Sampling frequency: 80_000_000/32/64 = 39.1kHz
+
+DFSDM configuration 2:
+- System clock: 80MHz
+- Clock divider: 32
+- FOSR(decimation): 32
+- sinc filter: sinc3
+- resolution: 2 * 32^3 = 2^16 (16 bits)
+- Sampling frequency: 80_000_000/32/64 = 78.1kHz
+
+=> [Data visualization on Jupyter Notebook](./data/MEMSMIC.ipynb)
 
 ## Bit shift operations on DFSDM
 

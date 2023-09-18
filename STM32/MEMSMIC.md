@@ -122,7 +122,7 @@ V                                V
 
 What is more, it seems to me that nine LSBs of the data ouput register is always zero. In my code, I skip the nine LSBs by right shift operation (ie, output_data >> 9).
 
-I have never received any formal education on digital signal processing and DFSDM, so I do not know if I am right or wrong.
+I have never received any formal education on digital signal processing and DFSDM in my life, so I do not know if I am right or wrong.
 
 Anyway, I have been taking the following approach in my projects so far:
 - right bit shift operation inside DFSDM to fit the internal data into 24bit length (or into 16bit length for feature engineering).

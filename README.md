@@ -60,6 +60,7 @@ This is a project to develop edge AI for Acoustic Scene Classification based on 
 on applicable STM32 microcontrollers](https://www.st.com/resource/en/application_note/an4990-getting-started-with-sigmadelta-digital-interface-on-applicable-stm32-microcontrollers-stmicroelectronics.pdf)
 - [Description of STM32L4/L4+ HAL and low-layer drivers](https://www.st.com/resource/en/user_manual/um1884-description-of-stm32l4l4-hal-and-lowlayer-drivers-stmicroelectronics.pdf)
 - [Getting started with analog](https://wiki.st.com/stm32mcu/wiki/STM32StepByStep:Getting_started_with_analog)
+- [STM32 Microphone Audio Acquisition: Part 8, STM32 - DFSDM interface for MEMS microphones](https://youtu.be/uMCTkd0PGRs)
 
 ### CMSIS-DSP
 

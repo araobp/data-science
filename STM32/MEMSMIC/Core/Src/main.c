@@ -63,6 +63,9 @@ float32_t fft_db[NN / 2] = { 0.0f };
 float32_t fft_freq[NN / 2] = { 0.0f };
 float32_t fft_win[NN] = { 0.0f };
 
+int32_t saturation_max = MAX_OUTPUT - 1;
+int32_t saturation_min = -MAX_OUTPUT;
+
 bool output_result = false;
 bool ac_coupling = true;
 
@@ -157,7 +160,7 @@ int main(void)
 
     // Set input data
     for (uint32_t i = 0; i < NN; i++) {
-      fft_in[i] = (float32_t) fft_in_int32[i];
+      fft_in[i] = (float32_t) SaturaLH(fft_in_int32[i] >> 9, saturation_min, saturation_max);
     }
 
     // AC Coupling
@@ -304,8 +307,8 @@ static void MX_DFSDM1_Init(void)
   hdfsdm1_channel3.Init.SerialInterface.SpiClock = DFSDM_CHANNEL_SPI_CLOCK_INTERNAL;
   hdfsdm1_channel3.Init.Awd.FilterOrder = DFSDM_CHANNEL_FASTSINC_ORDER;
   hdfsdm1_channel3.Init.Awd.Oversampling = 1;
-  hdfsdm1_channel3.Init.Offset = 0;
-  hdfsdm1_channel3.Init.RightBitShift = 0x06;
+  hdfsdm1_channel3.Init.Offset = 0x0;
+  hdfsdm1_channel3.Init.RightBitShift = 0x0;
   if (HAL_DFSDM_ChannelInit(&hdfsdm1_channel3) != HAL_OK)
   {
     Error_Handler();

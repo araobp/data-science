@@ -124,6 +124,10 @@ What is more, it seems to me that nine LSBs of the data ouput register is always
 
 I have never received any formal education on digital signal processing and DFSDM, so I do not know if I am right or wrong.
 
+Anyway, I have been taking the following approach in my projects so far:
+- right bit shift operation inside DFSDM to fit the internal data into 24bit length (or into 16bit length for feature engineering).
+- "output_data >> 9" operation by CPU
+
 ## Reference
 
 - [Getting started with sigma-delta digital interface

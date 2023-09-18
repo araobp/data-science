@@ -10,7 +10,7 @@ In this project, I will test its frequency response in the following configurati
                     . . . . . . . . . . . . . . Arm Cortex-M4 . . . . . . . . . . . .
                     .   +-------+                                FFT                .
      +----- Clock ------|       |          +-----+   +-----+   +------+   +------+  .
-     |              .   | DFSDM |-- PCM -->| DMA |-->| RAM |-->| Core |-->|USART2|-- UART/USB --> PC
+     |              .   | DFSDM |-- PCM -->| DMA |-->| RAM |-->| Core |-->|USART2|-- UART/USB --> PC (Jupyter Notebook)
      |              .   |       |          +-----+   +-----+   | DSP  |   +------+  .
      v              .   |       |                              +------+             .
 [MEMS mic]--- PDM ----->|       |                                                   .

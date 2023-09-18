@@ -81,7 +81,7 @@ I reuse [this code](https://github.com/araobp/NUCLEO-L476RG_DFSDM_PDM-Mic) with 
 DFSDM configuration:
 - System clock: 80MHz
 - Clock divider: 32
-- FOSR/decimation: 128
+- FOSR(decimation): 128
 - sinc filter: sinc3
 - resolution: 2 * 128^3 = 2^22 (22 bits)
 - Sampling frequency: 80_000_000/32/128 = 19.5kHz
@@ -93,7 +93,7 @@ DFSDM configuration:
 DFSDM configuration:
 - System clock: 80MHz
 - Clock divider: 32
-- FOSR/decimation: 64
+- FOSR(decimation): 64
 - sinc filter: sinc3
 - resolution: 2 * 64^3 = 2^19 (19 bits)
 - Sampling frequency: 80_000_000/32/64 = 39.1kHz

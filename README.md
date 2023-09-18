@@ -1,6 +1,6 @@
 # Digital Signal Processing
 
-I have started relearning digital signal processing by re-doing the works in my past projects.
+I have started relearning digital signal processing by re-doing the works in my past projects. Especially, I am very interested in digital **audio** processing.
 
 ## Digital Audio Processing (Work in progress)
 

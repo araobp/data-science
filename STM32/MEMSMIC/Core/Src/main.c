@@ -133,11 +133,13 @@ int main(void)
 
   // Hanning window
   const float tmp = 2.0f * M_PI / (float) NN;
-  for (uint32_t i = 0; i < NN; i++)
+  for (uint32_t i = 0; i < NN; i++) {
     *(fft_win + i) = 0.5f - 0.5f * arm_cos_f32((float) i * tmp);
+  }
 
-  for (uint32_t i = 0; i < NN / 2; i++)
+  for (uint32_t i = 0; i < NN / 2; i++) {
     *(fft_freq + i) = (float) i * (float) fs / (float) NN;
+  }
 
   arm_rfft_fast_init_f32(&S, NN);
 
@@ -160,7 +162,8 @@ int main(void)
 
     // Set input data
     for (uint32_t i = 0; i < NN; i++) {
-      fft_in[i] = (float32_t) SaturaLH(fft_in_int32[i] >> 9, saturation_min, saturation_max);
+      fft_in[i] = (float32_t) SaturaLH(fft_in_int32[i] >> 9, saturation_min,
+          saturation_max);
     }
 
     // AC Coupling
@@ -182,13 +185,13 @@ int main(void)
 
     // AC coupling
     /*
-    for (uint32_t i = 0; i < NN / 2; i++) {
-      if (*(fft_freq + i) < FFT_AC_COUPLING_HZ)
-        fft_mag[i] = 1.0f;
-      else
-        break;
-    }
-    */
+     for (uint32_t i = 0; i < NN / 2; i++) {
+     if (*(fft_freq + i) < FFT_AC_COUPLING_HZ)
+     fft_mag[i] = 1.0f;
+     else
+     break;
+     }
+     */
 
     float32_t inv_dB_base_mag = 1.0f / 1.0f;
     for (uint32_t i = 0; i < NN / 2; i++)
@@ -290,7 +293,7 @@ static void MX_DFSDM1_Init(void)
   hdfsdm1_filter0.Init.RegularParam.FastMode = ENABLE;
   hdfsdm1_filter0.Init.RegularParam.DmaMode = ENABLE;
   hdfsdm1_filter0.Init.FilterParam.SincOrder = DFSDM_FILTER_SINC3_ORDER;
-  hdfsdm1_filter0.Init.FilterParam.Oversampling = 128;
+  hdfsdm1_filter0.Init.FilterParam.Oversampling = 32;
   hdfsdm1_filter0.Init.FilterParam.IntOversampling = 1;
   if (HAL_DFSDM_FilterInit(&hdfsdm1_filter0) != HAL_OK)
   {

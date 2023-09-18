@@ -4776,68 +4776,68 @@ LOAD C:/ST/STM32CubeIDE_1.13.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_line    0x0000000000012a41      0x243 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_common_tables.o)
  .debug_line    0x0000000000012c84      0xcd7 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cfft_radix8_f32.o)
 
-.debug_str      0x0000000000000000    0xee9a8
- .debug_str     0x0000000000000000    0xe85c3 ./Core/Src/main.o
-                                      0xe8ab8 (size before relaxing)
- .debug_str     0x00000000000e85c3      0x394 ./Core/Src/stm32l4xx_hal_msp.o
-                                      0xe3ce4 (size before relaxing)
- .debug_str     0x00000000000e8957      0x11b ./Core/Src/stm32l4xx_it.o
-                                      0xe2e01 (size before relaxing)
- .debug_str     0x00000000000e8a72     0x20cc ./Core/Src/syscalls.o
+.debug_str      0x0000000000000000    0xee9a6
+ .debug_str     0x0000000000000000    0xe85c1 ./Core/Src/main.o
+                                      0xe8ab6 (size before relaxing)
+ .debug_str     0x00000000000e85c1      0x394 ./Core/Src/stm32l4xx_hal_msp.o
+                                      0xe3ce2 (size before relaxing)
+ .debug_str     0x00000000000e8955      0x11b ./Core/Src/stm32l4xx_it.o
+                                      0xe2dff (size before relaxing)
+ .debug_str     0x00000000000e8a70     0x20cc ./Core/Src/syscalls.o
                                        0x98ba (size before relaxing)
- .debug_str     0x00000000000eab3e       0x6b ./Core/Src/sysmem.o
+ .debug_str     0x00000000000eab3c       0x6b ./Core/Src/sysmem.o
                                        0x6071 (size before relaxing)
- .debug_str     0x00000000000eaba9       0xe2 ./Core/Src/system_stm32l4xx.o
+ .debug_str     0x00000000000eaba7       0xe2 ./Core/Src/system_stm32l4xx.o
                                       0xe2936 (size before relaxing)
- .debug_str     0x00000000000eac8b       0x34 ./Core/Startup/startup_stm32l476rgtx.o
+ .debug_str     0x00000000000eac89       0x34 ./Core/Startup/startup_stm32l476rgtx.o
                                          0x74 (size before relaxing)
- .debug_str     0x00000000000eacbf      0x696 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
+ .debug_str     0x00000000000eacbd      0x696 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
                                       0xe3535 (size before relaxing)
- .debug_str     0x00000000000eb355      0x313 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.o
+ .debug_str     0x00000000000eb353      0x313 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.o
                                       0xe317d (size before relaxing)
- .debug_str     0x00000000000eb668      0x8aa ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dfsdm.o
+ .debug_str     0x00000000000eb666      0x8aa ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dfsdm.o
                                       0xe3842 (size before relaxing)
- .debug_str     0x00000000000ebf12      0x205 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.o
+ .debug_str     0x00000000000ebf10      0x205 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.o
                                       0xe2ba0 (size before relaxing)
- .debug_str     0x00000000000ec117      0x123 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.o
+ .debug_str     0x00000000000ec115      0x123 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.o
                                       0xe2aaf (size before relaxing)
- .debug_str     0x00000000000ec23a      0x4e3 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.o
+ .debug_str     0x00000000000ec238      0x4e3 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.o
                                       0xe2e91 (size before relaxing)
- .debug_str     0x00000000000ec71d      0x345 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o
+ .debug_str     0x00000000000ec71b      0x345 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o
                                       0xe2f7c (size before relaxing)
- .debug_str     0x00000000000eca62      0x3bf ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.o
+ .debug_str     0x00000000000eca60      0x3bf ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.o
                                       0xe30f5 (size before relaxing)
- .debug_str     0x00000000000ece21      0x85f ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o
+ .debug_str     0x00000000000ece1f      0x85f ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o
                                       0xe368e (size before relaxing)
- .debug_str     0x00000000000ed680      0x200 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.o
+ .debug_str     0x00000000000ed67e      0x200 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.o
                                       0xe2eba (size before relaxing)
- .debug_str     0x00000000000ed880      0x537 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_copy_f32.o)
+ .debug_str     0x00000000000ed87e      0x537 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_copy_f32.o)
                                         0x66a (size before relaxing)
- .debug_str     0x00000000000eddb7       0x38 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_mean_f32.o)
+ .debug_str     0x00000000000eddb5       0x38 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_mean_f32.o)
                                         0x670 (size before relaxing)
- .debug_str     0x00000000000eddef       0x46 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_max_f32.o)
+ .debug_str     0x00000000000edded       0x46 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_max_f32.o)
                                         0x68b (size before relaxing)
- .debug_str     0x00000000000ede35      0x7da C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_rfft_fast_init_f32.o)
+ .debug_str     0x00000000000ede33      0x7da C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_rfft_fast_init_f32.o)
                                         0xf3b (size before relaxing)
- .debug_str     0x00000000000ee60f       0x74 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_rfft_fast_f32.o)
+ .debug_str     0x00000000000ee60d       0x74 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_rfft_fast_f32.o)
                                         0x739 (size before relaxing)
- .debug_str     0x00000000000ee683      0x10e C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cfft_f32.o)
+ .debug_str     0x00000000000ee681      0x10e C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cfft_f32.o)
                                         0xe7e (size before relaxing)
- .debug_str     0x00000000000ee791       0x5b C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_bitreversal2.o)
+ .debug_str     0x00000000000ee78f       0x5b C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_bitreversal2.o)
                                         0xd76 (size before relaxing)
- .debug_str     0x00000000000ee7ec       0x5e C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cmplx_mag_f32.o)
+ .debug_str     0x00000000000ee7ea       0x5e C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cmplx_mag_f32.o)
                                         0x734 (size before relaxing)
- .debug_str     0x00000000000ee84a       0x41 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cos_f32.o)
+ .debug_str     0x00000000000ee848       0x41 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cos_f32.o)
                                         0xd42 (size before relaxing)
- .debug_str     0x00000000000ee88b       0x36 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_scale_f32.o)
+ .debug_str     0x00000000000ee889       0x36 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_scale_f32.o)
                                         0x674 (size before relaxing)
- .debug_str     0x00000000000ee8c1       0x31 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_offset_f32.o)
+ .debug_str     0x00000000000ee8bf       0x31 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_offset_f32.o)
                                         0x677 (size before relaxing)
- .debug_str     0x00000000000ee8f2       0x3b C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_mult_f32.o)
+ .debug_str     0x00000000000ee8f0       0x3b C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_mult_f32.o)
                                         0x673 (size before relaxing)
- .debug_str     0x00000000000ee92d       0x2e C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_common_tables.o)
+ .debug_str     0x00000000000ee92b       0x2e C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_common_tables.o)
                                         0xd1d (size before relaxing)
- .debug_str     0x00000000000ee95b       0x4d C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cfft_radix8_f32.o)
+ .debug_str     0x00000000000ee959       0x4d C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cfft_radix8_f32.o)
                                         0x69b (size before relaxing)
 
 .debug_frame    0x0000000000000000     0x4c14

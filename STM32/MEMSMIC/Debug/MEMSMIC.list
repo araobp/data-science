@@ -41,15 +41,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  18 .debug_line   0001395b  00000000  00000000  0007b1f3  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    000ee9a8  00000000  00000000  0008eb4e  2**0
+ 19 .debug_str    000ee9a6  00000000  00000000  0008eb4e  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_frame  00004c14  00000000  00000000  0017d4f8  2**2
+ 20 .debug_frame  00004c14  00000000  00000000  0017d4f4  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000068  00000000  00000000  0018210c  2**0
+ 21 .debug_line_str 00000068  00000000  00000000  00182108  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 22 .debug_loc    00004647  00000000  00000000  00182174  2**0
+ 22 .debug_loc    00004647  00000000  00000000  00182170  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 23 .debug_ranges 00000208  00000000  00000000  001867bb  2**0
+ 23 .debug_ranges 00000208  00000000  00000000  001867b7  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -1290,7 +1290,7 @@ int main(void)
   const float tmp = 2.0f * M_PI / (float) NN;
  8000f0e:	4ba6      	ldr	r3, [pc, #664]	; (80011a8 <main+0x304>)
  8000f10:	613b      	str	r3, [r7, #16]
-  for (uint32_t i = 0; i < NN; i++)
+  for (uint32_t i = 0; i < NN; i++) {
  8000f12:	2300      	movs	r3, #0
  8000f14:	627b      	str	r3, [r7, #36]	; 0x24
  8000f16:	e01f      	b.n	8000f58 <main+0xb4>
@@ -1312,15 +1312,16 @@ int main(void)
  8000f46:	eeb6 7a00 	vmov.f32	s14, #96	; 0x3f000000  0.5
  8000f4a:	ee77 7a67 	vsub.f32	s15, s14, s15
  8000f4e:	edc3 7a00 	vstr	s15, [r3]
-  for (uint32_t i = 0; i < NN; i++)
+  for (uint32_t i = 0; i < NN; i++) {
  8000f52:	6a7b      	ldr	r3, [r7, #36]	; 0x24
  8000f54:	3301      	adds	r3, #1
  8000f56:	627b      	str	r3, [r7, #36]	; 0x24
  8000f58:	6a7b      	ldr	r3, [r7, #36]	; 0x24
  8000f5a:	f5b3 6f00 	cmp.w	r3, #2048	; 0x800
  8000f5e:	d3db      	bcc.n	8000f18 <main+0x74>
+  }
 
-  for (uint32_t i = 0; i < NN / 2; i++)
+  for (uint32_t i = 0; i < NN / 2; i++) {
  8000f60:	2300      	movs	r3, #0
  8000f62:	623b      	str	r3, [r7, #32]
  8000f64:	e016      	b.n	8000f94 <main+0xf0>
@@ -1338,13 +1339,14 @@ int main(void)
  8000f82:	eddf 6a8c 	vldr	s13, [pc, #560]	; 80011b4 <main+0x310>
  8000f86:	eec7 7a26 	vdiv.f32	s15, s14, s13
  8000f8a:	edc3 7a00 	vstr	s15, [r3]
-  for (uint32_t i = 0; i < NN / 2; i++)
+  for (uint32_t i = 0; i < NN / 2; i++) {
  8000f8e:	6a3b      	ldr	r3, [r7, #32]
  8000f90:	3301      	adds	r3, #1
  8000f92:	623b      	str	r3, [r7, #32]
  8000f94:	6a3b      	ldr	r3, [r7, #32]
  8000f96:	f5b3 6f80 	cmp.w	r3, #1024	; 0x400
  8000f9a:	d3e4      	bcc.n	8000f66 <main+0xc2>
+  }
 
   arm_rfft_fast_init_f32(&S, NN);
  8000f9c:	f44f 6100 	mov.w	r1, #2048	; 0x800
@@ -1386,7 +1388,7 @@ int main(void)
  8000fcc:	2300      	movs	r3, #0
  8000fce:	61fb      	str	r3, [r7, #28]
  8000fd0:	e031      	b.n	8001036 <main+0x192>
-      fft_in[i] = (float32_t) SaturaLH(fft_in_int32[i] >> 9, saturation_min, saturation_max);
+      fft_in[i] = (float32_t) SaturaLH(fft_in_int32[i] >> 9, saturation_min,
  8000fd2:	4a80      	ldr	r2, [pc, #512]	; (80011d4 <main+0x330>)
  8000fd4:	69fb      	ldr	r3, [r7, #28]
  8000fd6:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
@@ -1431,6 +1433,7 @@ int main(void)
  8001036:	69fb      	ldr	r3, [r7, #28]
  8001038:	f5b3 6f00 	cmp.w	r3, #2048	; 0x800
  800103c:	d3c9      	bcc.n	8000fd2 <main+0x12e>
+          saturation_max);
     }
 
     // AC Coupling
@@ -1474,10 +1477,10 @@ int main(void)
  8001078:	ed9f 0a5d 	vldr	s0, [pc, #372]	; 80011f0 <main+0x34c>
  800107c:	485b      	ldr	r0, [pc, #364]	; (80011ec <main+0x348>)
  800107e:	f005 fd7f 	bl	8006b80 <arm_scale_f32>
-      else
-        break;
-    }
-    */
+     else
+     break;
+     }
+     */
 
     float32_t inv_dB_base_mag = 1.0f / 1.0f;
  8001082:	f04f 537e 	mov.w	r3, #1065353216	; 0x3f800000
@@ -1800,9 +1803,9 @@ static void MX_DFSDM1_Init(void)
  80012c4:	4b26      	ldr	r3, [pc, #152]	; (8001360 <MX_DFSDM1_Init+0xb8>)
  80012c6:	f04f 42c0 	mov.w	r2, #1610612736	; 0x60000000
  80012ca:	61da      	str	r2, [r3, #28]
-  hdfsdm1_filter0.Init.FilterParam.Oversampling = 128;
+  hdfsdm1_filter0.Init.FilterParam.Oversampling = 32;
  80012cc:	4b24      	ldr	r3, [pc, #144]	; (8001360 <MX_DFSDM1_Init+0xb8>)
- 80012ce:	2280      	movs	r2, #128	; 0x80
+ 80012ce:	2220      	movs	r2, #32
  80012d0:	621a      	str	r2, [r3, #32]
   hdfsdm1_filter0.Init.FilterParam.IntOversampling = 1;
  80012d2:	4b23      	ldr	r3, [pc, #140]	; (8001360 <MX_DFSDM1_Init+0xb8>)

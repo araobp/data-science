@@ -84,7 +84,9 @@ void Error_Handler(void);
 // - https://youtu.be/uMCTkd0PGRs
 // - https://wiki.st.com/stm32mcu/wiki/STM32StepByStep:Getting_started_with_analog
 #define SaturaLH(N, L, H) (((N)<(L))?(L):(((N)>(H))?(H):(N)))
-#define MAX_OUTPUT 2097152
+//#define MAX_OUTPUT 2097152  // FOSR: 128 (sinc3)
+//#define MAX_OUTPUT 262144  // FOSR: 64 (sinc3)
+#define MAX_OUTPUT 32768  // FOSR: 32 (sinc3)
 
 /* USER CODE END Private defines */
 

@@ -79,15 +79,6 @@ void Error_Handler(void);
 // The number of values in the mean value history for AC coupling
 #define NUM_MEANS 2048U
 
-// Maximum output : 2^22/2
-// References:
-// - https://youtu.be/uMCTkd0PGRs
-// - https://wiki.st.com/stm32mcu/wiki/STM32StepByStep:Getting_started_with_analog
-#define SaturaLH(N, L, H) (((N)<(L))?(L):(((N)>(H))?(H):(N)))
-//#define MAX_OUTPUT 2097152  // FOSR: 128 (sinc3)
-//#define MAX_OUTPUT 262144  // FOSR: 64 (sinc3)
-#define MAX_OUTPUT 32768  // FOSR: 32 (sinc3)
-
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

@@ -98,6 +98,32 @@ DFSDM configuration:
 - resolution: 2 * 64^3 = 2^19 (19 bits)
 - Sampling frequency: 80_000_000/32/64 = 39.1kHz
 
+## Bit shift operations on DFSDM
+
+I have been confused on this issue for many years.
+
+There seems to be two kinds of right bit shift operations surrounding DFSDM:
+- right bit shift to fit the internal data into the 24bit-length data field (RDATA[23:8]) of the data output register.
+- right bit shift (8bit) to ignore the eight LSBs of the data output register.
+
+```
+[ Overflowed internal data               ]
+:                                        :
+:                                +- - - -+
+:                                :
+V                                V
+[ 24bit data containing PCM data | 8bit LSBs ]  (However, it seems to me that 9bit LSBs are always zero.)
+
+                                |
+                                V
+
+                  [ 24bit data containing PCM data ]
+```
+
+What is more, it seems to me that nine LSBs of the data ouput register is always zero. In my code, I skip the nine LSBs by right shift operation (ie, output_data >> 9).
+
+I have never received any formal education on digital signal processing and DFSDM, so I do not know if I am right or wrong.
+
 ## Reference
 
 - [Getting started with sigma-delta digital interface

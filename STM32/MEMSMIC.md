@@ -80,7 +80,7 @@ I reuse [this code](https://github.com/araobp/NUCLEO-L476RG_DFSDM_PDM-Mic) with 
 
 => [Test results on Jupyter Notebook](./data/MEMSMIC.ipynb)
 
-I made the tests under the following conditions. 
+I have made the tests under the following conditions. 
 
 DFSDM configuration 1:
 - System clock: 80MHz
@@ -88,6 +88,7 @@ DFSDM configuration 1:
 - FOSR(decimation): 128
 - sinc filter: sinc3
 - resolution: 2 * 128^3 = 2^22 (22 bits)
+- right bit shift in DFSDM: 6 (results in 16 bit PCM)
 - Sampling frequency: 80_000_000/32/128 = 19.5kHz
 
 DFSDM configuration 2:
@@ -96,6 +97,7 @@ DFSDM configuration 2:
 - FOSR(decimation): 64
 - sinc filter: sinc3
 - resolution: 2 * 64^3 = 2^19 (19 bits)
+- right bit shift in DFSDM: 3 (results in 16 bit PCM)
 - Sampling frequency: 80_000_000/32/64 = 39.1kHz
 
 DFSDM configuration 3:
@@ -104,6 +106,7 @@ DFSDM configuration 3:
 - FOSR(decimation): 32
 - sinc filter: sinc3
 - resolution: 2 * 32^3 = 2^16 (16 bits)
+- right bit shift in DFSDM: 0 (results in 16 bit PCM)
 - Sampling frequency: 80_000_000/32/64 = 78.1kHz
 
 DFSDM configuration 4:
@@ -112,7 +115,7 @@ DFSDM configuration 4:
 - FOSR(decimation): 64
 - sinc filter: sinc5
 - resolution: 2 * 64^5 = 2^31 (31 bits)
-- right bit shift: 7
+- right bit shift in DFSDM: 15 (results in 16 bit PCM)
 - Sampling frequency: 80_000_000/64/64 = 19.5kHz
 
 DFSDM configuration 5:
@@ -121,8 +124,23 @@ DFSDM configuration 5:
 - FOSR(decimation): 64
 - sinc filter: sinc4
 - resolution: 2 * 64^4 = 2^25 (25 bits)
-- right bit shift: 1
+- right bit shift in DFSDM: 9 (results in 16 bit PCM)
 - Sampling frequency: 80_000_000/64/64 = 19.5kHz
+
++--------+-----------+---------+--------+---------+--------+-----------+-------------+
+| Config | Zero LSBs | Clock   | FOSR   | fs(kHz) | sinc   | bit shift | bit shift   |
+|        | confirmed | Divider |        |         | filter | in DFSDM  | by software | 
++--------+-----------+---------+--------+---------+--------+-----------+-------------+
+| 1      |  9 bits   | 32      | 128    | 19.5    | sinc3  |  6 bits   | 8 bits      |
++--------+-----------+---------+--------+---------+--------+-----------+-------------+
+| 2      |           | 32      | 64     | 39.1    | sinc3  |  3 bits   | 8 bits      |
++--------+-----------+---------+--------+---------+--------+-----------+-------------+
+| 3      |           | 32      | 32     | 78.1    | sinc3  |  0 bits   | 8 bits      |
++--------+-----------+---------+--------+---------+--------+-----------+-------------+
+| 4      | 8 bits    | 64      | 64     | 19.5    | sinc5  | 15 bits   | 8 bits      |
++--------+-----------+---------+--------+---------+--------+-----------+-------------+
+| 5      | 8 bits    | 64      | 64     | 19.5    | sinc4  |  9 bits   | 8 bits      |
++--------+-----------+---------+--------+---------+--------+-----------+-------------+
 
 **Conclusion**
 

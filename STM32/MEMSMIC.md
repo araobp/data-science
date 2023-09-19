@@ -129,7 +129,7 @@ DFSDM configuration 5:
 
 | Config | Zero LSBs confirmed | Clock divider  | FOSR   | fs(kHz) | sinc   | bit shift in DFSDM | bit shift by software  |
 | ------ | ------------------- | -------------- | ------ | ------- | ------ | ------------------ | ---------------------- |
-| 1      |              9 bits |             32 |    128 |    19.5 |  sinc3 |             6 bits |                 8 bits |
+| 1      |              8 bits |             32 |    128 |    19.5 |  sinc3 |             6 bits |                 8 bits |
 | 2      |                     |             32 |     64 |    39.1 |  sinc3 |             3 bits |                 8 bits |
 | 3      |                     |             32 |     32 |    78.1 |  sinc3 |             0 bits |                 8 bits |
 | 4      |              8 bits |             64 |     64 |    19.5 |  sinc5 |            15 bits |                 8 bits |

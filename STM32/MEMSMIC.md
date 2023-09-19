@@ -135,7 +135,7 @@ DFSDM configuration 5:
 | 4      |              8 bits |             64 |     64 |    19.5 |  sinc5 |            15 bits |                 8 bits |
 | 5      |              8 bits |             64 |     64 |    19.5 |  sinc4 |             9 bits |                 8 bits |
 
-Note: "Zero LSBs confirmed" means the length of LSBs that are always zero after applying right bit shift in DFSDM.
+Note: "Zero LSBs confirmed" means the length of LSBs that are always zero after applying right bit shift in DFSDM and before applying right bit shift in software/CPU.
 
 **Conclusion**
 

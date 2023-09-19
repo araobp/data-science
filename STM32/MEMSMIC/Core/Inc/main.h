@@ -74,7 +74,16 @@ void Error_Handler(void);
 
 /* USER CODE BEGIN Private defines */
 
-#define NN 2048  // The number of samples
+// Note: I checked the CubeIDE debug output of fft_in_int32 and
+// confirmed that all the 9 bits of LSBs are always zero in certain
+// conditions.
+#define REGISTER_BIT_SHIFT 9
+// Note: In the other conditions, the 8 bits of LSBs are always zero
+// as specified in the DFSDM specification.
+//#define REGISTER_BIT_SHIFT 8
+
+// The number of samples in a frame
+#define NN 2048
 
 // The number of values in the mean value history for AC coupling
 #define NUM_MEANS 2048U

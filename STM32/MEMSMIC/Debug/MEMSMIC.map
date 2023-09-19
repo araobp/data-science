@@ -327,7 +327,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x5cf ./Core/Src/stm32l4xx_hal_msp.o
  .debug_macro   0x0000000000000000       0x44 ./Core/Src/stm32l4xx_hal_msp.o
  .debug_macro   0x0000000000000000      0x330 ./Core/Src/stm32l4xx_hal_msp.o
- .debug_macro   0x0000000000000000       0x64 ./Core/Src/stm32l4xx_hal_msp.o
+ .debug_macro   0x0000000000000000       0x6a ./Core/Src/stm32l4xx_hal_msp.o
  .group         0x0000000000000000        0xc ./Core/Src/stm32l4xx_it.o
  .group         0x0000000000000000        0xc ./Core/Src/stm32l4xx_it.o
  .group         0x0000000000000000        0xc ./Core/Src/stm32l4xx_it.o
@@ -402,7 +402,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x5cf ./Core/Src/stm32l4xx_it.o
  .debug_macro   0x0000000000000000       0x44 ./Core/Src/stm32l4xx_it.o
  .debug_macro   0x0000000000000000      0x330 ./Core/Src/stm32l4xx_it.o
- .debug_macro   0x0000000000000000       0x64 ./Core/Src/stm32l4xx_it.o
+ .debug_macro   0x0000000000000000       0x6a ./Core/Src/stm32l4xx_it.o
  .group         0x0000000000000000        0xc ./Core/Src/syscalls.o
  .group         0x0000000000000000        0xc ./Core/Src/syscalls.o
  .group         0x0000000000000000        0xc ./Core/Src/syscalls.o
@@ -4628,7 +4628,7 @@ LOAD C:/ST/STM32CubeIDE_1.13.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_rnglists
                 0x0000000000000998       0x60 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.o
 
-.debug_macro    0x0000000000000000    0x273bf
+.debug_macro    0x0000000000000000    0x273c5
  .debug_macro   0x0000000000000000      0x309 ./Core/Src/main.o
  .debug_macro   0x0000000000000309      0xaae ./Core/Src/main.o
  .debug_macro   0x0000000000000db7      0x1a7 ./Core/Src/main.o
@@ -4665,171 +4665,171 @@ LOAD C:/ST/STM32CubeIDE_1.13.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_macro   0x0000000000023476      0x5cf ./Core/Src/main.o
  .debug_macro   0x0000000000023a45       0x44 ./Core/Src/main.o
  .debug_macro   0x0000000000023a89      0x330 ./Core/Src/main.o
- .debug_macro   0x0000000000023db9       0x64 ./Core/Src/main.o
- .debug_macro   0x0000000000023e1d       0x61 ./Core/Src/main.o
- .debug_macro   0x0000000000023e7e       0x2a ./Core/Src/main.o
- .debug_macro   0x0000000000023ea8       0x43 ./Core/Src/main.o
- .debug_macro   0x0000000000023eeb       0x34 ./Core/Src/main.o
- .debug_macro   0x0000000000023f1f       0x16 ./Core/Src/main.o
- .debug_macro   0x0000000000023f35       0x35 ./Core/Src/main.o
- .debug_macro   0x0000000000023f6a      0x369 ./Core/Src/main.o
- .debug_macro   0x00000000000242d3       0x10 ./Core/Src/main.o
- .debug_macro   0x00000000000242e3       0x16 ./Core/Src/main.o
- .debug_macro   0x00000000000242f9       0x43 ./Core/Src/main.o
- .debug_macro   0x000000000002433c       0x34 ./Core/Src/main.o
- .debug_macro   0x0000000000024370       0x10 ./Core/Src/main.o
- .debug_macro   0x0000000000024380       0x58 ./Core/Src/main.o
- .debug_macro   0x00000000000243d8       0x8e ./Core/Src/main.o
- .debug_macro   0x0000000000024466       0x1c ./Core/Src/main.o
- .debug_macro   0x0000000000024482      0x177 ./Core/Src/main.o
- .debug_macro   0x00000000000245f9       0x16 ./Core/Src/main.o
- .debug_macro   0x000000000002460f       0x16 ./Core/Src/main.o
- .debug_macro   0x0000000000024625      0x147 ./Core/Src/main.o
- .debug_macro   0x000000000002476c       0x22 ./Core/Src/main.o
- .debug_macro   0x000000000002478e      0x19b ./Core/Src/main.o
- .debug_macro   0x0000000000024929       0x16 ./Core/Src/main.o
- .debug_macro   0x000000000002493f       0x20 ./Core/Src/main.o
- .debug_macro   0x000000000002495f      0x201 ./Core/Src/main.o
- .debug_macro   0x0000000000024b60       0xc8 ./Core/Src/main.o
- .debug_macro   0x0000000000024c28      0x1c5 ./Core/Src/stm32l4xx_hal_msp.o
- .debug_macro   0x0000000000024ded      0x1cf ./Core/Src/stm32l4xx_it.o
- .debug_macro   0x0000000000024fbc      0x274 ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025230       0x5b ./Core/Src/syscalls.o
- .debug_macro   0x000000000002528b       0x94 ./Core/Src/syscalls.o
- .debug_macro   0x000000000002531f       0x57 ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025376       0x10 ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025386       0x10 ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025396       0x10 ./Core/Src/syscalls.o
- .debug_macro   0x00000000000253a6       0x10 ./Core/Src/syscalls.o
- .debug_macro   0x00000000000253b6       0x1c ./Core/Src/syscalls.o
- .debug_macro   0x00000000000253d2       0x52 ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025424       0x22 ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025446       0x10 ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025456       0x52 ./Core/Src/syscalls.o
- .debug_macro   0x00000000000254a8       0xcf ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025577       0x1c ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025593       0x3d ./Core/Src/syscalls.o
- .debug_macro   0x00000000000255d0       0x35 ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025605      0x12c ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025731       0x16 ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025747       0x16 ./Core/Src/syscalls.o
- .debug_macro   0x000000000002575d       0x29 ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025786       0x10 ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025796      0x242 ./Core/Src/syscalls.o
- .debug_macro   0x00000000000259d8       0x1c ./Core/Src/syscalls.o
- .debug_macro   0x00000000000259f4       0x10 ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025a04      0x18a ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025b8e       0x16 ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025ba4       0xce ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025c72       0xff ./Core/Src/sysmem.o
- .debug_macro   0x0000000000025d71      0x23c ./Core/Src/sysmem.o
- .debug_macro   0x0000000000025fad      0x1b6 ./Core/Src/system_stm32l4xx.o
- .debug_macro   0x0000000000026163      0x204 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
- .debug_macro   0x0000000000026367      0x1b6 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.o
- .debug_macro   0x000000000002651d      0x1da ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dfsdm.o
- .debug_macro   0x00000000000266f7      0x1b6 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.o
- .debug_macro   0x00000000000268ad      0x1bd ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.o
- .debug_macro   0x0000000000026a6a      0x1da ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.o
- .debug_macro   0x0000000000026c44      0x1f8 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o
- .debug_macro   0x0000000000026e3c      0x1ec ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.o
- .debug_macro   0x0000000000027028      0x1e1 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o
- .debug_macro   0x0000000000027209      0x1b6 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.o
+ .debug_macro   0x0000000000023db9       0x6a ./Core/Src/main.o
+ .debug_macro   0x0000000000023e23       0x61 ./Core/Src/main.o
+ .debug_macro   0x0000000000023e84       0x2a ./Core/Src/main.o
+ .debug_macro   0x0000000000023eae       0x43 ./Core/Src/main.o
+ .debug_macro   0x0000000000023ef1       0x34 ./Core/Src/main.o
+ .debug_macro   0x0000000000023f25       0x16 ./Core/Src/main.o
+ .debug_macro   0x0000000000023f3b       0x35 ./Core/Src/main.o
+ .debug_macro   0x0000000000023f70      0x369 ./Core/Src/main.o
+ .debug_macro   0x00000000000242d9       0x10 ./Core/Src/main.o
+ .debug_macro   0x00000000000242e9       0x16 ./Core/Src/main.o
+ .debug_macro   0x00000000000242ff       0x43 ./Core/Src/main.o
+ .debug_macro   0x0000000000024342       0x34 ./Core/Src/main.o
+ .debug_macro   0x0000000000024376       0x10 ./Core/Src/main.o
+ .debug_macro   0x0000000000024386       0x58 ./Core/Src/main.o
+ .debug_macro   0x00000000000243de       0x8e ./Core/Src/main.o
+ .debug_macro   0x000000000002446c       0x1c ./Core/Src/main.o
+ .debug_macro   0x0000000000024488      0x177 ./Core/Src/main.o
+ .debug_macro   0x00000000000245ff       0x16 ./Core/Src/main.o
+ .debug_macro   0x0000000000024615       0x16 ./Core/Src/main.o
+ .debug_macro   0x000000000002462b      0x147 ./Core/Src/main.o
+ .debug_macro   0x0000000000024772       0x22 ./Core/Src/main.o
+ .debug_macro   0x0000000000024794      0x19b ./Core/Src/main.o
+ .debug_macro   0x000000000002492f       0x16 ./Core/Src/main.o
+ .debug_macro   0x0000000000024945       0x20 ./Core/Src/main.o
+ .debug_macro   0x0000000000024965      0x201 ./Core/Src/main.o
+ .debug_macro   0x0000000000024b66       0xc8 ./Core/Src/main.o
+ .debug_macro   0x0000000000024c2e      0x1c5 ./Core/Src/stm32l4xx_hal_msp.o
+ .debug_macro   0x0000000000024df3      0x1cf ./Core/Src/stm32l4xx_it.o
+ .debug_macro   0x0000000000024fc2      0x274 ./Core/Src/syscalls.o
+ .debug_macro   0x0000000000025236       0x5b ./Core/Src/syscalls.o
+ .debug_macro   0x0000000000025291       0x94 ./Core/Src/syscalls.o
+ .debug_macro   0x0000000000025325       0x57 ./Core/Src/syscalls.o
+ .debug_macro   0x000000000002537c       0x10 ./Core/Src/syscalls.o
+ .debug_macro   0x000000000002538c       0x10 ./Core/Src/syscalls.o
+ .debug_macro   0x000000000002539c       0x10 ./Core/Src/syscalls.o
+ .debug_macro   0x00000000000253ac       0x10 ./Core/Src/syscalls.o
+ .debug_macro   0x00000000000253bc       0x1c ./Core/Src/syscalls.o
+ .debug_macro   0x00000000000253d8       0x52 ./Core/Src/syscalls.o
+ .debug_macro   0x000000000002542a       0x22 ./Core/Src/syscalls.o
+ .debug_macro   0x000000000002544c       0x10 ./Core/Src/syscalls.o
+ .debug_macro   0x000000000002545c       0x52 ./Core/Src/syscalls.o
+ .debug_macro   0x00000000000254ae       0xcf ./Core/Src/syscalls.o
+ .debug_macro   0x000000000002557d       0x1c ./Core/Src/syscalls.o
+ .debug_macro   0x0000000000025599       0x3d ./Core/Src/syscalls.o
+ .debug_macro   0x00000000000255d6       0x35 ./Core/Src/syscalls.o
+ .debug_macro   0x000000000002560b      0x12c ./Core/Src/syscalls.o
+ .debug_macro   0x0000000000025737       0x16 ./Core/Src/syscalls.o
+ .debug_macro   0x000000000002574d       0x16 ./Core/Src/syscalls.o
+ .debug_macro   0x0000000000025763       0x29 ./Core/Src/syscalls.o
+ .debug_macro   0x000000000002578c       0x10 ./Core/Src/syscalls.o
+ .debug_macro   0x000000000002579c      0x242 ./Core/Src/syscalls.o
+ .debug_macro   0x00000000000259de       0x1c ./Core/Src/syscalls.o
+ .debug_macro   0x00000000000259fa       0x10 ./Core/Src/syscalls.o
+ .debug_macro   0x0000000000025a0a      0x18a ./Core/Src/syscalls.o
+ .debug_macro   0x0000000000025b94       0x16 ./Core/Src/syscalls.o
+ .debug_macro   0x0000000000025baa       0xce ./Core/Src/syscalls.o
+ .debug_macro   0x0000000000025c78       0xff ./Core/Src/sysmem.o
+ .debug_macro   0x0000000000025d77      0x23c ./Core/Src/sysmem.o
+ .debug_macro   0x0000000000025fb3      0x1b6 ./Core/Src/system_stm32l4xx.o
+ .debug_macro   0x0000000000026169      0x204 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
+ .debug_macro   0x000000000002636d      0x1b6 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.o
+ .debug_macro   0x0000000000026523      0x1da ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dfsdm.o
+ .debug_macro   0x00000000000266fd      0x1b6 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.o
+ .debug_macro   0x00000000000268b3      0x1bd ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.o
+ .debug_macro   0x0000000000026a70      0x1da ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.o
+ .debug_macro   0x0000000000026c4a      0x1f8 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o
+ .debug_macro   0x0000000000026e42      0x1ec ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.o
+ .debug_macro   0x000000000002702e      0x1e1 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o
+ .debug_macro   0x000000000002720f      0x1b6 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.o
 
-.debug_line     0x0000000000000000    0x13943
- .debug_line    0x0000000000000000      0xcd9 ./Core/Src/main.o
- .debug_line    0x0000000000000cd9      0x89c ./Core/Src/stm32l4xx_hal_msp.o
- .debug_line    0x0000000000001575      0x822 ./Core/Src/stm32l4xx_it.o
- .debug_line    0x0000000000001d97      0x8a8 ./Core/Src/syscalls.o
- .debug_line    0x000000000000263f      0x579 ./Core/Src/sysmem.o
- .debug_line    0x0000000000002bb8      0x7c7 ./Core/Src/system_stm32l4xx.o
- .debug_line    0x000000000000337f       0x7a ./Core/Startup/startup_stm32l476rgtx.o
- .debug_line    0x00000000000033f9      0xb20 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
- .debug_line    0x0000000000003f19      0xcc6 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.o
- .debug_line    0x0000000000004bdf     0x1e9b ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dfsdm.o
- .debug_line    0x0000000000006a7a      0xd10 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.o
- .debug_line    0x000000000000778a      0xb93 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.o
- .debug_line    0x000000000000831d      0xd17 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.o
- .debug_line    0x0000000000009034      0xf96 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o
- .debug_line    0x0000000000009fca     0x1510 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.o
- .debug_line    0x000000000000b4da     0x31ff ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o
- .debug_line    0x000000000000e6d9      0xc28 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.o
- .debug_line    0x000000000000f301      0x2d0 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_copy_f32.o)
- .debug_line    0x000000000000f5d1      0x2d9 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_mean_f32.o)
- .debug_line    0x000000000000f8aa      0x36f C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_max_f32.o)
- .debug_line    0x000000000000fc19      0x610 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_rfft_fast_init_f32.o)
- .debug_line    0x0000000000010229      0x4f8 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_rfft_fast_f32.o)
- .debug_line    0x0000000000010721      0xf14 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cfft_f32.o)
- .debug_line    0x0000000000011635      0x353 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_bitreversal2.o)
- .debug_line    0x0000000000011988      0x531 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cmplx_mag_f32.o)
- .debug_line    0x0000000000011eb9      0x2d3 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cos_f32.o)
- .debug_line    0x000000000001218c      0x2dd C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_scale_f32.o)
- .debug_line    0x0000000000012469      0x2e0 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_offset_f32.o)
- .debug_line    0x0000000000012749      0x2e0 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_mult_f32.o)
- .debug_line    0x0000000000012a29      0x243 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_common_tables.o)
- .debug_line    0x0000000000012c6c      0xcd7 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cfft_radix8_f32.o)
+.debug_line     0x0000000000000000    0x1393e
+ .debug_line    0x0000000000000000      0xcd4 ./Core/Src/main.o
+ .debug_line    0x0000000000000cd4      0x89c ./Core/Src/stm32l4xx_hal_msp.o
+ .debug_line    0x0000000000001570      0x822 ./Core/Src/stm32l4xx_it.o
+ .debug_line    0x0000000000001d92      0x8a8 ./Core/Src/syscalls.o
+ .debug_line    0x000000000000263a      0x579 ./Core/Src/sysmem.o
+ .debug_line    0x0000000000002bb3      0x7c7 ./Core/Src/system_stm32l4xx.o
+ .debug_line    0x000000000000337a       0x7a ./Core/Startup/startup_stm32l476rgtx.o
+ .debug_line    0x00000000000033f4      0xb20 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
+ .debug_line    0x0000000000003f14      0xcc6 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.o
+ .debug_line    0x0000000000004bda     0x1e9b ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dfsdm.o
+ .debug_line    0x0000000000006a75      0xd10 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.o
+ .debug_line    0x0000000000007785      0xb93 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.o
+ .debug_line    0x0000000000008318      0xd17 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.o
+ .debug_line    0x000000000000902f      0xf96 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o
+ .debug_line    0x0000000000009fc5     0x1510 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.o
+ .debug_line    0x000000000000b4d5     0x31ff ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o
+ .debug_line    0x000000000000e6d4      0xc28 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.o
+ .debug_line    0x000000000000f2fc      0x2d0 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_copy_f32.o)
+ .debug_line    0x000000000000f5cc      0x2d9 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_mean_f32.o)
+ .debug_line    0x000000000000f8a5      0x36f C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_max_f32.o)
+ .debug_line    0x000000000000fc14      0x610 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_rfft_fast_init_f32.o)
+ .debug_line    0x0000000000010224      0x4f8 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_rfft_fast_f32.o)
+ .debug_line    0x000000000001071c      0xf14 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cfft_f32.o)
+ .debug_line    0x0000000000011630      0x353 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_bitreversal2.o)
+ .debug_line    0x0000000000011983      0x531 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cmplx_mag_f32.o)
+ .debug_line    0x0000000000011eb4      0x2d3 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cos_f32.o)
+ .debug_line    0x0000000000012187      0x2dd C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_scale_f32.o)
+ .debug_line    0x0000000000012464      0x2e0 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_offset_f32.o)
+ .debug_line    0x0000000000012744      0x2e0 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_mult_f32.o)
+ .debug_line    0x0000000000012a24      0x243 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_common_tables.o)
+ .debug_line    0x0000000000012c67      0xcd7 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cfft_radix8_f32.o)
 
-.debug_str      0x0000000000000000    0xee943
- .debug_str     0x0000000000000000    0xe855e ./Core/Src/main.o
-                                      0xe8a53 (size before relaxing)
- .debug_str     0x00000000000e855e      0x394 ./Core/Src/stm32l4xx_hal_msp.o
-                                      0xe3c9d (size before relaxing)
- .debug_str     0x00000000000e88f2      0x11b ./Core/Src/stm32l4xx_it.o
-                                      0xe2dba (size before relaxing)
- .debug_str     0x00000000000e8a0d     0x20cc ./Core/Src/syscalls.o
+.debug_str      0x0000000000000000    0xee958
+ .debug_str     0x0000000000000000    0xe8573 ./Core/Src/main.o
+                                      0xe8a68 (size before relaxing)
+ .debug_str     0x00000000000e8573      0x394 ./Core/Src/stm32l4xx_hal_msp.o
+                                      0xe3cb2 (size before relaxing)
+ .debug_str     0x00000000000e8907      0x11b ./Core/Src/stm32l4xx_it.o
+                                      0xe2dcf (size before relaxing)
+ .debug_str     0x00000000000e8a22     0x20cc ./Core/Src/syscalls.o
                                        0x98ba (size before relaxing)
- .debug_str     0x00000000000eaad9       0x6b ./Core/Src/sysmem.o
+ .debug_str     0x00000000000eaaee       0x6b ./Core/Src/sysmem.o
                                        0x6071 (size before relaxing)
- .debug_str     0x00000000000eab44       0xe2 ./Core/Src/system_stm32l4xx.o
+ .debug_str     0x00000000000eab59       0xe2 ./Core/Src/system_stm32l4xx.o
                                       0xe2936 (size before relaxing)
- .debug_str     0x00000000000eac26       0x34 ./Core/Startup/startup_stm32l476rgtx.o
+ .debug_str     0x00000000000eac3b       0x34 ./Core/Startup/startup_stm32l476rgtx.o
                                          0x74 (size before relaxing)
- .debug_str     0x00000000000eac5a      0x696 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
+ .debug_str     0x00000000000eac6f      0x696 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
                                       0xe3535 (size before relaxing)
- .debug_str     0x00000000000eb2f0      0x313 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.o
+ .debug_str     0x00000000000eb305      0x313 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.o
                                       0xe317d (size before relaxing)
- .debug_str     0x00000000000eb603      0x8aa ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dfsdm.o
+ .debug_str     0x00000000000eb618      0x8aa ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dfsdm.o
                                       0xe3842 (size before relaxing)
- .debug_str     0x00000000000ebead      0x205 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.o
+ .debug_str     0x00000000000ebec2      0x205 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.o
                                       0xe2ba0 (size before relaxing)
- .debug_str     0x00000000000ec0b2      0x123 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.o
+ .debug_str     0x00000000000ec0c7      0x123 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.o
                                       0xe2aaf (size before relaxing)
- .debug_str     0x00000000000ec1d5      0x4e3 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.o
+ .debug_str     0x00000000000ec1ea      0x4e3 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.o
                                       0xe2e91 (size before relaxing)
- .debug_str     0x00000000000ec6b8      0x345 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o
+ .debug_str     0x00000000000ec6cd      0x345 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o
                                       0xe2f7c (size before relaxing)
- .debug_str     0x00000000000ec9fd      0x3bf ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.o
+ .debug_str     0x00000000000eca12      0x3bf ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.o
                                       0xe30f5 (size before relaxing)
- .debug_str     0x00000000000ecdbc      0x85f ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o
+ .debug_str     0x00000000000ecdd1      0x85f ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o
                                       0xe368e (size before relaxing)
- .debug_str     0x00000000000ed61b      0x200 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.o
+ .debug_str     0x00000000000ed630      0x200 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.o
                                       0xe2eba (size before relaxing)
- .debug_str     0x00000000000ed81b      0x537 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_copy_f32.o)
+ .debug_str     0x00000000000ed830      0x537 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_copy_f32.o)
                                         0x66a (size before relaxing)
- .debug_str     0x00000000000edd52       0x38 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_mean_f32.o)
+ .debug_str     0x00000000000edd67       0x38 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_mean_f32.o)
                                         0x670 (size before relaxing)
- .debug_str     0x00000000000edd8a       0x46 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_max_f32.o)
+ .debug_str     0x00000000000edd9f       0x46 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_max_f32.o)
                                         0x68b (size before relaxing)
- .debug_str     0x00000000000eddd0      0x7da C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_rfft_fast_init_f32.o)
+ .debug_str     0x00000000000edde5      0x7da C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_rfft_fast_init_f32.o)
                                         0xf3b (size before relaxing)
- .debug_str     0x00000000000ee5aa       0x74 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_rfft_fast_f32.o)
+ .debug_str     0x00000000000ee5bf       0x74 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_rfft_fast_f32.o)
                                         0x739 (size before relaxing)
- .debug_str     0x00000000000ee61e      0x10e C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cfft_f32.o)
+ .debug_str     0x00000000000ee633      0x10e C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cfft_f32.o)
                                         0xe7e (size before relaxing)
- .debug_str     0x00000000000ee72c       0x5b C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_bitreversal2.o)
+ .debug_str     0x00000000000ee741       0x5b C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_bitreversal2.o)
                                         0xd76 (size before relaxing)
- .debug_str     0x00000000000ee787       0x5e C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cmplx_mag_f32.o)
+ .debug_str     0x00000000000ee79c       0x5e C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cmplx_mag_f32.o)
                                         0x734 (size before relaxing)
- .debug_str     0x00000000000ee7e5       0x41 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cos_f32.o)
+ .debug_str     0x00000000000ee7fa       0x41 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cos_f32.o)
                                         0xd42 (size before relaxing)
- .debug_str     0x00000000000ee826       0x36 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_scale_f32.o)
+ .debug_str     0x00000000000ee83b       0x36 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_scale_f32.o)
                                         0x674 (size before relaxing)
- .debug_str     0x00000000000ee85c       0x31 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_offset_f32.o)
+ .debug_str     0x00000000000ee871       0x31 C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_offset_f32.o)
                                         0x677 (size before relaxing)
- .debug_str     0x00000000000ee88d       0x3b C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_mult_f32.o)
+ .debug_str     0x00000000000ee8a2       0x3b C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_mult_f32.o)
                                         0x673 (size before relaxing)
- .debug_str     0x00000000000ee8c8       0x2e C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_common_tables.o)
+ .debug_str     0x00000000000ee8dd       0x2e C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_common_tables.o)
                                         0xd1d (size before relaxing)
- .debug_str     0x00000000000ee8f6       0x4d C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cfft_radix8_f32.o)
+ .debug_str     0x00000000000ee90b       0x4d C:\Users\shiny\Documents\data-science-study\STM32\MEMSMIC\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cfft_radix8_f32.o)
                                         0x69b (size before relaxing)
 
 .debug_frame    0x0000000000000000     0x4c14

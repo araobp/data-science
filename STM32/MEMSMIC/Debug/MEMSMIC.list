@@ -37,19 +37,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_rnglists 000009f8  00000000  00000000  00053400  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_macro  000273bf  00000000  00000000  00053df8  2**0
+ 17 .debug_macro  000273c5  00000000  00000000  00053df8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   00013943  00000000  00000000  0007b1b7  2**0
+ 18 .debug_line   0001393e  00000000  00000000  0007b1bd  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    000ee943  00000000  00000000  0008eafa  2**0
+ 19 .debug_str    000ee958  00000000  00000000  0008eafb  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_frame  00004c14  00000000  00000000  0017d440  2**2
+ 20 .debug_frame  00004c14  00000000  00000000  0017d454  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000068  00000000  00000000  00182054  2**0
+ 21 .debug_line_str 00000068  00000000  00000000  00182068  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 22 .debug_loc    00004647  00000000  00000000  001820bc  2**0
+ 22 .debug_loc    00004647  00000000  00000000  001820d0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 23 .debug_ranges 00000208  00000000  00000000  00186703  2**0
+ 23 .debug_ranges 00000208  00000000  00000000  00186717  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -1212,12 +1212,12 @@ Disassembly of section .text:
  8000ea2:	bf00      	nop
 
 08000ea4 <main>:
-
 /**
- * @brief  The application entry point.
- * @retval int
- */
-int main(void) {
+  * @brief  The application entry point.
+  * @retval int
+  */
+int main(void)
+{
  8000ea4:	e92d 43b0 	stmdb	sp!, {r4, r5, r7, r8, r9, lr}
  8000ea8:	ed2d 8b02 	vpush	{d8}
  8000eac:	b08e      	sub	sp, #56	; 0x38
@@ -1265,7 +1265,7 @@ int main(void) {
  8000ee0:	f000 fb76 	bl	80015d0 <Error_Handler>
   }
 
-  // FFT init
+  // Sampling frequency (Hz)
   fs = SystemCoreClock / hdfsdm1_channel3.Init.OutputClock.Divider
  8000ee4:	4b9d      	ldr	r3, [pc, #628]	; (800115c <main+0x2b8>)
  8000ee6:	681a      	ldr	r2, [r3, #0]
@@ -1321,6 +1321,7 @@ int main(void) {
  8000f5e:	d3db      	bcc.n	8000f18 <main+0x74>
   }
 
+  // FFT frequencies
   for (uint32_t i = 0; i < NN / 2; i++) {
  8000f60:	2300      	movs	r3, #0
  8000f62:	623b      	str	r3, [r7, #32]
@@ -1379,16 +1380,16 @@ int main(void) {
  8000fc6:	781b      	ldrb	r3, [r3, #0]
  8000fc8:	2b00      	cmp	r3, #0
  8000fca:	d1fb      	bne.n	8000fc4 <main+0x120>
+    // Raw data output
+    /*for (uint32_t i = 0; i < FFT_SampleNum; i++)
+     printf("%d\r\n", FFT_inp_int32[i]);*/
 
-    // Note: I checked the CubeIDE debug output of fft_in_int32 and
-    // confirmed that all the 9 bits of LSBs are always zero.
-    // That is the reason why 9 bit right shift is applied to
-    // the variable.
+    // RDATA field (PCM) of DFSDM Data Output Register
     for (uint32_t i = 0; i < NN; i++) {
  8000fcc:	2300      	movs	r3, #0
  8000fce:	61fb      	str	r3, [r7, #28]
  8000fd0:	e011      	b.n	8000ff6 <main+0x152>
-      fft_in[i] = (float32_t) (fft_in_int32[i] >> 9);
+      fft_in[i] = (float32_t) (fft_in_int32[i] >> REGISTER_BIT_SHIFT);
  8000fd2:	4a70      	ldr	r2, [pc, #448]	; (8001194 <main+0x2f0>)
  8000fd4:	69fb      	ldr	r3, [r7, #28]
  8000fd6:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
@@ -1450,10 +1451,6 @@ int main(void) {
  8001038:	ed9f 0a5b 	vldr	s0, [pc, #364]	; 80011a8 <main+0x304>
  800103c:	4859      	ldr	r0, [pc, #356]	; (80011a4 <main+0x300>)
  800103e:	f005 fd7b 	bl	8006b38 <arm_scale_f32>
-     else
-     break;
-     }
-     */
 
     float32_t inv_dB_base_mag = 1.0f / 1.0f;
  8001042:	f04f 537e 	mov.w	r3, #1065353216	; 0x3f800000
@@ -1620,22 +1617,22 @@ int main(void) {
  80011b8:	0800a0b4 	.word	0x0800a0b4
 
 080011bc <SystemClock_Config>:
-
 /**
- * @brief System Clock Configuration
- * @retval None
- */
-void SystemClock_Config(void) {
+  * @brief System Clock Configuration
+  * @retval None
+  */
+void SystemClock_Config(void)
+{
  80011bc:	b580      	push	{r7, lr}
  80011be:	b096      	sub	sp, #88	; 0x58
  80011c0:	af00      	add	r7, sp, #0
-  RCC_OscInitTypeDef RCC_OscInitStruct = { 0 };
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
  80011c2:	f107 0314 	add.w	r3, r7, #20
  80011c6:	2244      	movs	r2, #68	; 0x44
  80011c8:	2100      	movs	r1, #0
  80011ca:	4618      	mov	r0, r3
  80011cc:	f006 feb2 	bl	8007f34 <memset>
-  RCC_ClkInitTypeDef RCC_ClkInitStruct = { 0 };
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
  80011d0:	463b      	mov	r3, r7
  80011d2:	2200      	movs	r2, #0
  80011d4:	601a      	str	r2, [r3, #0]
@@ -1645,20 +1642,21 @@ void SystemClock_Config(void) {
  80011dc:	611a      	str	r2, [r3, #16]
 
   /** Configure the main internal regulator output voltage
-   */
-  if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1) != HAL_OK) {
+  */
+  if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1) != HAL_OK)
  80011de:	f44f 7000 	mov.w	r0, #512	; 0x200
  80011e2:	f001 fdfd 	bl	8002de0 <HAL_PWREx_ControlVoltageScaling>
  80011e6:	4603      	mov	r3, r0
  80011e8:	2b00      	cmp	r3, #0
  80011ea:	d001      	beq.n	80011f0 <SystemClock_Config+0x34>
+  {
     Error_Handler();
  80011ec:	f000 f9f0 	bl	80015d0 <Error_Handler>
   }
 
   /** Initializes the RCC Oscillators according to the specified parameters
-   * in the RCC_OscInitTypeDef structure.
-   */
+  * in the RCC_OscInitTypeDef structure.
+  */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
  80011f0:	2302      	movs	r3, #2
  80011f2:	617b      	str	r3, [r7, #20]
@@ -1689,23 +1687,24 @@ void SystemClock_Config(void) {
   RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
  8001216:	2302      	movs	r3, #2
  8001218:	657b      	str	r3, [r7, #84]	; 0x54
-  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK) {
+  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
  800121a:	f107 0314 	add.w	r3, r7, #20
  800121e:	4618      	mov	r0, r3
  8001220:	f001 fe34 	bl	8002e8c <HAL_RCC_OscConfig>
  8001224:	4603      	mov	r3, r0
  8001226:	2b00      	cmp	r3, #0
  8001228:	d001      	beq.n	800122e <SystemClock_Config+0x72>
+  {
     Error_Handler();
  800122a:	f000 f9d1 	bl	80015d0 <Error_Handler>
   }
 
   /** Initializes the CPU, AHB and APB buses clocks
-   */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK
+  */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
  800122e:	230f      	movs	r3, #15
  8001230:	603b      	str	r3, [r7, #0]
-      | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
+                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
  8001232:	2303      	movs	r3, #3
  8001234:	607b      	str	r3, [r7, #4]
@@ -1719,7 +1718,7 @@ void SystemClock_Config(void) {
  800123e:	2300      	movs	r3, #0
  8001240:	613b      	str	r3, [r7, #16]
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_4) != HAL_OK) {
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_4) != HAL_OK)
  8001242:	463b      	mov	r3, r7
  8001244:	2104      	movs	r1, #4
  8001246:	4618      	mov	r0, r3
@@ -1727,6 +1726,7 @@ void SystemClock_Config(void) {
  800124c:	4603      	mov	r3, r0
  800124e:	2b00      	cmp	r3, #0
  8001250:	d001      	beq.n	8001256 <SystemClock_Config+0x9a>
+  {
     Error_Handler();
  8001252:	f000 f9bd 	bl	80015d0 <Error_Handler>
   }
@@ -1738,12 +1738,12 @@ void SystemClock_Config(void) {
 	...
 
 08001260 <MX_DFSDM1_Init>:
-/**
- * @brief DFSDM1 Initialization Function
- * @param None
- * @retval None
- */
-static void MX_DFSDM1_Init(void) {
+  * @brief DFSDM1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_DFSDM1_Init(void)
+{
  8001260:	b580      	push	{r7, lr}
  8001262:	af00      	add	r7, sp, #0
   /* USER CODE END DFSDM1_Init 0 */
@@ -1767,24 +1767,25 @@ static void MX_DFSDM1_Init(void) {
  8001276:	4b28      	ldr	r3, [pc, #160]	; (8001318 <MX_DFSDM1_Init+0xb8>)
  8001278:	2201      	movs	r2, #1
  800127a:	725a      	strb	r2, [r3, #9]
-  hdfsdm1_filter0.Init.FilterParam.SincOrder = DFSDM_FILTER_SINC3_ORDER;
+  hdfsdm1_filter0.Init.FilterParam.SincOrder = DFSDM_FILTER_SINC4_ORDER;
  800127c:	4b26      	ldr	r3, [pc, #152]	; (8001318 <MX_DFSDM1_Init+0xb8>)
- 800127e:	f04f 42c0 	mov.w	r2, #1610612736	; 0x60000000
+ 800127e:	f04f 4200 	mov.w	r2, #2147483648	; 0x80000000
  8001282:	61da      	str	r2, [r3, #28]
-  hdfsdm1_filter0.Init.FilterParam.Oversampling = 32;
+  hdfsdm1_filter0.Init.FilterParam.Oversampling = 64;
  8001284:	4b24      	ldr	r3, [pc, #144]	; (8001318 <MX_DFSDM1_Init+0xb8>)
- 8001286:	2220      	movs	r2, #32
+ 8001286:	2240      	movs	r2, #64	; 0x40
  8001288:	621a      	str	r2, [r3, #32]
   hdfsdm1_filter0.Init.FilterParam.IntOversampling = 1;
  800128a:	4b23      	ldr	r3, [pc, #140]	; (8001318 <MX_DFSDM1_Init+0xb8>)
  800128c:	2201      	movs	r2, #1
  800128e:	625a      	str	r2, [r3, #36]	; 0x24
-  if (HAL_DFSDM_FilterInit(&hdfsdm1_filter0) != HAL_OK) {
+  if (HAL_DFSDM_FilterInit(&hdfsdm1_filter0) != HAL_OK)
  8001290:	4821      	ldr	r0, [pc, #132]	; (8001318 <MX_DFSDM1_Init+0xb8>)
  8001292:	f000 fed9 	bl	8002048 <HAL_DFSDM_FilterInit>
  8001296:	4603      	mov	r3, r0
  8001298:	2b00      	cmp	r3, #0
  800129a:	d001      	beq.n	80012a0 <MX_DFSDM1_Init+0x40>
+  {
     Error_Handler();
  800129c:	f000 f998 	bl	80015d0 <Error_Handler>
   }
@@ -1796,14 +1797,13 @@ static void MX_DFSDM1_Init(void) {
  80012a6:	4b1e      	ldr	r3, [pc, #120]	; (8001320 <MX_DFSDM1_Init+0xc0>)
  80012a8:	2201      	movs	r2, #1
  80012aa:	711a      	strb	r2, [r3, #4]
-  hdfsdm1_channel3.Init.OutputClock.Selection =
+  hdfsdm1_channel3.Init.OutputClock.Selection = DFSDM_CHANNEL_OUTPUT_CLOCK_SYSTEM;
  80012ac:	4b1c      	ldr	r3, [pc, #112]	; (8001320 <MX_DFSDM1_Init+0xc0>)
  80012ae:	2200      	movs	r2, #0
  80012b0:	609a      	str	r2, [r3, #8]
-      DFSDM_CHANNEL_OUTPUT_CLOCK_SYSTEM;
-  hdfsdm1_channel3.Init.OutputClock.Divider = 32;
+  hdfsdm1_channel3.Init.OutputClock.Divider = 64;
  80012b2:	4b1b      	ldr	r3, [pc, #108]	; (8001320 <MX_DFSDM1_Init+0xc0>)
- 80012b4:	2220      	movs	r2, #32
+ 80012b4:	2240      	movs	r2, #64	; 0x40
  80012b6:	60da      	str	r2, [r3, #12]
   hdfsdm1_channel3.Init.Input.Multiplexer = DFSDM_CHANNEL_EXTERNAL_INPUTS;
  80012b8:	4b19      	ldr	r3, [pc, #100]	; (8001320 <MX_DFSDM1_Init+0xc0>)
@@ -1821,11 +1821,10 @@ static void MX_DFSDM1_Init(void) {
  80012ca:	4b15      	ldr	r3, [pc, #84]	; (8001320 <MX_DFSDM1_Init+0xc0>)
  80012cc:	2200      	movs	r2, #0
  80012ce:	61da      	str	r2, [r3, #28]
-  hdfsdm1_channel3.Init.SerialInterface.SpiClock =
+  hdfsdm1_channel3.Init.SerialInterface.SpiClock = DFSDM_CHANNEL_SPI_CLOCK_INTERNAL;
  80012d0:	4b13      	ldr	r3, [pc, #76]	; (8001320 <MX_DFSDM1_Init+0xc0>)
  80012d2:	2204      	movs	r2, #4
  80012d4:	621a      	str	r2, [r3, #32]
-      DFSDM_CHANNEL_SPI_CLOCK_INTERNAL;
   hdfsdm1_channel3.Init.Awd.FilterOrder = DFSDM_CHANNEL_FASTSINC_ORDER;
  80012d6:	4b12      	ldr	r3, [pc, #72]	; (8001320 <MX_DFSDM1_Init+0xc0>)
  80012d8:	2200      	movs	r2, #0
@@ -1838,20 +1837,21 @@ static void MX_DFSDM1_Init(void) {
  80012e2:	4b0f      	ldr	r3, [pc, #60]	; (8001320 <MX_DFSDM1_Init+0xc0>)
  80012e4:	2200      	movs	r2, #0
  80012e6:	62da      	str	r2, [r3, #44]	; 0x2c
-  hdfsdm1_channel3.Init.RightBitShift = 0x0;
+  hdfsdm1_channel3.Init.RightBitShift = 0x1;
  80012e8:	4b0d      	ldr	r3, [pc, #52]	; (8001320 <MX_DFSDM1_Init+0xc0>)
- 80012ea:	2200      	movs	r2, #0
+ 80012ea:	2201      	movs	r2, #1
  80012ec:	631a      	str	r2, [r3, #48]	; 0x30
-  if (HAL_DFSDM_ChannelInit(&hdfsdm1_channel3) != HAL_OK) {
+  if (HAL_DFSDM_ChannelInit(&hdfsdm1_channel3) != HAL_OK)
  80012ee:	480c      	ldr	r0, [pc, #48]	; (8001320 <MX_DFSDM1_Init+0xc0>)
  80012f0:	f000 fdea 	bl	8001ec8 <HAL_DFSDM_ChannelInit>
  80012f4:	4603      	mov	r3, r0
  80012f6:	2b00      	cmp	r3, #0
  80012f8:	d001      	beq.n	80012fe <MX_DFSDM1_Init+0x9e>
+  {
     Error_Handler();
  80012fa:	f000 f969 	bl	80015d0 <Error_Handler>
   }
-  if (HAL_DFSDM_FilterConfigRegChannel(&hdfsdm1_filter0, DFSDM_CHANNEL_3,
+  if (HAL_DFSDM_FilterConfigRegChannel(&hdfsdm1_filter0, DFSDM_CHANNEL_3, DFSDM_CONTINUOUS_CONV_ON) != HAL_OK)
  80012fe:	2201      	movs	r2, #1
  8001300:	4909      	ldr	r1, [pc, #36]	; (8001328 <MX_DFSDM1_Init+0xc8>)
  8001302:	4805      	ldr	r0, [pc, #20]	; (8001318 <MX_DFSDM1_Init+0xb8>)
@@ -1859,7 +1859,7 @@ static void MX_DFSDM1_Init(void) {
  8001308:	4603      	mov	r3, r0
  800130a:	2b00      	cmp	r3, #0
  800130c:	d001      	beq.n	8001312 <MX_DFSDM1_Init+0xb2>
-      DFSDM_CONTINUOUS_CONV_ON) != HAL_OK) {
+  {
     Error_Handler();
  800130e:	f000 f95f 	bl	80015d0 <Error_Handler>
   }
@@ -1878,12 +1878,12 @@ static void MX_DFSDM1_Init(void) {
  8001328:	00030008 	.word	0x00030008
 
 0800132c <MX_USART2_UART_Init>:
-/**
- * @brief USART2 Initialization Function
- * @param None
- * @retval None
- */
-static void MX_USART2_UART_Init(void) {
+  * @brief USART2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART2_UART_Init(void)
+{
  800132c:	b580      	push	{r7, lr}
  800132e:	af00      	add	r7, sp, #0
   /* USER CODE END USART2_Init 0 */
@@ -1931,12 +1931,13 @@ static void MX_USART2_UART_Init(void) {
  8001368:	4b06      	ldr	r3, [pc, #24]	; (8001384 <MX_USART2_UART_Init+0x58>)
  800136a:	2200      	movs	r2, #0
  800136c:	625a      	str	r2, [r3, #36]	; 0x24
-  if (HAL_UART_Init(&huart2) != HAL_OK) {
+  if (HAL_UART_Init(&huart2) != HAL_OK)
  800136e:	4805      	ldr	r0, [pc, #20]	; (8001384 <MX_USART2_UART_Init+0x58>)
  8001370:	f003 f848 	bl	8004404 <HAL_UART_Init>
  8001374:	4603      	mov	r3, r0
  8001376:	2b00      	cmp	r3, #0
  8001378:	d001      	beq.n	800137e <MX_USART2_UART_Init+0x52>
+  {
     Error_Handler();
  800137a:	f000 f929 	bl	80015d0 <Error_Handler>
   }
@@ -1954,9 +1955,10 @@ static void MX_USART2_UART_Init(void) {
 0800138c <MX_DMA_Init>:
 
 /**
- * Enable DMA controller clock
- */
-static void MX_DMA_Init(void) {
+  * Enable DMA controller clock
+  */
+static void MX_DMA_Init(void)
+{
  800138c:	b580      	push	{r7, lr}
  800138e:	b082      	sub	sp, #8
  8001390:	af00      	add	r7, sp, #0
@@ -1994,16 +1996,16 @@ static void MX_DMA_Init(void) {
  80013c4:	40021000 	.word	0x40021000
 
 080013c8 <MX_GPIO_Init>:
-/**
- * @brief GPIO Initialization Function
- * @param None
- * @retval None
- */
-static void MX_GPIO_Init(void) {
+  * @brief GPIO Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_GPIO_Init(void)
+{
  80013c8:	b580      	push	{r7, lr}
  80013ca:	b08a      	sub	sp, #40	; 0x28
  80013cc:	af00      	add	r7, sp, #0
-  GPIO_InitTypeDef GPIO_InitStruct = { 0 };
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
  80013ce:	f107 0314 	add.w	r3, r7, #20
  80013d2:	2200      	movs	r2, #0
  80013d4:	601a      	str	r2, [r3, #0]
@@ -2011,8 +2013,8 @@ static void MX_GPIO_Init(void) {
  80013d8:	609a      	str	r2, [r3, #8]
  80013da:	60da      	str	r2, [r3, #12]
  80013dc:	611a      	str	r2, [r3, #16]
-  /* USER CODE BEGIN MX_GPIO_Init_1 */
-  /* USER CODE END MX_GPIO_Init_1 */
+/* USER CODE BEGIN MX_GPIO_Init_1 */
+/* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOC_CLK_ENABLE();
@@ -2102,8 +2104,8 @@ static void MX_GPIO_Init(void) {
  800147c:	f04f 4090 	mov.w	r0, #1207959552	; 0x48000000
  8001480:	f001 fade 	bl	8002a40 <HAL_GPIO_Init>
 
-  /* USER CODE BEGIN MX_GPIO_Init_2 */
-  /* USER CODE END MX_GPIO_Init_2 */
+/* USER CODE BEGIN MX_GPIO_Init_2 */
+/* USER CODE END MX_GPIO_Init_2 */
 }
  8001484:	bf00      	nop
  8001486:	3728      	adds	r7, #40	; 0x28
@@ -2299,12 +2301,12 @@ int _write(int file, char *pbuf, int len) {
  80015cc:	200002c8 	.word	0x200002c8
 
 080015d0 <Error_Handler>:
-
 /**
- * @brief  This function is executed in case of error occurrence.
- * @retval None
- */
-void Error_Handler(void) {
+  * @brief  This function is executed in case of error occurrence.
+  * @retval None
+  */
+void Error_Handler(void)
+{
  80015d0:	b480      	push	{r7}
  80015d2:	af00      	add	r7, sp, #0
   \details Disables IRQ interrupts by setting the I-bit in the CPSR.

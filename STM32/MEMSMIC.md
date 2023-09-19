@@ -111,6 +111,15 @@ DFSDM configuration 4:
 - right bit shift: 7
 - Sampling frequency: 80_000_000/64/64 = 19.5kHz
 
+DFSDM configuration 5:
+- System clock: 80MHz
+- Clock divider: 64
+- FOSR(decimation): 64
+- sinc filter: sinc4
+- resolution: 2 * 64^4 = 2^25 (25 bits)
+- right bit shift: 1
+- Sampling frequency: 80_000_000/64/64 = 19.5kHz
+
 => [Data visualization on Jupyter Notebook](./data/MEMSMIC.ipynb)
 
 ## Bit shift operations on DFSDM
@@ -135,11 +144,11 @@ V                                V
                   [ 24bit data containing PCM data ]
 ```
 
-What is more, it seems to me that nine LSBs of the data ouput register is always zero. In my code, I skip the nine LSBs by right shift operation (ie, output_data >> 9).
+What is more, it seems to me that nine LSBs of the data ouput register is always zero in certain conditions (Clock Divider and FOSR). In the other conditions, eight LSBs of the data output is always zero. Why?
 
 I have never received any formal education on digital signal processing and DFSDM in my life, so I do not know if I am right or wrong.
 
-Anyway, I have been taking the following approach in my projects so far:
+Anyway, I have taken the following approach in my projects so far:
 - right bit shift operation inside DFSDM to fit the internal data into 24bit length (or into 16bit length for feature engineering).
 - "output_data >> 9" operation by CPU
 

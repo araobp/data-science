@@ -130,16 +130,18 @@ DFSDM configuration 5:
 | Config | Zero LSBs confirmed | Clock divider  | FOSR   | fs(kHz) | sinc   | bit shift in DFSDM | bit shift by software  |
 | ------ | ------------------- | -------------- | ------ | ------- | ------ | ------------------ | ---------------------- |
 | 1      |              8 bits |             32 |    128 |    19.5 |  sinc3 |             6 bits |                 8 bits |
-| 2      |                     |             32 |     64 |    39.1 |  sinc3 |             3 bits |                 8 bits |
-| 3      |                     |             32 |     32 |    78.1 |  sinc3 |             0 bits |                 8 bits |
+| 2      |              8 bits |             32 |     64 |    39.1 |  sinc3 |             3 bits |                 8 bits |
+| 3      |              9 bits |             32 |     32 |    78.1 |  sinc3 |             0 bits |                 8 bits |
 | 4      |              8 bits |             64 |     64 |    19.5 |  sinc5 |            15 bits |                 8 bits |
 | 5      |              8 bits |             64 |     64 |    19.5 |  sinc4 |             9 bits |                 8 bits |
+
+Note: "Zero LSBs confirmed" means the length of LSBs that are always zero after applying right bit shift in DFSDM.
 
 **Conclusion**
 
 The configuration 5 seems to be the best for feature engineering for musical instrument recognition use case that I am planing to develop after this DFSDM evaluation.
 
-## Bit shift operations on DFSDM
+## Bit shift operations on DFSDM (*1)
 
 I have been confused on this issue for many years.
 
@@ -161,15 +163,19 @@ V                                V
                   [ 24bit data containing PCM data ]
 ```
 
-What is more, it seems to me that nine LSBs of the data ouput register is always zero in certain conditions (Clock Divider and FOSR). In the other conditions, eight LSBs of the data output is always zero. Why?
+What is more, it seems to me that nine LSBs of the data ouput register is always zero in certain conditions. In the other conditions, eight LSBs of the data output is always zero. Why?
+
+My guess is that:
+- before applying right bit shift in DFSDM, the lower nine bits of LSBs are always zero: all the numbers are even.
+- after applying right bit shift in DFSDM, the lower eight bits of LSBs are always zero.
 
 I have never received any formal education on digital signal processing and DFSDM in my life, so I do not know if I am right or wrong.
 
-Anyway, I have taken the following approach in my projects so far:
+I have taken the following approach in my projects so far:
 - right bit shift operation inside DFSDM to fit the internal data into 24bit length (or into 16bit length for feature engineering).
 - "output_data >> 9" operation by CPU
 
-**I am going take the DFSDM configutaion below for feature engineering for musical instrument recognition**
+From now on, I take this approach:
 - right bit shift operation inside DFSDM to fit the internal data into 16bit length.
 - "output_data >> 8" operation by CPU.
 

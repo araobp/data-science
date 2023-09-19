@@ -176,7 +176,7 @@ I have taken the following approach in my past projects:
 - "output_data >> 9" operation by CPU
 
 From now on, I take this approach:
-- right bit shift operation inside DFSDM to fit the internal data into 16bit length.
+- right bit shift operation inside DFSDM to fit the internal data into 16bit length (16bit PCM for audio).
 - "output_data >> 8" operation by CPU.
 
 ## Reference

@@ -1,6 +1,6 @@
 # Digital Signal Processing
 
-I have started relearning digital signal processing by re-doing the works in my past projects.
+I have started re-learning digital signal processing by re-doing the works in my past projects. Especially, I am very interested in digital **audio** processing and **acoustinc scene classification** with a low-end and low-power-consumption MCU such as STM32L476RG from STMicroelectronics.
 
 ## Digital Audio Processing (Work in progress)
 
@@ -12,7 +12,7 @@ The best text book that I have ever read in my life: [C言語ではじめる音�
 
 => [Speech Processing for AI](SpeechProcessing)
 
-In September 2018, I found this great paper on the net: https://haythamfayek.com/2016/04/21/speech-processing-for-machine-learning.html. I relearn the paper in this project.
+In the summer of September 2018, I found this great paper on the net: https://haythamfayek.com/2016/04/21/speech-processing-for-machine-learning.html. I re-learn the paper in this project.
 
 ## AI Rock Paper Scissors
 

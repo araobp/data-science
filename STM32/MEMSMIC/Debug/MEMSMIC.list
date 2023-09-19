@@ -1393,7 +1393,7 @@ int main(void)
  8000fd2:	4a70      	ldr	r2, [pc, #448]	; (8001194 <main+0x2f0>)
  8000fd4:	69fb      	ldr	r3, [r7, #28]
  8000fd6:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
- 8000fda:	125b      	asrs	r3, r3, #9
+ 8000fda:	121b      	asrs	r3, r3, #8
  8000fdc:	ee07 3a90 	vmov	s15, r3
  8000fe0:	eef8 7ae7 	vcvt.f32.s32	s15, s15
  8000fe4:	4a6c      	ldr	r2, [pc, #432]	; (8001198 <main+0x2f4>)
@@ -1837,9 +1837,9 @@ static void MX_DFSDM1_Init(void)
  80012e2:	4b0f      	ldr	r3, [pc, #60]	; (8001320 <MX_DFSDM1_Init+0xc0>)
  80012e4:	2200      	movs	r2, #0
  80012e6:	62da      	str	r2, [r3, #44]	; 0x2c
-  hdfsdm1_channel3.Init.RightBitShift = 0x1;
+  hdfsdm1_channel3.Init.RightBitShift = 0x9;
  80012e8:	4b0d      	ldr	r3, [pc, #52]	; (8001320 <MX_DFSDM1_Init+0xc0>)
- 80012ea:	2201      	movs	r2, #1
+ 80012ea:	2209      	movs	r2, #9
  80012ec:	631a      	str	r2, [r3, #48]	; 0x30
   if (HAL_DFSDM_ChannelInit(&hdfsdm1_channel3) != HAL_OK)
  80012ee:	480c      	ldr	r0, [pc, #48]	; (8001320 <MX_DFSDM1_Init+0xc0>)

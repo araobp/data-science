@@ -126,7 +126,7 @@ DFSDM configuration 5:
 
 **Conclusion**
 
-The configuration 5 seems to be the best for feature engineering for the edge AI life log use case that I am planing to develop after this DFSDM evaluation.
+The configuration 5 seems to be the best for feature engineering for musical instrument recognition use case that I am planing to develop after this DFSDM evaluation.
 
 ## Bit shift operations on DFSDM
 

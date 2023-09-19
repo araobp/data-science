@@ -144,7 +144,7 @@ V                                V
                   [ 24bit data containing PCM data ]
 ```
 
-What is more, it seems to me that nine LSBs of the data ouput register is always zero in certain conditions (Clock Divider and FOSR).
+What is more, it seems to me that nine LSBs of the data ouput register is always zero in certain conditions (Clock Divider and FOSR). In the other conditions, eight LSBs of the data output is always zero. Why?
 
 I have never received any formal education on digital signal processing and DFSDM in my life, so I do not know if I am right or wrong.
 

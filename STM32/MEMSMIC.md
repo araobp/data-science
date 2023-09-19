@@ -86,7 +86,7 @@ DFSDM configuration 1:
 - resolution: 2 * 128^3 = 2^22 (22 bits)
 - Sampling frequency: 80_000_000/32/128 = 19.5kHz
 
-DFSDM configuration 3:
+DFSDM configuration 2:
 - System clock: 80MHz
 - Clock divider: 32
 - FOSR(decimation): 64
@@ -94,7 +94,7 @@ DFSDM configuration 3:
 - resolution: 2 * 64^3 = 2^19 (19 bits)
 - Sampling frequency: 80_000_000/32/64 = 39.1kHz
 
-DFSDM configuration 2:
+DFSDM configuration 3:
 - System clock: 80MHz
 - Clock divider: 32
 - FOSR(decimation): 32

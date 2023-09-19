@@ -38,9 +38,22 @@ The folder contains the hardware part of "RockPaperScissors" on STMicroelectroni
 
 This is a project to develop edge AI for Acoustic Scene Classification based on STM32Cube.AI, referring to my past project: https://github.com/araobp/acoustic-features which was the best thing I have ever developed in my carrier as an ICT engineer, although it was my hobby project (not a commercial product).
 
+### Step 1: Evaluation of MEMS microphone and DFSDM
+
 => [MEMSMIC](STM32/MEMSMIC.md)
 
-=> [Osciloscope] (Work in progress)
+### Step 2: EEPROM emulation
+
+STM32 supports EEPROM emulation. I evaluate the feature for saving configuration data on it.
+
+=> [EEPROM](STM32/EEPROM.md) (Work in progress)
+
+### Step3: Oscilloscope application
+
+I will develop two kinds of oscilloscope applications:
+
+=> [Osciloscope(Python/Tkinter)]
+=> [Osciloscope(Android)]
 
 ...
 

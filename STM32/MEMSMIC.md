@@ -158,7 +158,7 @@ Anyway, I have taken the following approach in my projects so far:
 - right bit shift operation inside DFSDM to fit the internal data into 24bit length (or into 16bit length for feature engineering).
 - "output_data >> 9" operation by CPU
 
-**From now on, I am going take this approach for feature engineering with the DFSDM configuraion 5:**
+**I am going take the DFSDM configutaion below for feature engineering for musical instrument recognition**
 - right bit shift operation inside DFSDM to fit the internal data into 16bit length.
 - "output_data >> 8" operation by CPU.
 

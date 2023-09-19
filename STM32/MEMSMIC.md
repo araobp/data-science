@@ -171,7 +171,7 @@ My guess is that:
 
 I have never received any formal education on digital signal processing and DFSDM in my life, so I do not know if I am right or wrong.
 
-I have taken the following approach in my projects so far:
+I have taken the following approach in my past projects:
 - right bit shift operation inside DFSDM to fit the internal data into 24bit length (or into 16bit length for feature engineering).
 - "output_data >> 9" operation by CPU
 

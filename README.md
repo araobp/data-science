@@ -52,9 +52,9 @@ STM32 supports EEPROM emulation. I evaluate the feature for saving configuration
 
 I will develop two kinds of oscilloscope applications:
 
-=> [Osciloscope(Python/Tkinter)]
+=> [Oscilloscope(Python/Tkinter)]
 
-=> [Osciloscope(Android)]
+=> [Oscilloscope(Android)]
 
 ...
 

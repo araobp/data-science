@@ -127,14 +127,13 @@ DFSDM configuration 5:
 - right bit shift in DFSDM: 9 (results in 16 bit PCM)
 - Sampling frequency: 80_000_000/64/64 = 19.5kHz
 
-| Config | Zero LSBs | Clock   | FOSR   | fs(kHz) | sinc   | bit shift | bit shift   |
-|        | confirmed | Divider |        |         | filter | in DFSDM  | by software | 
-|--------|-----------|---------|--------|---------|--------|-----------|-------------|
-| 1      |  9 bits   | 32      | 128    | 19.5    | sinc3  |  6 bits   | 8 bits      |
-| 2      |           | 32      | 64     | 39.1    | sinc3  |  3 bits   | 8 bits      |
-| 3      |           | 32      | 32     | 78.1    | sinc3  |  0 bits   | 8 bits      |
-| 4      | 8 bits    | 64      | 64     | 19.5    | sinc5  | 15 bits   | 8 bits      |
-| 5      | 8 bits    | 64      | 64     | 19.5    | sinc4  |  9 bits   | 8 bits      |
+| Config | Zero LSBs confirmed | Clock divider  | FOSR   | fs(kHz) | sinc   | bit shift in DFSDM | bit shift by software  |
+| ------ | ------------------- | -------------- | ------ | ------- | ------ | ------------------ | ---------------------- |
+| 1      |              9 bits |             32 |    128 |    19.5 |  sinc3 |             6 bits |                 8 bits |
+| 2      |                     |             32 |     64 |    39.1 |  sinc3 |             3 bits |                 8 bits |
+| 3      |                     |             32 |     32 |    78.1 |  sinc3 |             0 bits |                 8 bits |
+| 4      |              8 bits |             64 |     64 |    19.5 |  sinc5 |            15 bits |                 8 bits |
+| 5      |              8 bits |             64 |     64 |    19.5 |  sinc4 |             9 bits |                 8 bits |
 
 **Conclusion**
 

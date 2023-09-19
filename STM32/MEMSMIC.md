@@ -80,7 +80,7 @@ I reuse [this code](https://github.com/araobp/NUCLEO-L476RG_DFSDM_PDM-Mic) with 
 
 => [Test results on Jupyter Notebook](./data/MEMSMIC.ipynb)
 
-I made the tests under the following conditions. The configuration 5 seems to be the best for feature engineering for the edge AI life log use case that I am planing to develop after this DFSDM evaluation.
+I made the tests under the following conditions. 
 
 DFSDM configuration 1:
 - System clock: 80MHz
@@ -123,6 +123,10 @@ DFSDM configuration 5:
 - resolution: 2 * 64^4 = 2^25 (25 bits)
 - right bit shift: 1
 - Sampling frequency: 80_000_000/64/64 = 19.5kHz
+
+**Conclusion**
+
+The configuration 5 seems to be the best for feature engineering for the edge AI life log use case that I am planing to develop after this DFSDM evaluation.
 
 ## Bit shift operations on DFSDM
 

@@ -102,6 +102,15 @@ DFSDM configuration 3:
 - resolution: 2 * 32^3 = 2^16 (16 bits)
 - Sampling frequency: 80_000_000/32/64 = 78.1kHz
 
+DFSDM configuration 4:
+- System clock: 80MHz
+- Clock divider: 32
+- FOSR(decimation): 64
+- sinc filter: sinc5
+- resolution: 2 * 32^5 = 2^26 (26 bits)
+- right bit shift: 2
+- Sampling frequency: 80_000_000/32/64 = 39.1kHz
+
 => [Data visualization on Jupyter Notebook](./data/MEMSMIC.ipynb)
 
 ## Bit shift operations on DFSDM

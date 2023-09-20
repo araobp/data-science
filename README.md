@@ -42,7 +42,7 @@ This is a project to develop edge AI for Acoustic Scene Classification based on 
 
 => [MEMSMIC](STM32/MEMSMIC.md)
 
-### Step 2: Flash memory read/write
+### Step 2: Read and write config data on Flash memory
 
 => [Flash](STM32/FLASH.md) (Work in progress)
 

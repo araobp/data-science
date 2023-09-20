@@ -42,16 +42,9 @@ This is a project to develop edge AI for Acoustic Scene Classification based on 
 
 => [MEMSMIC](STM32/MEMSMIC.md)
 
-### Step 2: Read and write config data on EEPROM
+### Step2:  
 
 
-### Step3: Oscilloscope application
-
-I will develop two kinds of oscilloscope applications:
-
-=> [Oscilloscope(Python/Tkinter)]
-
-=> [Oscilloscope(Android)]
 
 ...
 

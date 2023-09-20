@@ -42,11 +42,9 @@ This is a project to develop edge AI for Acoustic Scene Classification based on 
 
 => [MEMSMIC](STM32/MEMSMIC.md)
 
-### Step 2: EEPROM emulation
+### Step 2: Flash memory read/write
 
-STM32 supports EEPROM emulation. I evaluate the feature for saving configuration data on it.
-
-=> [EEPROM](STM32/EEPROM.md) (Work in progress)
+=> [Flash](STM32/FLASH.md) (Work in progress)
 
 ### Step3: Oscilloscope application
 

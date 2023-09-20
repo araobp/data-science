@@ -42,11 +42,12 @@ This is a project to develop edge AI for Acoustic Scene Classification based on 
 
 => [MEMSMIC](STM32/MEMSMIC.md)
 
-### Step2:  
+### Step 2: Acoustic Feature Camera (without AI)
 
+### Step 3: Training CNN on Jupyter Notebook
 
+### Step 4: Acoustic Feature Camera (with AI)
 
-...
 
 ## Mic Array
 

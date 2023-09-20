@@ -44,7 +44,6 @@ This is a project to develop edge AI for Acoustic Scene Classification based on 
 
 ### Step 2: Read and write config data on EEPROM
 
-(Work in progress)
 
 ### Step3: Oscilloscope application
 

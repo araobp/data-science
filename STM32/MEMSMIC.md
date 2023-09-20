@@ -165,7 +165,7 @@ V                                V
 
 What is more, it seems to me that nine LSBs of the data ouput register is always zero in certain conditions. In the other conditions, eight LSBs of the data output is always zero. Why?
 
-My guess is that:
+I have confirmed the following by experiments with the five configurations above:
 - before applying right bit shift in DFSDM, the lower nine bits of LSBs are always zero: all the numbers are even.
 - after applying right bit shift in DFSDM, the lower eight bits of LSBs are always zero.
 

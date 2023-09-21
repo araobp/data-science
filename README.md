@@ -44,6 +44,8 @@ This is a project to develop edge AI for Acoustic Scene Classification based on 
 
 ### Step 2: Acoustic Feature Camera (without AI)
 
+=> [ACOUSTIC_FEATURE_CAMERA](STM32/ACOUSTIC_FEATURE_CAMERA.md)
+
 ### Step 3: Training CNN on Jupyter Notebook
 
 ### Step 4: Acoustic Feature Camera (with AI)

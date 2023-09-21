@@ -1,6 +1,11 @@
-# Digital Signal Processing
+# Edge AI and Digital Signal Processing
 
-I have started re-learning digital signal processing by re-doing the works in my past projects. Especially, I am very interested in Digital **Audio** Processing and **Acoustinc Scene Classification** with a low-end and low-power-consumption MCU such as STM32L476RG from STMicroelectronics.
+Stop Global Warming! I cannot stand high temeprature. Edge AI with low-power-consumption MCU is a key technology to stop Global Warming.
+
+In this project, I review and improve my achievements on edge AI in my past projects:
+- [acoustic-features](https://github.com/araobp/acoustic-features)
+- [stm32-mcu](https://github.com/araobp/stm32-mcu)
+- [ultrasonic-communication](https://github.com/araobp/ultrasonic-communication)
 
 ## Digital Audio Processing
 
@@ -14,13 +19,13 @@ Learn Audio feature engineering basics for Acoustinc Scene Classification!
 
 => [Speech Processing for AI](SpeechProcessing)
 
-## AI Rock Paper Scissors
+## Edge AI: AI Rock Paper Scissors
 
 Run Rock Paper Scissors machine with edge AI!
 
 => [Rock Paper Scissors](RockPaperScissors.md)
 
-## Acoustic Scene Classification (Work in progress)
+## Edge AI: Acoustic Scene Classification (Work in progress)
 
 Develop practical use cases with acoustic scene classifcation!
 

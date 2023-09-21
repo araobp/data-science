@@ -36,7 +36,7 @@ typedef enum {
 // Filter bank
 // Note: "+2" means both edges, i.e., zero and the max number
 extern float32_t filterbank[NUM_FILTERS+2][FILTER_LENGTH];
-int k_range[NUM_FILTERS+2][2];
+extern int k_range[NUM_FILTERS+2][2];
 
 //----- Function declarations -----------------------------------//
 

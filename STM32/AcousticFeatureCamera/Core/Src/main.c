@@ -21,7 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "dsp.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -47,6 +47,16 @@ DMA_HandleTypeDef hdma_dfsdm1_flt0;
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
+
+// N / 2
+const int NN_HALF = NN / 2;
+
+// N * 2
+const int NN_DOUBLE = NN * 2;
+
+// flag: "new PCM data has just been copied to buf"
+volatile bool new_pcm_data_a = false;
+volatile bool new_pcm_data_b = false;
 
 /* USER CODE END PV */
 
@@ -302,6 +312,15 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+/**
+ * @brief  Retargets the C library printf function to the USART.
+ * @param  None
+ * @retval None
+ */
+int _write(int file, char *ptr, int len) {
+  HAL_UART_Transmit(&huart2, (uint8_t *) ptr, (uint16_t) len, 0xFFFFFFFF);
+  return len;
+}
 
 /* USER CODE END 4 */
 

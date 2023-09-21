@@ -4,6 +4,6 @@ The best text book that I have ever read in my life in the area of DSP is [Cè¨€è
 
 This folder contains my Python-version of the C programmes in the book.
 
-- [Audio Waveform](DigitalAudioProcessing1 -- Audio Waveform.ipynb)
-- [Descrete Fourier Transform](DigitalAudioProcessing2 -- Descrete Fourier Transform.ipynb)
-- [RFFT and Windowing](DigitalAudioProcessing3 -- RFFT and Windowing.ipynb)
+- [Audio Waveform](DigitalAudioProcessing1_AudioWaveform.ipynb)
+- [Descrete Fourier Transform](DigitalAudioProcessing2_DescreteFourierTransform.ipynb)
+- [RFFT and Windowing](DigitalAudioProcessing3_RFFTandWindowing.ipynb)

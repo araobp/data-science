@@ -193,13 +193,6 @@ void dsp(float32_t *s1, mode mode) {
   uint32_t start = 0;
   uint32_t end = 0;
 
-#ifdef INFERENCE
-  static bool active = false;
-  static int activity_cnt = 0;
-  float32_t max_value;
-  uint32_t max_index;
-#endif
-
   start = HAL_GetTick();
 
   apply_ac_coupling(s1);  // remove DC
@@ -216,28 +209,10 @@ void dsp(float32_t *s1, mode mode) {
       for (int i = 0; i < NUM_FILTERS; i++) {
         mfsc_buffer[pos * NUM_FILTERS + i] = (int8_t) s1[i];
       }
-#ifdef INFERENCE
-      // Voice activity detection for inference by X-CUBE-AI
-      if (!start_inference) {
-        if (!active) {
-          arm_max_f32(s1, NUM_FILTERS, &max_value, &max_index);
-          if (max_value > ACTIVITY_THRESHOLD) {
-            active = true;
-            activity_cnt = 0;
-          }
-        } else {
-          if (++activity_cnt >= WINDOW_LENGTH) {
-            active = false;
-            start_inference = true;
-          }
-        }
-      }
-#else
       apply_dct2(s1);
       for (int i = 0; i < NUM_FILTERS; i++) {
         mfcc_buffer[pos * NUM_FILTERS + i] = (int8_t) s1[i];
       }
-#endif
     }
   }
   if (++pos >= 200)
@@ -312,6 +287,14 @@ void dump(void) {
 int main(void)
 {
   /* USER CODE BEGIN 1 */
+  // Audio sample rate and period
+  float32_t f_s;
+
+  // DMA peripheral-to-memory double buffer
+  int32_t input_buf[NN * 2] = { 0 };
+
+  // PCM data store for further processing (FFT etc)
+  float32_t signal_buf[NN + NN / 2] = { 0.0f };  // NN/2 overlap
 
   /* USER CODE END 1 */
 
@@ -338,15 +321,78 @@ int main(void)
   MX_DFSDM1_Init();
   /* USER CODE BEGIN 2 */
 
+  f_s = SystemCoreClock / hdfsdm1_channel3.Init.OutputClock.Divider
+      / hdfsdm1_filter0.Init.FilterParam.Oversampling
+      / hdfsdm1_filter0.Init.FilterParam.IntOversampling;
+
+  // DSP initialization
+  init_dsp(f_s);
+
+  if (HAL_DFSDM_FilterRegularStart_DMA(&hdfsdm1_filter0, input_buf, NN * 2) != HAL_OK) {
+    Error_Handler();
+  }
+
+  // Enable UART receive interrupt to receive a command
+  // from an application processor
+  HAL_UART_Receive_IT(&huart2, rxbuf, 1);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    // Wait for next PCM samples from M1
+    if (new_pcm_data_a) {  // 1st half of the buffer
+
+      // Overlap
+      arm_copy_f32(signal_buf + NN, signal_buf, NN_HALF);
+
+      // Bit shift to obtain 16-bit PCM
+      for (uint32_t n = 0; n < NN; n++) {
+        signal_buf[n+NN_HALF] = (float32_t) (input_buf[n] >> 9);
+      }
+
+      // Pre-emphasis
+      if (pre_emphasis_enabled) {
+        apply_pre_emphasis(signal_buf + NN_HALF);
+      }
+
+      // Overlap dsp
+      overlap_dsp(signal_buf, output_mode);
+
+      new_pcm_data_a = false;
+
+    }
+
+    if (new_pcm_data_b) {  // 2nd half of the buffer
+
+      // Overlap
+      arm_copy_f32(signal_buf + NN, signal_buf, NN_HALF);
+
+      // Bit shift to obtain 16-bit PCM
+      for (uint32_t n = 0; n < NN; n++) {
+        signal_buf[n+NN_HALF] = (float32_t) (input_buf[NN+n] >> 9);
+      }
+
+      // Pre-emphasis
+      if (pre_emphasis_enabled) {
+        apply_pre_emphasis(signal_buf + NN_HALF);
+      }
+
+      // Overlap dsp
+      overlap_dsp(signal_buf, output_mode);
+
+      new_pcm_data_b = false;
+    }
+
+    // Dump debug info
+    dump();
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+
   }
   /* USER CODE END 3 */
 }
@@ -543,6 +589,32 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 /**
+ * @brief  Half regular conversion complete callback.
+ * @param  hdfsdm_filter DFSDM filter handle.
+ * @retval None
+ */
+void HAL_DFSDM_FilterRegConvHalfCpltCallback(
+    DFSDM_Filter_HandleTypeDef *hdfsdm_filter) {
+  if (!new_pcm_data_a && (hdfsdm_filter == &hdfsdm1_filter0)) {
+    new_pcm_data_a = true;  // ready for 1st half of the buffer
+  }
+}
+
+/**
+ * @brief  Regular conversion complete callback.
+ * @note   In interrupt mode, user has to read conversion value in this function
+ using HAL_DFSDM_FilterGetRegularValue.
+ * @param  hdfsdm_filter : DFSDM filter handle.
+ * @retval None
+ */
+void HAL_DFSDM_FilterRegConvCpltCallback(
+    DFSDM_Filter_HandleTypeDef *hdfsdm_filter) {
+  if (!new_pcm_data_b && (hdfsdm_filter == &hdfsdm1_filter0)) {
+    new_pcm_data_b = true;  // ready for 2nd half of the buffer
+  }
+}
+
+/**
  * @brief  Retargets the C library printf function to the USART.
  * @param  None
  * @retval None
@@ -552,6 +624,45 @@ int _write(int file, char *ptr, int len) {
   return len;
 }
 
+//  (This func is commented out: for a debug purpose only)
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+  if (GPIO_Pin == GPIO_PIN_13) {  // User button (blue tactile switch)
+    //
+  }
+}
+
+/*
+ * One-byte command reception from an application processor
+ */
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
+  char cmd;
+
+  cmd = rxbuf[0];
+
+  switch (cmd) {
+
+  // Pre-emphasis
+  case 'P':
+    pre_emphasis_enabled = true;
+    break;
+  case 'p':
+    pre_emphasis_enabled = false;
+    break;
+  case 'f':
+    debug_output = FILTERBANK;
+    break;
+  case 't':
+    debug_output = ELAPSED_TIME;
+    break;
+    // The others
+  default:
+    output_mode = (mode) (cmd - 0x30);
+    printing = true;
+    break;
+  }
+
+  HAL_UART_Receive_IT(&huart2, rxbuf, 1);
+}
 /* USER CODE END 4 */
 
 /**

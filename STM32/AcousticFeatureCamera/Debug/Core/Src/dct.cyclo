@@ -1,0 +1,5 @@
+../Core/Src/dct.c:15:11:c_k	2
+../Core/Src/dct.c:25:6:dct2_init_f32	5
+../Core/Src/dct.c:65:6:dct2_2d_init_f32	1
+../Core/Src/dct.c:78:6:dct2_f32	2
+../Core/Src/dct.c:102:6:dct2_2d_f32	3

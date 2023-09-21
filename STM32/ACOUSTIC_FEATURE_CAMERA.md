@@ -2,6 +2,33 @@
 
 Acoustic Feature Camera is a device to capture acoustic features for edge AI.
 
+### Architecture
+
+```
+                                                         ARM Cortex-M4(STM32L476RG)
+                                         ***** pre-processing *****           ***** inference *****
+                                      ................................................................
+                                      :   Filters for feature extraction        Inference on CNN     :
+                                      :                                         ..................   :
+Sound/voice ))) [MEMS mic]--PDM-->[DFSDM]--+->[]->[]->[]->[]---+----Features--->: code generated :   :
+                                      :    |                   |                : by X-CUBE-AI   :   :
+                                      :    +------------+      |                ..................   :
+                                      :     +-----------|------+                                     :
+                                      :     |           |                                            :
+                                      :     V           V                                            :
+                                      :..[USART]......[DAC]..........................................:
+                                            |           |
+                                            |           | *** monitoring raw sound ***
+                                            |           +---> [Analog filter] --> head phone
+                                       (features)
+                                            |
+                                            | *** learning ***
+                                            +--(dataset)--> [oscilloscope.py/Win10 or RasPi3] Keras/TensorFlow
+                                            |
+                                            | *** inference ***
+                                            +--(dataset)--> [oscilloscope.py/Win10 or RasPi3] Keras/TensorFlow
+```
+
 ## DFSDM config (tentative)
 
 Config A

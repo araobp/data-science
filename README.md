@@ -2,7 +2,10 @@
 
 Stop Global Warming! I cannot stand high temeprature. Edge AI with low-power-consumption MCU is a key technology to stop Global Warming.
 
-In this project, I review and improve my achievements on edge AI in my past projects.
+In this project, I review and improve my achievements on edge AI in my past projects:
+- [acoustic-features](https://github.com/araobp/acoustic-features)
+- [stm32-mcu](https://github.com/araobp/stm32-mcu)
+- [ultrasonic-communication](https://github.com/araobp/ultrasonic-communication)
 
 ## Digital Audio Processing
 

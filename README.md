@@ -2,7 +2,7 @@
 
 I have started re-learning digital signal processing by re-doing the works in my past projects. Especially, I am very interested in Digital **Audio** Processing and **Acoustinc Scene Classification** with a low-end and low-power-consumption MCU such as STM32L476RG from STMicroelectronics.
 
-## Digital Audio Processing (Work in progress)
+## Digital Audio Processing
 
 Learn DSP basics!
 
@@ -20,7 +20,7 @@ Run Rock Paper Scissors machine with edge AI!
 
 => [Rock Paper Scissors](RockPaperScissors.md)
 
-## Acoustic Scene Classification
+## Acoustic Scene Classification (Work in progress)
 
 Develop practical use cases with acoustic scene classifcation!
 

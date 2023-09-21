@@ -1,6 +1,6 @@
-# Digital Signal Processing
+# Edge AI and Digital Signal Processing
 
-I have started re-learning digital signal processing by re-doing the works in my past projects. Especially, I am very interested in Digital **Audio** Processing and **Acoustinc Scene Classification** with a low-end and low-power-consumption MCU such as STM32L476RG from STMicroelectronics.
+Stop Global Warming! I cannot stand high temeprature. Edge AI with low-power-consumption MCU is a key technology to stop Global Warming.
 
 ## Digital Audio Processing
 

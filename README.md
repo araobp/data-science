@@ -22,49 +22,15 @@ Run Rock Paper Scissors machine with edge AI!
 
 ## Acoustic Scene Classification
 
-This is a project to develop edge AI for Acoustic Scene Classification based on STM32Cube.AI, referring to my past project: https://github.com/araobp/acoustic-features which was the best thing I have ever developed in my carrier as an ICT engineer, although it was my hobby project (not a commercial product).
+Develop practical use cases with acoustic scene classifcation!
 
-### Architecture
-```
-                                                         ARM Cortex-M4(STM32L476RG)
-                                         ***** pre-processing *****           ***** inference *****
-                                      ................................................................
-                                      :   Filters for feature extraction        Inference on CNN     :
-                                      :                                         ..................   :
-Sound/voice ))) [MEMS mic]--PDM-->[DFSDM]--+->[]->[]->[]->[]---+----Features--->: code generated :   :
-                                      :    |                   |                : by X-CUBE-AI   :   :
-                                      :    +------------+      |                ..................   :
-                                      :     +-----------|------+                                     :
-                                      :     |           |                                            :
-                                      :     V           V                                            :
-                                      :..[USART]......[DAC]..........................................:
-                                            |           |
-                                            |           | *** monitoring raw sound ***
-                                            |           +---> [Analog filter] --> head phone
-                                       (features)
-                                            |
-                                            | *** learning ***
-                                            +--(dataset)--> [oscilloscope.py/Win10 or RasPi3] Keras/TensorFlow
-                                            |
-                                            | *** inference ***
-                                            +--(dataset)--> [oscilloscope.py/Win10 or RasPi3] Keras/TensorFlow
-```
-### Step 1: Evaluation of MEMS microphone and DFSDM
+=> [Acoustic Scene Classification](AcousticSceneClassification.md)
 
-=> [MEMSMIC](STM32/MEMSMIC.md)
+## Wish list
 
-### Step 2: Acoustic Feature Camera (without AI)
-
-=> [ACOUSTIC_FEATURE_CAMERA](STM32/ACOUSTIC_FEATURE_CAMERA.md) (Work in progress)
-
-### Step 3: Training CNN on Jupyter Notebook
-
-### Step 4: Acoustic Feature Camera (with AI)
-
-
-## Mic Array
-
-...
+I am interested in the following areas:
+- Mic array
+- Ultrasonic communications
 
 ## References
 
@@ -88,8 +54,6 @@ on applicable STM32 microcontrollers](https://www.st.com/resource/en/application
 ---
 ## Misc
 
-The below works are for training myself in the field of data science and Deep Learning.
-
 ### [Arduino-version of the thermography](misc/Arduino)
 
 Make Jupyter Notebook collect data from this Arduino version of the thermograpy device with Panasonic AMG8833.
@@ -98,14 +62,9 @@ Make Jupyter Notebook collect data from this Arduino version of the thermograpy 
 
 This is me.
 
-### [CIFAR 10](misc/CIFAR10)
-
-The best accuracy I have ever achieved is 75%. Can I get a higher score than 75%?
-
-### [MINIST](misc/MNIST)
-
-### [IMDb](misc/IMDb)
-
-### [Titanic](misc/Titanic)
-
-### [Audio](misc/Audio)
+### Other learning
+- [CIFAR 10](misc/CIFAR10): The best accuracy I have ever achieved is 75%...
+- [MINIST](misc/MNIST)
+- [IMDb](misc/IMDb)
+- [Titanic](misc/Titanic)
+- [Audio](misc/Audio)

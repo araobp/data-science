@@ -2,31 +2,6 @@
 
 This is a project to develop edge AI for Acoustic Scene Classification based on STM32Cube.AI, referring to my past project: https://github.com/araobp/acoustic-features
 
-### Architecture
-```
-                                                         ARM Cortex-M4(STM32L476RG)
-                                         ***** pre-processing *****           ***** inference *****
-                                      ................................................................
-                                      :   Filters for feature extraction        Inference on CNN     :
-                                      :                                         ..................   :
-Sound/voice ))) [MEMS mic]--PDM-->[DFSDM]--+->[]->[]->[]->[]---+----Features--->: code generated :   :
-                                      :    |                   |                : by X-CUBE-AI   :   :
-                                      :    +------------+      |                ..................   :
-                                      :     +-----------|------+                                     :
-                                      :     |           |                                            :
-                                      :     V           V                                            :
-                                      :..[USART]......[DAC]..........................................:
-                                            |           |
-                                            |           | *** monitoring raw sound ***
-                                            |           +---> [Analog filter] --> head phone
-                                       (features)
-                                            |
-                                            | *** learning ***
-                                            +--(dataset)--> [oscilloscope.py/Win10 or RasPi3] Keras/TensorFlow
-                                            |
-                                            | *** inference ***
-                                            +--(dataset)--> [oscilloscope.py/Win10 or RasPi3] Keras/TensorFlow
-```
 ### Step 1: Evaluation of MEMS microphone and DFSDM
 
 => [MEMSMIC](STM32/MEMSMIC.md)

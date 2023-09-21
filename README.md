@@ -6,13 +6,9 @@ I have started re-learning digital signal processing by re-doing the works in my
 
 => [Digital Audio Processing](DigitalAudioProcessing)
 
-The best text book that I have ever read in my life: [C言語ではじめる音のプログラミング―サウンドエフェクトの信号処理](https://www.ohmsha.co.jp/book/9784274206504/). This folder contains my Python-version of the C programmes in the book.
-
 ## Speech Processing for AI
 
 => [Speech Processing for AI](SpeechProcessing)
-
-In the summer of September 2018, I found this great paper on the net: https://haythamfayek.com/2016/04/21/speech-processing-for-machine-learning.html. I re-learn the paper in this project.
 
 ## AI Rock Paper Scissors
 

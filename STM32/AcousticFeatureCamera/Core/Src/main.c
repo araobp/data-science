@@ -21,6 +21,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <stdio.h>
+#include <stdbool.h>
 #include "dsp.h"
 /* USER CODE END Includes */
 
@@ -58,6 +60,29 @@ const int NN_DOUBLE = NN * 2;
 volatile bool new_pcm_data_a = false;
 volatile bool new_pcm_data_b = false;
 
+// output trigger
+volatile bool printing = false;
+
+// UART output mode
+volatile mode output_mode = FEATURES;
+
+// UART one-byte input buffer
+uint8_t rxbuf[1];
+
+// Pre-emphasis toggle
+volatile bool pre_emphasis_enabled = true;
+
+// Buffers
+// Note: these variables are declared as "extern(al)".
+int8_t mfsc_buffer[NUM_FILTERS * 200] = { 0.0f };
+int8_t mfcc_buffer[NUM_FILTERS * 200] = { 0.0f };
+
+int pos = 0;
+
+// Debug
+volatile debug debug_output = DISABLED;
+uint32_t elapsed_time = 0;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -72,6 +97,211 @@ static void MX_DFSDM1_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+/*
+ * Output raw wave or feature to UART by memory-to-peripheral DMA
+ */
+bool uart_tx(float32_t *in, mode mode, bool dma_start) {
+
+  bool printing;
+  int a, b;
+  int c;
+  static int cnt = 0;
+  static int length = 0;
+  static int idx = 0;
+
+#if NUM_FILTERS * 200 > NN
+  static char uart_buf[NUM_FILTERS * 200 * 2] = { 0 };
+#else
+  static char uart_buf[NN * 2] = { 0 };
+#endif
+
+  if (cnt == 0) {
+    idx = 0;
+
+    switch (mode) {
+
+    case RAW_WAVE:
+      length = NN;
+      cnt = 1;
+      break;
+
+    case FFT:
+      length = NN / 2;
+      cnt = 1;
+      break;
+
+    case SPECTROGRAM:
+      length = NN / 2;
+      cnt = 200;
+      break;
+
+    case FEATURES:
+      break;
+
+    default:
+      length = 0;
+      break;
+
+    }
+  }
+
+  // Quantization: convert float into int
+  if (mode == RAW_WAVE) {
+    for (int n = 0; n < length; n++) {
+      uart_buf[idx++] = (uint8_t) (((int16_t) in[n]) >> 8);      // MSB
+      uart_buf[idx++] = (uint8_t) (((int16_t) in[n] & 0x00ff));  // LSB
+    }
+  } else if (mode == FEATURES) {
+    a = pos * NUM_FILTERS;
+    b = (200 - pos) * NUM_FILTERS;
+    c = 200 * NUM_FILTERS;
+    // Time series order
+    memcpy(uart_buf + b, mfsc_buffer, a);
+    memcpy(uart_buf, mfsc_buffer + a, b);
+    memcpy(uart_buf + b + c, mfcc_buffer, a);
+    memcpy(uart_buf + c, mfcc_buffer + a, b);
+  } else {
+    for (int n = 0; n < length; n++) {
+      if (in[n] < -128.0f) in[n] = -128.0f;
+      uart_buf[idx++] = (int8_t) in[n];
+    }
+  }
+
+  // memory-to-peripheral DMA to UART
+  if (mode == FEATURES) {
+    HAL_UART_Transmit_DMA(&huart2, (uint8_t *) uart_buf, NUM_FILTERS * 200 * 2);
+    printing = false;
+  } else if (--cnt == 0) {
+    HAL_UART_Transmit_DMA(&huart2, (uint8_t *) uart_buf, idx);
+    printing = false;
+  } else if (dma_start) {
+    HAL_UART_Transmit_DMA(&huart2, (uint8_t *) uart_buf, idx);
+    idx = 0;
+    printing = true;
+  } else {
+    printing = true;
+  }
+
+  return printing;
+}
+
+/*
+ * DSP pipeline
+ */
+void dsp(float32_t *s1, mode mode) {
+
+  uint32_t start = 0;
+  uint32_t end = 0;
+
+#ifdef INFERENCE
+  static bool active = false;
+  static int activity_cnt = 0;
+  float32_t max_value;
+  uint32_t max_index;
+#endif
+
+  start = HAL_GetTick();
+
+  apply_ac_coupling(s1);  // remove DC
+
+  if (mode >= FFT) {
+    apply_hann(s1);
+    apply_fft(s1);
+    apply_psd(s1);
+    if (mode < FEATURES) {
+      apply_psd_logscale(s1);
+    } else {
+      apply_filterbank(s1);
+      apply_filterbank_logscale(s1);
+      for (int i = 0; i < NUM_FILTERS; i++) {
+        mfsc_buffer[pos * NUM_FILTERS + i] = (int8_t) s1[i];
+      }
+#ifdef INFERENCE
+      // Voice activity detection for inference by X-CUBE-AI
+      if (!start_inference) {
+        if (!active) {
+          arm_max_f32(s1, NUM_FILTERS, &max_value, &max_index);
+          if (max_value > ACTIVITY_THRESHOLD) {
+            active = true;
+            activity_cnt = 0;
+          }
+        } else {
+          if (++activity_cnt >= WINDOW_LENGTH) {
+            active = false;
+            start_inference = true;
+          }
+        }
+      }
+#else
+      apply_dct2(s1);
+      for (int i = 0; i < NUM_FILTERS; i++) {
+        mfcc_buffer[pos * NUM_FILTERS + i] = (int8_t) s1[i];
+      }
+#endif
+    }
+  }
+  if (++pos >= 200)
+    pos = 0;
+
+  end = HAL_GetTick();
+  elapsed_time = end - start;
+}
+
+/*
+ * Overlap dsp for spectrogram calculation
+ *
+ * 26.3msec          13.2msec stride
+ * --- overlap dsp -------------
+ * [b1|a0]            a(1/2) ... 13.2msec
+ *    [a0|a1]         a(2/2) ... 13.2msec
+ * --- overlap dsp -------------
+ *       [a1|b0]      b(1/2) ... 13.2msec
+ *          [b0|b1]   b(2/2) ... 13.2msec
+ * --- overlap dsp -------------
+ *             :
+ */
+void overlap_dsp(float32_t *buf, mode mode) {
+
+  float32_t signal[NN] = { 0.0f };
+
+  arm_copy_f32(buf, signal, NN);
+  dsp(signal, mode);  // (1/2)
+  if (printing) {
+    printing = uart_tx(signal, mode, false);  // false: UART output pending
+  }
+
+  arm_copy_f32(buf + NN_HALF, signal, NN);
+  dsp(signal, mode);  // (2/2)
+  if (printing) {
+    printing = uart_tx(signal, mode, true);  // true: UART output
+  }
+}
+
+/*
+ * Dump debug info
+ */
+void dump(void) {
+  if (debug_output != DISABLED) {
+    switch (debug_output) {
+    case FILTERBANK:
+      for (int m = 0; m < NUM_FILTERS + 2; m++) {
+        printf("%d:%d,", k_range[m][0], k_range[m][1]);
+        for (int n = 0; n < FILTER_LENGTH; n++) {
+          printf("%.3f,", filterbank[m][n]);
+        }
+        printf("\n");
+      }
+      printf("e\n");
+      break;
+    case ELAPSED_TIME:
+      printf("mode: %d, elapsed_time: %lu(msec)\n", output_mode, elapsed_time);
+      break;
+    default:
+      break;
+    }
+    debug_output = DISABLED;
+  }
+}
 
 /* USER CODE END 0 */
 

@@ -36,7 +36,10 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
-
+// Debug info
+typedef enum {
+  DISABLED, FILTERBANK, ELAPSED_TIME, VOICE_ACTIVITY
+} debug;
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/

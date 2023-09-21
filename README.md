@@ -4,9 +4,13 @@ I have started re-learning digital signal processing by re-doing the works in my
 
 ## Digital Audio Processing (Work in progress)
 
+Learn DSP basics!
+
 => [Digital Audio Processing](DigitalAudioProcessing)
 
 ## Speech Processing for AI
+
+Learn Audio feature engineering basics for Acoustinc Scene Classification!
 
 => [Speech Processing for AI](SpeechProcessing)
 

@@ -12,6 +12,8 @@ I have started re-learning digital signal processing by re-doing the works in my
 
 ## AI Rock Paper Scissors
 
+Run Rock Paper Scissors machine with edge AI!
+
 => [Rock Paper Scissors](RockPaperScissors.md)
 
 ## Acoustic Scene Classification

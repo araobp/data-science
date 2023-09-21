@@ -1,17 +1,6 @@
 # Acoustic Feature Camera
 
-## Target use cases
-
-Config A
-- Musical instrument recognition
-- Life log
-- Bird chirp recognition
-
-Config B
-- Acoustic Scene classification
-I am planning to use an ultra-sonic MEMS mic from Knowles.
-
-## DFSDM config (tentativ)
+## DFSDM config (tentative)
 
 Config A
 ```
@@ -28,5 +17,14 @@ Config B
 ```
 ...
 ```
+## Target use cases
 
-Co
+Config A
+- Musical instrument recognition
+- Life log
+- Bird chirp recognition
+
+Config B
+- Acoustic Scene classification
+I am planning to use an ultra-sonic MEMS mic from Knowles.
+

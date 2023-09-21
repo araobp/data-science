@@ -2,6 +2,8 @@
 
 Stop Global Warming! I cannot stand high temeprature. Edge AI with low-power-consumption MCU is a key technology to stop Global Warming.
 
+In this project, I review and improve my achievements on edge AI in my past projects.
+
 ## Digital Audio Processing
 
 Learn DSP basics!
@@ -14,13 +16,13 @@ Learn Audio feature engineering basics for Acoustinc Scene Classification!
 
 => [Speech Processing for AI](SpeechProcessing)
 
-## AI Rock Paper Scissors
+## Edge AI: AI Rock Paper Scissors
 
 Run Rock Paper Scissors machine with edge AI!
 
 => [Rock Paper Scissors](RockPaperScissors.md)
 
-## Acoustic Scene Classification (Work in progress)
+## Edge AI: Acoustic Scene Classification (Work in progress)
 
 Develop practical use cases with acoustic scene classifcation!
 

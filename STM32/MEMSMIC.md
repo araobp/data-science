@@ -139,7 +139,7 @@ Note: "Zero LSBs confirmed" means the length of LSBs that are always zero after 
 
 **Conclusion**
 
-The configuration 5 seems to be the best for feature engineering for musical instrument recognition use case that I am planing to develop after this DFSDM evaluation.
+The configuration 5 seems to be the best for feature engineering for most of my use cases that I am planing to develop after this DFSDM evaluation.
 
 ## Bit shift operations on DFSDM (*1)
 

@@ -1,5 +1,7 @@
 # Acoustic Feature Camera
 
+Acoustic Feature Camera is a device to capture acoustic features for edge AI.
+
 ## DFSDM config (tentative)
 
 Config A

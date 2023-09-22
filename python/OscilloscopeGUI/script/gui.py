@@ -5,6 +5,9 @@ from scipy.fftpack import dct
 # Empty array
 EMPTY = np.array([])
 
+# Shadow
+SHADOW_SUB = 10
+
 def shadow(pixels, window, shadow_sub):
     if window:
         subtract = lambda x: x - shadow_sub
@@ -28,9 +31,6 @@ def spectrum_subtraction(data, ssub=None):
 # GUI class
 class GUI:
     
-    # Shadow
-    SHADOW_SUB = 10
-
     def __init__(self, interface, dataset, enable_shadow=True):
         # Serial interface
         self.interface = interface

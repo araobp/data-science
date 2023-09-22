@@ -381,7 +381,7 @@ if __name__ == '__main__':
     counter = Tk.Label(master=frame_row1)
     counter.configure(text='({})'.format(str(0)))
     range_amplitude = Tk.Spinbox(master=frame_row1, width=6,
-                                 values=[2**8, 2**9, 2**11, 2**13, 2**15])
+                                 values=[2**11, 2**13, 2**15])
     range_mfsc = Tk.Spinbox(master=frame_row1, width=3,
                                        values=[dataset.filters, int(dataset.filters*.8), int(dataset.filters*0.6)])
     range_spectrogram = Tk.Spinbox(master=frame_row1, width=4,
@@ -389,7 +389,7 @@ if __name__ == '__main__':
     range_mfcc = Tk.Spinbox(master=frame_row1, width=3,
                             values=[13, 20, 40])
     spectrum_subtraction = Tk.Spinbox(master=frame_row1, width=3,
-                                      values=[0, -60, -40, -30, -25, -20])
+                                      values=[0, 5, 10, 15, 20, 25, 30])
     label_class = Tk.Label(master=frame_row1, text='Class label:')
     label_image = Tk.Label(master=frame_row1, text='Mask:')
     label_color = Tk.Label(master=frame_row1, text='Color:')

@@ -47,6 +47,7 @@ DFSDM_Channel_HandleTypeDef hdfsdm1_channel3;
 DMA_HandleTypeDef hdma_dfsdm1_flt0;
 
 UART_HandleTypeDef huart2;
+DMA_HandleTypeDef hdma_usart2_tx;
 
 /* USER CODE BEGIN PV */
 
@@ -350,7 +351,7 @@ int main(void)
 
       // Bit shift to obtain 16-bit PCM
       for (uint32_t n = 0; n < NN; n++) {
-        signal_buf[n+NN_HALF] = (float32_t) (input_buf[n] >> 9);
+        signal_buf[n+NN_HALF] = (float32_t) (input_buf[n] >> REGISTER_BIT_SHIFT);
       }
 
       // Pre-emphasis
@@ -372,7 +373,7 @@ int main(void)
 
       // Bit shift to obtain 16-bit PCM
       for (uint32_t n = 0; n < NN; n++) {
-        signal_buf[n+NN_HALF] = (float32_t) (input_buf[NN+n] >> 9);
+        signal_buf[n+NN_HALF] = (float32_t) (input_buf[NN+n] >> REGISTER_BIT_SHIFT);
       }
 
       // Pre-emphasis
@@ -463,8 +464,8 @@ static void MX_DFSDM1_Init(void)
   /* USER CODE END DFSDM1_Init 1 */
   hdfsdm1_filter0.Instance = DFSDM1_Filter0;
   hdfsdm1_filter0.Init.RegularParam.Trigger = DFSDM_FILTER_SW_TRIGGER;
-  hdfsdm1_filter0.Init.RegularParam.FastMode = DISABLE;
-  hdfsdm1_filter0.Init.RegularParam.DmaMode = DISABLE;
+  hdfsdm1_filter0.Init.RegularParam.FastMode = ENABLE;
+  hdfsdm1_filter0.Init.RegularParam.DmaMode = ENABLE;
   hdfsdm1_filter0.Init.FilterParam.SincOrder = DFSDM_FILTER_SINC4_ORDER;
   hdfsdm1_filter0.Init.FilterParam.Oversampling = 64;
   hdfsdm1_filter0.Init.FilterParam.IntOversampling = 1;
@@ -484,7 +485,7 @@ static void MX_DFSDM1_Init(void)
   hdfsdm1_channel3.Init.Awd.FilterOrder = DFSDM_CHANNEL_FASTSINC_ORDER;
   hdfsdm1_channel3.Init.Awd.Oversampling = 1;
   hdfsdm1_channel3.Init.Offset = 0;
-  hdfsdm1_channel3.Init.RightBitShift = 0x09;
+  hdfsdm1_channel3.Init.RightBitShift = 0x9;
   if (HAL_DFSDM_ChannelInit(&hdfsdm1_channel3) != HAL_OK)
   {
     Error_Handler();
@@ -547,6 +548,9 @@ static void MX_DMA_Init(void)
   /* DMA1_Channel4_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(DMA1_Channel4_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(DMA1_Channel4_IRQn);
+  /* DMA1_Channel7_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel7_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel7_IRQn);
 
 }
 

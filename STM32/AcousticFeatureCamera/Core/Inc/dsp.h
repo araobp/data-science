@@ -11,6 +11,9 @@
 #include "arm_math.h"
 #include "stdbool.h"
 
+// 8bit-length LSBs of DFSDM data output register are discarded.
+#define REGISTER_BIT_SHIFT 8
+
 // The number of samples per frame
 #define NN 512
 

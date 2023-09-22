@@ -12,7 +12,7 @@ import threading
 
 ### Constants #####
 
-Fs = 80000000.0/128.0/32.0  # Sampling frequency
+Fs = 80000000.0/64.0/64.0  # Sampling frequency
 Nyq = Fs/2.0                # Nyquist frequency
 BAUD_RATE = 460800          # UART baud rate
 NN = 512                    # The number of samples per frame
@@ -112,20 +112,20 @@ class Interface:
                 for d in rx:
                     d = b8_to_int(d, True)
                     data.append(d)
-                data = np.array(data, dtype=np.int)
+                data = np.array(data, dtype=np.int8)
                 data = data.reshape(self.shape[cmd])                    
             else:  # 8bit quantization
                 rx = ser.read(self.num_samples[cmd])
                 for d in rx:
                     d  = b8_to_int(d, True)
                     data.append(d)
-                data = np.array(data, dtype=np.int)
+                data = np.array(data, dtype=np.int8)
                 if self.shape[cmd]:
                     data = data.reshape(self.shape[cmd])
             ser.close()
         except:
             print('*** serial timeout!')
-            #traceback.print_exc()
+            # traceback.print_exc()
 
         return data
 

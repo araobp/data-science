@@ -28,11 +28,15 @@ def spectrum_subtraction(data, ssub=None):
 # GUI class
 class GUI:
     
-    def __init__(self, interface, dataset):
+    # Shadow
+    SHADOW_SUB = 10
+
+    def __init__(self, interface, dataset, enable_shadow=True):
         # Serial interface
         self.interface = interface
         self.filters = dataset.filters
         self.samples = dataset.samples
+        self.enable_shadow = enable_shadow
         # Time axis and frequency axis
         self.time = {}
         self.freq = {}
@@ -56,7 +60,7 @@ class GUI:
     def plot(self, ax, cmd, range_=None,
                  cmap=None, ssub=None,
                  window=None, data=EMPTY,
-                 grid=False, shadow_sub=0):
+                 grid=False):
 
         if (data is EMPTY) and (cmd == dsp.MFSC or cmd == dsp.MFCC):
             data = self.interface.read(dsp.FEATURES)
@@ -75,7 +79,8 @@ class GUI:
 
         elif cmd == dsp.SPECTROGRAM:
             data_ = spectrum_subtraction(data, ssub)
-            data_ = shadow(data_, window, shadow_sub=10)
+            if self.enable_shadow:
+                data_ = shadow(data_, window, shadow_sub=SHADOW_SUB)
             ax.pcolormesh(self.time[dsp.SPECTROGRAM],
                           self.freq[dsp.SPECTROGRAM][:range_],
                           data_.T[:range_],
@@ -89,7 +94,8 @@ class GUI:
             print('mfcc stm32: {}'.format(data[self.samples]))
 
             data_ = spectrum_subtraction(data[:self.samples,:], ssub)
-            data_ = shadow(data_, window, shadow_sub=10)
+            if self.enable_shadow:
+                data_ = shadow(data_, window, shadow_sub=SHADOW_SUB)
             ax.pcolormesh(self.time[dsp.MFSC],
                           self.freq[dsp.MFSC][:range_+1],
                           data_.T[:range_+1],
@@ -106,7 +112,8 @@ class GUI:
             print('mfcc python: {}'.format(dcted))
 
             data_ = spectrum_subtraction(data[self.samples:,:], ssub)
-            data_ = shadow(data_, window, shadow_sub=10)
+            if self.enable_shadow:
+                data_ = shadow(data_, window, shadow_sub=SHADOW_SUB)
             ax.pcolormesh(self.time[dsp.MFCC],
                           self.freq[dsp.MFCC][:range_+1],
                           data_.T[:range_+1],

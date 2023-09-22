@@ -91,7 +91,12 @@ if __name__ == '__main__':
 
     EMPTY = np.array([])
 
-    gui = gui.GUI(interface=itfc, dataset=dataset)
+    if args.oscilloscope_mode:
+        enable_shadow = False
+    else:
+        enable_shadow = True
+
+    gui = gui.GUI(interface=itfc, dataset=dataset, enable_shadow=enable_shadow)
 
     if dataset.model and not args.browser:
         import inference

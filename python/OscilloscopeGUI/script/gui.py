@@ -56,7 +56,7 @@ class GUI:
     def plot(self, ax, cmd, range_=None,
                  cmap=None, ssub=None,
                  window=None, data=EMPTY,
-                 grid=True, shadow_sub=0):
+                 grid=False, shadow_sub=0):
 
         if (data is EMPTY) and (cmd == dsp.MFSC or cmd == dsp.MFCC):
             data = self.interface.read(dsp.FEATURES)
@@ -121,8 +121,10 @@ class GUI:
                 h[k_left:k_left+len_] = filterbank[m][:len_]
                 ax.plot(h)
             self.set_labels(ax, 'Mel filter bank', 'n', 'Magnitude')
-
-        ax.grid(linestyle='--', c='purple', linewidth=1)
+    
+        if grid:
+            ax.grid(linestyle='--', c='purple', linewidth=1)
+    
         return data
 
     def plot_welch(self, ax):

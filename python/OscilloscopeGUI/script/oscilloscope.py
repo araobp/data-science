@@ -51,6 +51,8 @@ parser.add_argument("-f", "--fullscreen_mode",
                     help="Fullscreen mode", default=None)
 parser.add_argument("-c", "--color_map",
                     help="Color map", default=','.join(CMAP_LIST))
+parser.add_argument("-g", "--show_grid",
+                    help="Show grid", action="store_true")
 parser.add_argument("-W", "--disable_window",
                     help="Disable window", action="store_true")
 args = parser.parse_args()
@@ -156,7 +158,7 @@ if __name__ == '__main__':
     def raw_wave(repeatable=True):
         global last_operation
         range_ = int(range_amplitude.get())
-        data = gui.plot(ax, dsp.RAW_WAVE, range_=range_)
+        data = gui.plot(ax, dsp.RAW_WAVE, range_=range_, grid=args.show_grid)
         last_operation = (raw_wave, data, None, None)
         fig.tight_layout()
         canvas.draw()
@@ -166,7 +168,7 @@ if __name__ == '__main__':
     def fft(repeatable=True):
         global last_operation
         ssub = int(spectrum_subtraction.get())
-        data = gui.plot(ax, dsp.FFT)
+        data = gui.plot(ax, dsp.FFT, grid=args.show_grid)
         last_operation = (fft, data, None, None)
         fig.tight_layout()
         canvas.draw()
@@ -180,7 +182,7 @@ if __name__ == '__main__':
         cmap_ = var_cmap.get()
         if data is EMPTY:
             window = dataset.windows[int(range_window.get())]
-            data = gui.plot(ax, dsp.SPECTROGRAM, range_, cmap_, ssub)
+            data = gui.plot(ax, dsp.SPECTROGRAM, range_, cmap_, ssub, grid=args.show_grid)
         else:
             window = dataset.windows[pos]
             gui.plot(ax, dsp.SPECTROGRAM, range_, cmap_, ssub, data=data,
@@ -200,7 +202,7 @@ if __name__ == '__main__':
         if data is EMPTY:
             window = dataset.windows[int(range_window.get())]
             data = gui.plot(ax, dsp.MFSC, range_, cmap_, ssub,
-                               window=window)
+                               window=window, grid=args.show_grid)
         else:
             if pos is not None and not args.disable_window:
                 window = dataset.windows[pos]
@@ -226,7 +228,7 @@ if __name__ == '__main__':
         if data is EMPTY:
             window = dataset.windows[int(range_window.get())]
             data = gui.plot(ax, dsp.MFCC, range_, cmap_, ssub,
-                               window=window)
+                               window=window, grid=args.show_grid)
         else:
             if pos is not None and not args.disable_window:
                 window = dataset.windows[pos]
@@ -244,7 +246,7 @@ if __name__ == '__main__':
             repeat(mfcc)
 
     def welch():
-        gui.plot_welch(ax)
+        gui.plot_welch(ax, grid=args.show_grid)
         fig.tight_layout()
         canvas.draw()
 

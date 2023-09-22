@@ -1,5 +1,8 @@
 # Edge AI and Digital Signal Processing
 
+<img src="doc/screen_shot_cepa_andaluza_cante.png" width=800>
+https://youtu.be/NIKWBdthzg4?si=O71p1-v_ynUPurbq
+
 Stop Global Warming! I cannot stand high temeprature. Edge AI with low-power-consumption MCU is a key technology to stop Global Warming.
 
 In this project, I review and improve my achievements on edge AI in my past projects:

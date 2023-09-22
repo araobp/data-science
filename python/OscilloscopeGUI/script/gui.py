@@ -134,10 +134,14 @@ class GUI:
     
         return data
 
-    def plot_welch(self, ax):
+    def plot_welch(self, ax, grid=False):
         data = self.interface.read(dsp.SPECTROGRAM)
         ax.clear()
 
         data = np.sum(data, axis=0)/self.samples
         ax.plot(self.freq[dsp.FFT], data)
         self.set_labels(ax, "Welch's method", 'Frequency [Hz]', 'Power [dB]', [-70, 90])
+
+        if grid:
+            ax.grid(linestyle='--', c='purple', linewidth=1)
+

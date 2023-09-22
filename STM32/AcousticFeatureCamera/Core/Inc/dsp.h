@@ -30,7 +30,7 @@ typedef enum {
 } mode;
 
 // The number of values in the mean value history for AC coupling
-#define NUM_MEANS 16U
+#define NUM_MEANS 128U
 
 // Length of each filter in the filter bank
 // Note: this is just to save RAM

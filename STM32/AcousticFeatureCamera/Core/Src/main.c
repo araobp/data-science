@@ -196,7 +196,9 @@ void dsp(float32_t *s1, mode mode) {
 
   start = HAL_GetTick();
 
+#ifdef AC_COUPLING
   apply_ac_coupling(s1);  // remove DC
+#endif
 
   if (mode >= FFT) {
     apply_hann(s1);
@@ -485,7 +487,7 @@ static void MX_DFSDM1_Init(void)
   hdfsdm1_channel3.Init.Awd.FilterOrder = DFSDM_CHANNEL_FASTSINC_ORDER;
   hdfsdm1_channel3.Init.Awd.Oversampling = 1;
   hdfsdm1_channel3.Init.Offset = 0;
-  hdfsdm1_channel3.Init.RightBitShift = 0x9;
+  hdfsdm1_channel3.Init.RightBitShift = 0x7;
   if (HAL_DFSDM_ChannelInit(&hdfsdm1_channel3) != HAL_OK)
   {
     Error_Handler();

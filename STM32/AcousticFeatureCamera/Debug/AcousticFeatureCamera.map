@@ -508,7 +508,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x5cf ./Core/Src/stm32l4xx_hal_msp.o
  .debug_macro   0x0000000000000000       0x44 ./Core/Src/stm32l4xx_hal_msp.o
  .debug_macro   0x0000000000000000      0x330 ./Core/Src/stm32l4xx_hal_msp.o
- .debug_macro   0x0000000000000000       0x58 ./Core/Src/stm32l4xx_hal_msp.o
+ .debug_macro   0x0000000000000000       0x5e ./Core/Src/stm32l4xx_hal_msp.o
  .group         0x0000000000000000        0xc ./Core/Src/stm32l4xx_it.o
  .group         0x0000000000000000        0xc ./Core/Src/stm32l4xx_it.o
  .group         0x0000000000000000        0xc ./Core/Src/stm32l4xx_it.o
@@ -583,7 +583,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x5cf ./Core/Src/stm32l4xx_it.o
  .debug_macro   0x0000000000000000       0x44 ./Core/Src/stm32l4xx_it.o
  .debug_macro   0x0000000000000000      0x330 ./Core/Src/stm32l4xx_it.o
- .debug_macro   0x0000000000000000       0x58 ./Core/Src/stm32l4xx_it.o
+ .debug_macro   0x0000000000000000       0x5e ./Core/Src/stm32l4xx_it.o
  .group         0x0000000000000000        0xc ./Core/Src/syscalls.o
  .group         0x0000000000000000        0xc ./Core/Src/syscalls.o
  .group         0x0000000000000000        0xc ./Core/Src/syscalls.o
@@ -4542,7 +4542,7 @@ LOAD C:/ST/STM32CubeIDE_1.13.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .igot.plt      0x00000000200001f8        0x0 C:/ST/STM32CubeIDE_1.13.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.0.202305231506/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/thumb/v7e-m+fp/hard/crtbegin.o
                 0x00000000200001f8                . = ALIGN (0x4)
 
-.bss            0x00000000200001f8     0xb754 load address 0x0000000008020ae8
+.bss            0x00000000200001f8     0xb914 load address 0x0000000008020ae8
                 0x00000000200001f8                _sbss = .
                 0x00000000200001f8                __bss_start__ = _sbss
  *(.bss)
@@ -4578,101 +4578,101 @@ LOAD C:/ST/STM32CubeIDE_1.13.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
                 0x00000000200030c8      0x800 ./Core/Src/dsp.o
                 0x00000000200030c8                signal_buf
  .bss.mean_hist.0
-                0x00000000200038c8       0x40 ./Core/Src/dsp.o
+                0x00000000200038c8      0x200 ./Core/Src/dsp.o
  .bss.hdfsdm1_filter0
-                0x0000000020003908       0x54 ./Core/Src/main.o
-                0x0000000020003908                hdfsdm1_filter0
+                0x0000000020003ac8       0x54 ./Core/Src/main.o
+                0x0000000020003ac8                hdfsdm1_filter0
  .bss.hdfsdm1_channel3
-                0x000000002000395c       0x38 ./Core/Src/main.o
-                0x000000002000395c                hdfsdm1_channel3
+                0x0000000020003b1c       0x38 ./Core/Src/main.o
+                0x0000000020003b1c                hdfsdm1_channel3
  .bss.hdma_dfsdm1_flt0
-                0x0000000020003994       0x48 ./Core/Src/main.o
-                0x0000000020003994                hdma_dfsdm1_flt0
- .bss.huart2    0x00000000200039dc       0x88 ./Core/Src/main.o
-                0x00000000200039dc                huart2
+                0x0000000020003b54       0x48 ./Core/Src/main.o
+                0x0000000020003b54                hdma_dfsdm1_flt0
+ .bss.huart2    0x0000000020003b9c       0x88 ./Core/Src/main.o
+                0x0000000020003b9c                huart2
  .bss.hdma_usart2_tx
-                0x0000000020003a64       0x48 ./Core/Src/main.o
-                0x0000000020003a64                hdma_usart2_tx
+                0x0000000020003c24       0x48 ./Core/Src/main.o
+                0x0000000020003c24                hdma_usart2_tx
  .bss.new_pcm_data_a
-                0x0000000020003aac        0x1 ./Core/Src/main.o
-                0x0000000020003aac                new_pcm_data_a
+                0x0000000020003c6c        0x1 ./Core/Src/main.o
+                0x0000000020003c6c                new_pcm_data_a
  .bss.new_pcm_data_b
-                0x0000000020003aad        0x1 ./Core/Src/main.o
-                0x0000000020003aad                new_pcm_data_b
- .bss.printing  0x0000000020003aae        0x1 ./Core/Src/main.o
-                0x0000000020003aae                printing
- *fill*         0x0000000020003aaf        0x1 
- .bss.rxbuf     0x0000000020003ab0        0x1 ./Core/Src/main.o
-                0x0000000020003ab0                rxbuf
- *fill*         0x0000000020003ab1        0x3 
+                0x0000000020003c6d        0x1 ./Core/Src/main.o
+                0x0000000020003c6d                new_pcm_data_b
+ .bss.printing  0x0000000020003c6e        0x1 ./Core/Src/main.o
+                0x0000000020003c6e                printing
+ *fill*         0x0000000020003c6f        0x1 
+ .bss.rxbuf     0x0000000020003c70        0x1 ./Core/Src/main.o
+                0x0000000020003c70                rxbuf
+ *fill*         0x0000000020003c71        0x3 
  .bss.mfsc_buffer
-                0x0000000020003ab4     0x1f40 ./Core/Src/main.o
-                0x0000000020003ab4                mfsc_buffer
+                0x0000000020003c74     0x1f40 ./Core/Src/main.o
+                0x0000000020003c74                mfsc_buffer
  .bss.mfcc_buffer
-                0x00000000200059f4     0x1f40 ./Core/Src/main.o
-                0x00000000200059f4                mfcc_buffer
- .bss.pos       0x0000000020007934        0x4 ./Core/Src/main.o
-                0x0000000020007934                pos
+                0x0000000020005bb4     0x1f40 ./Core/Src/main.o
+                0x0000000020005bb4                mfcc_buffer
+ .bss.pos       0x0000000020007af4        0x4 ./Core/Src/main.o
+                0x0000000020007af4                pos
  .bss.debug_output
-                0x0000000020007938        0x1 ./Core/Src/main.o
-                0x0000000020007938                debug_output
- *fill*         0x0000000020007939        0x3 
+                0x0000000020007af8        0x1 ./Core/Src/main.o
+                0x0000000020007af8                debug_output
+ *fill*         0x0000000020007af9        0x3 
  .bss.elapsed_time
-                0x000000002000793c        0x4 ./Core/Src/main.o
-                0x000000002000793c                elapsed_time
- .bss.cnt.3     0x0000000020007940        0x4 ./Core/Src/main.o
- .bss.idx.2     0x0000000020007944        0x4 ./Core/Src/main.o
- .bss.length.1  0x0000000020007948        0x4 ./Core/Src/main.o
+                0x0000000020007afc        0x4 ./Core/Src/main.o
+                0x0000000020007afc                elapsed_time
+ .bss.cnt.3     0x0000000020007b00        0x4 ./Core/Src/main.o
+ .bss.idx.2     0x0000000020007b04        0x4 ./Core/Src/main.o
+ .bss.length.1  0x0000000020007b08        0x4 ./Core/Src/main.o
  .bss.uart_buf.0
-                0x000000002000794c     0x3e80 ./Core/Src/main.o
+                0x0000000020007b0c     0x3e80 ./Core/Src/main.o
  .bss.HAL_RCC_DFSDM1_CLK_ENABLED
-                0x000000002000b7cc        0x4 ./Core/Src/stm32l4xx_hal_msp.o
+                0x000000002000b98c        0x4 ./Core/Src/stm32l4xx_hal_msp.o
  .bss.DFSDM1_Init
-                0x000000002000b7d0        0x4 ./Core/Src/stm32l4xx_hal_msp.o
+                0x000000002000b990        0x4 ./Core/Src/stm32l4xx_hal_msp.o
  .bss.__sbrk_heap_end
-                0x000000002000b7d4        0x4 ./Core/Src/sysmem.o
- .bss.uwTick    0x000000002000b7d8        0x4 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
-                0x000000002000b7d8                uwTick
+                0x000000002000b994        0x4 ./Core/Src/sysmem.o
+ .bss.uwTick    0x000000002000b998        0x4 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
+                0x000000002000b998                uwTick
  .bss.v_dfsdm1ChannelCounter
-                0x000000002000b7dc        0x4 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dfsdm.o
+                0x000000002000b99c        0x4 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dfsdm.o
  .bss.a_dfsdm1ChannelHandle
-                0x000000002000b7e0       0x20 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dfsdm.o
+                0x000000002000b9a0       0x20 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dfsdm.o
  .bss.__malloc_free_list
-                0x000000002000b800        0x4 C:/ST/STM32CubeIDE_1.13.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.0.202305231506/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-mallocr.o)
-                0x000000002000b800                __malloc_free_list
+                0x000000002000b9c0        0x4 C:/ST/STM32CubeIDE_1.13.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.0.202305231506/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-mallocr.o)
+                0x000000002000b9c0                __malloc_free_list
  .bss.__malloc_sbrk_start
-                0x000000002000b804        0x4 C:/ST/STM32CubeIDE_1.13.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.0.202305231506/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-mallocr.o)
-                0x000000002000b804                __malloc_sbrk_start
- .bss.__sf      0x000000002000b808      0x138 C:/ST/STM32CubeIDE_1.13.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.0.202305231506/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-findfp.o)
-                0x000000002000b808                __sf
+                0x000000002000b9c4        0x4 C:/ST/STM32CubeIDE_1.13.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.0.202305231506/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-mallocr.o)
+                0x000000002000b9c4                __malloc_sbrk_start
+ .bss.__sf      0x000000002000b9c8      0x138 C:/ST/STM32CubeIDE_1.13.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.0.202305231506/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-findfp.o)
+                0x000000002000b9c8                __sf
  .bss.__stdio_exit_handler
-                0x000000002000b940        0x4 C:/ST/STM32CubeIDE_1.13.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.0.202305231506/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-findfp.o)
-                0x000000002000b940                __stdio_exit_handler
- .bss.errno     0x000000002000b944        0x4 C:/ST/STM32CubeIDE_1.13.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.0.202305231506/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-reent.o)
-                0x000000002000b944                errno
+                0x000000002000bb00        0x4 C:/ST/STM32CubeIDE_1.13.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.0.202305231506/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-findfp.o)
+                0x000000002000bb00                __stdio_exit_handler
+ .bss.errno     0x000000002000bb04        0x4 C:/ST/STM32CubeIDE_1.13.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.0.202305231506/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-reent.o)
+                0x000000002000bb04                errno
  .bss.__lock___malloc_recursive_mutex
-                0x000000002000b948        0x1 C:/ST/STM32CubeIDE_1.13.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.0.202305231506/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-lock.o)
-                0x000000002000b948                __lock___malloc_recursive_mutex
+                0x000000002000bb08        0x1 C:/ST/STM32CubeIDE_1.13.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.0.202305231506/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-lock.o)
+                0x000000002000bb08                __lock___malloc_recursive_mutex
  .bss.__lock___sfp_recursive_mutex
-                0x000000002000b949        0x1 C:/ST/STM32CubeIDE_1.13.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.0.202305231506/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-lock.o)
-                0x000000002000b949                __lock___sfp_recursive_mutex
+                0x000000002000bb09        0x1 C:/ST/STM32CubeIDE_1.13.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.0.202305231506/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-lock.o)
+                0x000000002000bb09                __lock___sfp_recursive_mutex
  *(COMMON)
-                0x000000002000b94c                . = ALIGN (0x4)
- *fill*         0x000000002000b94a        0x2 
-                0x000000002000b94c                _ebss = .
-                0x000000002000b94c                __bss_end__ = _ebss
+                0x000000002000bb0c                . = ALIGN (0x4)
+ *fill*         0x000000002000bb0a        0x2 
+                0x000000002000bb0c                _ebss = .
+                0x000000002000bb0c                __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x000000002000b94c      0x604 load address 0x0000000008020ae8
-                0x000000002000b950                . = ALIGN (0x8)
- *fill*         0x000000002000b94c        0x4 
+                0x000000002000bb0c      0x604 load address 0x0000000008020ae8
+                0x000000002000bb10                . = ALIGN (0x8)
+ *fill*         0x000000002000bb0c        0x4 
                 [!provide]                        PROVIDE (end = .)
-                0x000000002000b950                PROVIDE (_end = .)
-                0x000000002000bb50                . = (. + _Min_Heap_Size)
- *fill*         0x000000002000b950      0x200 
-                0x000000002000bf50                . = (. + _Min_Stack_Size)
- *fill*         0x000000002000bb50      0x400 
-                0x000000002000bf50                . = ALIGN (0x8)
+                0x000000002000bb10                PROVIDE (_end = .)
+                0x000000002000bd10                . = (. + _Min_Heap_Size)
+ *fill*         0x000000002000bb10      0x200 
+                0x000000002000c110                . = (. + _Min_Stack_Size)
+ *fill*         0x000000002000bd10      0x400 
+                0x000000002000c110                . = ALIGN (0x8)
 
 /DISCARD/
  libc.a(*)
@@ -5157,7 +5157,7 @@ LOAD C:/ST/STM32CubeIDE_1.13.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_rnglists
                 0x0000000000000a62       0x60 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.o
 
-.debug_macro    0x0000000000000000    0x278ea
+.debug_macro    0x0000000000000000    0x278f0
  .debug_macro   0x0000000000000000      0x1b3 ./Core/Src/dct.o
  .debug_macro   0x00000000000001b3      0xaae ./Core/Src/dct.o
  .debug_macro   0x0000000000000c61       0x2a ./Core/Src/dct.o
@@ -5226,49 +5226,49 @@ LOAD C:/ST/STM32CubeIDE_1.13.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_macro   0x00000000000247ba      0x5cf ./Core/Src/main.o
  .debug_macro   0x0000000000024d89       0x44 ./Core/Src/main.o
  .debug_macro   0x0000000000024dcd      0x330 ./Core/Src/main.o
- .debug_macro   0x00000000000250fd       0x58 ./Core/Src/main.o
- .debug_macro   0x0000000000025155       0x16 ./Core/Src/main.o
- .debug_macro   0x000000000002516b       0x10 ./Core/Src/main.o
- .debug_macro   0x000000000002517b       0x16 ./Core/Src/main.o
- .debug_macro   0x0000000000025191       0x16 ./Core/Src/main.o
- .debug_macro   0x00000000000251a7      0x147 ./Core/Src/main.o
- .debug_macro   0x00000000000252ee      0x1c5 ./Core/Src/stm32l4xx_hal_msp.o
- .debug_macro   0x00000000000254b3      0x1cf ./Core/Src/stm32l4xx_it.o
- .debug_macro   0x0000000000025682      0x274 ./Core/Src/syscalls.o
- .debug_macro   0x00000000000258f6       0x10 ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025906       0x10 ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025916       0x10 ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025926       0x10 ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025936       0x1c ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025952       0x52 ./Core/Src/syscalls.o
- .debug_macro   0x00000000000259a4       0x22 ./Core/Src/syscalls.o
- .debug_macro   0x00000000000259c6       0x10 ./Core/Src/syscalls.o
- .debug_macro   0x00000000000259d6       0x52 ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025a28       0xcf ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025af7       0x1c ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025b13       0x3d ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025b50       0x35 ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025b85      0x12c ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025cb1       0x10 ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025cc1      0x242 ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025f03       0x1c ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025f1f       0x10 ./Core/Src/syscalls.o
- .debug_macro   0x0000000000025f2f      0x18a ./Core/Src/syscalls.o
- .debug_macro   0x00000000000260b9       0x16 ./Core/Src/syscalls.o
- .debug_macro   0x00000000000260cf       0xce ./Core/Src/syscalls.o
- .debug_macro   0x000000000002619d       0xff ./Core/Src/sysmem.o
- .debug_macro   0x000000000002629c      0x23c ./Core/Src/sysmem.o
- .debug_macro   0x00000000000264d8      0x1b6 ./Core/Src/system_stm32l4xx.o
- .debug_macro   0x000000000002668e      0x204 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
- .debug_macro   0x0000000000026892      0x1b6 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.o
- .debug_macro   0x0000000000026a48      0x1da ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dfsdm.o
- .debug_macro   0x0000000000026c22      0x1b6 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.o
- .debug_macro   0x0000000000026dd8      0x1bd ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.o
- .debug_macro   0x0000000000026f95      0x1da ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.o
- .debug_macro   0x000000000002716f      0x1f8 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o
- .debug_macro   0x0000000000027367      0x1ec ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.o
- .debug_macro   0x0000000000027553      0x1e1 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o
- .debug_macro   0x0000000000027734      0x1b6 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.o
+ .debug_macro   0x00000000000250fd       0x5e ./Core/Src/main.o
+ .debug_macro   0x000000000002515b       0x16 ./Core/Src/main.o
+ .debug_macro   0x0000000000025171       0x10 ./Core/Src/main.o
+ .debug_macro   0x0000000000025181       0x16 ./Core/Src/main.o
+ .debug_macro   0x0000000000025197       0x16 ./Core/Src/main.o
+ .debug_macro   0x00000000000251ad      0x147 ./Core/Src/main.o
+ .debug_macro   0x00000000000252f4      0x1c5 ./Core/Src/stm32l4xx_hal_msp.o
+ .debug_macro   0x00000000000254b9      0x1cf ./Core/Src/stm32l4xx_it.o
+ .debug_macro   0x0000000000025688      0x274 ./Core/Src/syscalls.o
+ .debug_macro   0x00000000000258fc       0x10 ./Core/Src/syscalls.o
+ .debug_macro   0x000000000002590c       0x10 ./Core/Src/syscalls.o
+ .debug_macro   0x000000000002591c       0x10 ./Core/Src/syscalls.o
+ .debug_macro   0x000000000002592c       0x10 ./Core/Src/syscalls.o
+ .debug_macro   0x000000000002593c       0x1c ./Core/Src/syscalls.o
+ .debug_macro   0x0000000000025958       0x52 ./Core/Src/syscalls.o
+ .debug_macro   0x00000000000259aa       0x22 ./Core/Src/syscalls.o
+ .debug_macro   0x00000000000259cc       0x10 ./Core/Src/syscalls.o
+ .debug_macro   0x00000000000259dc       0x52 ./Core/Src/syscalls.o
+ .debug_macro   0x0000000000025a2e       0xcf ./Core/Src/syscalls.o
+ .debug_macro   0x0000000000025afd       0x1c ./Core/Src/syscalls.o
+ .debug_macro   0x0000000000025b19       0x3d ./Core/Src/syscalls.o
+ .debug_macro   0x0000000000025b56       0x35 ./Core/Src/syscalls.o
+ .debug_macro   0x0000000000025b8b      0x12c ./Core/Src/syscalls.o
+ .debug_macro   0x0000000000025cb7       0x10 ./Core/Src/syscalls.o
+ .debug_macro   0x0000000000025cc7      0x242 ./Core/Src/syscalls.o
+ .debug_macro   0x0000000000025f09       0x1c ./Core/Src/syscalls.o
+ .debug_macro   0x0000000000025f25       0x10 ./Core/Src/syscalls.o
+ .debug_macro   0x0000000000025f35      0x18a ./Core/Src/syscalls.o
+ .debug_macro   0x00000000000260bf       0x16 ./Core/Src/syscalls.o
+ .debug_macro   0x00000000000260d5       0xce ./Core/Src/syscalls.o
+ .debug_macro   0x00000000000261a3       0xff ./Core/Src/sysmem.o
+ .debug_macro   0x00000000000262a2      0x23c ./Core/Src/sysmem.o
+ .debug_macro   0x00000000000264de      0x1b6 ./Core/Src/system_stm32l4xx.o
+ .debug_macro   0x0000000000026694      0x204 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
+ .debug_macro   0x0000000000026898      0x1b6 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.o
+ .debug_macro   0x0000000000026a4e      0x1da ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dfsdm.o
+ .debug_macro   0x0000000000026c28      0x1b6 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.o
+ .debug_macro   0x0000000000026dde      0x1bd ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.o
+ .debug_macro   0x0000000000026f9b      0x1da ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.o
+ .debug_macro   0x0000000000027175      0x1f8 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o
+ .debug_macro   0x000000000002736d      0x1ec ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.o
+ .debug_macro   0x0000000000027559      0x1e1 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o
+ .debug_macro   0x000000000002773a      0x1b6 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.o
 
 .debug_line     0x0000000000000000    0x162b0
  .debug_line    0x0000000000000000      0x952 ./Core/Src/dct.o
@@ -5310,82 +5310,82 @@ LOAD C:/ST/STM32CubeIDE_1.13.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_line    0x0000000000015396      0x243 C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_common_tables.o)
  .debug_line    0x00000000000155d9      0xcd7 C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cfft_radix8_f32.o)
 
-.debug_str      0x0000000000000000    0xeeef6
+.debug_str      0x0000000000000000    0xeef04
  .debug_str     0x0000000000000000     0x8e2d ./Core/Src/dct.o
                                        0x90ff (size before relaxing)
- .debug_str     0x0000000000008e2d      0x398 ./Core/Src/dsp.o
-                                       0x9336 (size before relaxing)
- .debug_str     0x00000000000091c5    0xdf921 ./Core/Src/main.o
-                                      0xe8af3 (size before relaxing)
- .debug_str     0x00000000000e8ae6      0x394 ./Core/Src/stm32l4xx_hal_msp.o
-                                      0xe3ca2 (size before relaxing)
- .debug_str     0x00000000000e8e7a      0x134 ./Core/Src/stm32l4xx_it.o
-                                      0xe2dd8 (size before relaxing)
- .debug_str     0x00000000000e8fae     0x1fea ./Core/Src/syscalls.o
+ .debug_str     0x0000000000008e2d      0x399 ./Core/Src/dsp.o
+                                       0x9337 (size before relaxing)
+ .debug_str     0x00000000000091c6    0xdf92e ./Core/Src/main.o
+                                      0xe8b01 (size before relaxing)
+ .debug_str     0x00000000000e8af4      0x394 ./Core/Src/stm32l4xx_hal_msp.o
+                                      0xe3caf (size before relaxing)
+ .debug_str     0x00000000000e8e88      0x134 ./Core/Src/stm32l4xx_it.o
+                                      0xe2de5 (size before relaxing)
+ .debug_str     0x00000000000e8fbc     0x1fea ./Core/Src/syscalls.o
                                        0x98c8 (size before relaxing)
- .debug_str     0x00000000000eaf98       0x6b ./Core/Src/sysmem.o
+ .debug_str     0x00000000000eafa6       0x6b ./Core/Src/sysmem.o
                                        0x607f (size before relaxing)
- .debug_str     0x00000000000eb003       0xe2 ./Core/Src/system_stm32l4xx.o
+ .debug_str     0x00000000000eb011       0xe2 ./Core/Src/system_stm32l4xx.o
                                       0xe2944 (size before relaxing)
- .debug_str     0x00000000000eb0e5       0x34 ./Core/Startup/startup_stm32l476rgtx.o
+ .debug_str     0x00000000000eb0f3       0x34 ./Core/Startup/startup_stm32l476rgtx.o
                                          0x82 (size before relaxing)
- .debug_str     0x00000000000eb119      0x694 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
+ .debug_str     0x00000000000eb127      0x694 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
                                       0xe3543 (size before relaxing)
- .debug_str     0x00000000000eb7ad      0x313 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.o
+ .debug_str     0x00000000000eb7bb      0x313 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.o
                                       0xe318b (size before relaxing)
- .debug_str     0x00000000000ebac0      0x872 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dfsdm.o
+ .debug_str     0x00000000000ebace      0x872 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dfsdm.o
                                       0xe3850 (size before relaxing)
- .debug_str     0x00000000000ec332      0x205 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.o
+ .debug_str     0x00000000000ec340      0x205 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.o
                                       0xe2bae (size before relaxing)
- .debug_str     0x00000000000ec537      0x103 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.o
+ .debug_str     0x00000000000ec545      0x103 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.o
                                       0xe2abd (size before relaxing)
- .debug_str     0x00000000000ec63a      0x4e3 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.o
+ .debug_str     0x00000000000ec648      0x4e3 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.o
                                       0xe2e9f (size before relaxing)
- .debug_str     0x00000000000ecb1d      0x345 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o
+ .debug_str     0x00000000000ecb2b      0x345 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o
                                       0xe2f8a (size before relaxing)
- .debug_str     0x00000000000ece62      0x3bf ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.o
+ .debug_str     0x00000000000ece70      0x3bf ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.o
                                       0xe3103 (size before relaxing)
- .debug_str     0x00000000000ed221      0x849 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o
+ .debug_str     0x00000000000ed22f      0x849 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o
                                       0xe369c (size before relaxing)
- .debug_str     0x00000000000eda6a      0x200 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.o
+ .debug_str     0x00000000000eda78      0x200 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.o
                                       0xe2ec8 (size before relaxing)
- .debug_str     0x00000000000edc6a      0x535 C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_fill_f32.o)
+ .debug_str     0x00000000000edc78      0x535 C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_fill_f32.o)
                                         0x66b (size before relaxing)
- .debug_str     0x00000000000ee19f       0x2d C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_copy_f32.o)
+ .debug_str     0x00000000000ee1ad       0x2d C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_copy_f32.o)
                                         0x66a (size before relaxing)
- .debug_str     0x00000000000ee1cc       0x38 C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_mean_f32.o)
+ .debug_str     0x00000000000ee1da       0x38 C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_mean_f32.o)
                                         0x670 (size before relaxing)
- .debug_str     0x00000000000ee204      0x7da C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_rfft_fast_init_f32.o)
+ .debug_str     0x00000000000ee212      0x7da C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_rfft_fast_init_f32.o)
                                         0xf3b (size before relaxing)
- .debug_str     0x00000000000ee9de       0x74 C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_rfft_fast_f32.o)
+ .debug_str     0x00000000000ee9ec       0x74 C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_rfft_fast_f32.o)
                                         0x739 (size before relaxing)
- .debug_str     0x00000000000eea52      0x10e C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cfft_f32.o)
+ .debug_str     0x00000000000eea60      0x10e C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cfft_f32.o)
                                         0xe7e (size before relaxing)
- .debug_str     0x00000000000eeb60       0x5b C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_bitreversal2.o)
+ .debug_str     0x00000000000eeb6e       0x5b C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_bitreversal2.o)
                                         0xd76 (size before relaxing)
- .debug_str     0x00000000000eebbb       0x72 C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_mat_mult_f32.o)
+ .debug_str     0x00000000000eebc9       0x72 C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_mat_mult_f32.o)
                                         0x784 (size before relaxing)
- .debug_str     0x00000000000eec2d       0x3f C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_mat_init_f32.o)
+ .debug_str     0x00000000000eec3b       0x3f C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_mat_init_f32.o)
                                         0x693 (size before relaxing)
- .debug_str     0x00000000000eec6c       0x44 C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_fir_init_f32.o)
+ .debug_str     0x00000000000eec7a       0x44 C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_fir_init_f32.o)
                                         0x6bb (size before relaxing)
- .debug_str     0x00000000000eecb0       0x69 C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_fir_f32.o)
+ .debug_str     0x00000000000eecbe       0x69 C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_fir_f32.o)
                                         0x6e5 (size before relaxing)
- .debug_str     0x00000000000eed19       0x5e C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cmplx_mag_f32.o)
+ .debug_str     0x00000000000eed27       0x5e C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cmplx_mag_f32.o)
                                         0x734 (size before relaxing)
- .debug_str     0x00000000000eed77       0x41 C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cos_f32.o)
+ .debug_str     0x00000000000eed85       0x41 C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cos_f32.o)
                                         0xd42 (size before relaxing)
- .debug_str     0x00000000000eedb8       0x30 C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_scale_f32.o)
+ .debug_str     0x00000000000eedc6       0x30 C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_scale_f32.o)
                                         0x674 (size before relaxing)
- .debug_str     0x00000000000eede8       0x31 C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_offset_f32.o)
+ .debug_str     0x00000000000eedf6       0x31 C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_offset_f32.o)
                                         0x677 (size before relaxing)
- .debug_str     0x00000000000eee19       0x2f C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_mult_f32.o)
+ .debug_str     0x00000000000eee27       0x2f C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_mult_f32.o)
                                         0x673 (size before relaxing)
- .debug_str     0x00000000000eee48       0x33 C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_dot_prod_f32.o)
+ .debug_str     0x00000000000eee56       0x33 C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_dot_prod_f32.o)
                                         0x67d (size before relaxing)
- .debug_str     0x00000000000eee7b       0x2e C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_common_tables.o)
+ .debug_str     0x00000000000eee89       0x2e C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_common_tables.o)
                                         0xd1d (size before relaxing)
- .debug_str     0x00000000000eeea9       0x4d C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cfft_radix8_f32.o)
+ .debug_str     0x00000000000eeeb7       0x4d C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib\libarm_cortexM4lf_math.a(arm_cfft_radix8_f32.o)
                                         0x69b (size before relaxing)
 
 .debug_frame    0x0000000000000000     0x55c0

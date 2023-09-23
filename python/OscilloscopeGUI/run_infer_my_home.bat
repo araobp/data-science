@@ -1,2 +1,2 @@
 set PYTHONPATH=%PYTHONPATH%;./script
-python ./script/oscilloscope.py --port COM15 --dataset ../dataset/data_my_home
+python ./script/oscilloscope.py --port COM6 --dataset ./dataset/Y2019/data_my_home

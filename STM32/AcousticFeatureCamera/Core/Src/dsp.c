@@ -22,9 +22,7 @@ float32_t nyq_fs = 0.0f;  // Nyquist frequency
 arm_rfft_fast_instance_f32 S;
 arm_fir_instance_f32 S_PRE;
 arm_fir_instance_f32 S_WPRE;
-#ifndef FEATURE_MFSC
 dct2_instance_f32 S_DCT;
-#endif
 
 // Pre-emphasis
 float32_t fir_coefficients[2] = { -ALPHA, 1.0f };
@@ -45,7 +43,7 @@ float32_t signal_buf[NN] = { 0.0f };
 /*
  *  log10 approximation
  *
- *  reference: https://community.arm.com/tools/f/discussions/4292/cmsis-dsp-new-functionality-proposal
+ *  reference: https://community.arm.com/support-forums/f/armds-forum/4292/cmsis-dsp-new-functionality-proposal
  */
 const float32_t C[4] = { 1.23149591368684f, -4.11852516267426f,
     6.02197014179219f, -3.13396450166353f };

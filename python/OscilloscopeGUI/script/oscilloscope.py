@@ -36,7 +36,7 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("-p", "--port", help="serial port identifier", default=None)
 parser.add_argument("-D", "--debug",
-                    help="serial port identifier",
+                    help="debug output",
                     action="store_true")
 parser.add_argument("-d", "--dataset_folder",
                     help="Data folder for saving feature data from the device",

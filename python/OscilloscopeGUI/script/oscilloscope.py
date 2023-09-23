@@ -14,6 +14,8 @@ import tkinter as Tk
 from datetime import datetime
 import os
 
+import threading
+
 import matplotlib.pyplot as plt
 
 import dsp
@@ -153,102 +155,120 @@ if __name__ == '__main__':
 
     def repeat(func):
         global repeat_action
-        if repeat_action:
-            root.after(50, func)
+        def _repeat():
+            while(repeat_action):
+                func()
+        threading.Thread(target=_repeat).start()
+        #root.after(50, func)
 
     def infer(data):
         class_label, p = cnn_model.infer(data)
         label_inference.configure(text='This is {} ({} %)'.format(class_label, int(p)))
         
     def raw_wave(repeatable=True):
-        global last_operation
-        range_ = int(range_amplitude.get())
-        data = gui.plot(ax, dsp.RAW_WAVE, range_=range_, grid=args.show_grid)
-        last_operation = (raw_wave, data, None, None)
-        fig.tight_layout()
-        canvas.draw()
+        def _raw_wave():
+            global last_operation
+            range_ = int(range_amplitude.get())
+            data = gui.plot(ax, dsp.RAW_WAVE, range_=range_, grid=args.show_grid)
+            last_operation = (raw_wave, data, None, None)
+            fig.tight_layout()
+            canvas.draw()
         if repeatable:
-            repeat(raw_wave)
+            repeat(_raw_wave)
+        else:
+            _raw_wave()
 
     def fft(repeatable=True):
-        global last_operation
-        ssub = int(spectrum_subtraction.get())
-        data = gui.plot(ax, dsp.FFT, grid=args.show_grid)
-        last_operation = (fft, data, None, None)
-        fig.tight_layout()
-        canvas.draw()
+        def _fft():
+            global last_operation
+            ssub = int(spectrum_subtraction.get())
+            data = gui.plot(ax, dsp.FFT, grid=args.show_grid)
+            last_operation = (fft, data, None, None)
+            fig.tight_layout()
+            canvas.draw()
         if repeatable:
-            repeat(fft)
+            repeat(_fft)
+        else:
+            _fft()
 
     def spectrogram(data=EMPTY, pos=0, repeatable=True):
-        global last_operation, dataset
-        ssub = int(spectrum_subtraction.get())    
-        range_ = int(range_spectrogram.get())
-        cmap_ = var_cmap.get()
-        if data is EMPTY:
-            window = dataset.windows[int(range_window.get())]
-            data = gui.plot(ax, dsp.SPECTROGRAM, range_, cmap_, ssub, grid=args.show_grid)
-        else:
-            window = dataset.windows[pos]
-            gui.plot(ax, dsp.SPECTROGRAM, range_, cmap_, ssub, data=data,
-                         window=None)
-        last_operation = (spectrogram, data, window, pos)
-        fig.tight_layout()
-        canvas.draw()
+        def _spectrogram(data=data, pos=pos):
+            global last_operation, dataset
+            ssub = int(spectrum_subtraction.get())    
+            range_ = int(range_spectrogram.get())
+            cmap_ = var_cmap.get()
+            if data is EMPTY:
+                window = dataset.windows[int(range_window.get())]
+                data = gui.plot(ax, dsp.SPECTROGRAM, range_, cmap_, ssub, grid=args.show_grid)
+            else:
+                window = dataset.windows[pos]
+                gui.plot(ax, dsp.SPECTROGRAM, range_, cmap_, ssub, data=data,
+                            window=None)
+            last_operation = (spectrogram, data, window, pos)
+            fig.tight_layout()
+            canvas.draw()
         if repeatable:
-            repeat(spectrogram)
+            repeat(_spectrogram)
+        else:
+            _spectrogram()
 
     def mfsc(data=EMPTY, pos=None, repeatable=True):
-        global last_operation, dataset
-        print(pos)
-        ssub = int(spectrum_subtraction.get())
-        range_ = int(range_mfsc.get())
-        cmap_ = var_cmap.get()
-        if data is EMPTY:
-            window = dataset.windows[int(range_window.get())]
-            data = gui.plot(ax, dsp.MFSC, range_, cmap_, ssub,
-                               window=window, grid=args.show_grid)
-        else:
-            if pos is not None and not args.disable_window:
-                window = dataset.windows[pos]
+        def _mfsc(data=data, pos=pos):
+            global last_operation, dataset
+            print(pos)
+            ssub = int(spectrum_subtraction.get())
+            range_ = int(range_mfsc.get())
+            cmap_ = var_cmap.get()
+            if data is EMPTY:
+                window = dataset.windows[int(range_window.get())]
+                data = gui.plot(ax, dsp.MFSC, range_, cmap_, ssub,
+                                window=window, grid=args.show_grid)
             else:
-                window = None
-            gui.plot(ax, dsp.MFSC, range_, cmap_, ssub, data=data,
-                         window=window)
-        if cnn_model:
-            print(window)
-            a, b, c = window[0], window[1], window[2]
-            infer(data[a:b,:c])
-        last_operation = (mfsc, data, window, pos)
-        fig.tight_layout()
-        canvas.draw()
+                if pos is not None and not args.disable_window:
+                    window = dataset.windows[pos]
+                else:
+                    window = None
+                gui.plot(ax, dsp.MFSC, range_, cmap_, ssub, data=data,
+                            window=window)
+            if cnn_model:
+                print(window)
+                a, b, c = window[0], window[1], window[2]
+                infer(data[a:b,:c])
+            last_operation = (mfsc, data, window, pos)
+            fig.tight_layout()
+            canvas.draw()
         if repeatable:
-            repeat(mfsc)
+            repeat(_mfsc)
+        else:
+            _mfsc()
 
     def mfcc(data=EMPTY, pos=None, repeatable=True):
-        global last_operation, dataset
-        ssub = int(spectrum_subtraction.get())    
-        range_ = int(range_mfcc.get())
-        cmap_ = var_cmap.get()
-        if data is EMPTY:
-            window = dataset.windows[int(range_window.get())]
-            data = gui.plot(ax, dsp.MFCC, range_, cmap_, ssub,
-                               window=window, grid=args.show_grid)
-        else:
-            if pos is not None and not args.disable_window:
-                window = dataset.windows[pos]
+        def _mfcc(data=data, pos=pos):
+            global last_operation, dataset
+            ssub = int(spectrum_subtraction.get())    
+            range_ = int(range_mfcc.get())
+            cmap_ = var_cmap.get()
+            if data is EMPTY:
+                window = dataset.windows[int(range_window.get())]
+                data = gui.plot(ax, dsp.MFCC, range_, cmap_, ssub,
+                                window=window, grid=args.show_grid)
             else:
-                window = None
-            gui.plot(ax, dsp.MFCC, range_, cmap_, ssub, data=data,
-                         window=window)
-        # TODO: inference for MFCCs
-        #if cnn_model:
-        #    infer(data, pos)
-        last_operation = (mfcc, data, window, pos)
-        fig.tight_layout()
-        canvas.draw()
+                if pos is not None and not args.disable_window:
+                    window = dataset.windows[pos]
+                else:
+                    window = None
+                gui.plot(ax, dsp.MFCC, range_, cmap_, ssub, data=data,
+                            window=window)
+            # TODO: inference for MFCCs
+            #if cnn_model:
+            #    infer(data, pos)
+            last_operation = (mfcc, data, window, pos)
+            fig.tight_layout()
+            canvas.draw()
         if repeatable:
-            repeat(mfcc)
+            repeat(_mfcc)
+        else:
+            _mfcc()
 
     def welch():
         gui.plot_welch(ax, grid=args.show_grid)

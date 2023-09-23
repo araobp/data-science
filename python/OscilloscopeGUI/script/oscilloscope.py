@@ -93,7 +93,7 @@ if __name__ == '__main__':
 
     EMPTY = np.array([])
 
-    if args.oscilloscope_mode:
+    if args.oscilloscope_mode or args.fullscreen_mode:
         enable_shadow = False
     else:
         enable_shadow = True
@@ -453,8 +453,7 @@ if __name__ == '__main__':
     range_window = Tk.Scale(master=frame_row4, orient=Tk.HORIZONTAL, length=180,
                             from_=0, to=len(dataset.windows)-1, tickinterval=1)
     if cnn_model:
-        label_inference = Tk.Label(master=frame_row3, width=40, fg='DeepSkyBlue4', padx=PADX)
-        label_inference.config(font=("Arial", 20))
+        label_inference = Tk.Label(master=frame_row3, width=40, fg='DeepSkyBlue4', padx=PADX)label_inference.config(font=("Arial", 20))
     
     ##### Place the parts on Tk #####
 

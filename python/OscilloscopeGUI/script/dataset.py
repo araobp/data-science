@@ -24,8 +24,8 @@ def plot_accuracy(history):
     '''
     Plot training & validation accuracy values for Keras output
     '''
-    plt.plot(history.history['acc'])
-    plt.plot(history.history['val_acc'])
+    plt.plot(history.history['accuracy'])
+    plt.plot(history.history['val_accuracy'])
 
     plt.title('Model accuracy')
     plt.ylabel('Accuracy')

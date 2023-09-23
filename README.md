@@ -35,7 +35,7 @@ Develop practical use cases with acoustic scene classifcation!
 
 => [Acoustic Scene Classification](AcousticSceneClassification.md)
 
-## Artistic Visualization of Acoustic Features
+## Artistic Visualization of Acoustic Features (Work in progress)
 
 Use Blender w/ Python to visualize acoustic features!
 

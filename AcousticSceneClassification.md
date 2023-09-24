@@ -20,6 +20,8 @@ This is a project to develop edge AI for Acoustic Scene Classification based on 
 
 => [MicrophoneArray simulation](MicrophoneArray)
 
+=> [Arduino shield revision to support two MEMS microphones]
+
 => [ACOUSTIC_FEATURE_CAMERA with two MEMS microphones]
 
 ### Step 4: Training CNN on Jupyter Notebook

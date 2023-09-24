@@ -35,12 +35,6 @@ Develop practical use cases with acoustic scene classifcation!
 
 => [Acoustic Scene Classification](AcousticSceneClassification.md)
 
-## Wish list
-
-I am interested in the following areas:
-- Mic array
-- Ultrasonic communications
-
 ## References
 
 ### Delta-Sigma ADCs

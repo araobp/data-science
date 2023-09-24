@@ -18,7 +18,7 @@ This is a project to develop edge AI for Acoustic Scene Classification based on 
 
 ### Step 3: Android app
 
-Develop an Oscilloscope app on Android, referring to https://github.com/araobp/android-aed
+Develop an Oscilloscope app on Android, referring to https://github.com/araobp/android-aed.
 
 ### Step 4: Training CNN on Jupyter Notebook
 

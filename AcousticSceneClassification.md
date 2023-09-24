@@ -16,8 +16,14 @@ This is a project to develop edge AI for Acoustic Scene Classification based on 
 
 => [ACOUSTIC_FEATURE_CAMERA](STM32/ACOUSTIC_FEATURE_CAMERA.md) (Work in progress)
 
-### Step 3: Android app 
+### Step 3: Microphone Array for Beamforming
+
+=> [MicrophoneArray simulation](MicrophoneArray)
+
+=> [ACOUSTIC_FEATURE_CAMERA with two MEMS microphones]
 
 ### Step 4: Training CNN on Jupyter Notebook
 
 ### Step 5: Acoustic Feature Camera (with AI)
+
+### Step 6: Android app

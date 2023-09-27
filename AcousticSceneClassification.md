@@ -16,9 +16,11 @@ This is a project to develop edge AI for Acoustic Scene Classification based on 
 
 => [ACOUSTIC_FEATURE_CAMERA](STM32/ACOUSTIC_FEATURE_CAMERA.md) (Work in progress)
 
-### Step 3: Android app
+### Step 3: Data Collection
 
-Develop an Oscilloscope app on Android, referring to https://github.com/araobp/android-aed.
+- Musical Instruments
+- Key Words
+- Life Log
 
 ### Step 4: Training CNN on Jupyter Notebook
 

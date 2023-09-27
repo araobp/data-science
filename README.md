@@ -28,6 +28,7 @@ Learn Audio feature engineering basics for Acoustinc Scene Classification!
 Run Rock Paper Scissors machine with edge AI!
 
 => [Rock Paper Scissors](RockPaperScissors.md)
+=> [3DCG animation]
 
 ## Edge AI: Acoustic Scene Classification (Work in progress)
 

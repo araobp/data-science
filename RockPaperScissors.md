@@ -23,3 +23,5 @@ The folder contains the hardware part of "RockPaperScissors" on STMicroelectroni
 ### 3DCG animation (Work in progress)
 
 Use Blender and GIMP to animate the scene of my edge AI device.
+
+=> [Blender files](blender)

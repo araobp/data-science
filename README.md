@@ -29,8 +29,6 @@ Run Rock Paper Scissors machine with edge AI!
 
 => [Rock Paper Scissors](RockPaperScissors.md)
 
-=> [3DCG animation]
-
 ## Edge AI: Acoustic Scene Classification (Work in progress)
 
 Develop practical use cases with acoustic scene classifcation!

@@ -23,6 +23,8 @@ Develop practical use cases with acoustic scene classifcation!
 
 => [Acoustic Scene Classification](AcousticSceneClassification.md)
 
+---
+
 ## References
 
 ### Delta-Sigma ADCs

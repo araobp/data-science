@@ -11,18 +11,6 @@ In this project, I review and improve my achievements on edge AI in my past proj
 - [stm32-mcu](https://github.com/araobp/stm32-mcu)
 - [ultrasonic-communication](https://github.com/araobp/ultrasonic-communication)
 
-## Digital Audio Processing
-
-Learn DSP basics!
-
-=> [Digital Audio Processing](DigitalAudioProcessing)
-
-## Speech Processing for AI
-
-Learn Audio feature engineering basics for Acoustinc Scene Classification!
-
-=> [Speech Processing for AI](SpeechProcessing)
-
 ## Edge AI: AI Rock Paper Scissors
 
 Run Rock Paper Scissors machine with edge AI!
@@ -65,7 +53,15 @@ Make Jupyter Notebook collect data from this Arduino version of the thermograpy 
 
 This is me.
 
-### Other learning
+### Learning by Doing
+
+### DSP-related
+
+- [Digital Audio Processing](DigitalAudioProcessing)
+- [Speech Processing for AI](SpeechProcessing)
+
+### Others
+
 - [CIFAR 10](misc/CIFAR10): The best accuracy I have ever achieved is 75%...
 - [MINIST](misc/MNIST)
 - [IMDb](misc/IMDb)

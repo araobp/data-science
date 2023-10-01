@@ -11,15 +11,16 @@ In this project, I review and improve my achievements on edge AI in my past proj
 - [stm32-mcu](https://github.com/araobp/stm32-mcu)
 - [ultrasonic-communication](https://github.com/araobp/ultrasonic-communication)
 
-## Edge AI: AI Rock Paper Scissors
+## AI Rock Paper Scissors
 
-Run Rock Paper Scissors machine with edge AI!
+- AI Rock Paper Scissors machine with NUCLEO L476RG board.
+- Digital Twin of the machine made with Blender.
 
 => [Rock Paper Scissors](RockPaperScissors.md)
 
-## Edge AI: Acoustic Scene Classification (Work in progress)
+## Acoustic Scene Classification (Work in progress)
 
-Develop practical use cases with acoustic scene classifcation!
+- Acoustic scene classifcation with NUCLEO L476RG board.
 
 => [Acoustic Scene Classification](AcousticSceneClassification.md)
 

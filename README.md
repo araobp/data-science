@@ -4,36 +4,27 @@
 
 <img src="doc/screen_shot_cepa_andaluza_cante.png" width=750>
 
-Stop Global Warming! I cannot stand high temeprature. Edge AI with low-power-consumption MCU is one of key technologies to stop Global Warming.
+Edge AI with low-power-consumption MCU is one of key technologies to stop Global Warming.
 
 In this project, I review and improve my achievements on edge AI in my past projects:
 - [acoustic-features](https://github.com/araobp/acoustic-features)
 - [stm32-mcu](https://github.com/araobp/stm32-mcu)
 - [ultrasonic-communication](https://github.com/araobp/ultrasonic-communication)
 
-## Digital Audio Processing
+## AI Rock Paper Scissors
 
-Learn DSP basics!
-
-=> [Digital Audio Processing](DigitalAudioProcessing)
-
-## Speech Processing for AI
-
-Learn Audio feature engineering basics for Acoustinc Scene Classification!
-
-=> [Speech Processing for AI](SpeechProcessing)
-
-## Edge AI: AI Rock Paper Scissors
-
-Run Rock Paper Scissors machine with edge AI!
+- AI Rock Paper Scissors machine with NUCLEO L476RG board.
+- Digital Twin of the machine made with Blender.
 
 => [Rock Paper Scissors](RockPaperScissors.md)
 
-## Edge AI: Acoustic Scene Classification (Work in progress)
+## Acoustic Scene Classification (Work in progress)
 
-Develop practical use cases with acoustic scene classifcation!
+- Acoustic scene classifcation with NUCLEO L476RG board.
 
 => [Acoustic Scene Classification](AcousticSceneClassification.md)
+
+---
 
 ## References
 
@@ -65,7 +56,15 @@ Make Jupyter Notebook collect data from this Arduino version of the thermograpy 
 
 This is me.
 
-### Other learning
+### Learning by Doing
+
+### DSP-related
+
+- [Digital Audio Processing](DigitalAudioProcessing)
+- [Speech Processing for AI](SpeechProcessing)
+
+### Others
+
 - [CIFAR 10](misc/CIFAR10): The best accuracy I have ever achieved is 75%...
 - [MINIST](misc/MNIST)
 - [IMDb](misc/IMDb)

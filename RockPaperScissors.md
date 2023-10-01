@@ -24,6 +24,8 @@ The folder contains the hardware part of "RockPaperScissors" on STMicroelectroni
 
 Use Blender and GIMP to animate the scene of my edge AI device. This is quite a challenge but worth doing.
 
+=> [Video on YouTube](https://youtu.be/e6F0C5PsM-8)
+
 => [Blender files](blender)
 
 I used Python to animate text on the LCD in the 3DCG scene:

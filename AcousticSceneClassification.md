@@ -10,19 +10,15 @@ This is a project to develop edge AI for Acoustic Scene Classification based on 
 
 => [ACOUSTIC_FEATURE_CAMERA](STM32/ACOUSTIC_FEATURE_CAMERA.md) (Work in progress)
 
-### Step 3: Analog Filter
+### Step 3: Acoustic Feature Camera with DAC
 
-=> [ANALOG FILTER](STM32/ANALOG_FILTER.md) (Work in progress)
-
-### Step 4: Acoustic Feature Camera with DAC
-
-### Step 5: Data Collection
+### Step 4: Data Collection
 
 - Musical Instruments
 - Key Words
 - Life Log
 
-### Step 6: Training CNN on Jupyter Notebook
+### Step 5: Training CNN on Jupyter Notebook
 
-### Step 7: Acoustic Feature Camera (with AI)
+### Step 6: Acoustic Feature Camera (with AI)
 

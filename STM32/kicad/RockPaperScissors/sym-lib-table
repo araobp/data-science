@@ -1,4 +1,0 @@
-(sym_lib_table
-  (version 0)
-  (lib (name "arduino_board-rescue")(type "Legacy")(uri "${KIPRJMOD}/arduino_board-rescue.lib")(options "")(descr ""))
-)

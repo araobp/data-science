@@ -26,6 +26,8 @@ FILTERBANK = b'f'
 ELAPSED_TIME = b't'
 ENABLE_PRE_EMPHASIS = b'P'
 DISABLE_PRE_EMPHASIS = b'p'
+ENABLE_EIGHTBIT_SHIFT = b'e'
+DISABLE_EIGHTBIT_SHIFT = b'E'
 
 # Features
 MFSC = b'98'
@@ -139,3 +141,15 @@ class Interface:
         else:
             ser.write(DISABLE_PRE_EMPHASIS)
         ser.close()
+    
+    def enable_eightbit_shift(self, enable):
+        '''
+        Enable/disable eight bit shift on PCM data to avoid overflow.
+        '''
+        ser = self.serial_port()
+        if enable:
+            ser.write(ENABLE_EIGHTBIT_SHIFT)
+        else:
+            ser.write(DISABLE_EIGHTBIT_SHIFT)
+        ser.close()
+

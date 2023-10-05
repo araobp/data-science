@@ -32,7 +32,7 @@ Sound/voice ))) [MEMS mic]--PDM-->[DFSDM]--+->[]->[]->[]->[]---+----Features--->
 ## Short-time FFT on STM32
 
 ```
-<DFSDM to Memory interrupt A>
+<DFSDM-to-Memory DMA interrupt A>
 void HAL_DFSDM_FilterRegConvHalfCpltCallback()
 [ 4 | 5 ] ----------------------+---+
                                 |   |
@@ -43,7 +43,7 @@ Buffer                      |
 [ 1 | 2 | 3 ] --------------+
 
 
-<DFSDM to Memory nterrupt B>
+<DFSDM-to-Memory DMA interrupt B>
 void HAL_DFSDM_FilterRegConvCpltCallback()
 [ 6 | 7 ] ----------------------+---+
                                 |   |

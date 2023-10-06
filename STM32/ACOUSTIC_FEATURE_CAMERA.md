@@ -69,4 +69,4 @@ Sampling frequency: 80_000_000/64/64 = 19.5kHz
 
 ## PCM audio output test
 
-=> [PCM](PCM.ipynb)
+=> [PCM](data/PCM.ipynb)

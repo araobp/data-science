@@ -23,10 +23,10 @@ Sound/voice ))) [MEMS mic]--PDM-->[DFSDM]--+->[]->[]->[]->[]---+----Features--->
                                        (features)
                                             |
                                             | *** learning ***
-                                            +--(dataset)--> [oscilloscope.py/Win10 or RasPi3] Keras/TensorFlow
+                                            +--(dataset)--> [oscilloscope.py] Keras/TensorFlow
                                             |
                                             | *** inference ***
-                                            +--(dataset)--> [oscilloscope.py/Win10 or RasPi3] Keras/TensorFlow
+                                            +--(dataset)--> [oscilloscope.py] Keras/TensorFlow
 ```
 
 ## Short-time FFT on STM32

@@ -55,9 +55,8 @@ Buffer                      |
 
 ```
 
-## DFSDM config (tentative)
+## DFSDM config
 
-Config A
 ```
 System clock: 80MHz
 Clock divider: 64
@@ -68,18 +67,6 @@ right bit shift in DFSDM: 1 (results in 24 bit PCM)
 Sampling frequency: 80_000_000/64/64 = 19.5kHz
 ```
 
-Config B
-```
-...
-```
-## Target use cases
+## PCM audio output test
 
-Config A
-- Musical instrument recognition
-- Life log
-- Bird chirp recognition
-
-Config B
-- Acoustic Scene classification
-I am planning to use an ultra-sonic MEMS mic from Knowles.
-
+=> [PCM](PCM.ipynb)

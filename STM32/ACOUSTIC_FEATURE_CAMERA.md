@@ -29,6 +29,32 @@ Sound/voice ))) [MEMS mic]--PDM-->[DFSDM]--+->[]->[]->[]->[]---+----Features--->
                                             +--(dataset)--> [oscilloscope.py/Win10 or RasPi3] Keras/TensorFlow
 ```
 
+## Short-time FFT on STM32
+
+```
+<DFSDM-to-Memory DMA interrupt A>
+void HAL_DFSDM_FilterRegConvHalfCpltCallback()
+[ 4 | 5 ] ----------------------+---+
+                                |   |
+                                V   V         FFT bin        FFT bin
+                  Buffer  [ 3 | 4 | 5 ] - - > [ 3 | 4 ] and [ 4 | 5 ]
+                            ^
+Buffer                      |
+[ 1 | 2 | 3 ] --------------+
+
+
+<DFSDM-to-Memory DMA interrupt B>
+void HAL_DFSDM_FilterRegConvCpltCallback()
+[ 6 | 7 ] ----------------------+---+
+                                |   |
+                                V   V         FFT bin        FFT bin
+                  Buffer  [ 5 | 6 | 7 ] - - > [ 5 | 6 ] and [ 6 | 7 ]
+                            ^
+Buffer                      |
+[ 3 | 4 | 5 ] --------------+
+
+```
+
 ## DFSDM config (tentative)
 
 Config A

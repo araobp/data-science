@@ -1,6 +1,6 @@
 # Edge AI and Digital Signal Processing
 
-[Framenco](https://youtu.be/NIKWBdthzg4?si=O71p1-v_ynUPurbq)
+[Paco De Lucia "Cepa Andaluza" (Bulerias)](https://youtu.be/NIKWBdthzg4?si=O71p1-v_ynUPurbq)
 
 <img src="doc/screen_shot_cepa_andaluza_cante.png" width=750>
 
@@ -9,7 +9,6 @@ Edge AI with low-power-consumption MCU is one of key technologies to stop Global
 In this project, I review and improve my achievements on edge AI in my past projects:
 - [acoustic-features](https://github.com/araobp/acoustic-features)
 - [stm32-mcu](https://github.com/araobp/stm32-mcu)
-- [ultrasonic-communication](https://github.com/araobp/ultrasonic-communication)
 
 ## AI Rock Paper Scissors
 

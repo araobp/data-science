@@ -1,6 +1,6 @@
 # Edge AI and Digital Signal Processing
 
-[Framenco](https://youtu.be/NIKWBdthzg4?si=O71p1-v_ynUPurbq)
+[Paco De Lucia"Cepa Andaluza" (Bulerias)](https://youtu.be/NIKWBdthzg4?si=O71p1-v_ynUPurbq)
 
 <img src="doc/screen_shot_cepa_andaluza_cante.png" width=750>
 

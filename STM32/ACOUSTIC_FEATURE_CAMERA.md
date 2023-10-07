@@ -23,15 +23,40 @@ Sound/voice ))) [MEMS mic]--PDM-->[DFSDM]--+->[]->[]->[]->[]---+----Features--->
                                        (features)
                                             |
                                             | *** learning ***
-                                            +--(dataset)--> [oscilloscope.py/Win10 or RasPi3] Keras/TensorFlow
+                                            +--(dataset)--> [oscilloscope.py] Keras/TensorFlow
                                             |
                                             | *** inference ***
-                                            +--(dataset)--> [oscilloscope.py/Win10 or RasPi3] Keras/TensorFlow
+                                            +--(dataset)--> [oscilloscope.py] Keras/TensorFlow
 ```
 
-## DFSDM config (tentative)
+## Short-time FFT on STM32
 
-Config A
+```
+<DFSDM-to-Memory DMA interrupt A>
+void HAL_DFSDM_FilterRegConvHalfCpltCallback()
+[ 4 | 5 ] ----------------------+---+
+                                |   |
+                                V   V         FFT bin        FFT bin
+                  Buffer  [ 3 | 4 | 5 ] - - > [ 3 | 4 ] and [ 4 | 5 ]
+                            ^
+Buffer                      |
+[ 1 | 2 | 3 ] --------------+
+
+
+<DFSDM-to-Memory DMA interrupt B>
+void HAL_DFSDM_FilterRegConvCpltCallback()
+[ 6 | 7 ] ----------------------+---+
+                                |   |
+                                V   V         FFT bin        FFT bin
+                  Buffer  [ 5 | 6 | 7 ] - - > [ 5 | 6 ] and [ 6 | 7 ]
+                            ^
+Buffer                      |
+[ 3 | 4 | 5 ] --------------+
+
+```
+
+## DFSDM config
+
 ```
 System clock: 80MHz
 Clock divider: 64
@@ -42,18 +67,6 @@ right bit shift in DFSDM: 1 (results in 24 bit PCM)
 Sampling frequency: 80_000_000/64/64 = 19.5kHz
 ```
 
-Config B
-```
-...
-```
-## Target use cases
+## PCM audio output test
 
-Config A
-- Musical instrument recognition
-- Life log
-- Bird chirp recognition
-
-Config B
-- Acoustic Scene classification
-I am planning to use an ultra-sonic MEMS mic from Knowles.
-
+=> [PCM](data/PCM.ipynb)

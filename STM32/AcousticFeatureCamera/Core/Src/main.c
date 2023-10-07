@@ -61,8 +61,14 @@ const int NN_DOUBLE = NN * 2;
 volatile bool new_pcm_data_a = false;
 volatile bool new_pcm_data_b = false;
 
-// output trigger
+// Output trigger
 volatile bool printing = false;
+
+// Continuous output
+volatile bool continous_output = false;
+
+// Eight-bit shift to fit 24bit PCM into 16bit PCM
+volatile int pcm_bit_shift = 0;
 
 // UART output mode
 volatile mode output_mode = FEATURES;
@@ -149,8 +155,11 @@ bool uart_tx(float32_t *in, mode mode, bool dma_start) {
   // Quantization: convert float into int
   if (mode == RAW_WAVE) {
     for (int n = 0; n < length; n++) {
-      uart_buf[idx++] = (uint8_t) (((int16_t) in[n]) >> 8);      // MSB
-      uart_buf[idx++] = (uint8_t) (((int16_t) in[n] & 0x00ff));  // LSB
+      // TODO: the original PCM is 24bit length, so this operation may cause overflow.
+      int32_t raw32 = (int32_t)in[n] >> pcm_bit_shift;
+      int16_t raw16 = (int16_t)raw32;
+      uart_buf[idx++] = (uint8_t) (raw16 >> 8);      // MSB
+      uart_buf[idx++] = (uint8_t) (raw16 & 0x00ff);  // LSB
     }
   } else if (mode == FEATURES) {
     a = pos * NUM_FILTERS;
@@ -201,6 +210,10 @@ void dsp(float32_t *s1, mode mode) {
 #endif
 
   if (mode >= FFT) {
+    // Pre-emphasis
+    if (pre_emphasis_enabled) {
+      apply_pre_emphasis(s1);
+    }
     apply_hann(s1);
     apply_fft(s1);
     apply_psd(s1);
@@ -252,6 +265,10 @@ void overlap_dsp(float32_t *buf, mode mode) {
   dsp(signal, mode);  // (2/2)
   if (printing) {
     printing = uart_tx(signal, mode, true);  // true: UART output
+  }
+
+  if (!printing && continous_output) {
+    printing = true;
   }
 }
 
@@ -357,9 +374,9 @@ int main(void)
       }
 
       // Pre-emphasis
-      if (pre_emphasis_enabled) {
-        apply_pre_emphasis(signal_buf + NN_HALF);
-      }
+      //if (pre_emphasis_enabled) {
+      //  apply_pre_emphasis(signal_buf + NN_HALF);
+      //}
 
       // Overlap dsp
       overlap_dsp(signal_buf, output_mode);
@@ -379,9 +396,9 @@ int main(void)
       }
 
       // Pre-emphasis
-      if (pre_emphasis_enabled) {
-        apply_pre_emphasis(signal_buf + NN_HALF);
-      }
+      //if (pre_emphasis_enabled) {
+      //  apply_pre_emphasis(signal_buf + NN_HALF);
+      //}
 
       // Overlap dsp
       overlap_dsp(signal_buf, output_mode);
@@ -659,6 +676,18 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
     break;
   case 't':
     debug_output = ELAPSED_TIME;
+    break;
+  case 'c':
+    continous_output = true;
+    break;
+  case 'C':
+    continous_output = false;
+    break;
+  case 'e':
+    pcm_bit_shift = 8;
+    break;
+  case 'E':
+    pcm_bit_shift = 0;
     break;
     // The others
   default:

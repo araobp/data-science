@@ -57,6 +57,7 @@ parser.add_argument("-g", "--show_grid",
                     help="Show grid", action="store_true")
 parser.add_argument("-W", "--disable_window",
                     help="Disable window", action="store_true")
+parser.add_argument("-B", "--eightbit_shift", action="store_true")
 args = parser.parse_args()
 
 if __name__ == '__main__':
@@ -69,10 +70,10 @@ if __name__ == '__main__':
     itfc = dsp.Interface(port=args.port, dataset=dataset)
         
     ### Default settings to DSP ###
-    # Note : pre-emphasis (HPF) destorts lower frequencies, thus
-    #        not suitable for watching wave form on the oscilloscope.
+    # Note : pre-emphasis (HPF) is for data(FFT etc) other than PCM wave form.
     if itfc.is_active():
         itfc.enable_pre_emphasis(True)  # Pre emphasis enabled
+        itfc.enable_eightbit_shift(args.eightbit_shift)
     ###############################
 
     PADX = 6
@@ -85,7 +86,7 @@ if __name__ == '__main__':
 
     cnt = 0
     repeat_action = False
-    
+
     filename = None
     data = None
     cnn_model = None
@@ -153,13 +154,14 @@ if __name__ == '__main__':
             cnt += 1
             counter.configure(text='({})'.format(str(cnt)))
 
-    def repeat(func):
-        global repeat_action
-        def _repeat():
-            while(repeat_action):
-                func()
-        threading.Thread(target=_repeat).start()
-        #root.after(50, func)
+    def exec_func(func, repeatable):
+        def _exec_func():
+            global repeat_action
+            func()
+            if (repeatable):
+                while(repeat_action):
+                    func()
+        threading.Thread(target=_exec_func).start()
 
     def infer(data):
         class_label, p = cnn_model.infer(data)
@@ -173,10 +175,8 @@ if __name__ == '__main__':
             last_operation = (raw_wave, data, None, None)
             fig.tight_layout()
             canvas.draw()
-        if repeatable:
-            repeat(_raw_wave)
-        else:
-            _raw_wave()
+        
+        exec_func(_raw_wave, repeatable)
 
     def fft(repeatable=True):
         def _fft():
@@ -186,10 +186,8 @@ if __name__ == '__main__':
             last_operation = (fft, data, None, None)
             fig.tight_layout()
             canvas.draw()
-        if repeatable:
-            repeat(_fft)
-        else:
-            _fft()
+        
+        exec_func(_fft, repeatable)
 
     def spectrogram(data=EMPTY, pos=0, repeatable=True):
         def _spectrogram(data=data, pos=pos):
@@ -207,10 +205,8 @@ if __name__ == '__main__':
             last_operation = (spectrogram, data, window, pos)
             fig.tight_layout()
             canvas.draw()
-        if repeatable:
-            repeat(_spectrogram)
-        else:
-            _spectrogram()
+        
+        exec_func(_spectrogram, repeatable)
 
     def mfsc(data=EMPTY, pos=None, repeatable=True):
         def _mfsc(data=data, pos=pos):
@@ -237,10 +233,8 @@ if __name__ == '__main__':
             last_operation = (mfsc, data, window, pos)
             fig.tight_layout()
             canvas.draw()
-        if repeatable:
-            repeat(_mfsc)
-        else:
-            _mfsc()
+        
+        exec_func(_mfsc, repeatable)
 
     def mfcc(data=EMPTY, pos=None, repeatable=True):
         def _mfcc(data=data, pos=pos):
@@ -265,15 +259,16 @@ if __name__ == '__main__':
             last_operation = (mfcc, data, window, pos)
             fig.tight_layout()
             canvas.draw()
-        if repeatable:
-            repeat(_mfcc)
-        else:
-            _mfcc()
+        
+        exec_func(_mfcc, repeatable)
 
     def welch():
-        gui.plot_welch(ax, grid=args.show_grid)
-        fig.tight_layout()
-        canvas.draw()
+        def _welch():
+            gui.plot_welch(ax, grid=args.show_grid)
+            fig.tight_layout()
+            canvas.draw()
+        
+        exec_func(_welch, repeatable=False)
 
     def repeat_toggle():
         global repeat_action
@@ -303,8 +298,11 @@ if __name__ == '__main__':
             counter.configure(text='({})'.format(str(cnt)))
 
     def quit():
-        root.quit()
-        root.destroy()
+        if repeat_action:
+            Tk.messagebox.showwarning('Warning!', 'Disable Repeat before Quit!')
+        else:
+            root.quit()
+            root.destroy()
 
     def confirm():
         global cnt
@@ -401,7 +399,7 @@ if __name__ == '__main__':
     counter = Tk.Label(master=frame_row1)
     counter.configure(text='({})'.format(str(0)))
     range_amplitude = Tk.Spinbox(master=frame_row1, width=6,
-                                 values=[2**11, 2**13, 2**15])
+                                 values=[2**7, 2**9, 2**11, 2**13, 2**15])
     range_mfsc = Tk.Spinbox(master=frame_row1, width=3,
                                        values=[dataset.filters, int(dataset.filters*.8), int(dataset.filters*0.6)])
     range_spectrogram = Tk.Spinbox(master=frame_row1, width=4,

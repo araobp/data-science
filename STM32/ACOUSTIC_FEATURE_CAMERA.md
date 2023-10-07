@@ -11,15 +11,15 @@ Acoustic Feature Camera is a device to capture acoustic features for edge AI.
                                       :   Filters for feature extraction        Inference on CNN     :
                                       :                                         ..................   :
 Sound/voice ))) [MEMS mic]--PDM-->[DFSDM]--+->[]->[]->[]->[]---+----Features--->: code generated :   :
-                                      :    |                   |                : by X-CUBE-AI   :   :
-                                      :    +------------+      |                ..................   :
-                                      :     +-----------|------+                                     :
-                                      :     |           |                                            :
-                                      :     V           V                                            :
-                                      :..[USART]......[DAC]..........................................:
-                                            |           |
-                                            |           | *** monitoring raw sound ***
-                                            |           +---> [Analog filter] --> head phone
+                                      :                        |                : by X-CUBE-AI   :   :
+                                      :                        |                ..................   :
+                                      :     +------------------+                                     :
+                                      :     |                                                        :
+                                      :     V                                                        :
+                                      :..[USART].....................................................:
+                                            |
+                                            |
+                                            |
                                        (features)
                                             |
                                             | *** learning ***

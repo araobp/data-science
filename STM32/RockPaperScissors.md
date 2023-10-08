@@ -23,6 +23,12 @@ Its GUI is in this folder: [GUI(Python3)](../python/ThermographyGUI)
 [NUCLEO L476RG] --- UART (VCP via ST-Link) --- COM port [Thermography GUI]
 ```
 
+<img src="../python/ThermographyGUI/screenshots/screen_shot_rock.png" width=400>
+
+<img src="../python/ThermographyGUI/screenshots/screen_shot_paper.png" width=400>
+
+<img src="../python/ThermographyGUI/screenshots/screen_shot_scissors.png" width=400>
+
 ### Rock Paper Scissors (with AI)
 
 This project is AI Rock Paper Scissors with Panasonic AMG8333:

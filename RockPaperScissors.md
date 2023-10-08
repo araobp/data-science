@@ -8,12 +8,6 @@ I relearn it in this project by doing this: https://github.com/araobp/stm32-mcu/
 
 STMicroelectronics also developed a toy similar to mine, but with VL53L5: https://stm32ai.st.com/use-case/shifumi-gesture-recognition/
 
-### Thermography
-
-The first thing to do is to develop Thermography with AMG8833 to collect a lot of heatmap data for each hand gesture (rock, paper and scissors).
-
-=> [Thermography](STM32/Thermography.md)
-
 ### Modeling and training a neural network 
 
 => [Training DNN with DCT Type-II coefficients as heatmap feature](RockPaperScissors)

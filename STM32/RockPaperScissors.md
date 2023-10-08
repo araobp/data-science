@@ -23,10 +23,13 @@ Its GUI is in this folder: [GUI(Python3)](../python/ThermographyGUI)
 [NUCLEO L476RG] --- UART (VCP via ST-Link) --- COM port [Thermography GUI]
 ```
 
+#### Rock
 <img src="../python/ThermographyGUI/screenshots/screen_shot_rock.png" width=400>
 
+#### Paper
 <img src="../python/ThermographyGUI/screenshots/screen_shot_paper.png" width=400>
 
+#### Scissors
 <img src="../python/ThermographyGUI/screenshots/screen_shot_scissors.png" width=400>
 
 ### Rock Paper Scissors (with AI)

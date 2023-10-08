@@ -18,7 +18,7 @@ The DNN model's recognition performance is much better than [that](https://githu
 
 => [RockPaperScissors with CubeIDE and STM32Cube.AI](STM32/RockPaperScissors.md)
 
-The folder contains the hardware part of "RockPaperScissors" on STMicroelectronics NUCLEO-L476RG board with the latest version of CubeIDE/CubeMX and STM32Cube.AI.
+The folder contains Thermography GUI and the hardware part of "RockPaperScissors" on STMicroelectronics NUCLEO-L476RG board with the latest version of CubeIDE/CubeMX and STM32Cube.AI.
 
 ### 3DCG animation (Work in progress)
 

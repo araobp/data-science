@@ -12,6 +12,8 @@ In this project, I review and improve my achievements on edge AI in my past proj
 
 ## AI Rock Paper Scissors
 
+<img src="doc/blender_dnn.png" width=500>
+
 - AI Rock Paper Scissors machine with NUCLEO L476RG board.
 - Digital Twin of the machine made with Blender.
 

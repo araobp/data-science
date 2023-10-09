@@ -20,11 +20,13 @@ The DNN model's recognition performance is much better than [that](https://githu
 
 The folder contains Thermography GUI and the hardware part of "RockPaperScissors" on STMicroelectronics NUCLEO-L476RG board with the latest version of CubeIDE/CubeMX and STM32Cube.AI.
 
-### 3DCG animation (Work in progress)
+### 3DCG animation
 
 Use Blender and GIMP to animate the scene of my edge AI device. This is quite a challenge but worth doing.
 
-=> [Video on YouTube](https://youtu.be/e6F0C5PsM-8)
+Video on YouTube
+- [Part 1](https://youtu.be/e6F0C5PsM-8)
+- [Part 2](https://youtu.be/bS-bzMsygZQ)
 
 => [Blender files](blender)
 

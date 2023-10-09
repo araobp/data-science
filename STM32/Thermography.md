@@ -12,7 +12,7 @@ I designed my original Arduino shield for AMG8833 in 2019. Refer to [this page](
 
 => [Revised schematic](kicad/RockPaperScissors/arduino_board.pdf)
 
-#### I2C pin assignment for Arduino shield
+#### STM32L4 I2C pin assignment for Arduino shield
 
 Arduino shield uses PB8 and PB9 for I2C SCL and SDA.
 

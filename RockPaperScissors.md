@@ -8,17 +8,34 @@ I relearn it in this project by doing this: https://github.com/araobp/stm32-mcu/
 
 STMicroelectronics also developed a toy similar to mine, but with VL53L5: https://stm32ai.st.com/use-case/shifumi-gesture-recognition/
 
+```
+Step 1: Data collection of 8x8 matrix temperature data.
+
+[NUCLEO-L476RG] ---- data ----> [Thermography GUI] --> CSV files in "/data" folder
+
+Step 2: Training DNN and generate Keras model with Jupyter Notebook
+
+Step 3: Generate code with the Keras model.
+
+Keras model --> CubeIDE with STM32Cube.AI --> Generated code
+
+Step 4: Add code to the generated one.
+
+Step 5: Run the device to play "Rock Paper Scissors".
+
+```
+
 ### Modeling and training a neural network 
 
 => [Training DNN with DCT Type-II coefficients as heatmap feature](RockPaperScissors)
 
-The DNN model's recognition performance is much better than [that](https://github.com/araobp/stm32-mcu/blob/master/NUCLEO-F401RE/Thermography/tensorflow/rock_paper_scissors_dct.ipynb) of my old project in 2019: overfitting occured in the old model. The performance has been improved by dropping DCT coefficients of higher frequencies drastically and adding dense layers more.
+The DNN model's recognition performance is much better than [that](https://github.com/araobp/stm32-mcu/blob/master/NUCLEO-F401RE/Thermography/tensorflow/rock_paper_scissors_dct.ipynb) of my old project in 2019: overfitting occured in the old model. The performance has been improved by dropping DCT coefficients of higher frequencies drastically and adding another dense layer.
 
 ### Edge AI implementation and experiment 
 
 => [RockPaperScissors with CubeIDE and STM32Cube.AI](STM32/RockPaperScissors.md)
 
-The folder contains Thermography GUI and the hardware part of "RockPaperScissors" on STMicroelectronics NUCLEO-L476RG board with the latest version of CubeIDE/CubeMX and STM32Cube.AI.
+The hardware part of "RockPaperScissors" on STMicroelectronics NUCLEO-L476RG board with the latest version of CubeIDE/CubeMX and STM32Cube.AI.
 
 ### 3DCG animation
 

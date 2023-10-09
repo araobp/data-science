@@ -1,1 +1,1 @@
-python thermography.py COM5 --grid_data
+python thermography.py COM6 --grid_data

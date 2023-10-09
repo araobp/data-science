@@ -31,6 +31,8 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+
+// Comment out the following line for data collection
 #define GAME_MODE
 
 /* USER CODE END Includes */

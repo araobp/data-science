@@ -33,6 +33,8 @@ Configuration for data collection
 [NUCLEO L476RG] --- UART (VCP via ST-Link) --- COM port [Thermography GUI]
 ```
 
+### Integration test
+
 #### Rock
 <img src="../python/ThermographyGUI/screenshots/screen_shot_rock.png" width=400>
 

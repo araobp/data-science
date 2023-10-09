@@ -24,7 +24,9 @@ The folder contains Thermography GUI and the hardware part of "RockPaperScissors
 
 Use Blender and GIMP to animate the scene of my edge AI device. This is quite a challenge but worth doing.
 
-=> [Video on YouTube](https://youtu.be/e6F0C5PsM-8)
+Video on YouTube
+- [Part 1](https://youtu.be/e6F0C5PsM-8)
+- [Part 2](https://youtu.be/bS-bzMsygZQ)
 
 => [Blender files](blender)
 

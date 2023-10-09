@@ -16,15 +16,15 @@ Arduino shield uses PB8 and PB9 for I2C SCL and SDA.
 
 <img src="doc/I2C1_SDA.png" width=300>
 
-### Thermography implementation for NUCLEO-L476RG with the Arduino shield
+### Thermography implementation
 
 <img src="doc/thermography_interporated.png" width=300>
 
-This project is just a thermography app with Panasonic AMG8833 (no AI):
-- [Thermography](Thermography)
+=> [Code for NUCLEO-L476RG with the Arduino shield](Thermography)
 
-Its GUI is in this folder: [GUI(Python3)](../python/ThermographyGUI)
+=> [Thermography GUI(Python3)](../python/ThermographyGUI)
 
+Configuration for data collection
 ```
 [NUCLEO L476RG] --- UART (VCP via ST-Link) --- COM port [Thermography GUI]
 ```

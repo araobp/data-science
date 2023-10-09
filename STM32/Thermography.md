@@ -4,7 +4,7 @@ Board: NUCLEO-L476RG board (STM32L476RGT6 Microcontroller)
 
 ### Arudino shield for Panasonic AMG8833
 
-I designed my original Arduino shield for AMG8833 in 2019. Refer to [this page](https://github.com/araobp/stm32-mcu/tree/master/NUCLEO-F401RE/Thermography). I use this board with Nucleo L476RG.
+I designed my original Arduino shield for AMG8833 in 2019. Refer to [this page](https://github.com/araobp/stm32-mcu/tree/master/NUCLEO-F401RE/Thermography).
 
 => [Revised schematic](kicad/RockPaperScissors/arduino_board.pdf)
 

@@ -41,7 +41,7 @@ The DNN model's recognition performance is much better than [that](https://githu
 
 The hardware part of "RockPaperScissors" on STMicroelectronics NUCLEO-L476RG board with the latest version of CubeIDE/CubeMX and STM32Cube.AI.
 
-### 3DCG animation
+### Extra: 3DCG animation
 
 I have been using Blender since the COVID19 pandemic for prototyping something in a virtual world. This time I use Blender and GIMP to make a digital twin of the edge AI device.
 

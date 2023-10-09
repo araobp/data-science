@@ -11,7 +11,7 @@ STMicroelectronics also developed a toy similar to mine, but with VL53L5: https:
 ```
 Step 1: Data collection of 8x8 matrix temperature data.
 
-[NUCLEO-L476RG] ---- data ----> [Thermography GUI] --> CSV files in "/data" folder
+[AMG8833]--I2C-->[NUCLEO-L476RG] ----UART----> [Thermography GUI] --> CSV files of 8x8 matrix data saved in "/data" folder
 
 Step 2: Training DNN and generate Keras model.
 

@@ -31,3 +31,8 @@ Use Blender and GIMP to animate the scene of my edge AI device. This is quite a 
 I used Python to animate text on the LCD in the 3DCG scene:
 
 <img src="doc/blender_script.jpg" width=700>
+
+The script must be run just once after the blender file is opened.
+
+
+

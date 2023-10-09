@@ -37,19 +37,6 @@ Resolved:
 I need example source codes of STM32Cube.AI. This page might help:
 https://wiki.stmicroelectronics.cn/stm32mcu/wiki/AI:How_to_perform_motion_sensing_on_STM32L4_IoTnode#Add_AI_bootstrapping_functions
 
-## Other Basic apps (not relevant to Rock Paper Scissors)
-
-- [HelloWorld](HelloWorld)
-- [Clock](Clock)
-
-### I2C pin assignment for Arduino shield
-
-Arduino shield uses PB8 and PB9 for I2C SCL and SDA.
-
-<img src="doc/I2C1_SCL.png" width=300>
-
-<img src="doc/I2C1_SDA.png" width=300>
-
 ## References
 
 ### Enabling CMSIS-DSP on CubeIDE

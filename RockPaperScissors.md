@@ -30,11 +30,13 @@ Video on YouTube
 
 => [Blender files](blender)
 
-I used Python to animate text on the LCD in the 3DCG scene:
+I used Python to animate text on the LCD in the 3DCG scene. The script must be run just once after the blender file is opened.
 
 <img src="doc/blender_script.jpg" width=700>
 
-The script must be run just once after the blender file is opened.
+I also used Python to generate DNN programatically:
+
+<img src="doc/blender_script2.jpg" width=700>
 
 
 

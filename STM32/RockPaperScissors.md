@@ -2,7 +2,7 @@
 
 Note: the projects in this page are dependent on [my original DCT Type-II implementation](https://github.com/araobp/stm32-mcu/tree/master/NUCLEO-F401RE/DCT) and CMSIS-DSP.
 
-=> [RockPaperScissors](RockPaperScissors)
+=> [Code](RockPaperScissors)
 
 Its recognition performance is good.
 

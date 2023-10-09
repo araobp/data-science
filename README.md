@@ -6,7 +6,7 @@
 
 Edge AI with low-power-consumption MCU such as STM32L4 from STMicroelectronics is one of key technologies to stop Global Warming.
 
-In this project, I pick up two achievements on edge AI in my past projects, and improve them with the latest CubeIDE and STM32Cube.AI.
+In this project, I pick up two achievements on edge AI from my past projects, and update them with the latest CubeIDE and STM32Cube.AI.
 
 My past projects on edge AI:
 - [acoustic-features](https://github.com/araobp/acoustic-features)

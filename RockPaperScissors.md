@@ -13,15 +13,15 @@ Step 1: Data collection of 8x8 matrix temperature data.
 
 [AMG8833]--I2C-->[NUCLEO-L476RG] ----UART----> [Thermography GUI] --> CSV files of 8x8 matrix data saved in "/data" folder
 
-Step 2: Training DNN and generate Keras model.
+Step 2: Training DNN and generate a Keras model in HDF format.
 
-Step 3: Generate code with the Keras model.
+Step 3: Generate code with the HDF file.
 
-Keras model --> CubeIDE with STM32Cube.AI --> Generated code
+Keras model (.h5) --> CubeIDE with STM32Cube.AI --> Generated code
 
-Step 4: Add code to the generated one.
+Step 4: Add code to the generated one to make it a "Rock Paper Scissors" game machine.
 
-Step 5: Run the device to play "Rock Paper Scissors".
+Step 5: Run the code on the device to play "Rock Paper Scissors".
 
 ```
 

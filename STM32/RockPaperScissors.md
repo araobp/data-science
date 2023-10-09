@@ -1,34 +1,10 @@
 # Rock Paper Scissors with CubeIDE and STM32Cube.AI
 
-Board: NUCLEO-L476RG board (STM32L476RGT6 Microcontroller)
-
 Note: the projects in this page are dependent on [my original DCT Type-II implementation](https://github.com/araobp/stm32-mcu/tree/master/NUCLEO-F401RE/DCT) and CMSIS-DSP.
 
-### Arudino shield for Panasonic AMG8833
+=> [Code](RockPaperScissors)
 
-I designed my original Arduino shield for AMG8833 in 2019. Refer to [this page](https://github.com/araobp/stm32-mcu/tree/master/NUCLEO-F401RE/Thermography). I use this board with Nucleo L476RG.
-
-=> [Revised schematic](kicad/RockPaperScissors/arduino_board.pdf)
-
-### Thermography (without AI)
-
-<img src="doc/thermography_interporated.png" width=300>
-
-This project is just a thermography app with Panasonic AMG8833 (no AI):
-- [Thermography](Thermography)
-
-Its GUI is in this folder: [GUI(Python3)](../python/ThermographyGUI)
-
-```
-[NUCLEO L476RG] --- UART (VCP via ST-Link) --- COM port [Thermography GUI]
-```
-
-### Rock Paper Scissors (with AI)
-
-This project is AI Rock Paper Scissors with Panasonic AMG8333:
-- [RockPaperScissors](RockPaperScissors)
-
-Its recognition performance is good.
+Its recognition performance is very good.
 
 This experiment proves that twenty of DCT Type-II coefficients with a small DNN is sufficient for recognizing rock/paper/scissors. 
 
@@ -60,19 +36,6 @@ Resolved:
 
 I need example source codes of STM32Cube.AI. This page might help:
 https://wiki.stmicroelectronics.cn/stm32mcu/wiki/AI:How_to_perform_motion_sensing_on_STM32L4_IoTnode#Add_AI_bootstrapping_functions
-
-## Other Basic apps (not relevant to Rock Paper Scissors)
-
-- [HelloWorld](HelloWorld)
-- [Clock](Clock)
-
-### I2C pin assignment for Arduino shield
-
-Arduino shield uses PB8 and PB9 for I2C SCL and SDA.
-
-<img src="doc/I2C1_SCL.png" width=300>
-
-<img src="doc/I2C1_SDA.png" width=300>
 
 ## References
 

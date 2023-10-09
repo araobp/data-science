@@ -12,11 +12,11 @@ My past projects on edge AI:
 - [acoustic-features](https://github.com/araobp/acoustic-features)
 - [stm32-mcu](https://github.com/araobp/stm32-mcu)
 
-## <Project 1> AI Rock Paper Scissors
+## <Project 1> Rock Paper Scissors
 
 <img src="doc/blender_dnn.png" width=600>
 
-- AI Rock Paper Scissors machine with NUCLEO L476RG board.
+- "Rock Paper Scissors" game machine with NUCLEO-L476RG board.
 - Digital Twin of the machine made with Blender.
 
 => [Rock Paper Scissors](RockPaperScissors.md)

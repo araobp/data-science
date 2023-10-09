@@ -4,7 +4,7 @@ Note: the projects in this page are dependent on [my original DCT Type-II implem
 
 => [Code](RockPaperScissors)
 
-Its recognition performance is good.
+Its recognition performance is very good.
 
 This experiment proves that twenty of DCT Type-II coefficients with a small DNN is sufficient for recognizing rock/paper/scissors. 
 

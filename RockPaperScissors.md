@@ -1,4 +1,4 @@
-# AI Rock Paper Scissors
+# Rock Paper Scissors
 
 <img src="STM32/doc/AMG8833_breakout.jpg" width=400>
 

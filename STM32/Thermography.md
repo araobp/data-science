@@ -16,7 +16,7 @@ Arduino shield uses PB8 and PB9 for I2C SCL and SDA.
 
 <img src="doc/I2C1_SDA.png" width=300>
 
-### Thermography (without AI)
+### Thermography implementation for NUCLEO-L476RG with the Arduino shield
 
 <img src="doc/thermography_interporated.png" width=300>
 

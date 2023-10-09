@@ -6,7 +6,7 @@ Board: NUCLEO-L476RG board (STM32L476RGT6 Microcontroller)
 
 I use the infrared array sensor "AMG8833" for hand gesture recognition.
 
-<img src="STM32/doc/AMG8833_breakout.jpg" width=200>
+<img src="doc/AMG8833_breakout.jpg" width=200>
 
 I designed my original Arduino shield for AMG8833 in 2019. Refer to [this page](https://github.com/araobp/stm32-mcu/tree/master/NUCLEO-F401RE/Thermography).
 

@@ -43,9 +43,9 @@ The hardware part of "RockPaperScissors" on STMicroelectronics NUCLEO-L476RG boa
 
 ### 3DCG animation
 
-Use Blender and GIMP to animate the scene of my edge AI device. This is quite a challenge but worth doing.
+I have been using Blender since the COVID19 pandemic for prototyping something in a virtual world. This time I use Blender and GIMP to make a digital twin of the edge AI device.
 
-Video on YouTube
+Animations of the digital twin on YouTube:
 - [Part 1](https://youtu.be/e6F0C5PsM-8)
 - [Part 2](https://youtu.be/bS-bzMsygZQ)
 

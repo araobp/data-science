@@ -4,13 +4,15 @@
 
 <img src="doc/screen_shot_cepa_andaluza_cante.png" width=750>
 
-Edge AI with low-power-consumption MCU is one of key technologies to stop Global Warming.
+Edge AI with low-power-consumption MCU such as STM32L4 from STMicroelectronics is one of key technologies to stop Global Warming.
 
-In this project, I review and improve my achievements on edge AI in my past projects:
+In this project, I pick up two achievements on edge AI in my past projects, and improve them with the latest CubeIDE and STM32Cube.AI.
+
+My past projects on edge AI:
 - [acoustic-features](https://github.com/araobp/acoustic-features)
 - [stm32-mcu](https://github.com/araobp/stm32-mcu)
 
-## AI Rock Paper Scissors
+## <Project 1> AI Rock Paper Scissors
 
 <img src="doc/blender_dnn.png" width=600>
 
@@ -19,7 +21,7 @@ In this project, I review and improve my achievements on edge AI in my past proj
 
 => [Rock Paper Scissors](RockPaperScissors.md)
 
-## Acoustic Scene Classification (Work in progress)
+## <Project 2> Acoustic Scene Classification (Work in progress)
 
 - Acoustic scene classifcation with NUCLEO L476RG board.
 

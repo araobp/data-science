@@ -224,7 +224,7 @@ Data is send in int8_t.
 
 ### Data format of features
 
-The PC issues "FEATURES" command to the device to fetch features that are the last 2.6sec MFSCs and MFCCs buffered in a memory.
+The PC issues "FEATURES" command to the device via UART to fetch features that are the last 2.6sec MFSCs and MFCCs buffered in a memory.
 
 ```
       shape: (200, 40, 1)       shape: (200, 40, 1)

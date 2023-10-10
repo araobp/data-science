@@ -2,20 +2,24 @@
 
 This is a project to develop edge AI for Acoustic Scene Classification based on STM32Cube.AI, referring to my past project: https://github.com/araobp/acoustic-features
 
-### Step 1: Evaluation of MEMS microphone and DFSDM
+### Step 1: Designing Arduino shield of MEMS microphone
+
+=> [Schematic](STM32/kicad/AcousticFeatureCamera)
+
+### Step 2: Evaluation of MEMS microphone and DFSDM
 
 => [MEMSMIC](STM32/MEMSMIC.md)
 
-### Step 2: Acoustic Feature Camera (without AI)
+### Step 3: Acoustic Feature Camera (without AI)
 
 => [ACOUSTIC_FEATURE_CAMERA](STM32/ACOUSTIC_FEATURE_CAMERA.md) (Work in progress)
 
-### Step 3: Data Collection
+### Step 4: Data Collection
 
 - Musical Instruments
 - Key Words
 - Life Log
 
-### Step 4: Training CNN on Jupyter Notebook
+### Step 5: Training CNN on Jupyter Notebook
 
-### Step 5: Acoustic Feature Camera (with AI)
+### Step 6: Acoustic Feature Camera (with AI)

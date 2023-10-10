@@ -6,7 +6,7 @@ I developed "Rock Paper Scissors" game machine on Nucleo L401RE board with Panas
 
 In this project, I improve [the past project](https://github.com/araobp/stm32-mcu/tree/master/NUCLEO-F401RE/Thermography).
 
-Note: STMicroelectronics also developed [a toy similar to mine](https://stm32ai.st.com/use-case/shifumi-gesture-recognition/), but with VL53L5: 
+Note: STMicroelectronics also developed [a toy similar to mine](https://stm32ai.st.com/use-case/shifumi-gesture-recognition/), but with [VL53L5CX](https://www.st.com/en/imaging-and-photonics-solutions/vl53l5cx.html).
 
 ```
 Step 1: Data collection of 8x8 matrix temperature data.

@@ -8,9 +8,7 @@ I use the infrared array sensor "AMG8833" for hand gesture recognition.
 
 <img src="doc/AMG8833_breakout.jpg" width=200>
 
-I designed my original Arduino shield for AMG8833 in 2019. Refer to [this page](https://github.com/araobp/stm32-mcu/tree/master/NUCLEO-F401RE/Thermography).
-
-=> [Revised schematic](kicad/RockPaperScissors/arduino_board.pdf)
+=> [Schematic of the Arduino shield](kicad/RockPaperScissors/arduino_board.pdf)
 
 #### STM32L4 I2C pin assignment for Arduino shield
 

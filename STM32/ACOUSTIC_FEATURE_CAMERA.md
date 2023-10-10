@@ -93,6 +93,55 @@ Buffer                      |
 
 ```
 
+## Pre-processing for Acoustic Scene Classification
+
+The device outputs raw PCM, Short-time FFT, Spectrogram, MFSCs(Mel-Frequency Spectral Coefficients) or MFCCs(Mel-Frequency Cepstral Coefficients) to Oscilloscope GUI via UART at 406800 baudrate.
+
+It also outputs MFSCs or MFCCs to CNN(Convolutional Neural Network).
+
+```
+   << MEMS mic >>
+         |
+         V
+   DFSDM w/ DMA
+         |
+  [16bit PCM data] --> DAC w/ DMA for montoring the sound with a headset
+         |
+  float32_t data
+         |
+         |                .... CMSIS-DSP APIs() .........................................
+  [ AC coupling  ]-----+  arm_mean_f32(), arm_offset_f32
+         |             |
+  [ Pre-emphasis ]-----+  arm_fir_f32()
+         |             |
+[Overlapping frames]   |  arm_copy_f32()
+         |             |
+  [Windowing(hann)]    |  arm_mult_f32()
+         |             |
+  [   Real FFT   ]     |  arm_rfft_fast_f32()
+         |             |
+  [     PSD      ]-----+  arm_cmplx_mag_f32(), arm_scale_f32()
+         |             |
+  [Filterbank(MFSCs)]--+  arm_dot_prod_f32()
+         |             |
+     [Log scale]-------+  arm_scale_f32() with log10 approximation
+         |             |
+ [DCT Type-II(MFCCs)]  |  my original "dct_f32()" function based on CMSIS-DSP
+         |             |
+         +<------------+
+         |
+ data the size of int8_t or int16_t (i.e., quantization)
+         |
+         +-------------> CNN (STM32Cube.AI)
+         |
+         V
+    UART w/ DMA
+         |
+         V
+<< Oscilloscope GUI >>
+```
+
+
 ## PCM audio output test
 
 => [PCM](data/PCM.ipynb)

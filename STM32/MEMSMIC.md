@@ -16,8 +16,6 @@ I test Knowles SPM0405HD4H MEMS microphone in the following configuration to get
                     . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 ```
 
-I use [my original Arduino shield](https://github.com/araobp/acoustic-features/tree/master/kicad) with Nucleo L476RG board in this project.
-
 ## Filter Regular Channel Conversion
 
 Quote from [Description of STM32L4/L4+ HAL and low-layer drivers](https://www.st.com/resource/en/user_manual/um1884-description-of-stm32l4l4-hal-and-lowlayer-drivers-stmicroelectronics.pdf):

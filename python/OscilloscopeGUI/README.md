@@ -52,7 +52,7 @@ Sine wave tone at a constant frequency is visualized by using the oscilloscope G
 
 ### Dataset folder structure
 
-==> [Dataset folder](../dataset)
+==> [Dataset folder](./dataset)
 
 ```
 ./dataset ---+--- /data_measurement

@@ -6,6 +6,11 @@ This device is a sort of human ear: log-scale auditory perception and Fourier tr
 
 ## STM32L4 DFSDM configuration
 
+- The highest frequency on a piano is 4186Hz, but it generate overtones: ~10kHz.
+- Human voice also generates overtones: ~ 10kHz.
+
+So the sampling frequency of MEMS mic should be around 20kHz: 20kHz/2 = 10kHz (Nyquist frequency)
+
 ```
 System clock: 80MHz
 Clock divider: 64

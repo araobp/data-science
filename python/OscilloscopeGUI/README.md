@@ -2,9 +2,9 @@
 
 Th oscilloscope GUI is for visualizing wavefrom, FFT, spectrogram, MFSCs and MFCCs. Its core software component is "matplotlib" that is superimposed onto Tk. The GUI can also be used to acquire training data for CNN by just pressing a button on the GUI.
 
-Connect PC to the edge device with a USB cable, and run "[run.bat](./run.bat)" to start the oscilloscope GUI:
+Connect PC to the NUCLEO-L476RG board with a USB cable, and run "[run.bat](./run.bat)" to start the oscilloscope GUI:
 ```
-Sound ))) [MEMS mic]--[Edge device(STM32L476RG)]<-- USB serial -->[Oscilloscope GUI (oscilloscope.py)]
+Sound ))) [MEMS mic]--[NUCLEO-L476RG]<-- USB serial -->[Oscilloscope GUI (oscilloscope.py)]
 ```
 
 ### Using the oscilloscope GUI to collect data for training CNN

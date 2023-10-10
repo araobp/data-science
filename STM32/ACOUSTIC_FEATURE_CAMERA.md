@@ -2,6 +2,20 @@
 
 Acoustic Feature Camera is a device to capture acoustic features for edge AI.
 
+This device is a sort of human ear: log-scale auditory perception and Fourier transform with Mel scaling as feature for training a brain. Connecting this device to Keras/TensorFlow mimics the human auditory system.
+
+## STM32L4 DFSDM configuration
+
+```
+System clock: 80MHz
+Clock divider: 64
+FOSR(decimation): 64
+sinc filter: sinc4
+resolution: 2 * 64^4 = 2^25 (25 bits)
+right bit shift in DFSDM: 1 (results in 24 bit PCM)
+Sampling frequency: 80_000_000/64/64 = 19.5kHz
+```
+
 ### Architecture
 
 ```
@@ -53,18 +67,6 @@ void HAL_DFSDM_FilterRegConvCpltCallback()
 Buffer                      |
 [ 3 | 4 | 5 ] --------------+
 
-```
-
-## DFSDM config
-
-```
-System clock: 80MHz
-Clock divider: 64
-FOSR(decimation): 64
-sinc filter: sinc4
-resolution: 2 * 64^4 = 2^25 (25 bits)
-right bit shift in DFSDM: 1 (results in 24 bit PCM)
-Sampling frequency: 80_000_000/64/64 = 19.5kHz
 ```
 
 ## PCM audio output test

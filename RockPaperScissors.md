@@ -43,7 +43,7 @@ The hardware part of "RockPaperScissors" on STMicroelectronics NUCLEO-L476RG boa
 
 ### Extra: 3DCG animation
 
-I have been actively using Blender since the COVID19 pandemic for prototyping something in a virtual world. This time I use Blender and GIMP to make a digital twin of the edge AI device.
+I have been actively using Blender since the COVID19 pandemic for prototyping something in a virtual world. This time I use Blender and GIMP to make a digital twin of my "Rock Paper Scissors" game machine.
 
 Animations of the digital twin on YouTube:
 - [Part 1](https://youtu.be/e6F0C5PsM-8)

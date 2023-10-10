@@ -16,6 +16,8 @@ This is a project to develop edge AI for Acoustic Scene Classification based on 
 
 ### Step 4: Data Collection
 
+=> [Oscilloscope GUI](python/OscilloscopeGUI)
+
 - Musical Instruments
 - Key Words
 - Life Log

@@ -2,9 +2,9 @@
 
 Th oscilloscope GUI is for visualizing wavefrom, FFT, spectrogram, MFSCs and MFCCs. Its core software component is "matplotlib" that is superimposed onto Tk. The GUI can also be used to acquire training data for CNN by just pressing a button on the GUI.
 
-Connect PC to the edge device with a USB cable, and run "[run.bat](./run.bat)" to start the oscilloscope GUI:
+Connect PC to the NUCLEO-L476RG board with a USB cable, and run "[run.bat](./run.bat)" to start the oscilloscope GUI:
 ```
-Sound ))) [MEMS mic]--[Edge device(STM32L476RG)]<-- USB serial -->[Oscilloscope GUI (oscilloscope.py)]
+Sound ))) [MEMS mic]--[NUCLEO-L476RG]<-- USB serial -->[Oscilloscope GUI (oscilloscope.py)]
 ```
 
 ### Using the oscilloscope GUI to collect data for training CNN
@@ -38,17 +38,17 @@ The window on the screen is highlighted.
 
 Sine wave tone at a constant frequency is visualized by using the oscilloscope GUI in various methods.
 
-![Raw wave](./screenshots/gui_raw_wave.jpg)
+![Raw wave](./screenshots2019/gui_raw_wave.jpg)
 
-![Raw wave](./screenshots/gui_fft.jpg)
+![Raw wave](./screenshots2019/gui_fft.jpg)
 
-![Raw wave](./screenshots/gui_spectrogram.jpg)
+![Raw wave](./screenshots2019/gui_spectrogram.jpg)
 
-![Raw wave](./screenshots/gui_welch.jpg)
+![Raw wave](./screenshots2019/gui_welch.jpg)
 
-![Raw wave](./screenshots/gui_mfsc.jpg)
+![Raw wave](./screenshots2019/gui_mfsc.jpg)
 
-![Raw wave](./screenshots/gui_mfcc.jpg)
+![Raw wave](./screenshots2019/gui_mfcc.jpg)
 
 ### Dataset folder structure
 

@@ -62,7 +62,7 @@ Sound/voice ))) [MEMS mic]-+-PDM->[DFSDM]-DMA->[A|B]->|             |->[A|B]->DM
 
 ```
 
-## Short-time FFT on STM32
+## Short-time FFT
 
 ```
 <DFSDM-to-Memory DMA interrupt A>

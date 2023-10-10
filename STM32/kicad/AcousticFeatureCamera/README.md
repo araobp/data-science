@@ -8,14 +8,6 @@
 
 Note: the yellow jumper cable is for the MEMS mic to receive clock signal from DFSDM.
 
-## Wireless transport
-
-I follow the output from my [iot-wireless](https://github.com/araobp/iot-wireless) project.
-
-The following is a screen shot of BLE Scanner on Android:
-
-<img src="./BLE_Scanner.jpg" width=200>
-
 ## Parts
 
 - [Knowles SPM0405HD4H MEMS microphones](http://akizukidenshi.com/catalog/g/gM-05577/)

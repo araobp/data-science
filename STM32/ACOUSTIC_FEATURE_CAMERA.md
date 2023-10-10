@@ -162,6 +162,27 @@ It also outputs MFSCs or MFCCs to CNN(Convolutional Neural Network).
 << Oscilloscope GUI >>
 ```
 
+## Mel filter bank
+
+- The number of filters is 40. The reason is that most of the technical papers I have read uses 40 filters.
+- The filter bank is applied to the spectrogram to extract MFSCs and MFCCs for training a neural network.
+- I developed [DCT Type-II function in C language based on CMSIS-DSP](https://github.com/araobp/stm32-mcu/tree/master/NUCLEO-F401RE/DCT) to calculate MFCCs on STM32 in real time.
+
+## Log10 processing time issue
+
+PSD calculation uses log10 math function, but CMSIS-DSP does not support log10. log10 on the standard "math.h" is too slow. I tried math.h log10, and the time required for calculating log10(x) does not fit into the time slot of sound frame, so I decided to adopt [log10 approximation](https://github.com/araobp/acoustic-features/blob/master/ipynb/log10%20fast%20approximation.ipynb). The approximation has been working perfect so far.
+
+## Processing time (actual measurement)
+
+In case of 1024 samples per frame:
+
+- fir (cfft/mult/cifft/etc * 2 times): 17msec
+- log10: 54msec
+- log10 fast approximation: 1msec
+- atan2: 53msec
+Note: log10(x) = log10(2) * log2(x)
+
+Reference: https://community.arm.com/tools/f/discussions/4292/cmsis-dsp-new-functionality-proposal
 
 ## PCM audio output test
 

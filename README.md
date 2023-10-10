@@ -1,8 +1,12 @@
 # Edge AI and Digital Signal Processing
 
-[Paco De Lucia "Cepa Andaluza" (Bulerias)](https://youtu.be/NIKWBdthzg4?si=O71p1-v_ynUPurbq)
+Hand gesture "Paper" captured with AMG8833 infrared array sensor (8x8 resolution), and its DCT Type-II coefficients.
 
-<img src="doc/screen_shot_cepa_andaluza_cante.png" width=750>
+<img src="python/ThermographyGUI/screenshots/screen_shot_paper.png" width=350>
+
+Spectrogram of [Paco De Lucia "Cepa Andaluza" (Bulerias)](https://youtu.be/NIKWBdthzg4?si=O71p1-v_ynUPurbq) captured with my "Acoustic Feature Camera" device.
+
+<img src="doc/screen_shot_cepa_andaluza_cante.png" width=400>
 
 Edge AI with low-power-consumption MCU such as STM32L4 from STMicroelectronics is one of key technologies to stop Global Warming.
 

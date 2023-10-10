@@ -6,7 +6,7 @@ Hand gesture "Paper" captured with AMG8833 infrared array sensor (8x8 resolution
 
 Spectrogram of [Paco De Lucia "Cepa Andaluza" (Bulerias)](https://youtu.be/NIKWBdthzg4?si=O71p1-v_ynUPurbq) captured with my "Acoustic Feature Camera" device.
 
-<img src="doc/screen_shot_cepa_andaluza_cante.png" width=400>
+<img src="doc/screen_shot_cepa_andaluza_cante.png" width=450>
 
 Edge AI with low-power-consumption MCU such as STM32L4 from STMicroelectronics is one of key technologies to stop Global Warming.
 

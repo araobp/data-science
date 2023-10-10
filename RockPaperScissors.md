@@ -2,11 +2,11 @@
 
 <img src="STM32/doc/RockPaperScissors_DCT_DNN_Experiment.jpg" width=200>
 
-I developed Rock Paper Scissors on Nucleo L401RE board with Panasonic AMG8833 in January 2019, just after the first relase of STM32Cube.AI (December 2018) became available for developers: [the demo in on YouTube](https://www.youtube.com/shorts/d6OYSllaVEs). I remember my excitement on STM32Cube.AI -- AI can run on such a tiny device!
+I developed "Rock Paper Scissors" game machine on Nucleo L401RE board with Panasonic AMG8833 in January 2019, just after the first relase of STM32Cube.AI (December 2018) became available for developers: [the demo in on YouTube](https://www.youtube.com/shorts/d6OYSllaVEs). I remember my excitement on STM32Cube.AI -- AI can run on such a tiny device!
 
-I relearn it in this project by doing this: https://github.com/araobp/stm32-mcu/tree/master/NUCLEO-F401RE/Thermography
+In this project, I improve [the past project](https://github.com/araobp/stm32-mcu/tree/master/NUCLEO-F401RE/Thermography).
 
-STMicroelectronics also developed a toy similar to mine, but with VL53L5: https://stm32ai.st.com/use-case/shifumi-gesture-recognition/
+Note: STMicroelectronics also developed [a toy similar to mine](https://stm32ai.st.com/use-case/shifumi-gesture-recognition/), but with VL53L5: 
 
 ```
 Step 1: Data collection of 8x8 matrix temperature data.

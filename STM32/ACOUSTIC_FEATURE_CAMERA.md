@@ -16,25 +16,6 @@ right bit shift in DFSDM: 1 (results in 24 bit PCM)
 Sampling frequency: 80_000_000/64/64 = 19.5kHz
 ```
 
-### Making use of DMA
-
-STMicro's HAL library supports "HAL_DFSDM_FilterRegConvHalfCpltCallback" that is very useful to implemente ring-buffer-like buffering for real-time processing.
-
-I split buffers for DMA into two segments: segment A and segment B.
-
-```
-                                                  Interrupt
-                          Clock                 ..............
-                      +--------------+          : .......... :
-                      |              |          : :        V V
-                      V              |          : :   +-------------+
-Sound/voice ))) [MEMS mic]-+-PDM->[DFSDM]-DMA->[A|B]->|             |->[A|B]->DMA->[DAC] --> Analog filter->head phone ))) Sound/Voice
-                                                      |ARM Cortex-M4|->[Feature]->DMA->[UART] --> Oscilloscope on PC or RasPi3
-                                                      |             |
-                                                      +-------------+
-
-```
-
 ### Architecture
 
 ```
@@ -60,6 +41,25 @@ Sound/voice ))) [MEMS mic]--PDM-->[DFSDM]--+->[]->[]->[]->[]---+----Features--->
                                             |
                                             | *** inference ***
                                             +--(dataset)--> [oscilloscope.py] Keras/TensorFlow
+```
+
+### Making use of DMA
+
+STMicro's HAL library supports "HAL_DFSDM_FilterRegConvHalfCpltCallback" that is very useful to implemente ring-buffer-like buffering for real-time processing.
+
+I split buffers for DMA into two segments: segment A and segment B.
+
+```
+                                                  Interrupt
+                          Clock                 ..............
+                      +--------------+          : .......... :
+                      |              |          : :        V V
+                      V              |          : :   +-------------+
+Sound/voice ))) [MEMS mic]-+-PDM->[DFSDM]-DMA->[A|B]->|             |->[A|B]->DMA->[DAC] --> Analog filter->head phone ))) Sound/Voice
+                                                      |ARM Cortex-M4|->[Feature]->DMA->[UART] --> Oscilloscope on PC or RasPi3
+                                                      |             |
+                                                      +-------------+
+
 ```
 
 ## Short-time FFT on STM32

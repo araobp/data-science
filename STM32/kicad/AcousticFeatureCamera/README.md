@@ -8,7 +8,9 @@
 
 This board was designed in 2019.
 
-Note: the yellow jumper cable is for the MEMS mic to receive clock signal from DFSDM.
+Note:
+- The yellow jumper cable is for the MEMS mic to receive clock signal from DFSDM.
+- The BLE module is optional.
 
 ## Parts
 

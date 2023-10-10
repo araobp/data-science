@@ -184,6 +184,57 @@ Note: log10(x) = log10(2) * log2(x)
 
 Reference: https://community.arm.com/tools/f/discussions/4292/cmsis-dsp-new-functionality-proposal
 
+## Commands over UART via VCP/ST-Link (USB Serial)
+
+UART baudrate: 460800bps
+
+```
+        Sequence over UART(USB-serial)
+
+    ARM Cortex-M4L                    PC
+           |                          |
+           |<-------- cmd ------------|
+           |                          |
+           |------ data output ------>|
+           |                          |
+
+
+Data is send in int8_t.
+```
+
+### Output
+
+|cmd| description    | output size             | purpose               | transfer mode |
+|---|----------------|-------------------------|-----------------------|-----------|
+|1  | RAW_WAVE       | N x 1                   | Input to oscilloscope | one frame |
+|2  | FFT            | N/2 x 1                 | Input to oscilloscope | one frame |
+|3  | SPECTROGRAM    | N/2 x 200               | Input to oscilloscope | streaming |
+|4  | FEATURES       | NUM_FILTERS x 400       | Input to ML           | buffered  |
+
+### Pre-emphasis
+
+|cmd| description    | output size             | purpose               |
+|---|----------------|-------------------------|-----------------------|
+|P  | Enable pre-emphasis |                    |                       |
+|p  | Disable pre-emphasis |                   |                       |
+|c  | Enable continuous output |               |                       |
+|C  | Disable continous output |               |                       |
+|e  | Enable 8bit right bit shift (16bit PCM) |      |                 |
+|E  | Disable 8bit right bit shift (16bit LSBs of 24bit PCM) |         |
+
+### Data format of features
+
+The PC issues "FEATURES" command to the device to fetch features that are the last 2.6sec MFSCs and MFCCs buffered in a memory.
+
+```
+      shape: (200, 40, 1)       shape: (200, 40, 1)
+   +------------------------+------------------------+
+   |    MFSCs (40 * 200)    |    MFCCs (40 * 200)    |
+   +------------------------+------------------------+
+```
+
+The GUI flatten features and convert it into CSV to save it as a csv file in a dataset folder.
+
 ## PCM audio output test
 
 => [PCM](data/PCM.ipynb)

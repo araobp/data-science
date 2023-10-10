@@ -69,7 +69,28 @@ Sound/voice ))) [MEMS mic]-+-PDM->[DFSDM]-DMA->[A|B]->|             |->[A|B]->DM
 
 ## Short-time FFT
 
+Frame/stride/overlap
 ```
+number of samples per frame: 512
+length: 512/19.5kHz = 26.3msec
+stride: 13.2msec
+overlap: 50%(13.2msec)
+
+
+  26.3msec  stride 13.2msec  overlap 50%
+  --- overlap dsp -----------------------
+  [ 1 | 2 ]                       a(1/2)
+      [ 2 | 3 ]                   a(2/2)
+  --- overlap dsp -----------------------
+          [ 3 | 4 ]               b(1/2)
+              [ 4 | 5 ]           b(2/2)
+  --- overlap dsp -----------------------
+                  [ 5 | 6 ]       a(1/2)
+                      [ 6 | 7 ]   a(2/2)
+  --- overlap dsp -----------------------
+                          :
+
+
 <DFSDM-to-Memory DMA interrupt A>
 void HAL_DFSDM_FilterRegConvHalfCpltCallback()
 [ 4 | 5 ] ----------------------+---+

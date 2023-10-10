@@ -1,6 +1,6 @@
 # Edge AI and Digital Signal Processing
 
-Hand gesture "Paper" captured with AMG8833 infrared array sensor (8x8 resolution), and its DCT Type-II coefficients.
+Hand gesture "Paper" captured with [AMG8833 infrared array sensor (8x8 resolution)](https://industrial.panasonic.com/products/pt/grid-eye/models/AMG8833), and its DCT Type-II coefficients.
 
 <img src="python/ThermographyGUI/screenshots/screen_shot_paper.png" width=350>
 

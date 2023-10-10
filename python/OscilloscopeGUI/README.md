@@ -38,17 +38,17 @@ The window on the screen is highlighted.
 
 Sine wave tone at a constant frequency is visualized by using the oscilloscope GUI in various methods.
 
-![Raw wave](./screenshots/gui_raw_wave.jpg)
+![Raw wave](./screenshots2019/gui_raw_wave.jpg)
 
-![Raw wave](./screenshots/gui_fft.jpg)
+![Raw wave](./screenshots2019/gui_fft.jpg)
 
-![Raw wave](./screenshots/gui_spectrogram.jpg)
+![Raw wave](./screenshots2019/gui_spectrogram.jpg)
 
-![Raw wave](./screenshots/gui_welch.jpg)
+![Raw wave](./screenshots2019/gui_welch.jpg)
 
-![Raw wave](./screenshots/gui_mfsc.jpg)
+![Raw wave](./screenshots2019/gui_mfsc.jpg)
 
-![Raw wave](./screenshots/gui_mfcc.jpg)
+![Raw wave](./screenshots2019/gui_mfcc.jpg)
 
 ### Dataset folder structure
 

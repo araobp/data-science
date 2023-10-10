@@ -9,7 +9,7 @@ Sound ))) [MEMS mic]--[NUCLEO-L476RG]<-- USB serial -->[Oscilloscope GUI (oscill
 
 ### Using the oscilloscope GUI to collect data for training CNN
 
-Run "[run_measurement.bat](./run_measurement.bat)" to obtain feature data set for training CNN. Data (MFSCs and MFCCs) acquired by the GUI is stored in [this default dataset folder](../dataset/data_measurement).
+Run "[run_measurement.bat](./run_measurement.bat)" to obtain feature data set for training CNN. Data (MFSCs and MFCCs) acquired by the GUI is stored in [this default dataset folder](./dataset/data_measurement).
 
 ![](./screenshots/gui_mfsc_measurement.jpg)
 
@@ -52,7 +52,7 @@ Sine wave tone at a constant frequency is visualized by using the oscilloscope G
 
 ### Dataset folder structure
 
-==> [Dataset folder](../dataset)
+==> [Dataset folder](./dataset)
 
 ```
 ./dataset ---+--- /data_measurement

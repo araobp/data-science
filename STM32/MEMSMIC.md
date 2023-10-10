@@ -2,9 +2,7 @@
 
 What does MEMS mean? [Wikipedia](https://en.wikipedia.org/wiki/MEMS)
 
-I usually use a MEMS mic "SPM0405HD4H" from Knowles, and [its breakout board](https://akizukidenshi.com/catalog/g/gM-05577/) from Akizuki-Denshi, Akihabara.
-
-In this project, I will test its frequency response in the following configuration.:
+I test Knowles SPM0405HD4H MEMS microphone in the following configuration to get frequecy response data:
 
 ```
                     . . . . . . . . . . . . . . Arm Cortex-M4 . . . . . . . . . . . .

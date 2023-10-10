@@ -16,7 +16,7 @@ My past projects on edge AI:
 - [acoustic-features](https://github.com/araobp/acoustic-features)
 - [stm32-mcu](https://github.com/araobp/stm32-mcu)
 
-## <Project 1> Rock Paper Scissors
+## Project 1: Rock Paper Scissors
 
 <img src="doc/blender_dnn.png" width=600>
 
@@ -25,7 +25,7 @@ My past projects on edge AI:
 
 => [Rock Paper Scissors](RockPaperScissors.md)
 
-## <Project 2> Acoustic Scene Classification (Work in progress)
+## Project 2: Acoustic Scene Classification (Work in progress)
 
 - Acoustic scene classifcation with NUCLEO L476RG board.
 

@@ -18,6 +18,7 @@ void apply_pre_emphasis(float32_t *signal) {
   arm_fir_f32(&S_PRE, signal, signal, NN);
 }
 ```
+Reference: https://www.keil.com/pack/doc/CMSIS/DSP/html/group__FIR.html#ga0cf008f650a75f5e2cf82d10691b64d9
 
 ## Measurement result
 

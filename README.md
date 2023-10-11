@@ -30,6 +30,7 @@ My past projects on edge AI:
 <img src="python/OscilloscopeGUI/calibration/calibration_mfscs_japanese_vowels_pre_emphasis_off.png" width=500>
 
 - Acoustic scene classifcation with NUCLEO L476RG board.
+- Art of acoustic features made with Blender.
 
 => [Acoustic Scene Classification](AcousticSceneClassification.md)
 

@@ -25,8 +25,18 @@ void apply_pre_emphasis(float32_t *signal) {
 
 Pre-emphasis enabled
 
-<img src="calibration/calibration_welch_pre_emphasis_on.png" width=600>
+<img src="calibration/calibration_welch_pre_emphasis_on.png" width=500>
 
 Pre-emphasis disabled
 
-<img src="calibration/calibration_welch_pre_emphasis_off.png" width=600>
+<img src="calibration/calibration_welch_pre_emphasis_off.png" width=500>
+
+#### MFSCs of Japanese vowels (a, i, u, e, o)
+
+Pre-emphasis enabled
+
+<img src="calibration/calibration_japanese_vowels_pre_emphasis_on.png" width=500>
+
+Pre-emphasis disabled
+
+<img src="calibration/calibration_japanese_vowels_pre_emphasis_off.png" width=500>

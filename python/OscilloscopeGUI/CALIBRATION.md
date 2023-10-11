@@ -21,6 +21,8 @@ void apply_pre_emphasis(float32_t *signal) {
 
 ## Measurement result
 
+Date: 2023/10/11
+
 #### Welch
 
 Pre-emphasis enabled

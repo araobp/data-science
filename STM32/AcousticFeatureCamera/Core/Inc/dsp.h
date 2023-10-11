@@ -48,7 +48,6 @@ void init_dsp(float32_t sampling_frequency);
 
 // DSP pipeline functions
 void apply_pre_emphasis(float32_t *signal);
-void apply_weak_pre_emphasis(float32_t *signal);
 void apply_ac_coupling(float32_t *signal);
 void apply_hann(float32_t *signal);
 void apply_fft(float32_t *signal);

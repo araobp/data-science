@@ -117,7 +117,6 @@ void init_dsp(float32_t f_s) {
   nyq_fs = f_s / 2.0;
   arm_rfft_fast_init_f32(&S, NN);
   arm_fir_init_f32(&S_PRE, 2, fir_coefficients, state_buf, NN);
-  arm_fir_init_f32(&S_WPRE, 2, fir_w_coefficients, state_w_buf, NN);
   generate_filters();
 #ifndef FEATURE_MFSC
   dct2_init_f32(&S_DCT, NUM_FILTERS);
@@ -129,10 +128,6 @@ void init_dsp(float32_t f_s) {
 // Apply pre-emphasis
 void apply_pre_emphasis(float32_t *signal) {
   arm_fir_f32(&S_PRE, signal, signal, NN);
-}
-
-void apply_weak_pre_emphasis(float32_t *signal) {
-  arm_fir_f32(&S_WPRE, signal, signal, NN);
 }
 
 // AC coupling (to remove DC)

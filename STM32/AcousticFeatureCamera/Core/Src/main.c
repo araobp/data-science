@@ -241,15 +241,19 @@ void dsp(float32_t *s1, mode mode) {
 /*
  * Overlap dsp for spectrogram calculation
  *
- * 26.3msec          13.2msec stride
- * --- overlap dsp -------------
- * [b1|a0]            a(1/2) ... 13.2msec
- *    [a0|a1]         a(2/2) ... 13.2msec
- * --- overlap dsp -------------
- *       [a1|b0]      b(1/2) ... 13.2msec
- *          [b0|b1]   b(2/2) ... 13.2msec
- * --- overlap dsp -------------
- *             :
+ *
+ * 26.3msec  stride 13.2msec  overlap 50%
+ * --- overlap dsp -----------------------
+ * [ 1 | 2 ]                       a(1/2)
+ *     [ 2 | 3 ]                   a(2/2)
+ * --- overlap dsp -----------------------
+ *         [ 3 | 4 ]               b(1/2)
+ *             [ 4 | 5 ]           b(2/2)
+ * --- overlap dsp -----------------------
+ *                 [ 5 | 6 ]       a(1/2)
+ *                     [ 6 | 7 ]   a(2/2)
+ * --- overlap dsp -----------------------
+ *                         :
  */
 void overlap_dsp(float32_t *buf, mode mode) {
 
@@ -373,11 +377,6 @@ int main(void)
         signal_buf[n+NN_HALF] = (float32_t) (input_buf[n] >> REGISTER_BIT_SHIFT);
       }
 
-      // Pre-emphasis
-      //if (pre_emphasis_enabled) {
-      //  apply_pre_emphasis(signal_buf + NN_HALF);
-      //}
-
       // Overlap dsp
       overlap_dsp(signal_buf, output_mode);
 
@@ -394,11 +393,6 @@ int main(void)
       for (uint32_t n = 0; n < NN; n++) {
         signal_buf[n+NN_HALF] = (float32_t) (input_buf[NN+n] >> REGISTER_BIT_SHIFT);
       }
-
-      // Pre-emphasis
-      //if (pre_emphasis_enabled) {
-      //  apply_pre_emphasis(signal_buf + NN_HALF);
-      //}
 
       // Overlap dsp
       overlap_dsp(signal_buf, output_mode);

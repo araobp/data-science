@@ -35,8 +35,8 @@ Pre-emphasis disabled
 
 Pre-emphasis enabled
 
-<img src="calibration/calibration_japanese_vowels_pre_emphasis_on.png" width=500>
+<img src="calibration/calibration_mfscs_japanese_vowels_pre_emphasis_on.png" width=500>
 
 Pre-emphasis disabled
 
-<img src="calibration/calibration_japanese_vowels_pre_emphasis_off.png" width=500>
+<img src="calibration/calibration_mfscs_japanese_vowels_pre_emphasis_off.png" width=500>

@@ -237,4 +237,9 @@ The GUI flatten features and convert it into CSV to save it as a csv file in a d
 
 ## PCM audio output test
 
+```
+              440Hz
+Tone generator ))) [MEMS mic][NUCLEO-L476R] --- 16bit PCM ---> [Jupyter Notebook]
+                                                over UART
+```
 => [PCM](data/PCM.ipynb)

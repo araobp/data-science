@@ -1,8 +1,12 @@
 # Edge AI and Digital Signal Processing
 
-[Paco De Lucia "Cepa Andaluza" (Bulerias)](https://youtu.be/NIKWBdthzg4?si=O71p1-v_ynUPurbq)
+Hand gesture "Paper" captured with [AMG8833 infrared array sensor (8x8 resolution)](https://industrial.panasonic.com/products/pt/grid-eye/models/AMG8833), and its DCT Type-II coefficients.
 
-<img src="doc/screen_shot_cepa_andaluza_cante.png" width=750>
+<img src="python/ThermographyGUI/screenshots/screen_shot_paper.png" width=350>
+
+Spectrogram of [Paco De Lucia "Cepa Andaluza" (Bulerias)](https://youtu.be/NIKWBdthzg4?si=O71p1-v_ynUPurbq) captured with my "Acoustic Feature Camera" device.
+
+<img src="doc/screen_shot_cepa_andaluza_cante.png" width=450>
 
 Edge AI with low-power-consumption MCU such as STM32L4 from STMicroelectronics is one of key technologies to stop Global Warming.
 
@@ -12,7 +16,7 @@ My past projects on edge AI:
 - [acoustic-features](https://github.com/araobp/acoustic-features)
 - [stm32-mcu](https://github.com/araobp/stm32-mcu)
 
-## <Project 1> Rock Paper Scissors
+## Project 1: Rock Paper Scissors
 
 <img src="doc/blender_dnn.png" width=600>
 
@@ -21,7 +25,7 @@ My past projects on edge AI:
 
 => [Rock Paper Scissors](RockPaperScissors.md)
 
-## <Project 2> Acoustic Scene Classification (Work in progress)
+## Project 2: Acoustic Scene Classification (Work in progress)
 
 - Acoustic scene classifcation with NUCLEO L476RG board.
 

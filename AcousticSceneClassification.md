@@ -22,6 +22,6 @@ This is a project to develop edge AI for Acoustic Scene Classification based on 
 
 ### Step 6: Acoustic Feature Camera (with AI)
 
-### Extra: 3DCG animation
+### Extra: 3DCG animation (Work in progress)
 
 [Matplotlib colormap](python/colormap/Colormap.ipynb)

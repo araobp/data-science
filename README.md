@@ -27,7 +27,7 @@ My past projects on edge AI:
 
 ## Project 2: Acoustic Scene Classification (Work in progress)
 
-<img src="python/OscilloscopeGUI/calibration/calibration_mfscs_japanese_vowels_pre_emphasis_off.png" width=500>
+<img src="doc/MFSCs_in_Blender.png" width=500>
 
 - Acoustic scene classifcation with NUCLEO L476RG board.
 - Art of acoustic features made with Blender.

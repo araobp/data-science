@@ -24,4 +24,4 @@ This is a project to develop edge AI for Acoustic Scene Classification based on 
 
 ### Extra: 3DCG animation (Work in progress)
 
-=> [Art of acoustic features](blender/AcousticSceneClassification/ART.md)
+=> [Art of Acoustic Features](blender/AcousticSceneClassification/ART.md)

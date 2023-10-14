@@ -36,6 +36,28 @@ My past projects on edge AI:
 
 ---
 
+## Skills required for this project
+
+The purpose of this project for me is to retrain myself with the following skills:
+
+### Science
+
+- Basics of signal processing
+- Basics of 3DCG
+
+### Programming Languages
+
+- C
+- Python
+- Kotlin
+
+### IDEs/tools
+
+- CubeIDE with STM32Cube.AI
+- Jupyter Notebook with numpy, pandas and matplotlib
+- Android Studio
+- Blender
+
 ## References
 
 ### Delta-Sigma ADCs

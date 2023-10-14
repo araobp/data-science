@@ -14,9 +14,11 @@ This is a project to develop edge AI for Acoustic Scene Classification based on 
 
 => [ACOUSTIC_FEATURE_CAMERA](STM32/ACOUSTIC_FEATURE_CAMERA.md)
 
-### Step 4: Data Collection (Work in progress)
+### Step 4: Data Collection
 
-=> [Oscilloscope GUI](python/OscilloscopeGUI)
+=> [Oscilloscope GUI (Tkinter-version)](python/OscilloscopeGUI)
+
+=> [Oscilloscope GUI (Android-version)](android/OscilloscopeGUI) (Work in progress)
 
 ### Step 5: Training CNN on Jupyter Notebook
 
@@ -24,4 +26,4 @@ This is a project to develop edge AI for Acoustic Scene Classification based on 
 
 ### Extra: 3DCG animation (Work in progress)
 
-[Matplotlib colormap](python/colormap/Colormap.ipynb)
+=> [Art of Acoustic Features](blender/AcousticSceneClassification/ART.md)

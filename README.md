@@ -53,8 +53,8 @@ The purpose of this project for me is to retrain myself with the following skill
 
 ### IDEs/tools
 
-- CubeID
-- Jupyter Notebook
+- CubeIDE with STM32Cube.AI
+- Jupyter Notebook with numpy, pandas and matplotlib
 - Android Studio
 - Blender
 

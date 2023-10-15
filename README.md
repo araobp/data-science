@@ -32,7 +32,7 @@ My past projects on edge AI:
 <img src="doc/MFSCs_in_Blender.png" width=500>
 
 - Acoustic scene classifcation with NUCLEO L476RG board.
-- Art of acoustic features made with Blender.
+- Generative Art of acoustic features made with Blender.
 
 => [Acoustic Scene Classification](AcousticSceneClassification.md)
 

@@ -8,7 +8,7 @@ Spectrogram of [Paco De Lucia "Cepa Andaluza" (Bulerias)](https://youtu.be/NIKWB
 
 <img src="doc/screen_shot_cepa_andaluza_cante.png" width=450>
 
-Edge AI with low-power-consumption MCU such as **STM32L4 from STMicroelectronics[https://www.st.com/en/microcontrollers-microprocessors/stm32l4-series.html]** is one of key technologies to stop Global Warming.
+Edge AI with low-power-consumption MCU such as **[STM32L4 from STMicroelectronics](https://www.st.com/en/microcontrollers-microprocessors/stm32l4-series.html)** is one of key technologies to stop Global Warming.
 
 In this project, I pick up two achievements on edge AI from my past projects, and update them with the latest CubeIDE and STM32Cube.AI.
 

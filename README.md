@@ -12,7 +12,7 @@ Edge AI with low-power-consumption MCUs such as **[STM32L4 from STMicroelectroni
 
 In this project, I pick up two achievements on edge AI from my past projects, and update them with the latest [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html) and [STM32Cube.AI](https://stm32ai.st.com/stm32-cube-ai/).
 
-I would rather be interested in Generative Art based on Physics than Generative AI. I will also try to create Generative Art with edge AI in this project.
+I will also try to create Generative Art with edge AI in this project.
 
 My past projects on edge AI:
 - [acoustic-features](https://github.com/araobp/acoustic-features)

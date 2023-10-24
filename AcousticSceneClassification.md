@@ -10,15 +10,15 @@ This is a project to develop edge AI for Acoustic Scene Classification based on 
 
 => [MEMSMIC](STM32/MEMSMIC.md)
 
-### Step 3: Acoustic Feature Camera (without AI)
+### Step 3: Acoustic Feature Camera (without AI) (Work in progress)
 
 => [ACOUSTIC_FEATURE_CAMERA](STM32/ACOUSTIC_FEATURE_CAMERA.md)
 
-### Step 4: Data Collection
+### Step 4: Data Collection (Work in progress)
 
 => [Oscilloscope GUI (Tkinter-version)](python/OscilloscopeGUI)
 
-=> [Oscilloscope GUI (Android-version)](android/OscilloscopeGUI) (Work in progress)
+=> [Oscilloscope GUI (Android-version)](android/OscilloscopeGUI)
 
 ### Step 5: Training CNN on Jupyter Notebook
 

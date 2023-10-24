@@ -204,36 +204,33 @@ Data is send in int8_t.
 
 ### Output
 
-|cmd| description    | output size             | purpose               | transfer mode |
-|---|----------------|-------------------------|-----------------------|-----------|
-|1  | RAW_WAVE       | N x 1                   | Input to oscilloscope | one frame |
-|2  | FFT            | N/2 x 1                 | Input to oscilloscope | one frame |
-|3  | SPECTROGRAM    | N/2 x 200               | Input to oscilloscope | streaming |
-|4  | FEATURES       | NUM_FILTERS x 400       | Input to ML           | buffered  |
+Data output
 
-### Pre-emphasis
+|cmd| description    | output size             |
+|---|----------------|-------------------------|
+|r  | 18bit PCM      | N x 1                   |
+|s  | Short-time FFT | N/2 x 2                 |
+|f  | MFSCs and MFCCs| NUM_FILTERS x 2 X 2     |
+|o  | Start streaming (TX On)|                 |
+|O  | Stop streaming (TX Off)|                 |
 
-|cmd| description    | output size             | purpose               |
-|---|----------------|-------------------------|-----------------------|
-|P  | Enable pre-emphasis |                    |                       |
-|p  | Disable pre-emphasis |                   |                       |
-|c  | Enable continuous output |               |                       |
-|C  | Disable continous output |               |                       |
-|e  | Enable 8bit right bit shift (16bit PCM) |      |                 |
-|E  | Disable 8bit right bit shift (16bit LSBs of 24bit PCM) |         |
+Configuration
+
+|cmd| description    | output size             |
+|---|----------------|-------------------------|
+|p  | Enable pre-emphasis |                    |
+|p  | Disable pre-emphasis |                   |
+|<n>| Right <n> bit shift (PCM 24bit-to-16bit) | 
 
 ### Data format of features
 
-The PC issues "FEATURES" command to the device via UART to fetch features that are the last 2.6sec MFSCs and MFCCs buffered in a memory.
+The PC issues "f" command to the device via UART to fetch feature data in the following format:
 
 ```
-      shape: (200, 40, 1)       shape: (200, 40, 1)
-   +------------------------+------------------------+
-   |    MFSCs (40 * 200)    |    MFCCs (40 * 200)    |
-   +------------------------+------------------------+
++------------------------+------------------------+------------------------+------------------------+
+|    MFSCs (40 bytes)    |    MFCCs (40 bytes)    |    MFSCs (40 bytes)    |    MFCCs (40 bytes)    |
++------------------------+------------------------+------------------------+------------------------+
 ```
-
-The GUI flatten features and convert it into CSV to save it as a csv file in a dataset folder.
 
 ## PCM audio output test
 
@@ -243,3 +240,7 @@ Tone generator ))) [MEMS mic][NUCLEO-L476R] --- 16bit PCM ---> [Jupyter Notebook
                                                 over UART
 ```
 => [PCM](data/PCM.ipynb)
+
+[The MEMS mic](https://akizukidenshi.com/catalog/g/gM-05577/) does not seem to have good SNR, so it might not be good for Acoustic Scene Classification.
+
+I am planning to replace it with a better one such as [this breakout board of Knowles SPH0641LU4H](https://akizukidenshi.com/catalog/g/gK-15577/).

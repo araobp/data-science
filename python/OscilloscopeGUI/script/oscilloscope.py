@@ -87,7 +87,6 @@ if __name__ == '__main__':
     cmap_list = args.color_map.split(',')
 
     cnt = 0
-    repeat_action = False
 
     filename = None
     data = None
@@ -156,20 +155,16 @@ if __name__ == '__main__':
             cnt += 1
             counter.configure(text='({})'.format(str(cnt)))
 
-    def exec_func(func, repeatable):
+    def exec_func(func):
         def _exec_func():
-            global repeat_action
             func()
-            if (repeatable):
-                while(repeat_action):
-                    func()
         threading.Thread(target=_exec_func).start()
 
     def infer(data):
         class_label, p = cnn_model.infer(data)
         label_inference.configure(text='This is {} ({} %)'.format(class_label, int(p)))
         
-    def raw_wave(repeatable=True):
+    def raw_wave():
         def _raw_wave():
             global last_operation
             range_ = int(range_amplitude.get())
@@ -178,9 +173,9 @@ if __name__ == '__main__':
             fig.tight_layout()
             canvas.draw()
         
-        exec_func(_raw_wave, repeatable)
+        exec_func(_raw_wave)
 
-    def fft(repeatable=True):
+    def fft():
         def _fft():
             global last_operation
             ssub = int(spectrum_subtraction.get())
@@ -189,9 +184,9 @@ if __name__ == '__main__':
             fig.tight_layout()
             canvas.draw()
         
-        exec_func(_fft, repeatable)
+        exec_func(_fft)
 
-    def spectrogram(data=EMPTY, pos=0, repeatable=True):
+    def spectrogram(data=EMPTY, pos=0):
         def _spectrogram(data=data, pos=pos):
             global last_operation, dataset
             ssub = int(spectrum_subtraction.get())    
@@ -208,9 +203,9 @@ if __name__ == '__main__':
             fig.tight_layout()
             canvas.draw()
         
-        exec_func(_spectrogram, repeatable)
+        exec_func(_spectrogram)
 
-    def mfsc(data=EMPTY, pos=None, repeatable=True):
+    def mfsc(data=EMPTY, pos=None):
         def _mfsc(data=data, pos=pos):
             global last_operation, dataset
             print(pos)
@@ -236,9 +231,9 @@ if __name__ == '__main__':
             fig.tight_layout()
             canvas.draw()
         
-        exec_func(_mfsc, repeatable)
+        exec_func(_mfsc)
 
-    def mfcc(data=EMPTY, pos=None, repeatable=True):
+    def mfcc(data=EMPTY, pos=None):
         def _mfcc(data=data, pos=pos):
             global last_operation, dataset
             ssub = int(spectrum_subtraction.get())    
@@ -262,7 +257,7 @@ if __name__ == '__main__':
             fig.tight_layout()
             canvas.draw()
         
-        exec_func(_mfcc, repeatable)
+        exec_func(_mfcc)
 
     def welch():
         def _welch():
@@ -270,19 +265,8 @@ if __name__ == '__main__':
             fig.tight_layout()
             canvas.draw()
         
-        exec_func(_welch, repeatable=False)
+        exec_func(_welch)
 
-    '''
-    def repeat_toggle():
-        global repeat_action
-        if repeat_action == True:
-            repeat_action = False
-            button_repeat.configure(bg=BG)
-        else:
-            repeat_action = True
-            button_repeat.configure(bg='red')
-    '''
-         
     def pre_emphasis_toggle():
         if button_pre_emphasis.cget('bg') == BG:
             button_pre_emphasis.configure(bg='red')
@@ -302,11 +286,8 @@ if __name__ == '__main__':
             counter.configure(text='({})'.format(str(cnt)))
 
     def quit():
-        if repeat_action:
-            Tk.messagebox.showwarning('Warning!', 'Disable Repeat before Quit!')
-        else:
-            root.quit()
-            root.destroy()
+        root.quit()
+        root.destroy()
 
     def confirm():
         global cnt
@@ -321,7 +302,7 @@ if __name__ == '__main__':
         canvas._tkcanvas.focus_set()
 
     def shadow(pos):
-        last_operation[0](data=last_operation[1], pos=int(pos), repeatable=False)
+        last_operation[0](data=last_operation[1], pos=int(pos))
 
     def filterbank():
         data = gui.plot(ax, dsp.FILTERBANK)
@@ -351,9 +332,9 @@ if __name__ == '__main__':
             else:
                 func = last_operation[0]
                 if func in (mfsc, mfcc):
-                    func(pos=int(range_window.get()), repeatable=False)
+                    func(pos=int(range_window.get()))
                 else:
-                    func(repeatable=False)
+                    func()
         elif c == 'down':
             save()
             
@@ -375,12 +356,12 @@ if __name__ == '__main__':
             data = data.reshape(dataset.samples*2, dataset.filters)
             pos = params[3]
             if pos == 'a':
-                func(data=data, pos=None, repeatable=False)
+                func(data=data, pos=None)
             else:
-                func(data=data, pos=int(pos), repeatable=False)                
+                func(data=data, pos=int(pos))                
         else:
             data = data.reshape(dataset.samples, dataset.filters)
-            func(data=data, repeatable=False)
+            func(data=data)
         
     ### Row 0b ####
     if args.browser:
@@ -429,10 +410,6 @@ if __name__ == '__main__':
                             bg='yellowgreen', activebackground='grey', padx=PADX, width=WIDTH)
 
     ### Row 2 ####
-    '''
-    button_repeat = Tk.Button(master=frame_row2, text='Repeat', command=repeat_toggle,
-                              bg=BG, activebackground='grey', padx=PADX, width=WIDTH)
-    '''
     button_pre_emphasis = Tk.Button(master=frame_row2, text='Emphasis', command=pre_emphasis_toggle,
                                     bg='red', activebackground='grey', padx=PADX, width=WIDTH)
     button_savefig = Tk.Button(master=frame_row2, text='Savefig', command=savefig,
@@ -477,10 +454,9 @@ if __name__ == '__main__':
     canvas._tkcanvas.pack(expand=True, fill=Tk.BOTH)
 
     if args.fullscreen_mode:
-        repeat_action = True
         func = globals()[args.fullscreen_mode]
         if func in (raw_wave, fft, spectrogram, mfsc, mfcc):
-            func(repeatable=True)
+            func()
 
     else:
 
@@ -530,7 +506,6 @@ if __name__ == '__main__':
         frame_row2.pack(pady=PADY_GRID)
 
         # Repeat, pre_emphasis, save fig and delete
-        #button_repeat.grid(row=0, column=4, padx=PADX_GRID)
         button_pre_emphasis.grid(row=0, column=5, padx=PADX_GRID)
         if not cnn_model:
             if not args.oscilloscope_mode:

@@ -80,6 +80,9 @@ void Error_Handler(void);
 // Enable AC Coupling
 #define AC_COUPLING
 
+// Disable buffered output
+#define DISABLE_BUFFERED_OUTPUT
+
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

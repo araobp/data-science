@@ -1,20 +1,20 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2023 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file           : main.c
+ * @brief          : Main program body
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2023 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
@@ -62,10 +62,7 @@ volatile bool new_pcm_data_a = false;
 volatile bool new_pcm_data_b = false;
 
 // Output trigger
-volatile bool printing = false;
-
-// Continuous output
-volatile bool continous_output = false;
+volatile bool uart_output = false;
 
 // Eight-bit shift to fit 24bit PCM into 16bit PCM
 volatile int pcm_bit_shift = 0;
@@ -107,98 +104,71 @@ static void MX_DFSDM1_Init(void);
 /*
  * Output raw wave or feature to UART by memory-to-peripheral DMA
  */
-bool uart_tx(float32_t *in, mode mode, bool dma_start) {
+void uart_tx(float32_t *in, int8_t *f, mode mode, bool dma_start, bool reset) {
 
-  bool printing;
-  int a, b;
-  int c;
-  static int cnt = 0;
-  static int length = 0;
+  int length = 0;
   static int idx = 0;
 
-#if NUM_FILTERS * 200 > NN
-  static char uart_buf[NUM_FILTERS * 200 * 2] = { 0 };
+#if NUM_FILTERS * 2 > NN*2
+  static char uart_buf[NUM_FILTERS * 2] = { 0 };
 #else
   static char uart_buf[NN * 2] = { 0 };
 #endif
 
-  if (cnt == 0) {
+  if (reset) {
     idx = 0;
+  }
 
-    switch (mode) {
+  switch (mode) {
+  case RAW_WAVE:
+    length = NN;
+    break;
 
-    case RAW_WAVE:
-      length = NN;
-      cnt = 1;
-      break;
+  case SFFT:
+    length = NN / 2;
+    break;
 
-    case FFT:
-      length = NN / 2;
-      cnt = 1;
-      break;
+  case FEATURES:
+    length = NUM_FILTERS * 2;
+    break;
 
-    case SPECTROGRAM:
-      length = NN / 2;
-      cnt = 200;
-      break;
-
-    case FEATURES:
-      break;
-
-    default:
-      length = 0;
-      break;
-
-    }
+  default:
+    break;
   }
 
   // Quantization: convert float into int
   if (mode == RAW_WAVE) {
     for (int n = 0; n < length; n++) {
-      // TODO: the original PCM is 24bit length, so this operation may cause overflow.
-      int32_t raw32 = (int32_t)in[n] >> pcm_bit_shift;
-      int16_t raw16 = (int16_t)raw32;
+      // fit 24bit PCM into 18bit PCM by right bit shift
+      int32_t raw32 = (int32_t) in[n] >> pcm_bit_shift;
+      int16_t raw16 = (int16_t) raw32;
       uart_buf[idx++] = (uint8_t) (raw16 >> 8);      // MSB
       uart_buf[idx++] = (uint8_t) (raw16 & 0x00ff);  // LSB
     }
   } else if (mode == FEATURES) {
-    a = pos * NUM_FILTERS;
-    b = (200 - pos) * NUM_FILTERS;
-    c = 200 * NUM_FILTERS;
-    // Time series order
-    memcpy(uart_buf + b, mfsc_buffer, a);
-    memcpy(uart_buf, mfsc_buffer + a, b);
-    memcpy(uart_buf + b + c, mfcc_buffer, a);
-    memcpy(uart_buf + c, mfcc_buffer + a, b);
+    if (f != NULL) {
+      memcpy(uart_buf + idx, f, NUM_FILTERS * 2);
+      idx += NUM_FILTERS * 2;
+    }
   } else {
     for (int n = 0; n < length; n++) {
-      if (in[n] < -128.0f) in[n] = -128.0f;
+      if (in[n] < -128.0f)
+        in[n] = -128.0f;
       uart_buf[idx++] = (int8_t) in[n];
     }
   }
 
   // memory-to-peripheral DMA to UART
-  if (mode == FEATURES) {
-    HAL_UART_Transmit_DMA(&huart2, (uint8_t *) uart_buf, NUM_FILTERS * 200 * 2);
-    printing = false;
-  } else if (--cnt == 0) {
-    HAL_UART_Transmit_DMA(&huart2, (uint8_t *) uart_buf, idx);
-    printing = false;
-  } else if (dma_start) {
-    HAL_UART_Transmit_DMA(&huart2, (uint8_t *) uart_buf, idx);
-    idx = 0;
-    printing = true;
-  } else {
-    printing = true;
+  if (dma_start) {
+    HAL_UART_Transmit_DMA(&huart2, (uint8_t*) uart_buf, idx);
   }
 
-  return printing;
 }
 
 /*
  * DSP pipeline
  */
-void dsp(float32_t *s1, mode mode) {
+void dsp(float32_t *s1, int8_t *f, mode mode) {
 
   uint32_t start = 0;
   uint32_t end = 0;
@@ -209,7 +179,7 @@ void dsp(float32_t *s1, mode mode) {
   apply_ac_coupling(s1);  // remove DC
 #endif
 
-  if (mode >= FFT) {
+  if (mode >= SFFT) {
     // Pre-emphasis
     if (pre_emphasis_enabled) {
       apply_pre_emphasis(s1);
@@ -225,10 +195,12 @@ void dsp(float32_t *s1, mode mode) {
       for (int i = 0; i < NUM_FILTERS; i++) {
         mfsc_buffer[pos * NUM_FILTERS + i] = (int8_t) s1[i];
       }
+      memcpy(f, mfsc_buffer + pos * NUM_FILTERS, NUM_FILTERS);
       apply_dct2(s1);
       for (int i = 0; i < NUM_FILTERS; i++) {
         mfcc_buffer[pos * NUM_FILTERS + i] = (int8_t) s1[i];
       }
+      memcpy(f + NUM_FILTERS, mfcc_buffer + pos * NUM_FILTERS, NUM_FILTERS);
     }
   }
   if (++pos >= 200)
@@ -258,22 +230,44 @@ void dsp(float32_t *s1, mode mode) {
 void overlap_dsp(float32_t *buf, mode mode) {
 
   float32_t signal[NN] = { 0.0f };
+  int8_t features[NUM_FILTERS * 2] = { 0U };
 
+  /*---- (1/2) -----------------------------------*/
   arm_copy_f32(buf, signal, NN);
-  dsp(signal, mode);  // (1/2)
-  if (printing) {
-    printing = uart_tx(signal, mode, false);  // false: UART output pending
+  dsp(signal, features, mode);  // (1/2)
+
+  if (uart_output) {
+    switch (mode) {
+    case RAW_WAVE:
+      uart_tx(signal, NULL, mode, true, true);
+      break;
+    case SFFT:
+      uart_tx(signal, NULL, mode, false, true);
+      break;
+    default:
+      uart_tx(signal, features, mode, false, true);
+      break;
+    }
   }
 
+  /*---- (2/2) -----------------------------------*/
   arm_copy_f32(buf + NN_HALF, signal, NN);
-  dsp(signal, mode);  // (2/2)
-  if (printing) {
-    printing = uart_tx(signal, mode, true);  // true: UART output
+  dsp(signal, features, mode);  // (2/2)
+
+  if (uart_output) {
+    switch (mode) {
+    case RAW_WAVE:
+      __NOP();
+      break;
+    case SFFT:
+      uart_tx(signal, NULL, mode, true, false);
+      break;
+    default:
+      uart_tx(signal, features, mode, true, false);
+      break;
+    }
   }
 
-  if (!printing && continous_output) {
-    printing = true;
-  }
 }
 
 /*
@@ -305,19 +299,18 @@ void dump(void) {
 /* USER CODE END 0 */
 
 /**
-  * @brief  The application entry point.
-  * @retval int
-  */
-int main(void)
-{
+ * @brief  The application entry point.
+ * @retval int
+ */
+int main(void) {
   /* USER CODE BEGIN 1 */
-  // Audio sample rate and period
+// Audio sample rate and period
   float32_t f_s;
 
-  // DMA peripheral-to-memory double buffer
+// DMA peripheral-to-memory double buffer
   int32_t input_buf[NN * 2] = { 0 };
 
-  // PCM data store for further processing (FFT etc)
+// PCM data store for further processing (FFT etc)
   float32_t signal_buf[NN + NN / 2] = { 0.0f };  // NN/2 overlap
 
   /* USER CODE END 1 */
@@ -349,23 +342,23 @@ int main(void)
       / hdfsdm1_filter0.Init.FilterParam.Oversampling
       / hdfsdm1_filter0.Init.FilterParam.IntOversampling;
 
-  // DSP initialization
+// DSP initialization
   init_dsp(f_s);
 
-  if (HAL_DFSDM_FilterRegularStart_DMA(&hdfsdm1_filter0, input_buf, NN * 2) != HAL_OK) {
+  if (HAL_DFSDM_FilterRegularStart_DMA(&hdfsdm1_filter0, input_buf, NN * 2)
+      != HAL_OK) {
     Error_Handler();
   }
 
-  // Enable UART receive interrupt to receive a command
-  // from an application processor
+// Enable UART receive interrupt to receive a command
+// from an application processor
   HAL_UART_Receive_IT(&huart2, rxbuf, 1);
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+  while (1) {
     // Wait for next PCM samples from M1
     if (new_pcm_data_a) {  // 1st half of the buffer
 
@@ -374,7 +367,8 @@ int main(void)
 
       // Bit shift to obtain 16-bit PCM
       for (uint32_t n = 0; n < NN; n++) {
-        signal_buf[n+NN_HALF] = (float32_t) (input_buf[n] >> REGISTER_BIT_SHIFT);
+        signal_buf[n + NN_HALF] = (float32_t) (input_buf[n]
+            >> REGISTER_BIT_SHIFT);
       }
 
       // Overlap dsp
@@ -391,7 +385,8 @@ int main(void)
 
       // Bit shift to obtain 16-bit PCM
       for (uint32_t n = 0; n < NN; n++) {
-        signal_buf[n+NN_HALF] = (float32_t) (input_buf[NN+n] >> REGISTER_BIT_SHIFT);
+        signal_buf[n + NN_HALF] = (float32_t) (input_buf[NN + n]
+            >> REGISTER_BIT_SHIFT);
       }
 
       // Overlap dsp
@@ -412,24 +407,22 @@ int main(void)
 }
 
 /**
-  * @brief System Clock Configuration
-  * @retval None
-  */
-void SystemClock_Config(void)
-{
-  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
-  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+ * @brief System Clock Configuration
+ * @retval None
+ */
+void SystemClock_Config(void) {
+  RCC_OscInitTypeDef RCC_OscInitStruct = { 0 };
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = { 0 };
 
   /** Configure the main internal regulator output voltage
-  */
-  if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1) != HAL_OK)
-  {
+   */
+  if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1) != HAL_OK) {
     Error_Handler();
   }
 
   /** Initializes the RCC Oscillators according to the specified parameters
-  * in the RCC_OscInitTypeDef structure.
-  */
+   * in the RCC_OscInitTypeDef structure.
+   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
@@ -440,33 +433,30 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV7;
   RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
   RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
-  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-  {
+  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK) {
     Error_Handler();
   }
 
   /** Initializes the CPU, AHB and APB buses clocks
-  */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+   */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK
+      | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_4) != HAL_OK)
-  {
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_4) != HAL_OK) {
     Error_Handler();
   }
 }
 
 /**
-  * @brief DFSDM1 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_DFSDM1_Init(void)
-{
+ * @brief DFSDM1 Initialization Function
+ * @param None
+ * @retval None
+ */
+static void MX_DFSDM1_Init(void) {
 
   /* USER CODE BEGIN DFSDM1_Init 0 */
 
@@ -482,29 +472,29 @@ static void MX_DFSDM1_Init(void)
   hdfsdm1_filter0.Init.FilterParam.SincOrder = DFSDM_FILTER_SINC4_ORDER;
   hdfsdm1_filter0.Init.FilterParam.Oversampling = 64;
   hdfsdm1_filter0.Init.FilterParam.IntOversampling = 1;
-  if (HAL_DFSDM_FilterInit(&hdfsdm1_filter0) != HAL_OK)
-  {
+  if (HAL_DFSDM_FilterInit(&hdfsdm1_filter0) != HAL_OK) {
     Error_Handler();
   }
   hdfsdm1_channel3.Instance = DFSDM1_Channel3;
   hdfsdm1_channel3.Init.OutputClock.Activation = ENABLE;
-  hdfsdm1_channel3.Init.OutputClock.Selection = DFSDM_CHANNEL_OUTPUT_CLOCK_SYSTEM;
+  hdfsdm1_channel3.Init.OutputClock.Selection =
+  DFSDM_CHANNEL_OUTPUT_CLOCK_SYSTEM;
   hdfsdm1_channel3.Init.OutputClock.Divider = 64;
   hdfsdm1_channel3.Init.Input.Multiplexer = DFSDM_CHANNEL_EXTERNAL_INPUTS;
   hdfsdm1_channel3.Init.Input.DataPacking = DFSDM_CHANNEL_STANDARD_MODE;
   hdfsdm1_channel3.Init.Input.Pins = DFSDM_CHANNEL_SAME_CHANNEL_PINS;
   hdfsdm1_channel3.Init.SerialInterface.Type = DFSDM_CHANNEL_SPI_RISING;
-  hdfsdm1_channel3.Init.SerialInterface.SpiClock = DFSDM_CHANNEL_SPI_CLOCK_INTERNAL;
+  hdfsdm1_channel3.Init.SerialInterface.SpiClock =
+  DFSDM_CHANNEL_SPI_CLOCK_INTERNAL;
   hdfsdm1_channel3.Init.Awd.FilterOrder = DFSDM_CHANNEL_FASTSINC_ORDER;
   hdfsdm1_channel3.Init.Awd.Oversampling = 1;
   hdfsdm1_channel3.Init.Offset = 0;
   hdfsdm1_channel3.Init.RightBitShift = 0x1;
-  if (HAL_DFSDM_ChannelInit(&hdfsdm1_channel3) != HAL_OK)
-  {
+  if (HAL_DFSDM_ChannelInit(&hdfsdm1_channel3) != HAL_OK) {
     Error_Handler();
   }
-  if (HAL_DFSDM_FilterConfigRegChannel(&hdfsdm1_filter0, DFSDM_CHANNEL_3, DFSDM_CONTINUOUS_CONV_ON) != HAL_OK)
-  {
+  if (HAL_DFSDM_FilterConfigRegChannel(&hdfsdm1_filter0, DFSDM_CHANNEL_3,
+  DFSDM_CONTINUOUS_CONV_ON) != HAL_OK) {
     Error_Handler();
   }
   /* USER CODE BEGIN DFSDM1_Init 2 */
@@ -514,12 +504,11 @@ static void MX_DFSDM1_Init(void)
 }
 
 /**
-  * @brief USART2 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_USART2_UART_Init(void)
-{
+ * @brief USART2 Initialization Function
+ * @param None
+ * @retval None
+ */
+static void MX_USART2_UART_Init(void) {
 
   /* USER CODE BEGIN USART2_Init 0 */
 
@@ -538,8 +527,7 @@ static void MX_USART2_UART_Init(void)
   huart2.Init.OverSampling = UART_OVERSAMPLING_16;
   huart2.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
   huart2.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
-  if (HAL_UART_Init(&huart2) != HAL_OK)
-  {
+  if (HAL_UART_Init(&huart2) != HAL_OK) {
     Error_Handler();
   }
   /* USER CODE BEGIN USART2_Init 2 */
@@ -549,10 +537,9 @@ static void MX_USART2_UART_Init(void)
 }
 
 /**
-  * Enable DMA controller clock
-  */
-static void MX_DMA_Init(void)
-{
+ * Enable DMA controller clock
+ */
+static void MX_DMA_Init(void) {
 
   /* DMA controller clock enable */
   __HAL_RCC_DMA1_CLK_ENABLE();
@@ -568,15 +555,14 @@ static void MX_DMA_Init(void)
 }
 
 /**
-  * @brief GPIO Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_GPIO_Init(void)
-{
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
-/* USER CODE BEGIN MX_GPIO_Init_1 */
-/* USER CODE END MX_GPIO_Init_1 */
+ * @brief GPIO Initialization Function
+ * @param None
+ * @retval None
+ */
+static void MX_GPIO_Init(void) {
+  GPIO_InitTypeDef GPIO_InitStruct = { 0 };
+  /* USER CODE BEGIN MX_GPIO_Init_1 */
+  /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOC_CLK_ENABLE();
@@ -600,8 +586,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LD2_GPIO_Port, &GPIO_InitStruct);
 
-/* USER CODE BEGIN MX_GPIO_Init_2 */
-/* USER CODE END MX_GPIO_Init_2 */
+  /* USER CODE BEGIN MX_GPIO_Init_2 */
+  /* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
@@ -637,7 +623,7 @@ void HAL_DFSDM_FilterRegConvCpltCallback(
  * @retval None
  */
 int _write(int file, char *ptr, int len) {
-  HAL_UART_Transmit(&huart2, (uint8_t *) ptr, (uint16_t) len, 0xFFFFFFFF);
+  HAL_UART_Transmit(&huart2, (uint8_t*) ptr, (uint16_t) len, 0xFFFFFFFF);
   return len;
 }
 
@@ -658,35 +644,37 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 
   switch (cmd) {
 
-  // Pre-emphasis
-  case 'P':
-    pre_emphasis_enabled = true;
+// Pre-emphasis
+  case 'r':
+    output_mode = RAW_WAVE;
     break;
-  case 'p':
-    pre_emphasis_enabled = false;
+  case 's':
+    output_mode = SFFT;
     break;
   case 'f':
+    output_mode = FEATURES;
+    break;
+  case 'p':
+    pre_emphasis_enabled = true;
+    break;
+  case 'P':
+    pre_emphasis_enabled = false;
+    break;
+  case 'o':  // TX On
+    uart_output = true;
+    break;
+  case 'O':  // Tx off
+    uart_output = false;
+  case 'F':
     debug_output = FILTERBANK;
     break;
   case 't':
     debug_output = ELAPSED_TIME;
     break;
-  case 'c':
-    continous_output = true;
-    break;
-  case 'C':
-    continous_output = false;
-    break;
-  case 'e':
-    pcm_bit_shift = 8;
-    break;
-  case 'E':
-    pcm_bit_shift = 0;
-    break;
-    // The others
   default:
-    output_mode = (mode) (cmd - 0x30);
-    printing = true;
+    if (cmd >= 0x30 && cmd <= 0x38) {
+      pcm_bit_shift = (int) (cmd - 0x30);
+    }
     break;
   }
 
@@ -695,16 +683,14 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 /* USER CODE END 4 */
 
 /**
-  * @brief  This function is executed in case of error occurrence.
-  * @retval None
-  */
-void Error_Handler(void)
-{
+ * @brief  This function is executed in case of error occurrence.
+ * @retval None
+ */
+void Error_Handler(void) {
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
   __disable_irq();
-  while (1)
-  {
+  while (1) {
   }
   /* USER CODE END Error_Handler_Debug */
 }

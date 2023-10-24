@@ -26,7 +26,7 @@
 
 // Note: FEATURES includes both MFSCs and MFCCs
 typedef enum {
-  NONE, RAW_WAVE, FFT, SPECTROGRAM, FEATURES
+  NONE, RAW_WAVE, SFFT, FEATURES
 } mode;
 
 // The number of values in the mean value history for AC coupling

@@ -22,6 +22,8 @@ import dsp
 import gui
 import dataset
 
+VERSION = '2.0.0-alpha'
+
 CMAP_LIST = ('viridis',
              'hot',
              'gray',
@@ -109,7 +111,7 @@ if __name__ == '__main__':
     if args.fullscreen_mode:
         root.wm_title("")
     else:
-        root.wm_title("Oscilloscope")
+        root.wm_title("Oscilloscope {}".format(VERSION))
 
     if args.browser:
         fig, ax = plt.subplots(1, 1, figsize=(10, 4))
@@ -182,7 +184,7 @@ if __name__ == '__main__':
         def _fft():
             global last_operation
             ssub = int(spectrum_subtraction.get())
-            data = gui.plot(ax, dsp.FFT, grid=args.show_grid)
+            data = gui.plot(ax, dsp.SFFT, grid=args.show_grid)
             last_operation = (fft, data, None, None)
             fig.tight_layout()
             canvas.draw()
@@ -270,6 +272,7 @@ if __name__ == '__main__':
         
         exec_func(_welch, repeatable=False)
 
+    '''
     def repeat_toggle():
         global repeat_action
         if repeat_action == True:
@@ -278,7 +281,8 @@ if __name__ == '__main__':
         else:
             repeat_action = True
             button_repeat.configure(bg='red')
-            
+    '''
+         
     def pre_emphasis_toggle():
         if button_pre_emphasis.cget('bg') == BG:
             button_pre_emphasis.configure(bg='red')
@@ -425,8 +429,10 @@ if __name__ == '__main__':
                             bg='yellowgreen', activebackground='grey', padx=PADX, width=WIDTH)
 
     ### Row 2 ####
+    '''
     button_repeat = Tk.Button(master=frame_row2, text='Repeat', command=repeat_toggle,
                               bg=BG, activebackground='grey', padx=PADX, width=WIDTH)
+    '''
     button_pre_emphasis = Tk.Button(master=frame_row2, text='Emphasis', command=pre_emphasis_toggle,
                                     bg='red', activebackground='grey', padx=PADX, width=WIDTH)
     button_savefig = Tk.Button(master=frame_row2, text='Savefig', command=savefig,
@@ -524,7 +530,7 @@ if __name__ == '__main__':
         frame_row2.pack(pady=PADY_GRID)
 
         # Repeat, pre_emphasis, save fig and delete
-        button_repeat.grid(row=0, column=4, padx=PADX_GRID)
+        #button_repeat.grid(row=0, column=4, padx=PADX_GRID)
         button_pre_emphasis.grid(row=0, column=5, padx=PADX_GRID)
         if not cnn_model:
             if not args.oscilloscope_mode:

@@ -18,25 +18,27 @@ BAUD_RATE = 460800          # UART baud rate
 NN = 512                    # The number of samples per frame
 
 # Command
-RAW_WAVE = b'1'
-FFT = b'2'
-SPECTROGRAM = b'3'
-FEATURES = b'4'
-FILTERBANK = b'f'
+RAW_WAVE = b'r'
+SFFT = b's'
+FEATURES = b'f'
+FILTERBANK = b'F'
 ELAPSED_TIME = b't'
-ENABLE_PRE_EMPHASIS = b'P'
-DISABLE_PRE_EMPHASIS = b'p'
-ENABLE_EIGHTBIT_SHIFT = b'e'
-DISABLE_EIGHTBIT_SHIFT = b'E'
+ENABLE_PRE_EMPHASIS = b'p'
+DISABLE_PRE_EMPHASIS = b'P'
+PCM_RIGHT_BIT_SHIFT = b'8'
+DISABLE_PCM_RIGHT_BIT_SHIFT = b'0'
+TX_ON = b'o'
+TX_OFF = b'O'
 
-# Features
+# Internal commands
+SPECTROGRAM = b'97'
 MFSC = b'98'
 MFCC = b'99'
 
 ###################
 
 b16_to_int = lambda msb, lsb, signed: int.from_bytes([msb, lsb], byteorder='big', signed=signed)
-b8_to_int = lambda d, signed: int.from_bytes([d], byteorder='big', signed=signed)
+#b8_to_int = lambda d, signed: int.from_bytes([d], byteorder='big', signed=signed)
 
 # Interface class
 class Interface:
@@ -59,24 +61,27 @@ class Interface:
         # main.c
         self.num_samples = {}            # The number of samples to receive from the device
         self.num_samples[RAW_WAVE] = NN
-        self.num_samples[FFT] = int(NN/2)
+        self.num_samples[SFFT] = int(NN/2)
         self.num_samples[SPECTROGRAM] = int(NN/2) * self.samples
-        self.num_samples[FEATURES] = self.filters * self.samples * 2
+        self.num_samples[FEATURES] = self.filters * 2 * self.samples
 
         # Shapes
         self.shape = {}
-        self.shape[RAW_WAVE] = None
-        self.shape[FFT] = None
         self.shape[SPECTROGRAM] = (self.samples, int(NN/2))
-        self.shape[FEATURES] = (self.samples * 2, self.filters)
-        self.shape[MFSC] = (self.samples, self.filters)
-        self.shape[MFCC] = (self.samples, self.filters)
+        self.shape[FEATURES] = (self.samples, self.filters * 2)
+
+        # Capture memory
+        self.spec = np.zeros([self.samples * int(NN/2)])
+        self.features = np.zeros([2, self.samples * int(NN/2)])
 
     def is_active(self):
         return self.active
 
     def serial_port(self):
         return serial.Serial(self.port, BAUD_RATE, timeout=3)
+    
+    def set_continouse(self, cont):
+        self.cont = cont
 
     def read(self, cmd):
         '''
@@ -86,15 +91,31 @@ class Interface:
         data = []
         try:
             ser = self.serial_port()
-            ser.write(cmd)
+            if cmd == SPECTROGRAM:
+                ser.write(SFFT)
+            else:
+                ser.write(cmd)
+
+            ser.write(TX_ON)
 
             if cmd == RAW_WAVE:  # 16bit quantization
-                rx = ser.read(self.num_samples[cmd]*2)
+                rx = ser.read(self.num_samples[RAW_WAVE]*2)
                 rx = zip(rx[0::2], rx[1::2])
                 for msb, lsb in rx:
                     d = b16_to_int(msb, lsb, True)
                     data.append(d)
                 data = np.array(data, dtype=np.int16)
+            elif cmd == SFFT:
+                rx = ser.read(self.num_samples[SFFT])
+                data = np.frombuffer(rx, dtype=np.int8)
+            elif cmd == SPECTROGRAM:
+                rx = ser.read(self.num_samples[SPECTROGRAM])
+                data = np.frombuffer(rx, dtype=np.int8)
+                data = data.reshape(self.shape[cmd])
+            elif cmd == FEATURES:
+                rx = ser.read(self.num_samples[FEATURES])
+                data = np.frombuffer(rx, dtype=np.int8)
+                data = data.reshape(self.shape[cmd])
             elif cmd == FILTERBANK:
                 filterbank = []
                 k_range = []
@@ -109,25 +130,12 @@ class Interface:
             elif cmd == ELAPSED_TIME:
                 data = ser.readline().decode('ascii').rstrip('\n,')
                 print(data)
-            elif cmd == FEATURES:
-                rx = ser.read(self.num_samples[cmd])
-                for d in rx:
-                    d = b8_to_int(d, True)
-                    data.append(d)
-                data = np.array(data, dtype=np.int8)
-                data = data.reshape(self.shape[cmd])                    
-            else:  # 8bit quantization
-                rx = ser.read(self.num_samples[cmd])
-                for d in rx:
-                    d  = b8_to_int(d, True)
-                    data.append(d)
-                data = np.array(data, dtype=np.int8)
-                if self.shape[cmd]:
-                    data = data.reshape(self.shape[cmd])
+
+            ser.write(TX_OFF)
             ser.close()
         except:
             print('*** serial timeout!')
-            # traceback.print_exc()
+            traceback.print_exc()
 
         return data
 
@@ -148,8 +156,8 @@ class Interface:
         '''
         ser = self.serial_port()
         if enable:
-            ser.write(ENABLE_EIGHTBIT_SHIFT)
+            ser.write(PCM_RIGHT_BIT_SHIFT)
         else:
-            ser.write(DISABLE_EIGHTBIT_SHIFT)
+            ser.write(DISABLE_PCM_RIGHT_BIT_SHIFT)
         ser.close()
 

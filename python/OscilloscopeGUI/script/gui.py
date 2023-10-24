@@ -41,7 +41,7 @@ class GUI:
         self.time = {}
         self.freq = {}
         self.time[dsp.RAW_WAVE] = np.linspace(0, self.interface.num_samples[dsp.RAW_WAVE]/dsp.Fs*1000.0, self.interface.num_samples[dsp.RAW_WAVE])
-        self.freq[dsp.FFT] = np.linspace(0, dsp.Fs/2, self.interface.num_samples[dsp.FFT])
+        self.freq[dsp.SFFT] = np.linspace(0, dsp.Fs/2, self.interface.num_samples[dsp.SFFT])
         self.time[dsp.SPECTROGRAM] = np.linspace(0, self.interface.num_samples[dsp.RAW_WAVE]/dsp.Fs*self.samples/2, self.samples)
         self.freq[dsp.SPECTROGRAM] = np.linspace(0, dsp.Nyq, int(dsp.NN/2))
         self.time[dsp.MFSC] = np.linspace(-self.interface.num_samples[dsp.RAW_WAVE]/dsp.Fs*self.samples/2, 0, self.samples)
@@ -62,38 +62,37 @@ class GUI:
                  window=None, data=EMPTY,
                  grid=False):
 
-        if (data is EMPTY) and (cmd == dsp.MFSC or cmd == dsp.MFCC):
-            data = self.interface.read(dsp.FEATURES)
-        elif data is EMPTY:
-            data = self.interface.read(cmd)
-            
+        if data is EMPTY:
+            if cmd == dsp.MFSC or cmd == dsp.MFCC:
+                data = self.interface.read(dsp.FEATURES)
+            else:
+                data = self.interface.read(cmd)
+
         ax.clear()
         
         if cmd == dsp.RAW_WAVE:
             ax.plot(self.time[dsp.RAW_WAVE], data)
             self.set_labels(ax, 'Waveform', 'Time [msec]', 'Amplitude', [-range_, range_])
 
-        elif cmd == dsp.FFT:
-            ax.plot(self.freq[dsp.FFT], data)
+        elif cmd == dsp.SFFT:
+            ax.plot(self.freq[dsp.SFFT], data)
             self.set_labels(ax, 'Spectrum', 'Frequency [Hz]', 'Power [dB]', [-70, 90])
 
         elif cmd == dsp.SPECTROGRAM:
+            data_ = data
             data_ = spectrum_subtraction(data, ssub)
             if self.enable_shadow:
                 data_ = shadow(data_, window, shadow_sub=SHADOW_SUB)
             ax.pcolormesh(self.time[dsp.SPECTROGRAM],
-                          self.freq[dsp.SPECTROGRAM][:range_],
-                          data_.T[:range_],
-                          cmap=cmap)
+                        self.freq[dsp.SPECTROGRAM][:range_],
+                        data_.T[:range_],
+                        cmap=cmap)
             self.set_labels(ax, 'Spectrogram', 'Time [sec]', 'Frequency (Hz)')
 
         elif cmd == dsp.MFSC:
 
-            # Debug
-            print('mfsc stm32: {}'.format(data[0]))
-            print('mfcc stm32: {}'.format(data[self.samples]))
-
-            data_ = spectrum_subtraction(data[:self.samples,:], ssub)
+            data_ = data[:, :self.filters]
+            data_ = spectrum_subtraction(data_, ssub)
             if self.enable_shadow:
                 data_ = shadow(data_, window, shadow_sub=SHADOW_SUB)
             ax.pcolormesh(self.time[dsp.MFSC],
@@ -103,17 +102,11 @@ class GUI:
             self.set_labels(ax, 'Mel-frequency spectrogram', 'Time [sec]', 'MFSC')
 
         elif cmd == dsp.MFCC:
-            
-            # Debug
-            print('mfsc stm32: {}'.format(data[0]))
-            print('mfcc stm32: {}'.format(data[self.samples]))
-            dcted = dct(data[0], norm='ortho').astype(int)
-            dcted[0] = 0.0  # Remove DC
-            print('mfcc python: {}'.format(dcted))
 
-            data_ = spectrum_subtraction(data[self.samples:,:], ssub)
+            data_ = data[:, self.filters:self.filters*2]
+            data_ = spectrum_subtraction(data_, ssub)
             if self.enable_shadow:
-                data_ = shadow(data_, window, shadow_sub=SHADOW_SUB)
+                data_ = shadow(data, window, shadow_sub=SHADOW_SUB)
             ax.pcolormesh(self.time[dsp.MFCC],
                           self.freq[dsp.MFCC][:range_+1],
                           data_.T[:range_+1],
@@ -139,7 +132,7 @@ class GUI:
         ax.clear()
 
         data = np.sum(data, axis=0)/self.samples
-        ax.plot(self.freq[dsp.FFT], data)
+        ax.plot(self.freq[dsp.SFFT], data)
         self.set_labels(ax, "Welch's method", 'Frequency [Hz]', 'Power [dB]', [-70, 90])
 
         if grid:

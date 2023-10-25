@@ -22,6 +22,8 @@ import dsp
 import gui
 import dataset
 
+import time
+
 VERSION = '2.0.0-alpha'
 
 CMAP_LIST = ('viridis',
@@ -93,6 +95,8 @@ if __name__ == '__main__':
     cnn_model = None
     last_operation = None
 
+    continuous = False
+
     EMPTY = np.array([])
 
     if args.oscilloscope_mode or args.fullscreen_mode:
@@ -155,9 +159,19 @@ if __name__ == '__main__':
             cnt += 1
             counter.configure(text='({})'.format(str(cnt)))
 
-    def exec_func(func):
+    def exec_func(func, interval = None):
+        global continuous
+        continuous = True
         def _exec_func():
-            func()
+            gui.tx_on()
+            while continuous:
+                func()
+                if interval is not None:
+                    gui.tx_suspend()
+                    time.sleep(interval)
+                    gui.tx_on()
+            gui.tx_off()
+
         threading.Thread(target=_exec_func).start()
 
     def infer(data):
@@ -165,6 +179,7 @@ if __name__ == '__main__':
         label_inference.configure(text='This is {} ({} %)'.format(class_label, int(p)))
         
     def raw_wave():
+        global continuous
         def _raw_wave():
             global last_operation
             range_ = int(range_amplitude.get())
@@ -173,9 +188,15 @@ if __name__ == '__main__':
             fig.tight_layout()
             canvas.draw()
         
-        exec_func(_raw_wave)
+        if button_waveform.cget('bg') == button_colors['waveform']:
+            button_waveform.configure(bg='red')
+            exec_func(_raw_wave, 0.4)
+        else:       
+            button_waveform.configure(bg=button_colors['waveform'])
+            continuous = False
 
     def fft():
+        global continuous
         def _fft():
             global last_operation
             ssub = int(spectrum_subtraction.get())
@@ -183,10 +204,16 @@ if __name__ == '__main__':
             last_operation = (fft, data, None, None)
             fig.tight_layout()
             canvas.draw()
-        
-        exec_func(_fft)
+
+        if button_psd.cget('bg') == button_colors['psd']:
+            button_psd.configure(bg='red')
+            exec_func(_fft, 0.4)
+        else:       
+            button_psd.configure(bg=button_colors['psd'])
+            continuous = False
 
     def spectrogram(data=EMPTY, pos=0):
+        global continuous
         def _spectrogram(data=data, pos=pos):
             global last_operation, dataset
             ssub = int(spectrum_subtraction.get())    
@@ -203,9 +230,15 @@ if __name__ == '__main__':
             fig.tight_layout()
             canvas.draw()
         
-        exec_func(_spectrogram)
+        if button_spectrogram.cget('bg') == button_colors['spectrogram']:
+            button_spectrogram.configure(bg='red')
+            exec_func(_spectrogram)
+        else:       
+            button_spectrogram.configure(bg=button_colors['spectrogram'])
+            continuous = False
 
     def mfsc(data=EMPTY, pos=None):
+        global continuous
         def _mfsc(data=data, pos=pos):
             global last_operation, dataset
             print(pos)
@@ -231,9 +264,15 @@ if __name__ == '__main__':
             fig.tight_layout()
             canvas.draw()
         
-        exec_func(_mfsc)
+        if button_mfsc.cget('bg') == button_colors['mfsc']:
+            button_mfsc.configure(bg='red')
+            exec_func(_mfsc)
+        else:       
+            button_mfsc.configure(bg=button_colors['mfsc'])
+            continuous = False
 
     def mfcc(data=EMPTY, pos=None):
+        global continuous
         def _mfcc(data=data, pos=pos):
             global last_operation, dataset
             ssub = int(spectrum_subtraction.get())    
@@ -256,16 +295,27 @@ if __name__ == '__main__':
             last_operation = (mfcc, data, window, pos)
             fig.tight_layout()
             canvas.draw()
-        
-        exec_func(_mfcc)
+
+        if button_mfcc.cget('bg') == button_colors['mfcc']:
+            button_mfcc.configure(bg='red')
+            exec_func(_mfcc)
+        else:       
+            button_mfcc.configure(bg=button_colors['mfcc'])
+            continuous = False
 
     def welch():
+        global continuous
         def _welch():
             gui.plot_welch(ax, grid=args.show_grid)
             fig.tight_layout()
             canvas.draw()
-        
-        exec_func(_welch)
+
+        if button_welch.cget('bg') == button_colors['welch']:
+            button_welch.configure(bg='red')
+            exec_func(_welch)
+        else:       
+            button_welch.configure(bg=button_colors['welch'])
+            continuous = False
 
     def pre_emphasis_toggle():
         if button_pre_emphasis.cget('bg') == BG:
@@ -408,6 +458,15 @@ if __name__ == '__main__':
                                        bg='pink', activebackground='grey', padx=PADX, width=WIDTH)
     button_mfcc = Tk.Button(master=frame_row1, text='MFCCs', command=mfcc,
                             bg='yellowgreen', activebackground='grey', padx=PADX, width=WIDTH)
+
+    button_colors = {
+        'welch': BG,
+        'waveform': BG,
+        'psd': BG,
+        'spectrogram': BG,
+        'mfsc': 'pink',
+        'mfcc': 'yellowgreen'
+    }
 
     ### Row 2 ####
     button_pre_emphasis = Tk.Button(master=frame_row2, text='Emphasis', command=pre_emphasis_toggle,

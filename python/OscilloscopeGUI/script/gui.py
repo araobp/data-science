@@ -56,6 +56,15 @@ class GUI:
         if ylim:
             ax.set_ylim(ylim)
 
+    def tx_on(self):
+        self.interface.tx_on()
+
+    def tx_suspend(self):
+        self.interface.tx_suspend()
+
+    def tx_off(self):
+        self.interface.tx_off()
+
     # Use matplotlib to plot the output from the device
     def plot(self, ax, cmd, range_=None,
                  cmap=None, ssub=None,

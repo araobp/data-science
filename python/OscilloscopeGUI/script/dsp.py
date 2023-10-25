@@ -9,6 +9,7 @@ import serial
 import numpy as np
 import traceback
 import threading
+import time
 
 ### Constants #####
 
@@ -74,68 +75,83 @@ class Interface:
         self.spec = np.zeros([self.samples * int(NN/2)])
         self.features = np.zeros([2, self.samples * int(NN/2)])
 
+        # Serial port
+        self.ser = None
+
     def is_active(self):
         return self.active
 
-    def serial_port(self):
-        return serial.Serial(self.port, BAUD_RATE, timeout=3)
-    
-    def set_continouse(self, cont):
-        self.cont = cont
+    def tx_on(self):
+        if self.ser is None:
+            self.ser = serial.Serial(self.port, BAUD_RATE, timeout=3)
+            self.ser.write(TX_ON)
+
+    def tx_suspend(self):
+        if self.ser is not None:
+            self.ser.write(TX_OFF)
+            self.ser.reset_input_buffer()
+            self.ser = None
+
+    def tx_off(self):
+        if self.ser is not None:
+            self.ser.write(TX_OFF)
+            self.ser.close()
+            self.ser = None
 
     def read(self, cmd):
         '''
         As an application processor, send a command
         then receive and process the output.
         '''        
-        data = []
-        try:
-            ser = self.serial_port()
-            if cmd == SPECTROGRAM:
-                ser.write(SFFT)
-            else:
-                ser.write(cmd)
 
-            ser.write(TX_ON)
+        if self.ser is not None:
 
-            if cmd == RAW_WAVE:  # 16bit quantization
-                rx = ser.read(self.num_samples[RAW_WAVE]*2)
-                rx = zip(rx[0::2], rx[1::2])
-                for msb, lsb in rx:
-                    d = b16_to_int(msb, lsb, True)
-                    data.append(d)
-                data = np.array(data, dtype=np.int16)
-            elif cmd == SFFT:
-                rx = ser.read(self.num_samples[SFFT])
-                data = np.frombuffer(rx, dtype=np.int8)
-            elif cmd == SPECTROGRAM:
-                rx = ser.read(self.num_samples[SPECTROGRAM])
-                data = np.frombuffer(rx, dtype=np.int8)
-                data = data.reshape(self.shape[cmd])
-            elif cmd == FEATURES:
-                rx = ser.read(self.num_samples[FEATURES])
-                data = np.frombuffer(rx, dtype=np.int8)
-                data = data.reshape(self.shape[cmd])
-            elif cmd == FILTERBANK:
-                filterbank = []
-                k_range = []
-                while True:
-                    rx = ser.readline().decode('ascii').rstrip('\n,')
-                    if rx == 'e':
-                        break
-                    temp = rx.split(',')
-                    k_range.append(np.array(temp[0].split(':'), dtype=int))
-                    filterbank.append(np.array(temp[1:], dtype=float))
-                data = (k_range, filterbank)
-            elif cmd == ELAPSED_TIME:
-                data = ser.readline().decode('ascii').rstrip('\n,')
-                print(data)
+            data = []
+            
+            try:
+                if cmd == SPECTROGRAM:
+                    self.ser.write(SFFT)
+                else:
+                    self.ser.write(cmd)
 
-            ser.write(TX_OFF)
-            ser.close()
-        except:
-            print('*** serial timeout!')
-            traceback.print_exc()
+                if cmd == RAW_WAVE:  # 16bit quantization
+                    rx = self.ser.read(self.num_samples[RAW_WAVE]*2)
+                    rx = zip(rx[0::2], rx[1::2])
+                    for msb, lsb in rx:
+                        d = b16_to_int(msb, lsb, True)
+                        data.append(d)
+                    data = np.array(data, dtype=np.int16)
+                elif cmd == SFFT:
+                    rx = self.ser.read(self.num_samples[SFFT])
+                    data = np.frombuffer(rx, dtype=np.int8)
+                elif cmd == SPECTROGRAM:
+                    rx = self.ser.read(self.num_samples[SPECTROGRAM])
+                    data = np.frombuffer(rx, dtype=np.int8)
+                    data = data.reshape(self.shape[cmd])
+                elif cmd == FEATURES:
+                    rx = self.ser.read(self.num_samples[FEATURES])
+                    data = np.frombuffer(rx, dtype=np.int8)
+                    data = data.reshape(self.shape[cmd])
+                elif cmd == FILTERBANK:
+                    filterbank = []
+                    k_range = []
+                    while True:
+                        rx = self.ser.readline().decode('ascii').rstrip('\n,')
+                        if rx == 'e':
+                            break
+                        temp = rx.split(',')
+                        k_range.append(np.array(temp[0].split(':'), dtype=int))
+                        filterbank.append(np.array(temp[1:], dtype=float))
+                    data = (k_range, filterbank)
+                elif cmd == ELAPSED_TIME:
+                    data = self.ser.readline().decode('ascii').rstrip('\n,')
+                    print(data)
+
+            except:
+                print('*** serial timeout!')
+                traceback.print_exc()
+        else:
+            data = None
 
         return data
 
@@ -143,21 +159,35 @@ class Interface:
         '''
         Enable/disable pre-emphasis.
         '''
-        ser = self.serial_port()
-        if enable:
-            ser.write(ENABLE_PRE_EMPHASIS)
+        if self.ser is None:
+            self.tx_on()
+            inactive = True
         else:
-            ser.write(DISABLE_PRE_EMPHASIS)
-        ser.close()
-    
+            inactive = False
+
+        if enable:
+            self.ser.write(ENABLE_PRE_EMPHASIS)
+        else:
+            self.ser.write(DISABLE_PRE_EMPHASIS)
+        
+        if inactive:
+            self.tx_off()
+
     def enable_eightbit_shift(self, enable):
         '''
         Enable/disable eight bit shift on PCM data to avoid overflow.
         '''
-        ser = self.serial_port()
-        if enable:
-            ser.write(PCM_RIGHT_BIT_SHIFT)
+        if self.ser is None:
+            self.tx_on()
+            inactive = True
         else:
-            ser.write(DISABLE_PCM_RIGHT_BIT_SHIFT)
-        ser.close()
+            inactive = False
+
+        if enable:
+            self.ser.write(PCM_RIGHT_BIT_SHIFT)
+        else:
+            self.ser.write(DISABLE_PCM_RIGHT_BIT_SHIFT)
+
+        if inactive:
+            self.tx_off()
 

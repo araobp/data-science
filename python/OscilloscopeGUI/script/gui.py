@@ -48,6 +48,9 @@ class GUI:
         self.freq[dsp.MFSC] = np.linspace(0, self.filters-1, self.filters)
         self.time[dsp.MFCC] = np.linspace(-self.interface.num_samples[dsp.RAW_WAVE]/dsp.Fs*self.samples/2, 0, self.samples)
         self.freq[dsp.MFCC] = np.linspace(0, self.filters-1, self.filters)
+        self.df_spec = np.zeros([self.samples, int(dsp.NN/2)])
+        self.df_mfsc = np.zeros([self.samples, self.filters])
+        self.df_mfcc = np.zeros([self.samples, self.filters])
 
     def set_labels(self, ax, title, xlabel, ylabel, ylim=None):
         ax.set_title(title)
@@ -56,7 +59,10 @@ class GUI:
         if ylim:
             ax.set_ylim(ylim)
 
-    def tx_on(self):
+    def tx_on(self):        
+        self.df_spec = np.zeros([self.samples, int(dsp.NN/2)])
+        self.df_mfsc = np.zeros([self.samples, self.filters])
+        self.df_mfcc = np.zeros([self.samples, self.filters])
         self.interface.tx_on()
 
     def tx_suspend(self):
@@ -76,7 +82,7 @@ class GUI:
                 data = self.interface.read(dsp.FEATURES)
             else:
                 data = self.interface.read(cmd)
-
+            
         ax.clear()
         
         if cmd == dsp.RAW_WAVE:
@@ -84,11 +90,17 @@ class GUI:
             self.set_labels(ax, 'Waveform', 'Time [msec]', 'Amplitude', [-range_, range_])
 
         elif cmd == dsp.SFFT:
-            ax.plot(self.freq[dsp.SFFT], data)
+            #ax.plot(self.freq[dsp.SFFT], data)
+            markerline, stemline, baseline, = ax.stem(self.freq[dsp.SFFT], data)
+            markerline.set_markerfacecolor('none')
             self.set_labels(ax, 'Spectrum', 'Frequency [Hz]', 'Power [dB]', [-70, 90])
 
         elif cmd == dsp.SPECTROGRAM:
-            data_ = data
+
+            if data is not EMPTY:
+                self.df_spec[0:self.samples-dsp.INTERVAL,:] = self.df_spec[dsp.INTERVAL:self.samples,:]
+                self.df_spec[self.samples-dsp.INTERVAL:self.samples,:] = data[:, :int(dsp.NN/2)]
+                data = self.df_spec.copy()
             data_ = spectrum_subtraction(data, ssub)
             if self.enable_shadow:
                 data_ = shadow(data_, window, shadow_sub=SHADOW_SUB)
@@ -100,8 +112,11 @@ class GUI:
 
         elif cmd == dsp.MFSC:
 
-            data_ = data[:, :self.filters]
-            data_ = spectrum_subtraction(data_, ssub)
+            if data is not EMPTY:
+                self.df_mfsc[0:self.samples-dsp.INTERVAL,:] = self.df_mfsc[dsp.INTERVAL:self.samples,:]
+                self.df_mfsc[self.samples-dsp.INTERVAL:self.samples,:] = data[:, :self.filters]
+                data = self.df_mfsc.copy()
+            data_ = spectrum_subtraction(data, ssub)
             if self.enable_shadow:
                 data_ = shadow(data_, window, shadow_sub=SHADOW_SUB)
             ax.pcolormesh(self.time[dsp.MFSC],
@@ -112,8 +127,11 @@ class GUI:
 
         elif cmd == dsp.MFCC:
 
-            data_ = data[:, self.filters:self.filters*2]
-            data_ = spectrum_subtraction(data_, ssub)
+            if data is not EMPTY:
+                self.df_mfcc[0:self.samples-dsp.INTERVAL,:] = self.df_mfcc[dsp.INTERVAL:self.samples,:]
+                self.df_mfcc[self.samples-dsp.INTERVAL:self.samples,:] = data[:, self.filters:self.filters*2]
+                data = self.df_mfcc.copy()
+            data_ = spectrum_subtraction(data, ssub)
             if self.enable_shadow:
                 data_ = shadow(data, window, shadow_sub=SHADOW_SUB)
             ax.pcolormesh(self.time[dsp.MFCC],
@@ -138,10 +156,15 @@ class GUI:
 
     def plot_welch(self, ax, grid=False):
         data = self.interface.read(dsp.SPECTROGRAM)
+        self.df_spec[0:self.samples-dsp.INTERVAL,:] = self.df_spec[dsp.INTERVAL:self.samples,:]
+        self.df_spec[self.samples-dsp.INTERVAL:self.samples,:] = data[:, :int(dsp.NN/2)]
+        data_ = self.df_spec.copy()
         ax.clear()
 
-        data = np.sum(data, axis=0)/self.samples
-        ax.plot(self.freq[dsp.SFFT], data)
+        data_ = np.sum(data_, axis=0)/self.samples
+        #ax.plot(self.freq[dsp.SFFT], data_)
+        markerline, stemline, baseline, = ax.stem(self.freq[dsp.SFFT], data_)
+        markerline.set_markerfacecolor('none')
         self.set_labels(ax, "Welch's method", 'Frequency [Hz]', 'Power [dB]', [-70, 90])
 
         if grid:

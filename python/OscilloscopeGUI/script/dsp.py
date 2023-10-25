@@ -18,6 +18,8 @@ Nyq = Fs/2.0                # Nyquist frequency
 BAUD_RATE = 460800          # UART baud rate
 NN = 512                    # The number of samples per frame
 
+INTERVAL = 24
+
 # Command
 RAW_WAVE = b'r'
 SFFT = b's'
@@ -63,13 +65,13 @@ class Interface:
         self.num_samples = {}            # The number of samples to receive from the device
         self.num_samples[RAW_WAVE] = NN
         self.num_samples[SFFT] = int(NN/2)
-        self.num_samples[SPECTROGRAM] = int(NN/2) * self.samples
-        self.num_samples[FEATURES] = self.filters * 2 * self.samples
+        self.num_samples[SPECTROGRAM] = int(NN/2) * INTERVAL
+        self.num_samples[FEATURES] = self.filters * 2 * INTERVAL
 
         # Shapes
         self.shape = {}
-        self.shape[SPECTROGRAM] = (self.samples, int(NN/2))
-        self.shape[FEATURES] = (self.samples, self.filters * 2)
+        self.shape[SPECTROGRAM] = (INTERVAL, int(NN/2))
+        self.shape[FEATURES] = (INTERVAL, self.filters * 2)
 
         # Capture memory
         self.spec = np.zeros([self.samples * int(NN/2)])

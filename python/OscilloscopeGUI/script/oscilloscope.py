@@ -11,6 +11,7 @@ matplotlib.use('TkAgg')
 import numpy as np
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import tkinter as Tk
+
 from datetime import datetime
 import os
 
@@ -189,8 +190,9 @@ if __name__ == '__main__':
             canvas.draw()
         
         if button_waveform.cget('bg') == button_colors['waveform']:
-            button_waveform.configure(bg='red')
-            exec_func(_raw_wave, 0.4)
+            if not continuous:
+                button_waveform.configure(bg='red')
+                exec_func(_raw_wave, 0.4)
         else:       
             button_waveform.configure(bg=button_colors['waveform'])
             continuous = False
@@ -206,8 +208,9 @@ if __name__ == '__main__':
             canvas.draw()
 
         if button_psd.cget('bg') == button_colors['psd']:
-            button_psd.configure(bg='red')
-            exec_func(_fft, 0.4)
+            if not continuous:
+                button_psd.configure(bg='red')
+                exec_func(_fft, 0.4)
         else:       
             button_psd.configure(bg=button_colors['psd'])
             continuous = False
@@ -231,8 +234,9 @@ if __name__ == '__main__':
             canvas.draw()
         
         if button_spectrogram.cget('bg') == button_colors['spectrogram']:
-            button_spectrogram.configure(bg='red')
-            exec_func(_spectrogram)
+            if not continuous:
+                button_spectrogram.configure(bg='red')
+                exec_func(_spectrogram)
         else:       
             button_spectrogram.configure(bg=button_colors['spectrogram'])
             continuous = False
@@ -241,7 +245,6 @@ if __name__ == '__main__':
         global continuous
         def _mfsc(data=data, pos=pos):
             global last_operation, dataset
-            print(pos)
             ssub = int(spectrum_subtraction.get())
             range_ = int(range_mfsc.get())
             cmap_ = var_cmap.get()
@@ -265,8 +268,9 @@ if __name__ == '__main__':
             canvas.draw()
         
         if button_mfsc.cget('bg') == button_colors['mfsc']:
-            button_mfsc.configure(bg='red')
-            exec_func(_mfsc)
+            if not continuous:
+                button_mfsc.configure(bg='red')
+                exec_func(_mfsc)
         else:       
             button_mfsc.configure(bg=button_colors['mfsc'])
             continuous = False
@@ -297,8 +301,9 @@ if __name__ == '__main__':
             canvas.draw()
 
         if button_mfcc.cget('bg') == button_colors['mfcc']:
-            button_mfcc.configure(bg='red')
-            exec_func(_mfcc)
+            if not continuous:
+                button_mfcc.configure(bg='red')
+                exec_func(_mfcc)
         else:       
             button_mfcc.configure(bg=button_colors['mfcc'])
             continuous = False
@@ -311,8 +316,9 @@ if __name__ == '__main__':
             canvas.draw()
 
         if button_welch.cget('bg') == button_colors['welch']:
-            button_welch.configure(bg='red')
-            exec_func(_welch)
+            if not continuous:
+                button_welch.configure(bg='red')
+                exec_func(_welch)
         else:       
             button_welch.configure(bg=button_colors['welch'])
             continuous = False

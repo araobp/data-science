@@ -132,12 +132,19 @@ void apply_pre_emphasis(float32_t *signal) {
 
 // AC coupling (to remove DC)
 void apply_ac_coupling(float32_t *signal) {
-  float32_t mean;
+  static float32_t mean;
+  static int cnt = NUM_MEANS * 16;
   static float32_t mean_hist[NUM_MEANS] = { 0.0f };
-  arm_copy_f32(mean_hist + 1, mean_hist, NUM_MEANS - 1);
-  arm_mean_f32(signal, NN, mean_hist + NUM_MEANS - 1);
-  arm_mean_f32(signal, NUM_MEANS, &mean);
-  arm_offset_f32(signal, -mean, signal, NN);
+
+  if (cnt >= 0) {
+    if (cnt-- <= NUM_MEANS * 8) {
+      arm_copy_f32(mean_hist + 1, mean_hist, NUM_MEANS - 1);
+      arm_mean_f32(signal, NN, mean_hist + NUM_MEANS - 1);
+      arm_mean_f32(signal, NUM_MEANS, &mean);
+    }
+  } else {
+    arm_offset_f32(signal, -mean, signal, NN);
+  }
 }
 
 // Apply Hann window

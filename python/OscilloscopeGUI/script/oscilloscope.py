@@ -268,13 +268,17 @@ if __name__ == '__main__':
             fig.tight_layout()
             canvas.draw()
         
-        if button_mfsc.cget('bg') == button_colors['mfsc']:
-            if not continuous:
-                button_mfsc.configure(bg='red')
-                exec_func(_mfsc)
-        else:       
-            button_mfsc.configure(bg=button_colors['mfsc'])
-            continuous = False
+        if data is EMPTY:
+            if button_mfsc.cget('bg') == button_colors['mfsc']:
+                if not continuous:
+                    button_mfsc.configure(bg='red')
+                    exec_func(_mfsc)
+            else:       
+                button_mfsc.configure(bg=button_colors['mfsc'])
+                continuous = False
+        else:
+            _mfsc(data=data, pos=pos)
+
 
     def mfcc(data=EMPTY, pos=None):
         global continuous
@@ -301,13 +305,16 @@ if __name__ == '__main__':
             fig.tight_layout()
             canvas.draw()
 
-        if button_mfcc.cget('bg') == button_colors['mfcc']:
-            if not continuous:
-                button_mfcc.configure(bg='red')
-                exec_func(_mfcc)
-        else:       
-            button_mfcc.configure(bg=button_colors['mfcc'])
-            continuous = False
+        if data is EMPTY:
+            if button_mfcc.cget('bg') == button_colors['mfcc']:
+                if not continuous:
+                    button_mfcc.configure(bg='red')
+                    exec_func(_mfcc)
+            else:       
+                button_mfcc.configure(bg=button_colors['mfcc'])
+                continuous = False
+        else:
+            _mfcc(data=data, pos=pos)
 
     def welch():
         global continuous
@@ -411,6 +418,11 @@ if __name__ == '__main__':
         
         if func == mfsc or func == mfcc:
             data = data.reshape(dataset.samples*2, dataset.filters)
+            if func == mfsc:
+                data = data[0:dataset.samples, :]
+            elif func == mfcc:
+                data = data[dataset.samples:dataset.samples*2, :]
+
             pos = params[3]
             if pos == 'a':
                 func(data=data, pos=None)

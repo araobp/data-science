@@ -80,6 +80,14 @@ class GUI:
         if data is EMPTY:
             if cmd == dsp.MFSC or cmd == dsp.MFCC:
                 data = self.interface.read(dsp.FEATURES)
+                if cmd == dsp.MFSC:
+                    self.df_mfsc[0:self.samples-dsp.INTERVAL,:] = self.df_mfsc[dsp.INTERVAL:self.samples,:]
+                    self.df_mfsc[self.samples-dsp.INTERVAL:self.samples,:] = data[:, :self.filters]
+                    data = self.df_mfsc.copy()
+                elif cmd == dsp.MFCC:
+                    self.df_mfcc[0:self.samples-dsp.INTERVAL,:] = self.df_mfcc[dsp.INTERVAL:self.samples,:]
+                    self.df_mfcc[self.samples-dsp.INTERVAL:self.samples,:] = data[:, self.filters:self.filters*2]
+                    data = self.df_mfcc.copy()
             else:
                 data = self.interface.read(cmd)
             
@@ -111,11 +119,6 @@ class GUI:
             self.set_labels(ax, 'Spectrogram', 'Time [sec]', 'Frequency (Hz)')
 
         elif cmd == dsp.MFSC:
-
-            if data is not EMPTY:
-                self.df_mfsc[0:self.samples-dsp.INTERVAL,:] = self.df_mfsc[dsp.INTERVAL:self.samples,:]
-                self.df_mfsc[self.samples-dsp.INTERVAL:self.samples,:] = data[:, :self.filters]
-                data = self.df_mfsc.copy()
             data_ = spectrum_subtraction(data, ssub)
             if self.enable_shadow:
                 data_ = shadow(data_, window, shadow_sub=SHADOW_SUB)
@@ -126,11 +129,6 @@ class GUI:
             self.set_labels(ax, 'Mel-frequency spectrogram', 'Time [sec]', 'MFSC')
 
         elif cmd == dsp.MFCC:
-
-            if data is not EMPTY:
-                self.df_mfcc[0:self.samples-dsp.INTERVAL,:] = self.df_mfcc[dsp.INTERVAL:self.samples,:]
-                self.df_mfcc[self.samples-dsp.INTERVAL:self.samples,:] = data[:, self.filters:self.filters*2]
-                data = self.df_mfcc.copy()
             data_ = spectrum_subtraction(data, ssub)
             if self.enable_shadow:
                 data_ = shadow(data, window, shadow_sub=SHADOW_SUB)

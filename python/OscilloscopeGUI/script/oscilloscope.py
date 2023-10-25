@@ -28,6 +28,7 @@ import time
 VERSION = '2.0.0-alpha'
 
 CMAP_LIST = ('viridis',
+             'ocean',
              'hot',
              'gray',
              'magma',
@@ -442,9 +443,10 @@ if __name__ == '__main__':
     range_amplitude = Tk.Spinbox(master=frame_row1, width=6,
                                  values=[2**7, 2**9, 2**11, 2**13, 2**15])
     range_mfsc = Tk.Spinbox(master=frame_row1, width=3,
-                                       values=[dataset.filters, int(dataset.filters*.8), int(dataset.filters*0.6)])
+                                       values=[dataset.filters, int(dataset.filters * 0.8), int(dataset.filters * 0.6)])
     range_spectrogram = Tk.Spinbox(master=frame_row1, width=4,
-                                   values=[int(dsp.NN/2), int(dsp.NN/2.0*.7), int(dsp.NN/2.0*0.4)])
+                                   values=[int(dsp.NN/2), int(dsp.NN/2 * 0.7), int(dsp.NN/2 * 0.4)])
+    range_spectrogram.selection_to(2)
     range_mfcc = Tk.Spinbox(master=frame_row1, width=3,
                             values=[13, 20, 40])
     spectrum_subtraction = Tk.Spinbox(master=frame_row1, width=3,

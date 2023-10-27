@@ -2,6 +2,8 @@
 
 This is a project to develop edge AI for Acoustic Scene Classification based on STM32Cube.AI, referring to [my past project](https://github.com/araobp/acoustic-features).
 
+Note: this project supports any PDM mic.
+
 ### Step 1: Designing Arduino shield of MEMS microphone
 
 => [Schematic](STM32/kicad/AcousticFeatureCamera)

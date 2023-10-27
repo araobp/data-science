@@ -193,11 +193,14 @@ UART baudrate: 460800bps
 
     ARM Cortex-M4L                    PC
            |                          |
-           |<-------- cmd ------------|
-           |                          |
+           |<-------- cmd 'r'---------|  cmd is 'r' or 's' or 'f'
+           |<-------- cmd 'o' --------|  start streaming
            |------ data output ------>|
-           |                          |
-
+           |------ data output ------>|
+           |------ data output ------>|
+           |------ data output ------>|
+           |              :           |
+           |<-------- cmd 'O' --------|  stop streaming
 
 Data is send in int8_t.
 ```

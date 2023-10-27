@@ -222,6 +222,22 @@ Configuration
 |p  | Disable pre-emphasis |                   |
 |\<n\>| Right \<n\> bit shift (PCM 24bit-to-16bit) | 
 
+```
+Right <n> bit shift
+
+[                         24 bit PCM                   ]
+                                  |
+                                  V
+- n ->[                         24 bit PCM             :- n ->]
+                                  |
+                                  V
+              [              18 bit PCM                ]
+                                  |
+                                UART
+                                  |
+                                  V
+```
+
 ### Data format of features
 
 The PC issues "f" command to the device via UART to fetch feature data in the following format:

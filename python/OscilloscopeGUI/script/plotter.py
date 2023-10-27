@@ -1,6 +1,8 @@
 import numpy as np
 import dsp
 from scipy.fftpack import dct
+from scipy.io import wavfile
+import datetime
 
 # Empty array
 EMPTY = np.array([])
@@ -29,7 +31,7 @@ def spectrum_subtraction(data, ssub=None):
     return data_
 
 # GUI class
-class GUI:
+class Plotter:
     
     def __init__(self, interface, dataset, enable_shadow=True):
         # Serial interface
@@ -167,4 +169,20 @@ class GUI:
 
         if grid:
             ax.grid(linestyle='--', c='purple', linewidth=1)
+
+    # Record PCM streaming
+    def plot_rec(self, folder, record_time, ax, range_, grid):
+        ax.clear()
+        filename = '{}.wav'.format(datetime.datetime.now().strftime('%Y%m%d%H%M%S'))
+        num_repeat = int(record_time * dsp.Fs / self.interface.num_samples[dsp.RAW_WAVE])
+        data = self.interface.read(dsp.REC, num_repeat)
+        wavfile.write('{}/{}'.format(folder, filename), int(dsp.Fs), data)
+        print(data[:64])
+        print(data.shape)
+        ax.plot(self.time[dsp.RAW_WAVE], data[:self.interface.num_samples[dsp.RAW_WAVE]])
+        self.set_labels(ax, 'Waveform', 'Time [msec]', 'Amplitude', [-range_, range_])
+        if grid:
+            ax.grid(linestyle='--', c='purple', linewidth=1)
+
+
 

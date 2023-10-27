@@ -11,6 +11,7 @@ matplotlib.use('TkAgg')
 import numpy as np
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import tkinter as Tk
+import tkinter.messagebox as messagebox
 
 from datetime import datetime
 import os
@@ -20,7 +21,7 @@ import threading
 import matplotlib.pyplot as plt
 
 import dsp
-import gui
+import plotter
 import dataset
 
 import time
@@ -63,7 +64,9 @@ parser.add_argument("-g", "--show_grid",
                     help="Show grid", action="store_true")
 parser.add_argument("-W", "--disable_window",
                     help="Disable window", action="store_true")
-parser.add_argument("-B", "--eightbit_shift", action="store_true")
+parser.add_argument("-B", "--right_bit_shift", default=2, type=int)
+parser.add_argument("-r", "--record_time", default=2.0, type=float)
+parser.add_argument("-R", "--record_folder", default=".")
 args = parser.parse_args()
 
 if __name__ == '__main__':
@@ -79,7 +82,7 @@ if __name__ == '__main__':
     # Note : pre-emphasis (HPF) is for data(FFT etc) other than PCM wave form.
     if itfc.is_active():
         itfc.enable_pre_emphasis(True)  # Pre emphasis enabled
-        itfc.enable_eightbit_shift(args.eightbit_shift)
+        itfc.right_bit_shift(args.right_bit_shift)
     ###############################
 
     PADX = 6
@@ -106,7 +109,7 @@ if __name__ == '__main__':
     else:
         enable_shadow = True
 
-    gui = gui.GUI(interface=itfc, dataset=dataset, enable_shadow=enable_shadow)
+    plotter = plotter.Plotter(interface=itfc, dataset=dataset, enable_shadow=enable_shadow)
 
     if dataset.model and not args.browser:
         import inference
@@ -161,60 +164,75 @@ if __name__ == '__main__':
             cnt += 1
             counter.configure(text='({})'.format(str(cnt)))
 
+    def infer(data):
+        class_label, p = cnn_model.infer(data)
+        label_inference.configure(text='This is {} ({} %)'.format(class_label, int(p)))
+
     def exec_func(func, interval = None):
         global continuous
         continuous = True
         def _exec_func():
-            gui.tx_on()
+            global continuous
+            plotter.tx_on()
             while continuous:
                 func()
                 if interval is not None:
-                    gui.tx_suspend()
+                    plotter.tx_suspend()
                     time.sleep(interval)
-                    gui.tx_on()
-            gui.tx_off()
+                    plotter.tx_on()
+            plotter.tx_off()
 
         threading.Thread(target=_exec_func).start()
 
-    def infer(data):
-        class_label, p = cnn_model.infer(data)
-        label_inference.configure(text='This is {} ({} %)'.format(class_label, int(p)))
-        
+    def exec_func2(func, button, label):
+        global continuous
+        continuous = True
+        def _exec_func():
+            global continuous
+            plotter.tx_on()
+            func()
+            plotter.tx_off()
+            button.configure(bg=button_colors[label])
+            continuous = False
+
+        threading.Thread(target=_exec_func).start()
+
+    def exec_async(button, label, func, interval=None):
+        global continuous
+        if button.cget('bg') == button_colors[label]:
+            if not continuous:
+                button.configure(bg='red')
+                if ((interval is not None) and (interval < 0)):
+                    exec_func2(func, button, label)
+                else:
+                    exec_func(func, interval)
+        else:       
+            button.configure(bg=button_colors[label])
+            continuous = False
+    
     def raw_wave():
         global continuous
         def _raw_wave():
             global last_operation
             range_ = int(range_amplitude.get())
-            data = gui.plot(ax, dsp.RAW_WAVE, range_=range_, grid=args.show_grid)
+            data = plotter.plot(ax, dsp.RAW_WAVE, range_=range_, grid=args.show_grid)
             last_operation = (raw_wave, data, None, None)
             fig.tight_layout()
             canvas.draw()
-        
-        if button_waveform.cget('bg') == button_colors['waveform']:
-            if not continuous:
-                button_waveform.configure(bg='red')
-                exec_func(_raw_wave, 0.4)
-        else:       
-            button_waveform.configure(bg=button_colors['waveform'])
-            continuous = False
+
+        exec_async(button_waveform, 'waveform', _raw_wave, 0.4)
 
     def fft():
         global continuous
         def _fft():
             global last_operation
             ssub = int(spectrum_subtraction.get())
-            data = gui.plot(ax, dsp.SFFT, grid=args.show_grid)
+            data = plotter.plot(ax, dsp.SFFT, grid=args.show_grid)
             last_operation = (fft, data, None, None)
             fig.tight_layout()
             canvas.draw()
 
-        if button_psd.cget('bg') == button_colors['psd']:
-            if not continuous:
-                button_psd.configure(bg='red')
-                exec_func(_fft, 0.4)
-        else:       
-            button_psd.configure(bg=button_colors['psd'])
-            continuous = False
+        exec_async(button_psd, 'psd', _fft, 0.4)
 
     def spectrogram(data=EMPTY, pos=0):
         global continuous
@@ -225,22 +243,16 @@ if __name__ == '__main__':
             cmap_ = var_cmap.get()
             if data is EMPTY:
                 window = dataset.windows[int(range_window.get())]
-                data = gui.plot(ax, dsp.SPECTROGRAM, range_, cmap_, ssub, grid=args.show_grid)
+                data = plotter.plot(ax, dsp.SPECTROGRAM, range_, cmap_, ssub, grid=args.show_grid)
             else:
                 window = dataset.windows[pos]
-                gui.plot(ax, dsp.SPECTROGRAM, range_, cmap_, ssub, data=data,
+                plotter.plot(ax, dsp.SPECTROGRAM, range_, cmap_, ssub, data=data,
                             window=None)
             last_operation = (spectrogram, data, window, pos)
             fig.tight_layout()
             canvas.draw()
-        
-        if button_spectrogram.cget('bg') == button_colors['spectrogram']:
-            if not continuous:
-                button_spectrogram.configure(bg='red')
-                exec_func(_spectrogram)
-        else:       
-            button_spectrogram.configure(bg=button_colors['spectrogram'])
-            continuous = False
+
+        exec_async(button_spectrogram, 'spectrogram', _spectrogram)
 
     def mfsc(data=EMPTY, pos=None):
         global continuous
@@ -251,14 +263,14 @@ if __name__ == '__main__':
             cmap_ = var_cmap.get()
             if data is EMPTY:
                 window = dataset.windows[int(range_window.get())]
-                data = gui.plot(ax, dsp.MFSC, range_, cmap_, ssub,
+                data = plotter.plot(ax, dsp.MFSC, range_, cmap_, ssub,
                                 window=window, grid=args.show_grid)
             else:
                 if pos is not None and not args.disable_window:
                     window = dataset.windows[pos]
                 else:
                     window = None
-                gui.plot(ax, dsp.MFSC, range_, cmap_, ssub, data=data,
+                plotter.plot(ax, dsp.MFSC, range_, cmap_, ssub, data=data,
                             window=window)
             if cnn_model:
                 print(window)
@@ -269,13 +281,7 @@ if __name__ == '__main__':
             canvas.draw()
         
         if data is EMPTY:
-            if button_mfsc.cget('bg') == button_colors['mfsc']:
-                if not continuous:
-                    button_mfsc.configure(bg='red')
-                    exec_func(_mfsc)
-            else:       
-                button_mfsc.configure(bg=button_colors['mfsc'])
-                continuous = False
+            exec_async(button_mfsc, 'mfsc', _mfsc)
         else:
             _mfsc(data=data, pos=pos)
 
@@ -289,14 +295,14 @@ if __name__ == '__main__':
             cmap_ = var_cmap.get()
             if data is EMPTY:
                 window = dataset.windows[int(range_window.get())]
-                data = gui.plot(ax, dsp.MFCC, range_, cmap_, ssub,
+                data = plotter.plot(ax, dsp.MFCC, range_, cmap_, ssub,
                                 window=window, grid=args.show_grid)
             else:
                 if pos is not None and not args.disable_window:
                     window = dataset.windows[pos]
                 else:
                     window = None
-                gui.plot(ax, dsp.MFCC, range_, cmap_, ssub, data=data,
+                plotter.plot(ax, dsp.MFCC, range_, cmap_, ssub, data=data,
                             window=window)
             # TODO: inference for MFCCs
             #if cnn_model:
@@ -306,30 +312,28 @@ if __name__ == '__main__':
             canvas.draw()
 
         if data is EMPTY:
-            if button_mfcc.cget('bg') == button_colors['mfcc']:
-                if not continuous:
-                    button_mfcc.configure(bg='red')
-                    exec_func(_mfcc)
-            else:       
-                button_mfcc.configure(bg=button_colors['mfcc'])
-                continuous = False
+            exec_async(button_mfcc, 'mfcc', _mfcc)
         else:
             _mfcc(data=data, pos=pos)
 
     def welch():
         global continuous
         def _welch():
-            gui.plot_welch(ax, grid=args.show_grid)
+            plotter.plot_welch(ax, grid=args.show_grid)
             fig.tight_layout()
             canvas.draw()
 
-        if button_welch.cget('bg') == button_colors['welch']:
-            if not continuous:
-                button_welch.configure(bg='red')
-                exec_func(_welch)
-        else:       
-            button_welch.configure(bg=button_colors['welch'])
-            continuous = False
+        exec_async(button_welch, 'welch', _welch)
+
+    def rec():
+        global continuous
+        def _rec():
+            range_ = int(range_amplitude.get())
+            plotter.plot_rec(args.record_folder, args.record_time, ax, range_=range_, grid=args.show_grid)
+            fig.tight_layout()
+            canvas.draw()
+
+        exec_async(button_rec, 'rec', _rec, -1.0)
 
     def pre_emphasis_toggle():
         if button_pre_emphasis.cget('bg') == BG:
@@ -350,8 +354,12 @@ if __name__ == '__main__':
             counter.configure(text='({})'.format(str(cnt)))
 
     def quit():
-        root.quit()
-        root.destroy()
+        global continuous
+        if not continuous:
+            root.quit()
+            root.destroy()
+        else:
+            messagebox.showinfo("Warning", "Turn off the active capture button!")
 
     def confirm():
         global cnt
@@ -369,11 +377,11 @@ if __name__ == '__main__':
         last_operation[0](data=last_operation[1], pos=int(pos))
 
     def filterbank():
-        data = gui.plot(ax, dsp.FILTERBANK)
+        data = plotter.plot(ax, dsp.FILTERBANK)
         canvas.draw()
 
     def elapsed_time():
-        gui.plot(ax, dsp.ELAPSED_TIME)
+        plotter.plot(ax, dsp.ELAPSED_TIME)
 
     ### Key press event ###
 
@@ -466,6 +474,9 @@ if __name__ == '__main__':
     label_class = Tk.Label(master=frame_row1, text='Class label:')
     label_image = Tk.Label(master=frame_row1, text='Mask:')
     label_color = Tk.Label(master=frame_row1, text='Color:')
+
+    button_rec = Tk.Button(master=frame_row1, text='Rec', command=rec,
+                                bg=BG, activebackground='grey', padx=PADX, width=WIDTH)
     button_waveform = Tk.Button(master=frame_row1, text='Wave', command=raw_wave,
                                 bg=BG, activebackground='grey', padx=PADX, width=WIDTH)
     button_psd = Tk.Button(master=frame_row1, text='FFT', command=fft,
@@ -480,12 +491,13 @@ if __name__ == '__main__':
                             bg='yellowgreen', activebackground='grey', padx=PADX, width=WIDTH)
 
     button_colors = {
-        'welch': BG,
+        'rec': BG,
         'waveform': BG,
         'psd': BG,
         'spectrogram': BG,
+        'welch': BG,
         'mfsc': 'pink',
-        'mfcc': 'yellowgreen'
+        'mfcc': 'yellowgreen',
     }
 
     ### Row 2 ####
@@ -550,35 +562,37 @@ if __name__ == '__main__':
                 label_class.grid(row=0, column=0, padx=PADX_GRID)
                 entry_class_label.grid(row=0, column=1, padx=PADX_GRID)
                 counter.grid(row=0, column=2, padx=PADX_GRID)
+            # Rec
+            button_rec.grid(row=0, column=3, padx=PADX_GRID)
 
             # Waveform
-            range_amplitude.grid(row=0, column=3, padx=PADX_GRID)
-            button_waveform.grid(row=0, column=4, padx=PADX_GRID)
+            range_amplitude.grid(row=0, column=4, padx=PADX_GRID)
+            button_waveform.grid(row=0, column=5, padx=PADX_GRID)
 
             # FFT (PSD)
-            button_psd.grid(row=0, column=5, padx=PADX_GRID)
+            button_psd.grid(row=0, column=6, padx=PADX_GRID)
 
             # Linear-scale Spectrogram (PSD)
-            range_spectrogram.grid(row=0, column=6, padx=PADX_GRID)
-            button_spectrogram.grid(row=0, column=7, padx=PADX_GRID)
+            range_spectrogram.grid(row=0, column=7, padx=PADX_GRID)
+            button_spectrogram.grid(row=0, column=8, padx=PADX_GRID)
 
             # Welch's method
-            button_welch.grid(row=0, column=8, padx=PADX_GRID)
+            button_welch.grid(row=0, column=9, padx=PADX_GRID)
 
         if not cnn_model or (cnn_model and dataset.feature == 'mfsc'):
             # Mel-scale Spectrogram (PSD)
-            range_mfsc.grid(row=0, column=9, padx=PADX_GRID)
-            button_mfsc.grid(row=0, column=10, padx=PADX_GRID)
+            range_mfsc.grid(row=0, column=10, padx=PADX_GRID)
+            button_mfsc.grid(row=0, column=11, padx=PADX_GRID)
 
         # MFCC
         if not cnn_model or (cnn_model and dataset.feature == 'mfcc'):
-            range_mfcc.grid(row=0, column=11, padx=PADX_GRID)
-            button_mfcc.grid(row=0, column=12, padx=PADX_GRID)
+            range_mfcc.grid(row=0, column=12, padx=PADX_GRID)
+            button_mfcc.grid(row=0, column=13, padx=PADX_GRID)
 
         # CMAP
-        label_image.grid(row=0, column=13, padx=PADX_GRID)
-        spectrum_subtraction.grid(row=0, column=14, padx=PADX_GRID)
-        cmap.grid(row=0, column=15, padx=PADX_GRID)
+        label_image.grid(row=0, column=14, padx=PADX_GRID)
+        spectrum_subtraction.grid(row=0, column=15, padx=PADX_GRID)
+        cmap.grid(row=0, column=16, padx=PADX_GRID)
 
         ### Row 2 ####
 

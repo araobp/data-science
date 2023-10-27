@@ -28,12 +28,11 @@ FILTERBANK = b'F'
 ELAPSED_TIME = b't'
 ENABLE_PRE_EMPHASIS = b'p'
 DISABLE_PRE_EMPHASIS = b'P'
-PCM_RIGHT_BIT_SHIFT = b'8'
-DISABLE_PCM_RIGHT_BIT_SHIFT = b'0'
 TX_ON = b'o'
 TX_OFF = b'O'
 
 # Internal commands
+REC = b'96'
 SPECTROGRAM = b'97'
 MFSC = b'98'
 MFCC = b'99'
@@ -100,7 +99,7 @@ class Interface:
             self.ser.close()
             self.ser = None
 
-    def read(self, cmd):
+    def read(self, cmd, num_repeat = None):
         '''
         As an application processor, send a command
         then receive and process the output.
@@ -113,10 +112,19 @@ class Interface:
             try:
                 if cmd == SPECTROGRAM:
                     self.ser.write(SFFT)
+                elif cmd == REC:
+                    self.ser.write(RAW_WAVE)
                 else:
                     self.ser.write(cmd)
-
-                if cmd == RAW_WAVE:  # 16bit quantization
+                
+                if cmd == REC:  # Record PCM streaming, 16 bit quantization
+                    rx = self.ser.read(self.num_samples[RAW_WAVE]*2*num_repeat)
+                    rx = zip(rx[0::2], rx[1::2])
+                    for msb, lsb in rx:
+                        d = b16_to_int(msb, lsb, True)
+                        data.append(d)
+                    data = np.array(data, dtype=np.int16)
+                elif cmd == RAW_WAVE:  # 16bit quantization
                     rx = self.ser.read(self.num_samples[RAW_WAVE]*2)
                     rx = zip(rx[0::2], rx[1::2])
                     for msb, lsb in rx:
@@ -162,7 +170,7 @@ class Interface:
         Enable/disable pre-emphasis.
         '''
         if self.ser is None:
-            self.tx_on()
+            self.ser = serial.Serial(self.port, BAUD_RATE, timeout=3)
             inactive = True
         else:
             inactive = False
@@ -173,23 +181,23 @@ class Interface:
             self.ser.write(DISABLE_PRE_EMPHASIS)
         
         if inactive:
-            self.tx_off()
+            self.ser.close()
+            self.ser = None
 
-    def enable_eightbit_shift(self, enable):
+    def right_bit_shift(self, bits):
         '''
-        Enable/disable eight bit shift on PCM data to avoid overflow.
+        Enable/disable right bit shift on PCM data to avoid overflow.
         '''
+
         if self.ser is None:
-            self.tx_on()
+            self.ser = serial.Serial(self.port, BAUD_RATE, timeout=3)
             inactive = True
         else:
             inactive = False
 
-        if enable:
-            self.ser.write(PCM_RIGHT_BIT_SHIFT)
-        else:
-            self.ser.write(DISABLE_PCM_RIGHT_BIT_SHIFT)
-
+        self.ser.write(str(bits).encode())
+        
         if inactive:
-            self.tx_off()
+            self.ser.close()
+            self.ser = None
 

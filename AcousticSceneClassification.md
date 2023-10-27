@@ -18,8 +18,6 @@ This is a project to develop edge AI for Acoustic Scene Classification based on 
 
 => [Oscilloscope GUI (Tkinter-version)](python/OscilloscopeGUI)
 
-=> [Oscilloscope GUI (Android-version)](android/OscilloscopeGUI)
-
 ### Step 5: Training CNN on Jupyter Notebook
 
 ### Step 6: Acoustic Feature Camera (with AI)

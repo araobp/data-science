@@ -193,11 +193,14 @@ UART baudrate: 460800bps
 
     ARM Cortex-M4L                    PC
            |                          |
-           |<-------- cmd ------------|
-           |                          |
+           |<-------- cmd 'r'---------|  cmd is 'r' or 's' or 'f'
+           |<-------- cmd 'o' --------|  start streaming
            |------ data output ------>|
-           |                          |
-
+           |------ data output ------>|
+           |------ data output ------>|
+           |------ data output ------>|
+           |              :           |
+           |<-------- cmd 'O' --------|  stop streaming
 
 Data is send in int8_t.
 ```
@@ -220,7 +223,25 @@ Configuration
 |---|----------------|-------------------------|
 |p  | Enable pre-emphasis |                    |
 |p  | Disable pre-emphasis |                   |
-|<n>| Right <n> bit shift (PCM 24bit-to-16bit) | 
+|\<n\>| Right \<n\> bit shift (PCM 24bit-to-16bit) | 
+
+### Format of PCM
+
+```
+Right <n> bit shift
+
+[                         24 bit PCM                   ]
+                                  |
+                                  V
+- n ->[                         24 bit PCM             :- n ->]
+                                  |
+                                  V
+              [              18 bit PCM                ]
+                                  |
+                                UART
+                                  |
+                                  V
+```
 
 ### Data format of features
 
@@ -241,6 +262,6 @@ Tone generator ))) [MEMS mic][NUCLEO-L476R] --- 16bit PCM ---> [Jupyter Notebook
 ```
 => [PCM](data/PCM.ipynb)
 
-[The MEMS mic](https://akizukidenshi.com/catalog/g/gM-05577/) does not seem to have good SNR, so it might not be good for Acoustic Scene Classification.
+[The MEMS mic](https://akizukidenshi.com/catalog/g/gM-05577/) does not seem to have good SNR, so it might not be good for Acoustic Scene Classification. I guess the MEMS mic targets the smart phone market, so it is good for Key Word Detection (thus MFCC as voice features works very well).
 
 I am planning to replace it with a better one such as [this breakout board of Knowles SPH0641LU4H](https://akizukidenshi.com/catalog/g/gK-15577/).

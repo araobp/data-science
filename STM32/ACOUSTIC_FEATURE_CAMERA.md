@@ -220,7 +220,7 @@ Configuration
 |---|----------------|-------------------------|
 |p  | Enable pre-emphasis |                    |
 |p  | Disable pre-emphasis |                   |
-|<n>| Right <n> bit shift (PCM 24bit-to-16bit) | 
+|\<n\>| Right \<n\> bit shift (PCM 24bit-to-16bit) | 
 
 ### Data format of features
 

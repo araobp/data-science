@@ -227,6 +227,8 @@ Configuration
 
 ### Format of PCM
 
+Right bit shift of three bits is suitabl for recording audio data.
+
 ```
 Right <n> bit shift
 
@@ -248,9 +250,10 @@ Right <n> bit shift
 The PC issues "f" command to the device via UART to fetch feature data in the following format:
 
 ```
-+------------------------+------------------------+------------------------+------------------------+
-|    MFSCs (40 bytes)    |    MFCCs (40 bytes)    |    MFSCs (40 bytes)    |    MFCCs (40 bytes)    |
-+------------------------+------------------------+------------------------+------------------------+
+80 bytes data
++------------------------+------------------------+
+|    MFSCs (40 bytes)    |    MFCCs (40 bytes)    |
++------------------------+------------------------+
 ```
 
 ## PCM audio output test

@@ -222,6 +222,8 @@ Configuration
 |p  | Disable pre-emphasis |                   |
 |\<n\>| Right \<n\> bit shift (PCM 24bit-to-16bit) | 
 
+### Format of PCM
+
 ```
 Right <n> bit shift
 

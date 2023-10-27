@@ -262,6 +262,6 @@ Tone generator ))) [MEMS mic][NUCLEO-L476R] --- 16bit PCM ---> [Jupyter Notebook
 ```
 => [PCM](data/PCM.ipynb)
 
-[The MEMS mic](https://akizukidenshi.com/catalog/g/gM-05577/) does not seem to have good SNR, so it might not be good for Acoustic Scene Classification.
+[The MEMS mic](https://akizukidenshi.com/catalog/g/gM-05577/) does not seem to have good SNR, so it might not be good for Acoustic Scene Classification. I guess the MEMS mic targets the smart phone market, so it is good for Key Word Detection (thus MFCC as voice features works very well).
 
 I am planning to replace it with a better one such as [this breakout board of Knowles SPH0641LU4H](https://akizukidenshi.com/catalog/g/gK-15577/).

@@ -227,6 +227,8 @@ Configuration
 
 ### Format of PCM
 
+Right bit shift of three bits is suitabl for recording audio data.
+
 ```
 Right <n> bit shift
 
@@ -248,9 +250,10 @@ Right <n> bit shift
 The PC issues "f" command to the device via UART to fetch feature data in the following format:
 
 ```
-+------------------------+------------------------+------------------------+------------------------+
-|    MFSCs (40 bytes)    |    MFCCs (40 bytes)    |    MFSCs (40 bytes)    |    MFCCs (40 bytes)    |
-+------------------------+------------------------+------------------------+------------------------+
+80 bytes data
++------------------------+------------------------+
+|    MFSCs (40 bytes)    |    MFCCs (40 bytes)    |
++------------------------+------------------------+
 ```
 
 ## PCM audio output test
@@ -261,7 +264,3 @@ Tone generator ))) [MEMS mic][NUCLEO-L476R] --- 16bit PCM ---> [Jupyter Notebook
                                                 over UART
 ```
 => [PCM](data/PCM.ipynb)
-
-[The MEMS mic](https://akizukidenshi.com/catalog/g/gM-05577/) does not seem to have good SNR, so it might not be good for Acoustic Scene Classification. I guess the MEMS mic targets the smart phone market, so it is good for Key Word Detection (thus MFCC as voice features works very well).
-
-I am planning to replace it with a better one such as [this breakout board of Knowles SPH0641LU4H](https://akizukidenshi.com/catalog/g/gK-15577/).

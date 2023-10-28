@@ -287,7 +287,7 @@ void dump(void) {
       printf("e\n");
       break;
     case ELAPSED_TIME:
-      printf("mode: %d, elapsed_time: %lu(msec)\n", output_mode, elapsed_time);
+      printf("mode: %d, elapsed_time: %lu(msec)\n", (int)output_mode, elapsed_time);
       break;
     default:
       break;

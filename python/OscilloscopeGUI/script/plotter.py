@@ -90,6 +90,8 @@ class Plotter:
                     self.df_mfcc[0:self.samples-dsp.INTERVAL,:] = self.df_mfcc[dsp.INTERVAL:self.samples,:]
                     self.df_mfcc[self.samples-dsp.INTERVAL:self.samples,:] = data[:, self.filters:self.filters*2]
                     data = self.df_mfcc.copy()
+            elif cmd == dsp.FILTERBANK or cmd == dsp.ELAPSED_TIME:
+                data = self.interface.debug_read(cmd)
             else:
                 data = self.interface.read(cmd)
             

@@ -53,20 +53,20 @@ parser.add_argument("-d", "--dataset_folder",
 parser.add_argument("-b", "--browser",
                     help="Data browser", action="store_true")
 parser.add_argument("-S", "--plot_style",
-                    help="Plot style", default='dark_background')
+                    help="plot style", default='dark_background')
 parser.add_argument("-o", "--oscilloscope_mode",
-                    help="Oscilloscope mode", action="store_true")
+                    help="oscilloscope mode", action="store_true")
 parser.add_argument("-f", "--fullscreen_mode",
-                    help="Fullscreen mode", default=None)
+                    help="fullscreen mode", default=None)
 parser.add_argument("-c", "--color_map",
-                    help="Color map", default=','.join(CMAP_LIST))
+                    help="color map", default=','.join(CMAP_LIST))
 parser.add_argument("-g", "--show_grid",
-                    help="Show grid", action="store_true")
+                    help="show grid", action="store_true")
 parser.add_argument("-W", "--disable_window",
-                    help="Disable window", action="store_true")
-parser.add_argument("-B", "--right_bit_shift", default=2, type=int)
-parser.add_argument("-r", "--record_time", default=2.0, type=float)
-parser.add_argument("-R", "--record_folder", default=".")
+                    help="disable window", action="store_true")
+parser.add_argument("-B", "--right_bit_shift", default=2, type=int, help="PCM right bit shift")
+parser.add_argument("-r", "--record_time", default=2.0, type=float, help="recording time")
+parser.add_argument("-R", "--record_folder", default=".", help="recording data folder")
 args = parser.parse_args()
 
 if __name__ == '__main__':
@@ -377,7 +377,7 @@ if __name__ == '__main__':
         last_operation[0](data=last_operation[1], pos=int(pos))
 
     def filterbank():
-        data = plotter.plot(ax, dsp.FILTERBANK)
+        plotter.plot(ax, dsp.FILTERBANK)
         canvas.draw()
 
     def elapsed_time():

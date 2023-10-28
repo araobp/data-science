@@ -84,7 +84,7 @@ class Interface:
 
     def tx_on(self):
         if self.ser is None:
-            self.ser = serial.Serial(self.port, BAUD_RATE, timeout=3)
+            self.ser = serial.Serial(self.port, BAUD_RATE, timeout=8)
             self.ser.write(TX_ON)
 
     def tx_suspend(self):
@@ -142,20 +142,6 @@ class Interface:
                     rx = self.ser.read(self.num_samples[FEATURES])
                     data = np.frombuffer(rx, dtype=np.int8)
                     data = data.reshape(self.shape[cmd])
-                elif cmd == FILTERBANK:
-                    filterbank = []
-                    k_range = []
-                    while True:
-                        rx = self.ser.readline().decode('ascii').rstrip('\n,')
-                        if rx == 'e':
-                            break
-                        temp = rx.split(',')
-                        k_range.append(np.array(temp[0].split(':'), dtype=int))
-                        filterbank.append(np.array(temp[1:], dtype=float))
-                    data = (k_range, filterbank)
-                elif cmd == ELAPSED_TIME:
-                    data = self.ser.readline().decode('ascii').rstrip('\n,')
-                    print(data)
 
             except:
                 print('*** serial timeout!')
@@ -165,12 +151,47 @@ class Interface:
 
         return data
 
+    def debug_read(self, cmd):
+
+        if self.ser is None:
+            self.ser = serial.Serial(self.port, BAUD_RATE, timeout=3)
+
+        data = None
+
+        try:
+            self.ser.write(cmd)
+
+            if cmd == FILTERBANK:
+                filterbank = []
+                k_range = []
+                while True:
+                    rx = self.ser.readline().decode('ascii').rstrip('\n,')
+                    if rx == 'e':
+                        break
+                    temp = rx.split(',')
+                    k_range.append(np.array(temp[0].split(':'), dtype=int))
+                    filterbank.append(np.array(temp[1:], dtype=float))
+                data = (k_range, filterbank)
+            elif cmd == ELAPSED_TIME:
+                data = self.ser.readline().decode('ascii').rstrip('\n,')
+                print(data)
+        except:
+            print('*** serial timeout!')
+            traceback.print_exc()
+        finally:
+            self.ser.close()
+            self.ser = None
+
+        #print(self.ser)
+
+        return data
+
     def enable_pre_emphasis(self, enable):
         '''
         Enable/disable pre-emphasis.
         '''
         if self.ser is None:
-            self.ser = serial.Serial(self.port, BAUD_RATE, timeout=3)
+            self.ser = serial.Serial(self.port, BAUD_RATE, timeout=None)
             inactive = True
         else:
             inactive = False

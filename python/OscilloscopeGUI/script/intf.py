@@ -9,7 +9,6 @@ import serial
 import numpy as np
 import traceback
 import threading
-import time
 
 ### Constants #####
 

@@ -20,7 +20,7 @@ import threading
 
 import matplotlib.pyplot as plt
 
-import dsp
+import intf
 import plotter
 import dataset
 
@@ -34,6 +34,7 @@ CMAP_LIST = ('viridis',
              'gray',
              'magma',
              'cubehelix',
+             'cool',
              'BrBG',
              'RdBu',
              'bwr',
@@ -76,13 +77,13 @@ if __name__ == '__main__':
 
     plt.style.use(args.plot_style)
 
-    itfc = dsp.Interface(port=args.port, dataset=dataset)
+    itfc_instance = intf.Interface(port=args.port, dataset=dataset)
         
-    ### Default settings to DSP ###
+    ### Default settings to Interface ###
     # Note : pre-emphasis (HPF) is for data(FFT etc) other than PCM wave form.
-    if itfc.is_active():
-        itfc.enable_pre_emphasis(True)  # Pre emphasis enabled
-        itfc.right_bit_shift(args.right_bit_shift)
+    if itfc_instance.is_active():
+        itfc_instance.enable_pre_emphasis(True)  # Pre emphasis enabled
+        itfc_instance.right_bit_shift(args.right_bit_shift)
     ###############################
 
     PADX = 6
@@ -100,16 +101,16 @@ if __name__ == '__main__':
     cnn_model = None
     last_operation = None
 
-    continuous = False
+    async_active = False
 
     EMPTY = np.array([])
 
     if args.oscilloscope_mode or args.fullscreen_mode:
-        enable_shadow = False
+        show_capture_area = False
     else:
-        enable_shadow = True
+        show_capture_area = True
 
-    plotter = plotter.Plotter(interface=itfc, dataset=dataset, enable_shadow=enable_shadow)
+    plotter = plotter.Plotter(intf_instance=itfc_instance, dataset=dataset, show_capture_area=show_capture_area)
 
     if dataset.model and not args.browser:
         import inference
@@ -169,38 +170,38 @@ if __name__ == '__main__':
         label_inference.configure(text='This is {} ({} %)'.format(class_label, int(p)))
 
     def exec_func(func, interval = None):
-        global continuous
-        continuous = True
+        global async_active
+        async_active = True
         def _exec_func():
-            global continuous
-            plotter.tx_on()
-            while continuous:
+            global async_active
+            plotter.start_streaming()
+            while async_active:
                 func()
                 if interval is not None:
-                    plotter.tx_suspend()
+                    plotter.suspend_streaming()
                     time.sleep(interval)
-                    plotter.tx_on()
-            plotter.tx_off()
+                    plotter.start_streaming()
+            plotter.stop_streaming()
 
         threading.Thread(target=_exec_func).start()
 
     def exec_func2(func, button, label):
-        global continuous
-        continuous = True
+        global async_active
+        async_active = True
         def _exec_func():
-            global continuous
-            plotter.tx_on()
+            global async_active
+            plotter.start_streaming()
             func()
-            plotter.tx_off()
+            plotter.stop_streaming()
             button.configure(bg=button_colors[label])
-            continuous = False
+            async_active = False
 
         threading.Thread(target=_exec_func).start()
 
     def exec_async(button, label, func, interval=None):
-        global continuous
+        global async_active
         if button.cget('bg') == button_colors[label]:
-            if not continuous:
+            if not async_active:
                 button.configure(bg='red')
                 if ((interval is not None) and (interval < 0)):
                     exec_func2(func, button, label)
@@ -208,14 +209,14 @@ if __name__ == '__main__':
                     exec_func(func, interval)
         else:       
             button.configure(bg=button_colors[label])
-            continuous = False
+            async_active = False
     
     def raw_wave():
-        global continuous
+        global async_active
         def _raw_wave():
             global last_operation
             range_ = int(range_amplitude.get())
-            data = plotter.plot(ax, dsp.RAW_WAVE, range_=range_, grid=args.show_grid)
+            data = plotter.plot(ax, intf.RAW_WAVE, range_=range_, grid=args.show_grid)
             last_operation = (raw_wave, data, None, None)
             fig.tight_layout()
             canvas.draw()
@@ -223,11 +224,11 @@ if __name__ == '__main__':
         exec_async(button_waveform, 'waveform', _raw_wave, 0.4)
 
     def fft():
-        global continuous
+        global async_active
         def _fft():
             global last_operation
             ssub = int(spectrum_subtraction.get())
-            data = plotter.plot(ax, dsp.SFFT, grid=args.show_grid)
+            data = plotter.plot(ax, intf.SFFT, grid=args.show_grid)
             last_operation = (fft, data, None, None)
             fig.tight_layout()
             canvas.draw()
@@ -235,7 +236,7 @@ if __name__ == '__main__':
         exec_async(button_psd, 'psd', _fft, 0.4)
 
     def spectrogram(data=EMPTY, pos=0):
-        global continuous
+        global async_active
         def _spectrogram(data=data, pos=pos):
             global last_operation, dataset
             ssub = int(spectrum_subtraction.get())    
@@ -243,10 +244,10 @@ if __name__ == '__main__':
             cmap_ = var_cmap.get()
             if data is EMPTY:
                 window = dataset.windows[int(range_window.get())]
-                data = plotter.plot(ax, dsp.SPECTROGRAM, range_, cmap_, ssub, grid=args.show_grid)
+                data = plotter.plot(ax, intf.SPECTROGRAM, range_, cmap_, ssub, grid=args.show_grid)
             else:
                 window = dataset.windows[pos]
-                plotter.plot(ax, dsp.SPECTROGRAM, range_, cmap_, ssub, data=data,
+                plotter.plot(ax, intf.SPECTROGRAM, range_, cmap_, ssub, data=data,
                             window=None)
             last_operation = (spectrogram, data, window, pos)
             fig.tight_layout()
@@ -255,7 +256,7 @@ if __name__ == '__main__':
         exec_async(button_spectrogram, 'spectrogram', _spectrogram)
 
     def mfsc(data=EMPTY, pos=None):
-        global continuous
+        global async_active
         def _mfsc(data=data, pos=pos):
             global last_operation, dataset
             ssub = int(spectrum_subtraction.get())
@@ -263,14 +264,14 @@ if __name__ == '__main__':
             cmap_ = var_cmap.get()
             if data is EMPTY:
                 window = dataset.windows[int(range_window.get())]
-                data = plotter.plot(ax, dsp.MFSC, range_, cmap_, ssub,
+                data = plotter.plot(ax, intf.MFSC, range_, cmap_, ssub,
                                 window=window, grid=args.show_grid)
             else:
                 if pos is not None and not args.disable_window:
                     window = dataset.windows[pos]
                 else:
                     window = None
-                plotter.plot(ax, dsp.MFSC, range_, cmap_, ssub, data=data,
+                plotter.plot(ax, intf.MFSC, range_, cmap_, ssub, data=data,
                             window=window)
             if cnn_model:
                 print(window)
@@ -287,7 +288,7 @@ if __name__ == '__main__':
 
 
     def mfcc(data=EMPTY, pos=None):
-        global continuous
+        global async_active
         def _mfcc(data=data, pos=pos):
             global last_operation, dataset
             ssub = int(spectrum_subtraction.get())    
@@ -295,14 +296,14 @@ if __name__ == '__main__':
             cmap_ = var_cmap.get()
             if data is EMPTY:
                 window = dataset.windows[int(range_window.get())]
-                data = plotter.plot(ax, dsp.MFCC, range_, cmap_, ssub,
+                data = plotter.plot(ax, intf.MFCC, range_, cmap_, ssub,
                                 window=window, grid=args.show_grid)
             else:
                 if pos is not None and not args.disable_window:
                     window = dataset.windows[pos]
                 else:
                     window = None
-                plotter.plot(ax, dsp.MFCC, range_, cmap_, ssub, data=data,
+                plotter.plot(ax, intf.MFCC, range_, cmap_, ssub, data=data,
                             window=window)
             # TODO: inference for MFCCs
             #if cnn_model:
@@ -317,7 +318,7 @@ if __name__ == '__main__':
             _mfcc(data=data, pos=pos)
 
     def welch():
-        global continuous
+        global async_active
         def _welch():
             plotter.plot_welch(ax, grid=args.show_grid)
             fig.tight_layout()
@@ -326,7 +327,7 @@ if __name__ == '__main__':
         exec_async(button_welch, 'welch', _welch)
 
     def rec():
-        global continuous
+        global async_active
         def _rec():
             range_ = int(range_amplitude.get())
             plotter.plot_rec(args.record_folder, args.record_time, ax, range_=range_, grid=args.show_grid)
@@ -338,10 +339,10 @@ if __name__ == '__main__':
     def pre_emphasis_toggle():
         if button_pre_emphasis.cget('bg') == BG:
             button_pre_emphasis.configure(bg='red')
-            itfc.enable_pre_emphasis(True)
+            itfc_instance.enable_pre_emphasis(True)
         else:       
             button_pre_emphasis.configure(bg=BG)
-            itfc.enable_pre_emphasis(False)
+            itfc_instance.enable_pre_emphasis(False)
             
     def savefig():
         fig.savefig('screen_shot.png')
@@ -354,8 +355,8 @@ if __name__ == '__main__':
             counter.configure(text='({})'.format(str(cnt)))
 
     def quit():
-        global continuous
-        if not continuous:
+        global async_active
+        if not async_active:
             root.quit()
             root.destroy()
         else:
@@ -373,42 +374,43 @@ if __name__ == '__main__':
         counter.configure(text='({})'.format(str(cnt)))
         canvas._tkcanvas.focus_set()
 
-    def shadow(pos):
+    def capture_area(pos):
         last_operation[0](data=last_operation[1], pos=int(pos))
 
     def filterbank():
-        plotter.plot(ax, dsp.FILTERBANK)
+        plotter.plot(ax, intf.FILTERBANK)
         canvas.draw()
 
     def elapsed_time():
-        plotter.plot(ax, dsp.ELAPSED_TIME)
+        plotter.plot(ax, intf.ELAPSED_TIME)
 
     ### Key press event ###
 
     def on_key_event(event):
-        c = event.key
-        pos = range_window.get()
-        if c == 'right':
-            if pos < len(dataset.windows) - 1:
-                pos += 1
-                range_window.set(pos)
-                shadow(pos)
-        elif c == 'left':
-            if pos > 0:
-                pos -= 1
-                range_window.set(pos)
-                shadow(pos)            
-        elif c == 'up':
-            if last_operation is None:
-                print('Up key becomes effective after executing an operation.')
-            else:
-                func = last_operation[0]
-                if func in (mfsc, mfcc):
-                    func(pos=int(range_window.get()))
+        if not async_active:
+            c = event.key
+            pos = range_window.get()
+            if c == 'right':
+                if pos < len(dataset.windows) - 1:
+                    pos += 1
+                    range_window.set(pos)
+                    capture_area(pos)
+            elif c == 'left':
+                if pos > 0:
+                    pos -= 1
+                    range_window.set(pos)
+                    capture_area(pos)            
+            elif c == 'up':
+                if last_operation is None:
+                    print('Up key becomes effective after executing an operation.')
                 else:
-                    func()
-        elif c == 'down':
-            save()
+                    func = last_operation[0]
+                    if func in (mfsc, mfcc):
+                        func(pos=int(range_window.get()))
+                    else:
+                        func()
+            elif c == 'down':
+                save()
             
     if not args.browser:
         canvas.mpl_connect('key_press_event', on_key_event)
@@ -465,10 +467,10 @@ if __name__ == '__main__':
     range_mfsc = Tk.Spinbox(master=frame_row1, width=3,
                                        values=[dataset.filters, int(dataset.filters * 0.8), int(dataset.filters * 0.6)])
     range_spectrogram = Tk.Spinbox(master=frame_row1, width=4,
-                                   values=[int(dsp.NN/2), int(dsp.NN/2 * 0.7), int(dsp.NN/2 * 0.4)])
+                                   values=[int(intf.NN/2), int(intf.NN/2 * 0.7), int(intf.NN/2 * 0.4)])
     range_spectrogram.selection_to(2)
     range_mfcc = Tk.Spinbox(master=frame_row1, width=3,
-                            values=[13, 20, 40])
+                            values=[14, int(dataset.filters * 0.5), dataset.filters])
     spectrum_subtraction = Tk.Spinbox(master=frame_row1, width=3,
                                       values=[0, 5, 10, 15, 20, 25, 30])
     label_class = Tk.Label(master=frame_row1, text='Class label:')

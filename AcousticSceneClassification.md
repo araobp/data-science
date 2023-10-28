@@ -12,7 +12,7 @@ Note: this project supports any PDM mic.
 
 => [MEMSMIC](STM32/MEMSMIC.md)
 
-### Step 3: Acoustic Feature Camera (without AI) (Work in progress)
+### Step 3: Acoustic Feature Camera (without AI) 
 
 => [ACOUSTIC_FEATURE_CAMERA](STM32/ACOUSTIC_FEATURE_CAMERA.md)
 

@@ -214,10 +214,8 @@ if __name__ == '__main__':
     def raw_wave():
         global async_active
         def _raw_wave():
-            global last_operation
             range_ = int(range_amplitude.get())
-            data = plotter.plot(ax, intf.RAW_WAVE, range_=range_, grid=args.show_grid)
-            last_operation = (raw_wave, data, None, None)
+            plotter.plot(ax, intf.RAW_WAVE, range_=range_, grid=args.show_grid)
             fig.tight_layout()
             canvas.draw()
 
@@ -226,30 +224,23 @@ if __name__ == '__main__':
     def fft():
         global async_active
         def _fft():
-            global last_operation
-            ssub = int(spectrum_subtraction.get())
-            data = plotter.plot(ax, intf.SFFT, grid=args.show_grid)
-            last_operation = (fft, data, None, None)
+            plotter.plot(ax, intf.SFFT, grid=args.show_grid)
             fig.tight_layout()
             canvas.draw()
 
         exec_async(button_psd, 'psd', _fft, 0.4)
 
-    def spectrogram(data=EMPTY, pos=0):
+    def spectrogram(data=EMPTY):
         global async_active
-        def _spectrogram(data=data, pos=pos):
-            global last_operation, dataset
+        def _spectrogram(data=data):
             ssub = int(spectrum_subtraction.get())    
             range_ = int(range_spectrogram.get())
             cmap_ = var_cmap.get()
             if data is EMPTY:
-                window = dataset.windows[int(range_window.get())]
                 data = plotter.plot(ax, intf.SPECTROGRAM, range_, cmap_, ssub, grid=args.show_grid)
             else:
-                window = dataset.windows[pos]
                 plotter.plot(ax, intf.SPECTROGRAM, range_, cmap_, ssub, data=data,
                             window=None)
-            last_operation = (spectrogram, data, window, pos)
             fig.tight_layout()
             canvas.draw()
 
@@ -280,12 +271,11 @@ if __name__ == '__main__':
             last_operation = (mfsc, data, window, pos)
             fig.tight_layout()
             canvas.draw()
-        
+
         if data is EMPTY:
             exec_async(button_mfsc, 'mfsc', _mfsc)
         else:
-            _mfsc(data=data, pos=pos)
-
+            _mfsc(data=data, pos=pos)         
 
     def mfcc(data=EMPTY, pos=None):
         global async_active
@@ -374,9 +364,6 @@ if __name__ == '__main__':
         counter.configure(text='({})'.format(str(cnt)))
         canvas._tkcanvas.focus_set()
 
-    def capture_area(pos):
-        last_operation[0](data=last_operation[1], pos=int(pos))
-
     def filterbank():
         plotter.plot(ax, intf.FILTERBANK)
         canvas.draw()
@@ -387,30 +374,29 @@ if __name__ == '__main__':
     ### Key press event ###
 
     def on_key_event(event):
-        if not async_active:
             c = event.key
             pos = range_window.get()
-            if c == 'right':
-                if pos < len(dataset.windows) - 1:
-                    pos += 1
-                    range_window.set(pos)
-                    capture_area(pos)
-            elif c == 'left':
-                if pos > 0:
-                    pos -= 1
-                    range_window.set(pos)
-                    capture_area(pos)            
-            elif c == 'up':
-                if last_operation is None:
-                    print('Up key becomes effective after executing an operation.')
-                else:
-                    func = last_operation[0]
-                    if func in (mfsc, mfcc):
-                        func(pos=int(range_window.get()))
+
+            if not async_active:
+                if c == 'right':
+                    if pos < len(dataset.windows) - 1:
+                        pos += 1
+                        range_window.set(pos)
+                        last_operation[0](data=last_operation[1], pos=int(pos))
+                elif c == 'left':
+                    if pos > 0:
+                        pos -= 1
+                        range_window.set(pos)
+                        last_operation[0](data=last_operation[1], pos=int(pos))
+                elif c == 'up':
+                    if last_operation is None:
+                        print('Up key becomes effective after executing an operation.')
                     else:
-                        func()
-            elif c == 'down':
-                save()
+                        last_operation[0](data=EMPTY, pos=int(range_window.get()))
+                elif c == 'down':
+                    save()
+            elif async_active and c == 'up':
+                last_operation[0](data=EMPTY, pos=int(range_window.get()))               
             
     if not args.browser:
         canvas.mpl_connect('key_press_event', on_key_event)

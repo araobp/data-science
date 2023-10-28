@@ -4,11 +4,7 @@ Hand gesture "Paper" captured with [AMG8833 infrared array sensor (8x8 resolutio
 
 <img src="python/ThermographyGUI/screenshots/screen_shot_paper.png" width=350>
 
-Spectrogram of [Paco De Lucia "Cepa Andaluza" (Bulerias)](https://youtu.be/NIKWBdthzg4?si=O71p1-v_ynUPurbq) captured with my "Acoustic Feature Camera" device.
-
-<img src="doc/screen_shot_cepa_andaluza_cante.png" width=450>
-
-Paco's Picado
+Paco de Lucia's Picado from ["Cepa Andaluza" (Bulerias)](https://youtu.be/NIKWBdthzg4?si=O71p1-v_ynUPurbq) captured with my "Acoustic Feature Camera" device.
 
 <img src="doc/paco's%20picado.png" width=450>
 

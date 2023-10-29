@@ -140,25 +140,19 @@ if __name__ == '__main__':
     canvas = FigureCanvasTkAgg(fig, master=frame_row0a)
     canvas.draw()
 
-    # Save training data for deep learning
+    # Save training data (MFSCs and MFCCs) for deep learning
     def save():
         global cnt, filename
         class_label = entry_class_label.get()
-        func, data, window, pos = last_operation
+        func, data, pos = last_operation
         dt = datetime.today().strftime('%Y%m%d%H%M%S')
         if args.dataset_folder:
             dataset_folder = args.dataset_folder
         else:
             dataset_folder = './data'
 
-        if class_label == '':
-            filename = dataset_folder+'/data/{}-{}'.format(dt, func.__name__)
-        else:
-            if func == mfsc or func == mfcc:  # f both data at a time
-                filename = dataset_folder+'/data/{}-features-{}-{}'.format(dt, class_label, pos)
-            else:
-                filename = dataset_folder+'/data/{}-{}-{}'.format(dt, class_label, func.__name__)
-            data = data.flatten()
+        if func == mfsc or func == mfcc:  # both data at a time
+            filename = dataset_folder+'/data/{}-features-{}-{}'.format(dt, class_label, pos)
             with open(filename+'.csv', "w") as f:
                 f.write(','.join(data.astype(str)))
 
@@ -268,7 +262,7 @@ if __name__ == '__main__':
                 print(window)
                 a, b, c = window[0], window[1], window[2]
                 infer(data[a:b,:c])
-            last_operation = (mfsc, data, window, pos)
+            last_operation = (mfsc, data, pos)
             fig.tight_layout()
             canvas.draw()
 
@@ -298,7 +292,7 @@ if __name__ == '__main__':
             # TODO: inference for MFCCs
             #if cnn_model:
             #    infer(data, pos)
-            last_operation = (mfcc, data, window, pos)
+            last_operation = (mfcc, data, pos)
             fig.tight_layout()
             canvas.draw()
 

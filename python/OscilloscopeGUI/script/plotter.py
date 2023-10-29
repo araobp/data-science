@@ -80,16 +80,23 @@ class Plotter:
         if data is EMPTY:
             if cmd == intf.MFSC or cmd == intf.MFCC:
                 data = self.intf.read(intf.FEATURES)
-                if cmd == intf.MFSC:
-                    self.df_mfsc[0:self.samples-intf.INTERVAL,:] = self.df_mfsc[intf.INTERVAL:self.samples,:]
-                    self.df_mfsc[self.samples-intf.INTERVAL:self.samples,:] = data[:, :self.filters]
-                    data = self.df_mfsc.copy()
-                elif cmd == intf.MFCC:
-                    self.df_mfcc[0:self.samples-intf.INTERVAL,:] = self.df_mfcc[intf.INTERVAL:self.samples,:]
-                    self.df_mfcc[self.samples-intf.INTERVAL:self.samples,:] = data[:, self.filters:self.filters*2]
-                    data = self.df_mfcc.copy()
+                
+                self.df_mfsc[0:self.samples-intf.INTERVAL,:] = self.df_mfsc[intf.INTERVAL:self.samples,:]
+                self.df_mfsc[self.samples-intf.INTERVAL:self.samples,:] = data[:, :self.filters]
+
+                self.df_mfcc[0:self.samples-intf.INTERVAL,:] = self.df_mfcc[intf.INTERVAL:self.samples,:]
+                self.df_mfcc[self.samples-intf.INTERVAL:self.samples,:] = data[:, self.filters:self.filters*2]
+
+                data = np.append(self.df_mfsc, self.df_mfcc)
+            
+            elif cmd == intf.SPECTROGRAM:
+                data = self.intf.read(intf.SPECTROGRAM)
+                self.df_spec[0:self.samples-intf.INTERVAL,:] = self.df_spec[intf.INTERVAL:self.samples,:]
+                self.df_spec[self.samples-intf.INTERVAL:self.samples,:] = data[:, :int(intf.NN/2)]
+
             elif cmd == intf.FILTERBANK or cmd == intf.ELAPSED_TIME:
                 data = self.intf.debug_read(cmd)
+            
             else:
                 data = self.intf.read(cmd)
             
@@ -105,13 +112,7 @@ class Plotter:
             self.set_labels(ax, 'Spectrum', 'Frequency [Hz]', 'Power [dB]', [-70, 90])
 
         elif cmd == intf.SPECTROGRAM:
-
-            if data is not EMPTY:
-                self.df_spec[0:self.samples-intf.INTERVAL,:] = self.df_spec[intf.INTERVAL:self.samples,:]
-                self.df_spec[self.samples-intf.INTERVAL:self.samples,:] = data[:, :int(intf.NN/2)]
-                data = self.df_spec.copy()
-            data_ = spectrum_subtraction(data, ssub)
-
+            data_ = spectrum_subtraction(self.df_spec, ssub)
             self.pc_spec = ax.pcolormesh(self.time[intf.SPECTROGRAM],
                         self.freq[intf.SPECTROGRAM][:range_],
                         data_.T[:range_],
@@ -119,7 +120,7 @@ class Plotter:
             self.set_labels(ax, 'Spectrogram', 'Time [sec]', 'Frequency (Hz)')
 
         elif cmd == intf.MFSC:
-            data_ = spectrum_subtraction(data, ssub)
+            data_ = spectrum_subtraction(self.df_mfsc, ssub)
             ax.pcolormesh(self.time[intf.MFSC],
                           self.freq[intf.MFSC][:range_+1],
                           data_.T[:range_+1],
@@ -129,7 +130,7 @@ class Plotter:
             self.set_labels(ax, 'Mel-frequency spectrogram', 'Time [sec]', 'MFSC')
 
         elif cmd == intf.MFCC:
-            data_ = spectrum_subtraction(data, ssub)
+            data_ = spectrum_subtraction(self.df_mfcc, ssub)
             ax.pcolormesh(self.time[intf.MFCC],
                           self.freq[intf.MFCC][:range_+1],
                           data_.T[:range_+1],

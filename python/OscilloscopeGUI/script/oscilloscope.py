@@ -103,8 +103,6 @@ if __name__ == '__main__':
 
     async_active = False
 
-    EMPTY = np.array([])
-
     if args.oscilloscope_mode or args.fullscreen_mode:
         show_capture_area = False
     else:
@@ -224,13 +222,13 @@ if __name__ == '__main__':
 
         exec_async(button_psd, 'psd', _fft, 0.4)
 
-    def spectrogram(data=EMPTY):
+    def spectrogram(data=None):
         global async_active
         def _spectrogram(data=data):
             ssub = int(spectrum_subtraction.get())    
             range_ = int(range_spectrogram.get())
             cmap_ = var_cmap.get()
-            if data is EMPTY:
+            if data is None:
                 data = plotter.plot(ax, intf.SPECTROGRAM, range_, cmap_, ssub, grid=args.show_grid)
             else:
                 plotter.plot(ax, intf.SPECTROGRAM, range_, cmap_, ssub, data=data,
@@ -240,14 +238,14 @@ if __name__ == '__main__':
 
         exec_async(button_spectrogram, 'spectrogram', _spectrogram)
 
-    def mfsc(data=EMPTY, pos=None):
+    def mfsc(data=None, pos=None):
         global async_active
         def _mfsc(data=data, pos=pos):
             global last_operation, dataset
             ssub = int(spectrum_subtraction.get())
             range_ = int(range_mfsc.get())
             cmap_ = var_cmap.get()
-            if data is EMPTY:
+            if data is None:
                 window = dataset.windows[int(range_window.get())]
                 data = plotter.plot(ax, intf.MFSC, range_, cmap_, ssub,
                                 window=window, grid=args.show_grid)
@@ -266,19 +264,19 @@ if __name__ == '__main__':
             fig.tight_layout()
             canvas.draw()
 
-        if data is EMPTY:
+        if data is None:
             exec_async(button_mfsc, 'mfsc', _mfsc)
         else:
             _mfsc(data=data, pos=pos)         
 
-    def mfcc(data=EMPTY, pos=None):
+    def mfcc(data=None, pos=None):
         global async_active
         def _mfcc(data=data, pos=pos):
             global last_operation, dataset
             ssub = int(spectrum_subtraction.get())    
             range_ = int(range_mfcc.get())
             cmap_ = var_cmap.get()
-            if data is EMPTY:
+            if data is None:
                 window = dataset.windows[int(range_window.get())]
                 data = plotter.plot(ax, intf.MFCC, range_, cmap_, ssub,
                                 window=window, grid=args.show_grid)
@@ -296,7 +294,7 @@ if __name__ == '__main__':
             fig.tight_layout()
             canvas.draw()
 
-        if data is EMPTY:
+        if data is None:
             exec_async(button_mfcc, 'mfcc', _mfcc)
         else:
             _mfcc(data=data, pos=pos)
@@ -386,11 +384,11 @@ if __name__ == '__main__':
                     if last_operation is None:
                         print('Up key becomes effective after executing an operation.')
                     else:
-                        last_operation[0](data=EMPTY, pos=int(range_window.get()))
+                        last_operation[0](data=None, pos=int(range_window.get()))
                 elif c == 'down':
                     save()
             elif async_active and c == 'up':
-                last_operation[0](data=EMPTY, pos=int(range_window.get()))               
+                last_operation[0](data=None, pos=int(range_window.get()))               
             
     if not args.browser:
         canvas.mpl_connect('key_press_event', on_key_event)
@@ -401,26 +399,23 @@ if __name__ == '__main__':
         index = int(widget. curselection()[0])
         filename = widget.get(index)
         params = filename.split('-')
+
         func = globals()[dataset.feature]
-
-        with open(args.dataset_folder + '/data/' + filename) as f:
-            data = np.array(f.read().split(','), dtype='float')
-        
         if func == mfsc or func == mfcc:
-            data = data.reshape(dataset.samples*2, dataset.filters)
-            if func == mfsc:
-                data = data[0:dataset.samples, :]
-            elif func == mfcc:
-                data = data[dataset.samples:dataset.samples*2, :]
+            with open(args.dataset_folder + '/data/' + filename) as f:
+                data = np.array(f.read().split(','), dtype='float')
+            
+                data = data.reshape(dataset.samples*2, dataset.filters)
+                if func == mfsc:
+                    data = data[0:dataset.samples, :]
+                elif func == mfcc:
+                    data = data[dataset.samples:dataset.samples*2, :]
 
-            pos = params[3]
-            if pos == 'a':
-                func(data=data, pos=None)
-            else:
-                func(data=data, pos=int(pos))                
-        else:
-            data = data.reshape(dataset.samples, dataset.filters)
-            func(data=data)
+                pos = params[3]
+                if pos == 'a':
+                    func(data=data, pos=None)
+                else:
+                    func(data=data, pos=int(pos))                
         
     ### Row 0b ####
     if args.browser:

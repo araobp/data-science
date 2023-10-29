@@ -4,9 +4,6 @@ from scipy.fftpack import dct
 from scipy.io import wavfile
 import datetime
 
-# Empty array
-EMPTY = np.array([])
-
 def spectrum_subtraction(data, ssub=None):
     data_ = np.copy(data)
     if ssub:
@@ -74,10 +71,10 @@ class Plotter:
     # Use matplotlib to plot the output from the device
     def plot(self, ax, cmd, range_=None,
                  cmap=None, ssub=None,
-                 window=None, data=EMPTY,
+                 window=None, data=None,
                  grid=False):
 
-        if data is EMPTY:
+        if data is None:
             if cmd == intf.MFSC or cmd == intf.MFCC:
                 data = self.intf.read(intf.FEATURES)
                 
@@ -100,8 +97,14 @@ class Plotter:
             else:
                 data = self.intf.read(cmd)
             
+        else:
+                if cmd == intf.MFSC:
+                    self.df_mfsc = data[:self.filters * self.samples]
+                elif cmd == intf.MFCC:
+                    self.df_mfcc = data[self.filters * self.samples: self.filters * self.samples * 2]
+
         ax.clear()
-        
+            
         if cmd == intf.RAW_WAVE:
             ax.plot(self.time[intf.RAW_WAVE], data)
             self.set_labels(ax, 'Waveform', 'Time [msec]', 'Amplitude', [-range_, range_])

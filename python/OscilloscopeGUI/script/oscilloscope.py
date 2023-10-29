@@ -248,14 +248,14 @@ if __name__ == '__main__':
             if data is None:
                 window = dataset.windows[int(range_window.get())]
                 data = plotter.plot(ax, intf.MFSC, range_, cmap_, ssub,
-                                window=window, grid=args.show_grid)
+                                area=window[:2], grid=args.show_grid)
             else:
                 if pos is not None and not args.disable_window:
                     window = dataset.windows[pos]
                 else:
                     window = None
                 plotter.plot(ax, intf.MFSC, range_, cmap_, ssub, data=data,
-                            window=window)
+                            area=window[:2])
             if cnn_model:
                 print(window)
                 a, b, c = window[0], window[1], window[2]
@@ -279,14 +279,14 @@ if __name__ == '__main__':
             if data is None:
                 window = dataset.windows[int(range_window.get())]
                 data = plotter.plot(ax, intf.MFCC, range_, cmap_, ssub,
-                                window=window, grid=args.show_grid)
+                                area=window[:2], grid=args.show_grid)
             else:
                 if pos is not None and not args.disable_window:
                     window = dataset.windows[pos]
                 else:
                     window = None
                 plotter.plot(ax, intf.MFCC, range_, cmap_, ssub, data=data,
-                            window=window)
+                            area=window[:2])
             # TODO: inference for MFCCs
             #if cnn_model:
             #    infer(data, pos)

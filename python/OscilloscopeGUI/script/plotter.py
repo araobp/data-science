@@ -36,18 +36,9 @@ class Plotter:
         self.df_mfsc = np.zeros([self.samples, self.filters])
         self.df_mfcc = np.zeros([self.samples, self.filters])
 
-    def draw_capture_area(self, ax, cmd, window, range):
-        x0 = self.time[cmd][window[0]]
-        x1 = self.time[cmd][window[1]]
-
-        if cmd == intf.MFSC:
-            y0 = -0.5
-        elif cmd == intf.MFCC:
-            y0 = 0.5
-        y1 = range - 1 + 0.5
-
-        ax.vlines([x0, x1], y0, y1, lw=2)
-        ax.hlines([y0, y1], x0, x1, lw=2)
+    def draw_capture_area(self, ax, cmd, area):
+        ax.axvline(self.time[cmd][area[0]], lw=2)
+        ax.axvline(self.time[cmd][area[1]], lw=2)
 
     def set_labels(self, ax, title, xlabel, ylabel, ylim=None):
         ax.set_title(title)
@@ -71,7 +62,7 @@ class Plotter:
     # Use matplotlib to plot the output from the device
     def plot(self, ax, cmd, range_=None,
                  cmap=None, ssub=None,
-                 window=None, data=None,
+                 area=None, data=None,
                  grid=False):
 
         if data is None:
@@ -129,7 +120,7 @@ class Plotter:
                           data_.T[:range_+1],
                           cmap=cmap)
             if self.show_capture_area:
-                self.draw_capture_area(ax, cmd, window, range_)
+                self.draw_capture_area(ax, cmd, area)
             self.set_labels(ax, 'Mel-frequency spectrogram', 'Time [sec]', 'MFSC')
 
         elif cmd == intf.MFCC:
@@ -139,7 +130,7 @@ class Plotter:
                           data_.T[:range_+1],
                           cmap=cmap)
             if self.show_capture_area:
-                self.draw_capture_area(ax, cmd, window, range_)
+                self.draw_capture_area(ax, cmd, area)
             self.set_labels(ax, 'MFCCs', 'Time [sec]', 'MFCC')
 
         elif cmd == intf.FILTERBANK:

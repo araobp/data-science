@@ -18,7 +18,7 @@ My past projects on edge AI:
 - [acoustic-features](https://github.com/araobp/acoustic-features)
 - [stm32-mcu](https://github.com/araobp/stm32-mcu)
 
-## Project 1: Rock Paper Scissors
+## Project 1: Rock Paper Scissors Machine
 
 <img src="doc/blender_dnn.png" width=500>
 

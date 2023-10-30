@@ -40,6 +40,11 @@ My past projects on edge AI:
 
 ## References
 
+### Acoustic Scene Classification
+
+- [A Comparative Study on Approaches to Acoustic Scene
+Classification using CNNs](https://arxiv.org/ftp/arxiv/papers/2204/2204.12177.pdf)
+
 ### Delta-Sigma ADCs
 
 - [How delta-sigma ADCs work, Part 1](https://www.ti.com/lit/an/slyt423a/slyt423a.pdf?ts=1694396702991)

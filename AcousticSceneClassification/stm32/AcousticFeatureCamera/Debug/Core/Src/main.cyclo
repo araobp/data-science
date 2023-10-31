@@ -1,0 +1,17 @@
+../Core/Src/main.c:109:6:uart_tx	13
+../Core/Src/main.c:173:6:dsp	7
+../Core/Src/main.c:232:6:overlap_dsp	7
+../Core/Src/main.c:278:6:dump	6
+../Core/Src/main.c:307:5:main	6
+../Core/Src/main.c:417:6:SystemClock_Config	4
+../Core/Src/main.c:467:13:MX_DFSDM1_Init	4
+../Core/Src/main.c:520:13:MX_USART1_UART_Init	2
+../Core/Src/main.c:555:13:MX_USART2_UART_Init	2
+../Core/Src/main.c:588:13:MX_DMA_Init	1
+../Core/Src/main.c:609:13:MX_GPIO_Init	1
+../Core/Src/main.c:647:6:HAL_DFSDM_FilterRegConvHalfCpltCallback	3
+../Core/Src/main.c:661:6:HAL_DFSDM_FilterRegConvCpltCallback	3
+../Core/Src/main.c:673:5:_write	1
+../Core/Src/main.c:679:6:HAL_GPIO_EXTI_Callback	1
+../Core/Src/main.c:688:6:HAL_UART_RxCpltCallback	12
+../Core/Src/main.c:737:6:Error_Handler	1

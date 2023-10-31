@@ -20,15 +20,17 @@ Note: this project supports any PDM mic.
 
 => [Oscilloscope GUI (Tkinter)](python/OscilloscopeGUI)
 
-### Step 5: Using Osiclloscope GUI via BLE
+### Step 5: Data Collection
+
+### Step 6: Training CNN on Jupyter Notebook
+
+### Step 7: Acoustic Feature Camera (with AI)
 
 => [BLE extension](python/BleExtension)
 
-### Step 6: Data Collection
+### Step 8: IoT Deployment
 
-### Step 7: Training CNN on Jupyter Notebook
-
-### Step 8: Acoustic Feature Camera (with AI)
+=> [IoT](IoT.md)
 
 ### Extra: 3DCG animation (Work in progress)
 

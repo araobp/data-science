@@ -2,7 +2,7 @@
 
 Hand gesture "Paper" captured with [AMG8833 infrared array sensor (8x8 resolution)](https://industrial.panasonic.com/products/pt/grid-eye/models/AMG8833), and its DCT Type-II coefficients.
 
-<img src="python/ThermographyGUI/screenshots/screen_shot_paper.png" width=350>
+<img src="RockPaperScissors/python/ThermographyGUI/screenshots/screen_shot_paper.png" width=350>
 
 Paco de Lucia's Picado from ["Cepa Andaluza" (Bulerias)](https://youtu.be/NIKWBdthzg4?si=O71p1-v_ynUPurbq) captured with my "Acoustic Feature Camera" device.
 

@@ -77,8 +77,8 @@ This is me.
 
 ### DSP-related
 
-- [Digital Audio Processing](DigitalAudioProcessing)
-- [Speech Processing for AI](SpeechProcessing)
+- [Digital Audio Processing](misc/DigitalAudioProcessing)
+- [Speech Processing for AI](misc/SpeechProcessing)
 
 ### Others
 

@@ -263,4 +263,4 @@ The PC issues "f" command to the device via UART to fetch feature data in the fo
 Tone generator ))) [MEMS mic][NUCLEO-L476R] --- 16bit PCM ---> [Jupyter Notebook]
                                                 over UART
 ```
-=> [PCM](data/PCM.ipynb)
+=> [PCM](test/PCM.ipynb)

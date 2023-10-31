@@ -10,11 +10,11 @@ Note: this project supports any PDM mic.
 
 ### Step 2: Evaluation of MEMS microphone and DFSDM
 
-=> [MEMSMIC](STM32/MEMSMIC.md)
+=> [MEMSMIC](MEMSMIC.md)
 
 ### Step 3: Acoustic Feature Camera (without AI) 
 
-=> [ACOUSTIC_FEATURE_CAMERA](STM32/ACOUSTIC_FEATURE_CAMERA.md)
+=> [ACOUSTIC_FEATURE_CAMERA](ACOUSTIC_FEATURE_CAMERA.md)
 
 ### Step 4: Oscilloscope GUI
 

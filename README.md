@@ -25,7 +25,7 @@ My past projects on edge AI:
 - "Rock Paper Scissors" game machine with NUCLEO-L476RG board.
 - Digital Twin of the machine made with Blender.
 
-=> **[Rock Paper Scissors](RockPaperScissors.md)**
+=> **[Rock Paper Scissors](./RockPaperScissors)**
 
 ## Project 2: Acoustic Scene Classification (Work in progress)
 
@@ -34,7 +34,7 @@ My past projects on edge AI:
 - Acoustic scene classifcation with NUCLEO L476RG board.
 - Generative Art of acoustic features made with Blender.
 
-=> **[Acoustic Scene Classification](AcousticSceneClassification.md)**
+=> **[Acoustic Scene Classification](./AcousticSceneClassification)**
 
 ---
 

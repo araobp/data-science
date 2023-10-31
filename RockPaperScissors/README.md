@@ -31,13 +31,13 @@ Step 5: Run the code on the device to play "Rock Paper Scissors".
 
 ### Step 2: Training DNN and generate Keras model
 
-=> [Training DNN with DCT Type-II coefficients as heatmap feature](Training.md)
+=> [Training DNN with DCT Type-II coefficients as heatmap feature](ipynb)
 
 The DNN model's recognition performance is much better than [that](https://github.com/araobp/stm32-mcu/blob/master/NUCLEO-F401RE/Thermography/tensorflow/rock_paper_scissors_dct.ipynb) of my old project in 2019: overfitting occured in the old model. The performance has been improved by dropping DCT coefficients of higher frequencies drastically and adding another dense layer.
 
 ### Step 3 ~ Step 5: Edge AI implementation and experiment 
 
-=> [RockPaperScissors with CubeIDE and STM32Cube.AI](RockPaperScissors.md)
+=> [RockPaperScissors with CubeIDE and STM32Cube.AI](RockPaperScissorsMachine.md)
 
 The hardware part of "RockPaperScissors" on STMicroelectronics NUCLEO-L476RG board with the latest version of CubeIDE/CubeMX and STM32Cube.AI.
 

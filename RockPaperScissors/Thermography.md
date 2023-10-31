@@ -20,9 +20,9 @@ Arduino shield uses PB8 and PB9 for I2C SCL and SDA.
 
 ### Thermography implementation
 
-=> [Code for NUCLEO-L476RG with the Arduino shield](Thermography)
+=> [Code for NUCLEO-L476RG with the Arduino shield](stm32/Thermography)
 
-=> [Thermography GUI(Python3)](../python/ThermographyGUI)
+=> [Thermography GUI(Python3)](python/ThermographyGUI)
 
 Configuration for data collection
 ```
@@ -32,13 +32,13 @@ Configuration for data collection
 ### Integration test
 
 #### Rock
-<img src="../python/ThermographyGUI/screenshots/screen_shot_rock.png" width=400>
+<img src="python/ThermographyGUI/screenshots/screen_shot_rock.png" width=400>
 
 #### Paper
-<img src="../python/ThermographyGUI/screenshots/screen_shot_paper.png" width=400>
+<img src="python/ThermographyGUI/screenshots/screen_shot_paper.png" width=400>
 
 #### Scissors
-<img src="../python/ThermographyGUI/screenshots/screen_shot_scissors.png" width=400>
+<img src="python/ThermographyGUI/screenshots/screen_shot_scissors.png" width=400>
 
 #### Interpolation
 <img src="doc/thermography_interporated.png" width=300>

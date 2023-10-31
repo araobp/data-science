@@ -49,7 +49,7 @@ Animations of the digital twin on YouTube:
 - [Part 1](https://youtu.be/e6F0C5PsM-8)
 - [Part 2](https://youtu.be/bS-bzMsygZQ)
 
-=> [Blender files](blender/RockPaperScissors)
+=> [Blender files](blender)
 
 I used Python to animate text on the LCD in the 3DCG scene. The script must be run just once after the blender file is opened.
 

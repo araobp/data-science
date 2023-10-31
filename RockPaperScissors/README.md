@@ -1,6 +1,6 @@
 # Rock Paper Scissors
 
-<img src="stm32/doc/RockPaperScissors_DCT_DNN_Experiment.jpg" width=200>
+<img src="doc/RockPaperScissors_DCT_DNN_Experiment.jpg" width=200>
 
 I developed "Rock Paper Scissors" game machine on Nucleo L401RE board with Panasonic AMG8833 in January 2019, just after the first relase of STM32Cube.AI (December 2018) became available for developers: [the demo in on YouTube](https://www.youtube.com/shorts/d6OYSllaVEs). I remember my excitement on STM32Cube.AI -- AI can run on such a tiny device!
 
@@ -27,7 +27,7 @@ Step 5: Run the code on the device to play "Rock Paper Scissors".
 
 ### Step 1: Data collection of 8x8 matrix temperature data
 
-=> [Thermography](STM32/Thermography.md)
+=> [Thermography](Thermography.md)
 
 ### Step 2: Training DNN and generate Keras model
 
@@ -37,7 +37,7 @@ The DNN model's recognition performance is much better than [that](https://githu
 
 ### Step 3 ~ Step 5: Edge AI implementation and experiment 
 
-=> [RockPaperScissors with CubeIDE and STM32Cube.AI](STM32/RockPaperScissors.md)
+=> [RockPaperScissors with CubeIDE and STM32Cube.AI](RockPaperScissors.md)
 
 The hardware part of "RockPaperScissors" on STMicroelectronics NUCLEO-L476RG board with the latest version of CubeIDE/CubeMX and STM32Cube.AI.
 
@@ -49,7 +49,7 @@ Animations of the digital twin on YouTube:
 - [Part 1](https://youtu.be/e6F0C5PsM-8)
 - [Part 2](https://youtu.be/bS-bzMsygZQ)
 
-=> [Blender files](blender/RockPaperScissors)
+=> [Blender files](blender)
 
 I used Python to animate text on the LCD in the 3DCG scene. The script must be run just once after the blender file is opened.
 

@@ -26,10 +26,11 @@ Note: this project supports any PDM mic.
 
 ### Step 7: Acoustic Feature Camera (with AI)
 
-### Step 8: IoT
-
 => [BLE extension](python/BleExtension)
-=> [Data Visualization]()
+
+### Step 8: IoT Deployment
+
+=> [IoT](IoT.md)
 
 ### Extra: 3DCG animation (Work in progress)
 

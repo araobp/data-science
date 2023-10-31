@@ -32,4 +32,4 @@ Note: this project supports any PDM mic.
 
 ### Extra: 3DCG animation (Work in progress)
 
-=> [Art of Acoustic Features](blender/AcousticSceneClassification/ART.md)
+=> [Art of Acoustic Features](blender/ART.md)

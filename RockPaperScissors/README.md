@@ -27,7 +27,7 @@ Step 5: Run the code on the device to play "Rock Paper Scissors".
 
 ### Step 1: Data collection of 8x8 matrix temperature data
 
-=> [Thermography](STM32/Thermography.md)
+=> [Thermography](Thermography.md)
 
 ### Step 2: Training DNN and generate Keras model
 
@@ -37,7 +37,7 @@ The DNN model's recognition performance is much better than [that](https://githu
 
 ### Step 3 ~ Step 5: Edge AI implementation and experiment 
 
-=> [RockPaperScissors with CubeIDE and STM32Cube.AI](STM32/RockPaperScissors.md)
+=> [RockPaperScissors with CubeIDE and STM32Cube.AI](RockPaperScissors.md)
 
 The hardware part of "RockPaperScissors" on STMicroelectronics NUCLEO-L476RG board with the latest version of CubeIDE/CubeMX and STM32Cube.AI.
 

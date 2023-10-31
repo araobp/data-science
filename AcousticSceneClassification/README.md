@@ -29,6 +29,7 @@ Note: this project supports any PDM mic.
 ### Step 8: IoT
 
 => [BLE extension](python/BleExtension)
+=> [Data Visualization]()
 
 ### Extra: 3DCG animation (Work in progress)
 

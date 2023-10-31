@@ -74,7 +74,7 @@ I reuse [this code](https://github.com/araobp/NUCLEO-L476RG_DFSDM_PDM-Mic) with 
 
 ## Test results
 
-=> [Test results on Jupyter Notebook](./data/MEMSMIC.ipynb)
+=> [Test results on Jupyter Notebook](./test/MEMSMIC.ipynb)
 
 I have made the tests under the following conditions. 
 

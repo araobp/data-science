@@ -1,0 +1,5 @@
+../Core/Src/rn4020.c:30:6:RN4020_Init	8	static
+../Core/Src/rn4020.c:39:13:receiveData	16	static
+../Core/Src/rn4020.c:48:6:sendData	32	static
+../Core/Src/rn4020.c:65:6:RN4020_Process	32	static
+../Core/Src/rn4020.c:80:6:HAL_UART_RxCpltCallback	24	static

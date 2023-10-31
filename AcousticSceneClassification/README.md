@@ -6,7 +6,7 @@ Note: this project supports any PDM mic.
 
 ### Step 1: Designing Arduino shield of MEMS microphone
 
-=> [Schematic](STM32/kicad/AcousticFeatureCamera)
+=> [Schematic](kicad/AcousticFeatureCamera)
 
 ### Step 2: Evaluation of MEMS microphone and DFSDM
 

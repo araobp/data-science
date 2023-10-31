@@ -16,13 +16,19 @@ Note: this project supports any PDM mic.
 
 => [ACOUSTIC_FEATURE_CAMERA](STM32/ACOUSTIC_FEATURE_CAMERA.md)
 
-### Step 4: Data Collection (Work in progress)
+### Step 4: Oscilloscope GUI
 
 => [Oscilloscope GUI (Tkinter)](python/OscilloscopeGUI)
 
-### Step 5: Training CNN on Jupyter Notebook
+### Step 5: Using Osiclloscope GUI via BLE
 
-### Step 6: Acoustic Feature Camera (with AI)
+=> [BLE extension](python/BleExtension)
+
+### Step 6: Data Collection
+
+### Step 7: Training CNN on Jupyter Notebook
+
+### Step 8: Acoustic Feature Camera (with AI)
 
 ### Extra: 3DCG animation (Work in progress)
 

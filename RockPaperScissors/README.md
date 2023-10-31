@@ -1,6 +1,6 @@
 # Rock Paper Scissors
 
-<img src="STM32/doc/RockPaperScissors_DCT_DNN_Experiment.jpg" width=200>
+<img src="stm32/doc/RockPaperScissors_DCT_DNN_Experiment.jpg" width=200>
 
 I developed "Rock Paper Scissors" game machine on Nucleo L401RE board with Panasonic AMG8833 in January 2019, just after the first relase of STM32Cube.AI (December 2018) became available for developers: [the demo in on YouTube](https://www.youtube.com/shorts/d6OYSllaVEs). I remember my excitement on STM32Cube.AI -- AI can run on such a tiny device!
 

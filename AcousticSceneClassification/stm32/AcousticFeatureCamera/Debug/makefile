@@ -60,8 +60,8 @@ all: main-build
 main-build: AcousticFeatureCamera.elf secondary-outputs
 
 # Tool invocations
-AcousticFeatureCamera.elf AcousticFeatureCamera.map: $(OBJS) $(USER_OBJS) C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\STM32L476RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "AcousticFeatureCamera.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="AcousticFeatureCamera.map" -Wl,--gc-sections -static -L"C:\Users\shiny\Documents\data-science-study\STM32\AcousticFeatureCamera\Drivers\CMSIS\Lib" -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+AcousticFeatureCamera.elf AcousticFeatureCamera.map: $(OBJS) $(USER_OBJS) C:\Users\shiny\Documents\data-science-study\AcousticSceneClassification\stm32\AcousticFeatureCamera\STM32L476RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "AcousticFeatureCamera.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\shiny\Documents\data-science-study\AcousticSceneClassification\stm32\AcousticFeatureCamera\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="AcousticFeatureCamera.map" -Wl,--gc-sections -static -L"C:\Users\shiny\Documents\data-science-study\AcousticSceneClassification\stm32\AcousticFeatureCamera\Drivers\CMSIS\Lib" -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

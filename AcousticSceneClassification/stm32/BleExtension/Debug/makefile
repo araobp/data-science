@@ -60,8 +60,8 @@ all: main-build
 main-build: BleExtension.elf secondary-outputs
 
 # Tool invocations
-BleExtension.elf BleExtension.map: $(OBJS) $(USER_OBJS) C:\Users\shiny\STM32CubeIDE\workspace_1.13.2\BleExtension\STM32L476RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "BleExtension.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\shiny\STM32CubeIDE\workspace_1.13.2\BleExtension\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BleExtension.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+BleExtension.elf BleExtension.map: $(OBJS) $(USER_OBJS) C:\Users\shiny\Documents\data-science-study\AcousticSceneClassification\stm32\BleExtension\STM32L476RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "BleExtension.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\shiny\Documents\data-science-study\AcousticSceneClassification\stm32\BleExtension\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BleExtension.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

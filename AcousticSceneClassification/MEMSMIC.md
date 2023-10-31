@@ -70,7 +70,7 @@ correction, right bit shift).
 
 I reuse [this code](https://github.com/araobp/NUCLEO-L476RG_DFSDM_PDM-Mic) with some minor modifications.
 
-=> [Modified code](./MEMSMIC)
+=> [Modified code](./stm32/MEMSMIC)
 
 ## Test results
 

@@ -1,0 +1,4 @@
+device_names:
+  - BLE1
+  - BLE2
+notify_uuid: 01020304-0506-0708-0900-0a0b0c0d0e0f

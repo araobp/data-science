@@ -5,7 +5,7 @@
 - Acoustic scene classifcation with NUCLEO L476RG board.
 - Generative Art of acoustic features made with Blender.
 
-=> **[Acoustic Scene Classification](./AcousticSceneClassification)**
+=> **[AudioSignalProcessing](./AudioSignalProcessing)**
 
 ---
 

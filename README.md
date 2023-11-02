@@ -31,6 +31,7 @@ My past projects on edge AI:
 Note: I have stopped developing this on STM32L4, because X-CUBE-AI has some problems. I will start developing Acoustic Scene Classification on Android instead.
 
 => **[AcousticSceneClassification](./AcousticSceneClassification)**
+
 ---
 ## Misc
 

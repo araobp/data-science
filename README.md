@@ -8,14 +8,13 @@ Paco de Lucia's Picado from ["Cepa Andaluza" (Bulerias)](https://youtu.be/NIKWBd
 
 <img src="doc/paco's%20picado.png" width=450>
 
-Edge AI with low-power-consumption MCUs such as **[STM32L4 from STMicroelectronics](https://www.st.com/en/microcontrollers-microprocessors/stm32l4-series.html)** is one of key technologies to stop Global Warming.
-
-In this project, I pick up two achievements on edge AI from my past projects, and update them with the latest [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html) and [STM32Cube.AI](https://stm32ai.st.com/stm32-cube-ai/).
+In this project, I pick up some of my achievements on edge AI from my past projects, and update them with the latest IDEs such as STM32CubeIDE or Android Studio.
 
 I will also try to create Generative Art with edge AI in this project.
 
 My past projects on edge AI:
 - [acoustic-features](https://github.com/araobp/acoustic-features)
+- [android-aed](https://github.com/araobp/android-aed)
 - [stm32-mcu](https://github.com/araobp/stm32-mcu)
 
 ## Project 1: Rock Paper Scissors Machine

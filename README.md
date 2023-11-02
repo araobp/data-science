@@ -32,7 +32,7 @@ Note: I have stopped developing this on STM32L4, because X-CUBE-AI has some prob
 
 => **[AcousticSceneClassification (work in progress)](./AcousticSceneClassification)**
 
-=> [AudioSignalProcessing (terminated)](./AudioSignalProcessingWithSTM32.md)
+=> [AudioSignalProcessing (terminated)](./AudioSignalProcessingWithSTM32L4.md)
 
 ---
 ## Misc
